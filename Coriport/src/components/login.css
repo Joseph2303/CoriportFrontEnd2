@@ -1,0 +1,25 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+  }
+  input[type="text"],
+  input[type="password"],
+  button {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #fff; /* Cambiado de #000 a #fff */
+    outline: none;
+    padding: 5px;
+    margin-bottom: 10px;
+    color: #fff; /* Cambiado de #000 a #fff */
+    transition: border-color 0.3s;
+  }
+  input:hover {
+    border-color: #ff0000;
+  }
+  button:hover {
+    border-color: #ff0000;
+  }
