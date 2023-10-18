@@ -1,21 +1,33 @@
-/*let email =  document.getElementById('email');
-let password =  document.getElementById('password');
-let _token =  document.getElementById('token');
+
    
-async function login(){
-    let obj = { email:email.value, password:password.value };
-    console.log(obj)
-    const res = await fetch('http://localhost:8000/user/login', {
+/*async function login(event){
+    event.preventDefault(); 
+    let data={
+        email:$("#email").val(),
+        password:$("#password").val()
+    }
+
+    //let obj = { email:email.value, password:password.value };
+    const res = await fetch('http://localhost:8000/api/user/login', {
          method:'POST',
          mode: 'cors',
          headers:{
-               'X-CSRF-TOKEN': _token.value,
+               //'X-CSRF-TOKEN': _token.value,
                'Content-Type': 'application/json'
         },
-        body:JSON.stringify(obj)      
+        body:JSON.stringify(data)      
+        }).then(function(response){
+            return response.json();
+        }).then(function(respObj){
+            console.log(respObj.token);
+          //  sessionStorage.setItem("token",respObj.token);
+    
+        }).catch(error=>{
+            console.log("Error en la petición");
+            console.log(error);
         });
    
-        const data = await res.json()
+        data = await res.json()
         console.log(data)
         clearInput()
        }
@@ -23,15 +35,15 @@ async function login(){
        function clearInput(){
            email.value = ""
            password.value = ""
-}*/
+}* */
 
 function login(event){
     event.preventDefault(); 
     let data={
         email:$("#email").val(),
-        password:$("#password").val()
+        contrasena:$("#contrasena").val()
     }
-    fetch('http://localhost:8000/user/login',{
+    fetch('http://localhost:8000/api/user/login',{
         method:"POST",
         body:JSON.stringify(data),
         headers:{
@@ -44,6 +56,7 @@ function login(event){
         sessionStorage.setItem("token",respObj.token);
 
     }).catch(error=>{
+        console.log(data)
         console.log("Error en la petición");
         console.log(error);
     });

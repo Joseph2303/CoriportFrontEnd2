@@ -5,6 +5,8 @@ $("#lineas").on('click',function(){routingi("lineas")});
 $("#senuelos").on('click',function(){routingi("senuelos")});
 $("#Herramientas").on('click',function(){routingi("herramientas")});
 
+
+
 function routingi(router){
     $('#main-containerArti').load('../views/Empleado'+router+'.html');
 }
