@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eliminar Empleado</title>
+</head>
+<body>
+  <h1>Eliminar Empleado</h1>
+  
+  <p>¿Seguro que deseas eliminar este empleado?</p>
+  <button id="confirmarEliminar">Eliminar Empleado</button>
+
+  <script>
+    document.getElementById('confirmarEliminar').addEventListener('click', function() {
+      if (confirm('¿Seguro que deseas eliminar este empleado?')) {
+        eliminarEmpleado(); 
+      }
+    });
+
+    function eliminarEmpleado() {
+      const IdEmpleado = obtenerEmpleadoId(); 
+
+      if (IdEmpleado) {
+        fetch(`http://127.0.0.1:8000/api/employees/${IdEmpleado}`, {
+          method: 'DELETE'
+        })
+          .then(response => {
+            if (response.status === 200) {
+              alert('Empleado eliminado correctamente.');
+            
+            } else {
+              alert('Error al eliminar el empleado.');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+    }
+
+    function obtenerEmpleadoId() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const empleadoId = urlParams.get('id');
+      return empleadoId;
+    }
+
+  </script>
+</body>
+</html>
