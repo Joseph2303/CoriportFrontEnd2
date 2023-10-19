@@ -7,9 +7,45 @@
 
 <body>
     <h3 style="color: white;">Registro de Usuario</h3>
+    <div>
     <button class="boto" id="agregar-usuario">Agregar Usuario</button>
+    </div>
+    <table id="tabla-usuarios" border="0">
+        <thead>
+            <tr>
+                <th>Correo Electrónico</th>
+                <th>Contraseña</th>
+                <th>Tipo de Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se llenarán dinámicamente los datos de los usuarios -->
+            <tbody>
+                <tr>
+                    <td>usuario1@example.com</td>
+                    <td>clave1</td>
+                    <td>Admin</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>usuario2@example.com</td>
+                    <td>clave2</td>
+                    <td>Usuario Normal</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </tbody>
+    </table>
+
+    <br>
+
+    <button id="eliminar-seleccionados" style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Eliminar</button>
+    <button id="actualizar-seleccionados" style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Actualizar</button>
+
     <script>
-        const botonAgregar = document.getElementById('agregar-usuario');
+    const botonAgregar = document.getElementById('agregar-usuario');
         botonAgregar.addEventListener('click', function() {
             const pantallaEmergente = document.createElement('div');
             pantallaEmergente.style.position = 'fixed';
@@ -99,7 +135,115 @@
             document.body.appendChild(pantallaEmergente);
 
         });
+
+
+
+        const tablaUsuarios = document.getElementById('tabla-usuarios');
+    const botonEliminarSeleccionados = document.getElementById('eliminar-seleccionados');
+    const botonActualizarSeleccionados = document.getElementById('actualizar-seleccionados');
+
+    function actualizarTabla() {
+        // ... Resto del código se mantiene igual ...
+    }
+
+    function actualizarBotones() {
+        const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+        if (checkboxesSeleccionados.length > 0) {
+            botonEliminarSeleccionados.style.display = 'inline-block';
+            botonActualizarSeleccionados.style.display = 'inline-block';
+        } else {
+            botonEliminarSeleccionados.style.display = 'none';
+            botonActualizarSeleccionados.style.display = 'none';
+        }
+    }
+
+    function confirmarBorrado() {
+        const pantallaEmergente = document.createElement('div');
+        pantallaEmergente.style.position = 'fixed';
+        pantallaEmergente.style.top = 0;
+        pantallaEmergente.style.left = 0;
+        pantallaEmergente.style.width = '100%';
+        pantallaEmergente.style.height = '100%';
+        pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        pantallaEmergente.style.display = 'flex';
+        pantallaEmergente.style.justifyContent = 'center';
+        pantallaEmergente.style.alignItems = 'center';
+
+        const mensaje = document.createElement('div');
+        mensaje.style.backgroundColor = 'white';
+        mensaje.style.padding = '20px';
+        mensaje.style.borderRadius = '10px';
+        mensaje.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+        const texto = document.createElement('p');
+        texto.textContent = '¿Estás seguro de que quieres borrar esto?';
+
+        const botonAceptar = document.createElement('button');
+        botonAceptar.textContent = 'Aceptar';
+        botonAceptar.style.backgroundColor = '#007bff';
+        botonAceptar.style.color = 'white';
+        botonAceptar.style.padding = '10px 20px';
+        botonAceptar.style.borderRadius = '5px';
+        botonAceptar.style.border = 'none';
+        botonAceptar.style.cursor = 'pointer';
+        botonAceptar.style.marginRight = '10px';
+
+        const botonCancelar = document.createElement('button');
+        botonCancelar.textContent = 'Cancelar';
+        botonCancelar.style.backgroundColor = '#007bff';
+        botonCancelar.style.color = 'white';
+        botonCancelar.style.padding = '10px 20px';
+        botonCancelar.style.borderRadius = '5px';
+        botonCancelar.style.border = 'none';
+        botonCancelar.style.cursor = 'pointer';
+
+        botonAceptar.addEventListener('click', function() {
+            pantallaEmergente.remove();
+            const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxesSeleccionados.forEach(function(checkbox) {
+                const fila = checkbox.closest('tr');
+                fila.remove();
+            });
+            actualizarBotones();
+        });
+
+        botonCancelar.addEventListener('click', function() {
+            pantallaEmergente.remove();
+        });
+
+        mensaje.appendChild(texto);
+        mensaje.appendChild(botonAceptar);
+        mensaje.appendChild(botonCancelar);
+
+        pantallaEmergente.appendChild(mensaje);
+        document.body.appendChild(pantallaEmergente);
+    }
+
+    tablaUsuarios.addEventListener('change', function(event) {
+        if (event.target.type === 'checkbox') {
+            actualizarBotones();
+        }
+    });
+
+    botonEliminarSeleccionados.addEventListener('click', function() {
+        const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+        if (checkboxesSeleccionados.length > 0) {
+            confirmarBorrado();
+        }
+    });
+
+    botonActualizarSeleccionados.addEventListener('click', function() {
+        const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxesSeleccionados.forEach(function(checkbox) {
+            const fila = checkbox.closest('tr');
+            // Aquí puedes agregar la lógica para actualizar la fila
+        });
+        actualizarBotones();
+    });
+
+    // Llama a esta función para inicializar la tabla
+    actualizarTabla();
+
     </script>
 </body>
-
 </html>
