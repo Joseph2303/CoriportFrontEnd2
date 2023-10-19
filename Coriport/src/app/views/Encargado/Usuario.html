@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../Encargado/StyleEncargado/Usuario.css">
+</head>
+
+<body>
+    <h3 style="color: white;">Registro de Usuario</h3>
+    <div>
+    <button class="boto" id="agregar-usuario">Agregar Usuario</button>
+    </div>
+    <table id="tabla-usuarios" border="0">
+        <thead>
+            <tr>
+                <th>Correo Electrónico</th>
+                <th>Contraseña</th>
+                <th>Tipo de Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se llenarán dinámicamente los datos de los usuarios -->
+            <tbody>
+                <tr>
+                    <td>usuario1@example.com</td>
+                    <td>clave1</td>
+                    <td>Admin</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td>usuario2@example.com</td>
+                    <td>clave2</td>
+                    <td>Usuario Normal</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </tbody>
+    </table>
+
+    <br>
+
+    <button id="eliminar-seleccionados" style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Eliminar</button>
+    <button id="actualizar-seleccionados" style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Actualizar</button>
+
+    <script>
+    const botonAgregar = document.getElementById('agregar-usuario');
+        botonAgregar.addEventListener('click', function() {
+            const pantallaEmergente = document.createElement('div');
+            pantallaEmergente.style.position = 'fixed';
+            pantallaEmergente.style.top = 0;
+            pantallaEmergente.style.left = 0;
+            pantallaEmergente.style.width = '100%';
+            pantallaEmergente.style.height = '100%';
+            pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergente.style.display = 'flex';
+            pantallaEmergente.style.justifyContent = 'center';
+            pantallaEmergente.style.alignItems = 'center';
+            const formulario = document.createElement('form');
+            formulario.action = 'tu_ruta_de_php.php';
+            formulario.method = 'POST';
+
+            const labelEmail = document.createElement('label');
+            labelEmail.for = 'email';
+            labelEmail.textContent = 'Correo Electrónico:';
+
+            const inputEmail = document.createElement('input');
+            inputEmail.type = 'email';
+            inputEmail.id = 'email';
+            inputEmail.name = 'data[email]';
+            inputEmail.required = true;
+
+            const labelContrasena = document.createElement('label');
+            labelContrasena.for = 'contrasena';
+            labelContrasena.textContent = 'Contraseña:';
+
+            const inputContrasena = document.createElement('input');
+            inputContrasena.type = 'password';
+            inputContrasena.id = 'contrasena';
+            inputContrasena.name = 'data[contrasena]';
+            inputContrasena.required = true;
+
+            const labelTipoUsuario = document.createElement('label');
+            labelTipoUsuario.for = 'tipoUsuario';
+            labelTipoUsuario.textContent = 'Tipo de Usuario:';
+
+            const inputTipoUsuario = document.createElement('input');
+            inputTipoUsuario.type = 'text';
+            inputTipoUsuario.id = 'tipoUsuario';
+            inputTipoUsuario.name = 'data[tipoUsuario]';
+            inputTipoUsuario.required = true;
+
+            const botonRegistrarse = document.createElement('button');
+            botonRegistrarse.type = 'submit';
+            botonRegistrarse.textContent = 'Registrarse';
+            botonRegistrarse.style.marginTop = '10px'; // Añade espacio arriba del botón
+            botonRegistrarse.style.marginLeft = '20px';
+            botonRegistrarse.style.marginRight = '20px';
+
+            formulario.appendChild(labelEmail);
+            formulario.appendChild(inputEmail);
+            formulario.appendChild(document.createElement('br'));
+            formulario.appendChild(document.createElement('br'));
+            formulario.appendChild(labelContrasena);
+            formulario.appendChild(inputContrasena);
+            formulario.appendChild(document.createElement('br'));
+            formulario.appendChild(document.createElement('br'));
+            formulario.appendChild(labelTipoUsuario);
+            formulario.appendChild(inputTipoUsuario);
+            formulario.appendChild(document.createElement('br'));
+            formulario.appendChild(document.createElement('br'));
+            formulario.appendChild(botonRegistrarse);
+
+            const botonCerrar = document.createElement('button');
+            botonCerrar.type = 'button';
+            botonCerrar.textContent = 'Cerrar';
+            botonCerrar.style.marginRight = '20px';
+            botonCerrar.style.marginLeft = '20px';
+            botonCerrar.style.marginBottom = '10px'; // Añade espacio abajo del botón
+            botonCerrar.style.backgroundColor = '#007bff';
+            botonCerrar.style.color = 'white';
+            botonCerrar.style.padding = '10px 20px';
+            botonCerrar.style.borderRadius = '3px';
+            botonCerrar.style.border = 'none';
+            botonCerrar.style.cursor = 'pointer';
+
+            botonCerrar.addEventListener('click', function() {
+                pantallaEmergente.remove();
+            });
+
+            formulario.appendChild(botonCerrar);
+
+            pantallaEmergente.appendChild(formulario);
+            document.body.appendChild(pantallaEmergente);
+
+        });
+
+
+
+        const tablaUsuarios = document.getElementById('tabla-usuarios');
+    const botonEliminarSeleccionados = document.getElementById('eliminar-seleccionados');
+    const botonActualizarSeleccionados = document.getElementById('actualizar-seleccionados');
+
+    function actualizarTabla() {
+        // ... Resto del código se mantiene igual ...
+    }
+
+    function actualizarBotones() {
+        const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+        if (checkboxesSeleccionados.length > 0) {
+            botonEliminarSeleccionados.style.display = 'inline-block';
+            botonActualizarSeleccionados.style.display = 'inline-block';
+        } else {
+            botonEliminarSeleccionados.style.display = 'none';
+            botonActualizarSeleccionados.style.display = 'none';
+        }
+    }
+
+    function confirmarBorrado() {
+        const pantallaEmergente = document.createElement('div');
+        pantallaEmergente.style.position = 'fixed';
+        pantallaEmergente.style.top = 0;
+        pantallaEmergente.style.left = 0;
+        pantallaEmergente.style.width = '100%';
+        pantallaEmergente.style.height = '100%';
+        pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        pantallaEmergente.style.display = 'flex';
+        pantallaEmergente.style.justifyContent = 'center';
+        pantallaEmergente.style.alignItems = 'center';
+
+        const mensaje = document.createElement('div');
+        mensaje.style.backgroundColor = 'white';
+        mensaje.style.padding = '20px';
+        mensaje.style.borderRadius = '10px';
+        mensaje.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+        const texto = document.createElement('p');
+        texto.textContent = '¿Estás seguro de que quieres borrar esto?';
+
+        const botonAceptar = document.createElement('button');
+        botonAceptar.textContent = 'Aceptar';
+        botonAceptar.style.backgroundColor = '#007bff';
+        botonAceptar.style.color = 'white';
+        botonAceptar.style.padding = '10px 20px';
+        botonAceptar.style.borderRadius = '5px';
+        botonAceptar.style.border = 'none';
+        botonAceptar.style.cursor = 'pointer';
+        botonAceptar.style.marginRight = '10px';
+
+        const botonCancelar = document.createElement('button');
+        botonCancelar.textContent = 'Cancelar';
+        botonCancelar.style.backgroundColor = '#007bff';
+        botonCancelar.style.color = 'white';
+        botonCancelar.style.padding = '10px 20px';
+        botonCancelar.style.borderRadius = '5px';
+        botonCancelar.style.border = 'none';
+        botonCancelar.style.cursor = 'pointer';
+
+        botonAceptar.addEventListener('click', function() {
+            pantallaEmergente.remove();
+            const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxesSeleccionados.forEach(function(checkbox) {
+                const fila = checkbox.closest('tr');
+                fila.remove();
+            });
+            actualizarBotones();
+        });
+
+        botonCancelar.addEventListener('click', function() {
+            pantallaEmergente.remove();
+        });
+
+        mensaje.appendChild(texto);
+        mensaje.appendChild(botonAceptar);
+        mensaje.appendChild(botonCancelar);
+
+        pantallaEmergente.appendChild(mensaje);
+        document.body.appendChild(pantallaEmergente);
+    }
+
+    tablaUsuarios.addEventListener('change', function(event) {
+        if (event.target.type === 'checkbox') {
+            actualizarBotones();
+        }
+    });
+
+    botonEliminarSeleccionados.addEventListener('click', function() {
+        const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+        if (checkboxesSeleccionados.length > 0) {
+            confirmarBorrado();
+        }
+    });
+
+    botonActualizarSeleccionados.addEventListener('click', function() {
+        const checkboxesSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxesSeleccionados.forEach(function(checkbox) {
+            const fila = checkbox.closest('tr');
+            // Aquí puedes agregar la lógica para actualizar la fila
+        });
+        actualizarBotones();
+    });
+
+    // Llama a esta función para inicializar la tabla
+    actualizarTabla();
+
+    </script>
+</body>
+</html>

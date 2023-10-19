@@ -1,23 +1,11 @@
-$("#navFinans").on('click',function(){routingi("Combos")});
-$("#navFinance").on('click',function(){routingi("carretes")});
-$("#navTalent").on('click',function(){routingi("canas")});
-$("#lineas").on('click',function(){routingi("lineas")});
-$("#senuelos").on('click',function(){routingi("senuelos")});
-$("#Herramientas").on('click',function(){routingi("herramientas")});
 
-
+$("#diasFeriado").on('click',function(){routingi("DiasFeriados")});
+$("#Empleados").on('click',function(){routingi("Usuario")});
 
 function routingi(router){
-    $('#main-containerArti').load('../views/Empleado'+router+'.html');
+    $('#main-containerEncargado').load('/Coriport/src/app/views/Encargado/'+router+'.html');
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 /*import axios from 'axios';
 
 const api = axios.create({
