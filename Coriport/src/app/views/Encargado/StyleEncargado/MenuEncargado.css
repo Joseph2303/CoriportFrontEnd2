@@ -14,7 +14,7 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  height: 105px;
+  height: 90px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -102,3 +102,9 @@ nav.open ~ .overlay {
   left: 260px;
   pointer-events: auto;
 }
+
+#main-containerEncargado {
+  position: static;
+  z-index: -1;
+}
+
