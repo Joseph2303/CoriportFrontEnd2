@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <link rel="stylesheet" type="text/css" href="../Encargado/StyleEncargado/Usuario.css">
 </head>
+
 <body>
     <h3 style="color: white;">Registro de Usuario</h3>
     <button class="boto" id="agregar-usuario">Agregar Usuario</button>
@@ -56,6 +58,9 @@
             const botonRegistrarse = document.createElement('button');
             botonRegistrarse.type = 'submit';
             botonRegistrarse.textContent = 'Registrarse';
+            botonRegistrarse.style.marginTop = '10px'; // Añade espacio arriba del botón
+            botonRegistrarse.style.marginLeft = '20px';
+            botonRegistrarse.style.marginRight = '20px';
 
             formulario.appendChild(labelEmail);
             formulario.appendChild(inputEmail);
@@ -70,27 +75,31 @@
             formulario.appendChild(document.createElement('br'));
             formulario.appendChild(document.createElement('br'));
             formulario.appendChild(botonRegistrarse);
+
+            const botonCerrar = document.createElement('button');
+            botonCerrar.type = 'button';
+            botonCerrar.textContent = 'Cerrar';
+            botonCerrar.style.marginRight = '20px';
+            botonCerrar.style.marginLeft = '20px';
+            botonCerrar.style.marginBottom = '10px'; // Añade espacio abajo del botón
+            botonCerrar.style.backgroundColor = '#007bff';
+            botonCerrar.style.color = 'white';
+            botonCerrar.style.padding = '10px 20px';
+            botonCerrar.style.borderRadius = '3px';
+            botonCerrar.style.border = 'none';
+            botonCerrar.style.cursor = 'pointer';
+
+            botonCerrar.addEventListener('click', function() {
+                pantallaEmergente.remove();
+            });
+
+            formulario.appendChild(botonCerrar);
+
             pantallaEmergente.appendChild(formulario);
             document.body.appendChild(pantallaEmergente);
-           
-const botonCerrar = document.createElement('button');
-botonCerrar.type = 'button';
-botonCerrar.textContent = 'Cerrar';
-botonCerrar.style.marginRight = '5px';
-botonCerrar.style.backgroundColor = '#007bff';
-botonCerrar.style.color = 'white';
-botonCerrar.style.padding = '10px 20px';
-botonCerrar.style.borderRadius = '3px';
-botonCerrar.style.border = 'none';
-botonCerrar.style.cursor = 'pointer';
-
-botonCerrar.addEventListener('click', function() {
-    pantallaEmergente.remove();
-});
-formulario.appendChild(botonCerrar);
 
         });
     </script>
 </body>
-</html>
 
+</html>
