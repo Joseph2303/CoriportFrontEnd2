@@ -6,7 +6,12 @@
 </head>
 
 <body>
+    <center><h2 style="color: white;">Registros de los Empleado</h2></center>
+    <br>
+    <br>
     <h3 style="color: white;">Registro de Usuario</h3>
+    <br>
+    <div class="cajon">
     <div>
     <button class="boto" id="agregar-usuario">Agregar Usuario</button>
     </div>
@@ -43,6 +48,19 @@
 
     <button id="eliminar-seleccionados" style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Eliminar</button>
     <button id="actualizar-seleccionados" style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Actualizar</button>
+    
+    </div>
+
+
+    <br>
+    <br>
+
+    <h3 style="color: white;">Registro de Empleados</h3>
+
+    <div>
+        <p style="color: white;">En proceso de diseño......................</p>
+    </div>
+
 
     <script>
     const botonAgregar = document.getElementById('agregar-usuario');
@@ -70,6 +88,7 @@
             inputEmail.id = 'email';
             inputEmail.name = 'data[email]';
             inputEmail.required = true;
+            inputEmail.style.border = '1px solid #007bff';
 
             const labelContrasena = document.createElement('label');
             labelContrasena.for = 'contrasena';
@@ -80,6 +99,7 @@
             inputContrasena.id = 'contrasena';
             inputContrasena.name = 'data[contrasena]';
             inputContrasena.required = true;
+            inputContrasena.style.border = '1px solid #007bff';
 
             const labelTipoUsuario = document.createElement('label');
             labelTipoUsuario.for = 'tipoUsuario';
@@ -90,6 +110,7 @@
             inputTipoUsuario.id = 'tipoUsuario';
             inputTipoUsuario.name = 'data[tipoUsuario]';
             inputTipoUsuario.required = true;
+            inputTipoUsuario.style.border = '1px solid #007bff';
 
             const botonRegistrarse = document.createElement('button');
             botonRegistrarse.type = 'submit';

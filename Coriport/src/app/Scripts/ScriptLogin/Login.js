@@ -20,7 +20,7 @@ inputs.forEach(input => {
 	input.addEventListener("blur", remcl);
 });
 //____________________________________________________//
-/*function changeView2(view) {
+function changeView2(view) {
 	var container = document.getElementById('view-container');
 	var url = 'viewsEncargados/' + view + '.php';
 	fetch(url)
@@ -41,8 +41,6 @@ inputs.forEach(input => {
 			  preloader.style.display = 'none';
 		  }, 5000); 
 	  });
-
-*/
 
 
 
