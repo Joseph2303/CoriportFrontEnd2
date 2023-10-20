@@ -37,28 +37,52 @@
            password.value = ""
 }* */
 
-function login(event){
-    event.preventDefault(); 
-    let data={
-        email:$("#email").val(),
-        contrasena:$("#contrasena").val()
-    }
-    fetch('http://localhost:8000/api/user/login',{
-        method:"POST",
-        body:JSON.stringify(data),
-        headers:{
-            "Content-Type":"application/json"
-        }
-    }).then(function(response){
-        return response.json();
-    }).then(function(respObj){
-        console.log(respObj.token);
-        sessionStorage.setItem("token",respObj.token);
+function login(event) {
+    event.preventDefault();
 
-    }).catch(error=>{
-        console.log(data)
-        console.log("Error en la petición");
-        console.log(error);
+    let obj = {
+        email: $("#email").val(),
+        contrasena: $("#contrasena").val()
+    };
+    let data = 'data=' + JSON.stringify(obj);
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8000/api/user/login",
+        data: data,
+        success: function (respObj) {
+            sessionStorage.setItem("token", respObj);
+            let token = sessionStorage.getItem("token");
+            if (token) {
+                $.ajax({
+                    type: "GET", // Cambiamos a método GET
+                    url: "http://localhost:8000/api/user/getidentity",
+                    headers: {
+                        "beartoken": token
+                    },
+                    success: function (identity) {
+                        sessionStorage.setItem("identity",JSON.stringify(identity));
+                       
+                        console.log(identity)
+
+                        if (identity['tipoUsuario']=='empleado') {
+
+                            console.log("EMPLEADO")
+                            //window.location.href = "dashboard.html";
+                        }else if(identity['tipoUsuario']=='admin'){
+                            window.location.href ="http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html";
+                        }else{
+                            console.log("ERROR DE VALIDACION")
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
     });
 }
 
