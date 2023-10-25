@@ -114,8 +114,6 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-
-
 .cajon{
     background-color: #cfe6ff;
     padding: 10px 20px;
@@ -123,25 +121,41 @@ button[type="submit"] {
 }
 
 
-#tabla-Empleado {
-    margin-top: 20px;
-    border-collapse: collapse;
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
+#formulario-emergente {
+    display: none;
 }
 
-#tabla-Empleado th {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+#formulario-emergente input[type="text"],
+#formulario-emergente input[type="email"],
+#formulario-emergente input[type="password"],
+#formulario-emergente select {
+    width: 30%; /* Ajusta el ancho según tu preferencia */
+    padding: 5px;
+    margin-bottom: 10px;
 }
 
-#tabla-Empleado td button {
+#formulario-emergente .Enviar {
     background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    color: #fff;
     border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
+}
+
+#formulario-emergente .Enviar:hover {
+    background-color: #0056b3; /* Cambia el color en hover si lo deseas */
+}
+
+#formulario-emergente .Cancelar {
+    background-color: #ff5252;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#formulario-emergente .Cancelar:hover {
+    background-color: #ff0000; /* Cambia el color en hover si lo deseas */
 }
