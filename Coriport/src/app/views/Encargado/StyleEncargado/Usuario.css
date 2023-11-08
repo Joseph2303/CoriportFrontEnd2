@@ -159,3 +159,16 @@ button[type="submit"] {
 #formulario-emergente .Cancelar:hover {
     background-color: #ff0000; /* Cambia el color en hover si lo deseas */
 }
+
+#formulario-emergente .Limpiar {
+    background-color: #1bc20c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#formulario-emergente .Limpiar:hover {
+    background-color: #7ec478; /* Cambia el color en hover si lo deseas */
+}
