@@ -82,7 +82,6 @@ function updateEmpleado(event) {
         console.log(error);
     });
 }
-
 event.preventDefault(); 
 $.ajax({
     url:"http://localhost:8000/api/empleados",
@@ -91,7 +90,7 @@ $.ajax({
      console.log(response);
      var respObj=response.data;
      for(k in respObj){
-         $("#employee-table-body").append(
+         $("#dataTableE").append(
              `<tr data-user-id="${respObj[k].id}">
              <td >`+respObj[k].idEmpleado+`</td>
              <td>`+respObj[k].nombre+`</td>
@@ -102,7 +101,7 @@ $.ajax({
              <td>`+respObj[k].fechContrat+`</td>
              <td>`+respObj[k].usuario.email+`</td>
              <td>`+respObj[k].puesto.puesto+`</td>
-             <td><input type="checkbox"></td>
+             <td><input type="checkbox" class="checkbox-accion" onchange="mostrarBotones()"></td>
              </tr>`
          );
 
