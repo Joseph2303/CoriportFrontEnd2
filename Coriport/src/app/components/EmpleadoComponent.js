@@ -8,7 +8,7 @@ function send(event) {
         "telefono1": $("#telefono1").val(),
         "telefono2": $("#telefono2").val(),
         "cedula": $("#cedula").val(),
-        "fechaContrat": $("#fechaContrat").val(),
+        "fechContrat": $("#fechContrat").val(),
         "idUsuario": $("#idUsuario").val(),
         "idPuesto": $("#idPuesto").val()
     };
@@ -83,6 +83,36 @@ function updateEmpleado(event) {
     });
 }
 
-$("#send").click(send);
-$("#destroy").click(destroy);
-$("#update").click(update);
+event.preventDefault(); 
+$.ajax({
+    url:"http://localhost:8000/api/empleados",
+    type:"GET"
+ }).done(function(response){
+     console.log(response);
+     var respObj=response.data;
+     for(k in respObj){
+         $("#employee-table-body").append(
+             `<tr data-user-id="${respObj[k].id}">
+             <td >`+respObj[k].idEmpleado+`</td>
+             <td>`+respObj[k].nombre+`</td>
+             <td>`+respObj[k].apellido1+`</td>
+             <td>`+respObj[k].apellido2+`</td>
+             <td>`+respObj[k].telefono1+`</td>
+             <td>`+respObj[k].cedula+`</td>
+             <td>`+respObj[k].fechContrat+`</td>
+             <td>`+respObj[k].usuario.email+`</td>
+             <td>`+respObj[k].puesto.puesto+`</td>
+             <td><input type="checkbox"></td>
+             </tr>`
+         );
+
+     }    
+ }).fail(function(){
+     
+ });
+
+
+
+$("#sendE").click(send);
+$("#destroyE").click(destroy);
+$("#updateE").click(update);

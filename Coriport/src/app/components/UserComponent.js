@@ -1,8 +1,6 @@
 function send(event){
     event.preventDefault(); 
-
     let obj={
-
         "email":$("#email").val(),
         "contrasena":$("#contrasena").val(),
         "tipoUsuario":$("#tipoUsuario").val(),
@@ -13,16 +11,13 @@ function send(event){
         type:"POST",
         data:data
     }).done(function(response){
-        console.log(response);
-        localStorage.setItem('id', response.data.id);
-        
+        console.log(response);        
     }).fail(function(error){
         console.log(error)
     });
 }
 
 function destroy(id){
-   // let id = $("#id").val() 
     $.ajax({
         url:"http://localhost:8000/api/user/delete/" + id,
         type:"DELETE",
@@ -41,9 +36,8 @@ function find(event){
 
 function update(id){
     let obj={
-        "id": id,
-        "email":$("#email").val(),
-        "contrasena":$("#contrasena").val(),
+        "idUsuario": id,
+        "email":$("#correo").val(),
         "tipoUsuario":$("#tipoUsuario").val(),
     }
 
@@ -56,7 +50,6 @@ function update(id){
         data: data
     }).done(function (response) {
         console.log(response);
-        window.location.href ="http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html";
 
     }).fail(function (error) {
         console.log(error);
@@ -73,10 +66,9 @@ $.ajax({
      var respObj=response.data;
      for(k in respObj){
          $("#dataTable").append(
-             `<tr data-user-id="${respObj[k].id}">
-             <td >`+respObj[k].id+`</td>
+             `<tr data-user-id="${respObj[k].idUsuario}">
+             <td >`+respObj[k].idUsuario+`</td>
              <td>`+respObj[k].email+`</td>
-             <td>`+respObj[k].contrasena+`</td>
              <td>`+respObj[k].tipoUsuario+`</td>
              <td><input type="checkbox"></td>
              </tr>`
