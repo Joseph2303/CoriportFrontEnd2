@@ -64,12 +64,14 @@
                     <br>
                     <br>
 
-                    <button id="sendE" type="button" onclick="submitForm()">Guardar</button>
+                    <button id="sendE" type="button" onclick="submitForm();">Guardar</button>
                     <button type="button" class="cancelar" onclick="cancelarFormulario()">Cancelar</button>
 
                 </form>
             </div>
         </div>
+
+
 
         <div id="message" class="message" style="display: none;"></div>
 
@@ -80,7 +82,8 @@
                     <th>Nombre</th>
                     <th>Apellido 1</th>
                     <th>Apellido 2</th>
-                    <th>Teléfono</th>
+                    <th>Teléfono 1</th>
+                    <th>Teléfono 2</th>
                     <th>Cédula</th>
                     <th>Fecha Contratación</th>
                     <th>Correo</th>
@@ -89,21 +92,7 @@
                 </tr>
             </thead>
             <tbody id="dataTableE">
-                <!-- Aquí se generarían dinámicamente las filas de la tabla -->
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>
-                        <input type="checkbox" class="checkbox-accion" onchange="mostrarBotones()">
-         
-                </tr>
+
             </tbody>
         </table>
         <br>
@@ -161,23 +150,244 @@
     <br>
 
     <script>
+        var consultaActualizar = document.getElementById("updateE");
+        var eliminarButton = document.getElementById("eliminarEmple");
+        var actualizarButton = document.getElementById("actualizarEmple");
+
         function mostrarBotones() {
             var checkboxes = document.querySelectorAll("#employee-table .checkbox-accion");
-            var eliminarButton = document.getElementById("eliminarEmple");
-            var actualizarButton = document.getElementById("actualizarEmple");
 
             var alMenosUnCheckboxMarcado = Array.from(checkboxes).some(function (checkbox) {
                 return checkbox.checked;
             });
 
             if (alMenosUnCheckboxMarcado) {
-                eliminarButton.style.display = "inline-block";
-                actualizarButton.style.display = "inline-block";
+                var empleadosSeleccionados = obtenerEmpleadosSeleccionados(); // Nuevo método para obtener empleados seleccionados
+
+                if (empleadosSeleccionados.length > 1) {
+
+                    alert('¡Solo puedes seleccionar un usuario a la vez! desmarque la casilla')
+
+                    eliminarButton.style.display = 'none';
+                    actualizarButton.style.display = 'none';
+                } else {
+                    eliminarButton.style.display = 'inline-block';
+                    actualizarButton.style.display = 'inline-block';
+                }
             } else {
-                eliminarButton.style.display = "none";
-                actualizarButton.style.display = "none";
+                eliminarButton.style.display = 'none';
+                actualizarButton.style.display = 'none';
             }
         }
+
+        function obtenerEmpleadosSeleccionados() {
+            var checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
+            var empleadosSeleccionados = [];
+
+            checkboxes.forEach(function (checkbox) {
+                const fila = checkbox.closest('tr');
+                const employeId = fila.dataset.employeId;
+                empleadosSeleccionados.push(employeId);
+            });
+
+            return empleadosSeleccionados;
+        }
+
+        eliminarButton.addEventListener('click', function () {
+            var empleadosSeleccionados = obtenerEmpleadosSeleccionados();
+
+            if (empleadosSeleccionados.length > 0) {
+                confirmarBorradoE();
+            }
+        });
+
+        // Resto de tu código...
+
+
+        actualizarButton.addEventListener('click', function () {
+
+            fetch('http://localhost:8000/api/puestos')
+                .then(response => response.json())
+                .then(result => {
+                    const data = result.data;
+
+
+                    selectPuestos.innerHTML = '';
+
+                    const opcionPredeterminada = document.createElement('option');
+                    opcionPredeterminada.value = '';
+                    opcionPredeterminada.textContent = 'Selecciona un puesto';
+                    selectPuestos.appendChild(opcionPredeterminada);
+
+                    data.forEach(puesto => {
+                        const opcion = document.createElement('option');
+                        opcion.value = puesto.id;
+                        opcion.textContent = puesto.puesto;
+                        selectPuestos.appendChild(opcion);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener los puestos:', error);
+                });
+
+            fetch('http://localhost:8000/api/users')
+                .then(response => response.json())
+                .then(result => {
+                    const data = result.data;
+
+
+                    selectUsuario.innerHTML = '';
+
+                    const opcionPredeterminada = document.createElement('option');
+                    opcionPredeterminada.value = '';
+                    opcionPredeterminada.textContent = 'Selecciona un correo';
+                    selectUsuario.appendChild(opcionPredeterminada);
+
+
+                    data.forEach(usuario => {
+                        const opcion = document.createElement('option');
+                        opcion.value = usuario.id;
+                        opcion.textContent = usuario.email;
+                        selectUsuario.appendChild(opcion);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener los correos:', error);
+                });
+
+
+            const formularioEmergente = document.getElementById('empleadoUpdate');
+
+            // Agregar un evento de clic al botón de actualizar
+            // Mostrar el formulario emergente
+            mostrarFormularioF()
+
+            // Obtener los datos de la fila seleccionada en la tabla
+            const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
+            if (filaSeleccionada) {
+                // Obtener los datos de la fila
+                const id = filaSeleccionada.cells[0].textContent;
+                const nombre = filaSeleccionada.cells[1].textContent;
+                const apellido1 = filaSeleccionada.cells[2].textContent;
+                const apellido2 = filaSeleccionada.cells[3].textContent;
+                const telefono1 = filaSeleccionada.cells[4].textContent;
+                const telefono2 = filaSeleccionada.cells[5].textContent;
+                const cedula = filaSeleccionada.cells[6].textContent;
+                const fechContrat = filaSeleccionada.cells[7].textContent;
+                const idUsuario = filaSeleccionada.cells[8].textContent;
+                const idPuesto = filaSeleccionada.cells[9].textContent;
+
+                // Llenar el formulario con los datos de la fila seleccionada
+                document.getElementById('nombre').value = nombre;
+                document.getElementById('apellido1').value = apellido1;
+                document.getElementById('apellido2').value = apellido2;
+                document.getElementById('telefono1').value = telefono1;
+                document.getElementById('telefono2').value = telefono2;
+                document.getElementById('cedula').value = cedula;
+                document.getElementById('fechContrat').value = fechContrat;
+                document.getElementById('idUsuario').value = idUsuario;
+                document.getElementById('idPuesto').value = idPuesto;
+
+                // Agregar un campo oculto para almacenar el ID del empleado
+                const inputId = document.createElement('input');
+                inputId.type = 'hidden';
+                inputId.name = 'id';
+                inputId.value = id;
+                formularioEmergente.appendChild(inputId);
+            }
+            consultaActualizar.addEventListener('click', function(){
+            })
+        });
+
+        function confirmarBorradoE() {
+            const pantallaEmergenteE = document.createElement('div');
+            pantallaEmergenteE.style.position = 'fixed';
+            pantallaEmergenteE.style.top = 0;
+            pantallaEmergenteE.style.left = 0;
+            pantallaEmergenteE.style.width = '100%';
+            pantallaEmergenteE.style.height = '100%';
+            pantallaEmergenteE.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergenteE.style.display = 'flex';
+            pantallaEmergenteE.style.justifyContent = 'center';
+            pantallaEmergenteE.style.alignItems = 'center';
+
+            const mensajeE = document.createElement('div');
+            mensajeE.style.backgroundColor = 'white';
+            mensajeE.style.padding = '20px';
+            mensajeE.style.borderRadius = '10px';
+            mensajeE.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+            const textoE = document.createElement('p');
+            textoE.textContent = '¿Estás seguro de que quieres borrar esto?';
+
+            const botonAceptarE = document.createElement('button');
+            botonAceptarE.textContent = 'Aceptar';
+            botonAceptarE.style.backgroundColor = '#007bff';
+            botonAceptarE.style.color = 'white';
+            botonAceptarE.style.padding = '10px 20px';
+            botonAceptarE.style.borderRadius = '5px';
+            botonAceptarE.style.border = 'none';
+            botonAceptarE.style.cursor = 'pointer';
+            botonAceptarE.style.marginRight = '10px';
+
+            const botonCancelarE = document.createElement('button');
+            botonCancelarE.textContent = 'Cancelar';
+            botonCancelarE.style.backgroundColor = '#007bff';
+            botonCancelarE.style.color = 'white';
+            botonCancelarE.style.padding = '10px 20px';
+            botonCancelarE.style.borderRadius = '5px';
+            botonCancelarE.style.border = 'none';
+            botonCancelarE.style.cursor = 'pointer';
+
+            botonAceptarE.addEventListener('click', function () {
+                pantallaEmergenteE.remove();
+                const checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
+
+                checkboxes.forEach(function (checkboxs) {
+                    const fila = checkboxs.closest('tr');
+                    const employeId = fila.dataset.employeId;
+                    deleteE(employeId);
+                    fila.remove();
+                });
+
+                actualizarBotonesE();
+            });
+
+            botonCancelarE.addEventListener('click', function () {
+                pantallaEmergenteE.remove();
+            });
+
+            mensajeE.appendChild(textoE);
+            mensajeE.appendChild(botonAceptarE);
+            mensajeE.appendChild(botonCancelarE);
+
+            pantallaEmergenteE.appendChild(mensajeE);
+            document.body.appendChild(pantallaEmergenteE);
+
+        }
+        let empleadosSeleccionados = 0;
+
+        function actualizarBotonesE() {
+            let checkboxesSeleccionados = document.querySelectorAll('input.checkbox-accion:checked');
+            empleadosSeleccionados = checkboxesSeleccionados.length;
+
+            if (empleadosSeleccionados > 0) {
+                eliminarButton.style.display = 'inline-block';
+                actualizarButton.style.display = 'inline-block';
+            } else {
+                eliminarButton.style.display = 'none';
+                actualizarButton.style.display = 'none';
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener referencia al botón de actualizar y al formulario emergente
+            const btnActualizar = document.getElementById('actualizarEmple');
+
+        });
+
+
     </script>
 
     <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>

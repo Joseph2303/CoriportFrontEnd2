@@ -1,4 +1,4 @@
-function send(event) {
+function sendE(event) {
     event.preventDefault();
 
     let empleadoData = {
@@ -22,16 +22,14 @@ function send(event) {
 
     }).done(function (response) {
         console.log(response);
-        localStorage.setItem('Empleado', data);
+      //  localStorage.setItem('Empleado', data);
     }).fail(function (error) {
         console.log(error);
     });
 }
 
-function deleteEmpleado(event) {
-    event.preventDefault();
-
-    let id = $("#employeeId").val();
+function deleteE(id) {
+    console.log(id)
     $.ajax({
         url: "http://localhost:8000/api/empleado/delete/" + id,
         type: "DELETE",
@@ -56,18 +54,17 @@ function findEmpleado(event) {
     });
 }
 
-function updateEmpleado(event) {
-    event.preventDefault();
-
-    let id = $("#empleadoId").val();
+function updateEmpleado(id) {
     let updatedEmployeeData = {
-        "nombre": $("#newNombre").val(),
-        "apellido1": $("#newApellido1").val(),
-        "apellido2": $("#newApellido2").val(),
-        "telefono1": $("#newTelefono1").val(),
-        "telefono2": $("#newTelefono2").val(),
-        "cedula": $("#newCedula").val(),
-        "fechaContrat": $("#newFechaContrat").val(),
+        "nombre": $("#nombre").val(),
+        "apellido1": $("#apellido1").val(),
+        "apellido2": $("#apellido2").val(),
+        "telefono1": $("#telefono1").val(),
+        "telefono2": $("#telefono2").val(),
+        "cedula": $("#cedula").val(),
+        "fechContrat": $("#fechContrat").val(),
+        "idUsuario": $("#idUsuario").val(),
+        "idPuesto": $("#idPuesto").val()
     };
 
     let data = 'data=' + JSON.stringify(updatedEmployeeData);
@@ -91,17 +88,18 @@ $.ajax({
      var respObj=response.data;
      for(k in respObj){
          $("#dataTableE").append(
-             `<tr data-user-id="${respObj[k].id}">
+             `<tr data-employe-id="${respObj[k].idEmpleado}">
              <td >`+respObj[k].idEmpleado+`</td>
              <td>`+respObj[k].nombre+`</td>
              <td>`+respObj[k].apellido1+`</td>
              <td>`+respObj[k].apellido2+`</td>
              <td>`+respObj[k].telefono1+`</td>
+             <td>`+respObj[k].telefono2+`</td>
              <td>`+respObj[k].cedula+`</td>
              <td>`+respObj[k].fechContrat+`</td>
              <td>`+respObj[k].usuario.email+`</td>
              <td>`+respObj[k].puesto.puesto+`</td>
-             <td><input type="checkbox" class="checkbox-accion" onchange="mostrarBotones()"></td>
+             <td><input id="box" type="checkbox" class="checkbox-accion" onchange="mostrarBotones()"></td>
              </tr>`
          );
 
@@ -112,6 +110,6 @@ $.ajax({
 
 
 
-$("#sendE").click(send);
-$("#destroyE").click(destroy);
-$("#updateE").click(update);
+$("#sendE").click(sendE);
+$("#deleteE").click(deleteE);
+$("#updateE").click(updateEmpleado);

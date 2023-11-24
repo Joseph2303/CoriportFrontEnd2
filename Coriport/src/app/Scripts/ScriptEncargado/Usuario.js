@@ -243,7 +243,7 @@ function confirmarBorrado() {
     pantallaEmergente.appendChild(mensaje);
     document.body.appendChild(pantallaEmergente);
 
-
+mostrarFormulario
 }
 
 tablaUsuarios.addEventListener('change', function (event) {
@@ -304,11 +304,18 @@ function mostrarFormularioActualizacion(datosActuales, callback) {
     const labelId = document.createElement('label');
     labelId.for = 'id';
     labelId.textContent = 'ID:';
+    
     const inputId = document.createElement('input');
     inputId.type = 'text';
     inputId.id = 'id';
     inputId.name = 'id';
     inputId.value = datosActuales.id;
+    inputId.disabled = true; // Establecer la propiedad disabled para que el campo sea no editable
+    
+    // Ahora, puedes agregar el label y el input a tu documento, por ejemplo, al cuerpo del documento
+    document.body.appendChild(labelId);
+    document.body.appendChild(inputId);
+   
 
     const labelCorreo = document.createElement('label');
     labelCorreo.for = 'correo';
@@ -656,7 +663,10 @@ function mostrarFormulario() {
     var fondoNegro = document.getElementById('fondoNegro');
     fondoNegro.style.display = 'flex';
 }
-
+function mostrarFormularioF() {
+    var fondoNegro = document.getElementById('G');
+    fondoNegro.style.display = 'flex';
+}
 function ocultarFormulario() {
     var fondoNegro = document.getElementById('fondoNegro');
     fondoNegro.style.display = 'none';

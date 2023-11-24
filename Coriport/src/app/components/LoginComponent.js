@@ -50,8 +50,8 @@ function login(event) {
         url: "http://localhost:8000/api/user/login",
         data: data,
         success: function (respObj) {
-            sessionStorage.setItem("token", respObj);
-            let token = sessionStorage.getItem("token");
+            localStorage.setItem("token", respObj);
+            let token = localStorage.getItem("token");
             if (token) {
                 $.ajax({
                     type: "GET", // Cambiamos a método GET
@@ -60,7 +60,7 @@ function login(event) {
                         "beartoken": token
                     },
                     success: function (identity) {
-                        sessionStorage.setItem("identity",JSON.stringify(identity));
+                        localStorage.setItem("identity",JSON.stringify(identity));
                        
                         console.log(identity)
 

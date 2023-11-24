@@ -35,6 +35,7 @@ function find(event){
 }
 
 function update(id){
+    
     let obj={
         "idUsuario": id,
         "email":$("#correo").val(),
