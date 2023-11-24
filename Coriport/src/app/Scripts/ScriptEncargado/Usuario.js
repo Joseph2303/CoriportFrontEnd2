@@ -19,7 +19,7 @@ consulta.addEventListener('click', function () {
 
             data.forEach(puesto => {
                 const opcion = document.createElement('option');
-                opcion.value = puesto.id;
+                opcion.value = puesto.idPuesto;
                 opcion.textContent = puesto.puesto;
                 selectPuestos.appendChild(opcion);
             });
@@ -44,7 +44,7 @@ consulta.addEventListener('click', function () {
 
             data.forEach(usuario => {
                 const opcion = document.createElement('option');
-                opcion.value = usuario.id;
+                opcion.value = usuario.idUsuario;
                 opcion.textContent = usuario.email;
                 selectUsuario.appendChild(opcion);
             });
@@ -113,6 +113,12 @@ botonAgregar.addEventListener('click', function () {
     botonRegistrarse.id = 'send';
 
 
+
+///////////////////////////AutoRe//////////////////////////////
+
+
+
+///////////////////////////////////////////////////////
     formulario.appendChild(labelEmail);
     formulario.appendChild(inputEmail);
     formulario.appendChild(document.createElement('br'));
@@ -132,7 +138,7 @@ botonAgregar.addEventListener('click', function () {
     botonCerrar.textContent = 'Cerrar';
     botonCerrar.style.marginRight = '20px';
     botonCerrar.style.marginLeft = '20px';
-    botonCerrar.style.marginBottom = '10px'; // Añade espacio abajo del botón
+    botonCerrar.style.marginBottom = '10px'; 
     botonCerrar.style.backgroundColor = '#007bff';
     botonCerrar.style.color = 'white';
     botonCerrar.style.padding = '10px 20px';
@@ -310,9 +316,8 @@ function mostrarFormularioActualizacion(datosActuales, callback) {
     inputId.id = 'id';
     inputId.name = 'id';
     inputId.value = datosActuales.id;
-    inputId.disabled = true; // Establecer la propiedad disabled para que el campo sea no editable
+    inputId.disabled = true; 
     
-    // Ahora, puedes agregar el label y el input a tu documento, por ejemplo, al cuerpo del documento
     document.body.appendChild(labelId);
     document.body.appendChild(inputId);
    
@@ -466,9 +471,6 @@ actualizarBotones
 
 
 
-
-
-
 ///////////////////////////////////////////////////////////////
 
 
@@ -479,40 +481,21 @@ actualizarBotones
 
 
 $(document).ready(function () {
-    // Cargar empleados al cargar la página
     loadEmployees();
 
-    // Seleccionar fila al hacer clic
     $('#employee-table').on('click', 'tbody tr', function () {
         $(this).addClass('selected-row').siblings().removeClass('selected-row');
         fillFormWithSelectedEmployee();
     });
 });
 
-function submitForm() {
-    var formData = getFormData();
-
-    $.ajax({
-        type: 'POST',
-        url: 'ruta_del_controlador', // Reemplazar con la ruta correcta del controlador
-        data: {data: JSON.stringify(formData)},
-        success: function (response) {
-            displayMessage(response);
-            loadEmployees();
-            clearForm();
-        },
-        error: function (error) {
-            displayMessage({status: 500, message: 'Error interno del servidor'}, 'error');
-        }
-    });
-}
 
 function updateEmployee() {
     var formData = getFormData();
 
     $.ajax({
         type: 'PUT',
-        url: 'ruta_del_controlador/' + formData.id, // Reemplazar con la ruta correcta del controlador
+        url: 'ruta_del_controlador/' + formData.id,
         data: {data: JSON.stringify(formData)},
         success: function (response) {
             displayMessage(response);
@@ -531,7 +514,7 @@ function deleteEmployee() {
 
     $.ajax({
         type: 'DELETE',
-        url: 'ruta_del_controlador/' + formData.id, // Reemplazar con la ruta correcta del controlador
+        url: 'ruta_del_controlador/' + formData.id, 
         success: function (response) {
             displayMessage(response);
             loadEmployees();
@@ -575,50 +558,40 @@ function getFormData() {
 }
 
 function loadEmployees() {
-    // Simulación de datos (debes cargar tus datos reales aquí)
+    
     var employees = [
         { id: 1, nombre: 'Nombre1', apellido1: 'Apellido1', apellido2: 'Apellido2', telefono1: '123', telefono2: '456', cedula: '123456', fechContrat: '2023-01-01', idUsuario: '1', idPuesto: '1' },
         { id: 2, nombre: 'Nombre2', apellido1: 'Apellido1', apellido2: 'Apellido2', telefono1: '456', telefono2: '789', cedula: '789012', fechContrat: '2023-01-02', idUsuario: '2', idPuesto: '2' },
-        // Agregar más datos según sea necesario
+        
     ];
 
-    // Limpiar tabla antes de cargar nuevos datos
     $('#employee-table-body').empty();
 }
 
 function updateEmployeeInTable(employeeId) {
-    // Obtener datos del empleado seleccionado
     var employee = getEmployeeById(employeeId);
 
-    // Llenar el formulario con los datos del empleado seleccionado
     fillForm(employee);
 }
 
 function deleteEmployeeInTable(employeeId) {
-    // Realizar la acción de eliminar según el ID del empleado
     deleteEmployeeById(employeeId);
 }
 
 function getEmployeeById(employeeId) {
-    // Simulación de búsqueda del empleado por ID (debes usar tus propios métodos para obtener datos reales)
     var employees = [
         { id: 1, nombre: 'Nombre1', apellido1: 'Apellido1', apellido2: 'Apellido2', telefono1: '123', telefono2: '456', cedula: '123456', fechContrat: '2023-01-01', idUsuario: '1', idPuesto: '1' },
         { id: 2, nombre: 'Nombre2', apellido1: 'Apellido1', apellido2: 'Apellido2', telefono1: '456', telefono2: '789', cedula: '789012', fechContrat: '2023-01-02', idUsuario: '2', idPuesto: '2' },
-        // Agregar más datos según sea necesario
     ];
 
     return employees.find(employee => employee.id === employeeId);
 }
 
 function deleteEmployeeById(employeeId) {
-    // Realizar la acción de eliminar según el ID del empleado (puedes llamar a tu función deleteEmployee aquí)
-    // Aquí simularemos la eliminación de la fila de la tabla
     $(`#employee-table-body tr[data-id=${employeeId}]`).remove();
-    clearForm(); // Limpiar el formulario después de la eliminación
+    clearForm(); 
 }
-
 function fillForm(employee) {
-    // Llenar el formulario con los datos del empleado
     $('#id').val(employee.id);
     $('#nombre').val(employee.nombre);
     $('#apellido1').val(employee.apellido1);
@@ -632,7 +605,6 @@ function fillForm(employee) {
 }
 
 function clearForm() {
-    // Limpiar el formulario
     $('#id').val('');
     $('#nombre').val('');
     $('#apellido1').val('');
@@ -644,16 +616,12 @@ function clearForm() {
     $('#idUsuario').val('');
     $('#idPuesto').val('');
 
-    // Desmarcar la fila seleccionada
     $('.selected-row').removeClass('selected-row');
 }
 
 
 function submitForm() {
-    // Agrega tu lógica para enviar el formulario si es necesario
-    // ...
-
-    // Cierra el formulario después de enviar
+    
     ocultarFormulario();
 }
 
@@ -663,20 +631,22 @@ function mostrarFormulario() {
     var fondoNegro = document.getElementById('fondoNegro');
     fondoNegro.style.display = 'flex';
 }
+
+
 function mostrarFormularioF() {
-    var fondoNegro = document.getElementById('G');
+    var fondoNegro = document.getElementById('empleadoFondo');
     fondoNegro.style.display = 'flex';
 }
+
+
 function ocultarFormulario() {
     var fondoNegro = document.getElementById('fondoNegro');
+    fondoNegro.style.display = 'none';
+    var fondoNegro = document.getElementById('empleadoFondo');
     fondoNegro.style.display = 'none';
 }
 
 function submitForm() {
-    // Agrega tu lógica para enviar el formulario si es necesario
-    // ...
-
-    // Cierra el formulario después de enviar
     ocultarFormulario();
 }
 function cancelarFormulario() {

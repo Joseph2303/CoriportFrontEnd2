@@ -11,7 +11,9 @@ function send(event){
         type:"POST",
         data:data
     }).done(function(response){
-        console.log(response);        
+        console.log(response);    
+        window.location.href = 'http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html';
+    
     }).fail(function(error){
         console.log(error)
     });

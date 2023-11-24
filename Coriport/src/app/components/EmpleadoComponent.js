@@ -56,19 +56,18 @@ function findEmpleado(event) {
 
 function updateEmpleado(id) {
     let updatedEmployeeData = {
-        "nombre": $("#nombre").val(),
-        "apellido1": $("#apellido1").val(),
-        "apellido2": $("#apellido2").val(),
-        "telefono1": $("#telefono1").val(),
-        "telefono2": $("#telefono2").val(),
-        "cedula": $("#cedula").val(),
-        "fechContrat": $("#fechContrat").val(),
-        "idUsuario": $("#idUsuario").val(),
-        "idPuesto": $("#idPuesto").val()
+        "nombre": $("#nombreActualizar").val(),
+        "apellido1": $("#apellido1Actualizar").val(),
+        "apellido2": $("#apellido2Actualizar").val(),
+        "telefono1": $("#telefono1Actualizar").val(),
+        "telefono2": $("#telefono2Actualizar").val(),
+        "cedula": $("#cedulaActualizar").val(),
+        "fechContrat": $("#fechContratActualizar").val(),
+        "idUsuario": $("#idUsuarioActualizar").val(),
+        "idPuesto": $("#idPuestoActualizar").val()
     };
 
     let data = 'data=' + JSON.stringify(updatedEmployeeData);
-
     $.ajax({
         url: "http://localhost:8000/api/empleado/update/" + id,
         type: "PUT",
