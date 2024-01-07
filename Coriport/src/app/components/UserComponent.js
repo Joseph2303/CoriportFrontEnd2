@@ -1,5 +1,7 @@
-function send(event){
+function sendUser(event){
     event.preventDefault(); 
+
+
     let obj={
         "email":$("#email").val(),
         "contrasena":$("#contrasena").val(),
@@ -11,11 +13,51 @@ function send(event){
         type:"POST",
         data:data
     }).done(function(response){
-        console.log(response);    
-        window.location.href = 'http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html';
+        console.log(response); 
+        sendEmployee(obj.email);   
+       // window.location.href = 'http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html';
     
     }).fail(function(error){
         console.log(error)
+    });
+
+
+}
+
+function sendEmployee(email){
+    $.ajax({
+        url: "http://localhost:8000/api/user/" + email,
+        type: "GET",
+    }).done(function (response) {       
+         let obj = {
+            "nombre": $("#nombre").val(),
+            "apellido1": $("#apellido1").val(),
+            "apellido2": $("#apellido2").val(),
+            "telefono1": $("#telefono1").val(),
+            "telefono2": $("#telefono2").val(),
+            "cedula": $("#cedula").val(),
+            "fechContrat": $("#fechContrat").val(),
+            "idUsuario": response.idUsuario,
+            "idPuesto": $("#idPuesto").val()
+        }; 
+
+        console.log(obj)
+        let data = 'data=' + JSON.stringify(obj);
+    
+        $.ajax({
+            url: "http://localhost:8000/api/empleado/store",
+            type: "POST",
+            data: data
+    
+        }).done(function (response) {
+            console.log(response);
+          //  localStorage.setItem('Empleado', data);
+        }).fail(function (error) {
+            console.log(error);
+        });
+
+    }).fail(function (error) {
+        console.log(error);
     });
 }
 
@@ -60,7 +102,6 @@ function update(id){
     });
 }
 
-event.preventDefault(); 
 $.ajax({
     url:"http://localhost:8000/api/users",
     type:"GET"
@@ -82,6 +123,6 @@ $.ajax({
  });
 
 
-$("#send").click(send);
+$("#sendUser").click(sendUser);
 $("#destroy").click(destroy);
 $("#update").click(update);

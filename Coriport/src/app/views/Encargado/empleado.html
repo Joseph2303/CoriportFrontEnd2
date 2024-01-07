@@ -1,0 +1,475 @@
+<link rel="stylesheet" type="text/css" href="../Encargado/styles/empleado.css">
+
+<body>
+    <center>
+        <h2 style="color: white;">Registros de los Empleado</h2>
+    </center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 style="color: white;">Registro de Empleados</h2>
+    <br>
+    <div class="cajon">
+        <div>
+            <button id="btnAbrirFormulario"
+                onclick="document.getElementById('fondoNegroFormAdd').style.display='flex'">Registrar empleado </button>
+        </div>
+        <br>
+        <div>
+            <input type="text" id="busquedaEmpleado" placeholder="Buscar empleado..." oninput="filtrarEmpleados()">
+        </div>
+
+        <div id="fondoNegroFormAdd" class="fondoNegroForm">
+            <div  class="formAjuste">
+                <form class="form">
+
+                    <label for="email">Correo electrónico</label>
+                    <input type="text" id="email" name="email" required>
+
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+
+                    <label for="tipoUsuario">Tipo de usuario:</label>
+                    <select id="tipoUsuario" name="tipoUsuario" required>
+                        <option value="">Seleccione el tipo de usuario</option>
+                        <option value="Empleado">Empleado</option>
+                        <option value="Encargado">Encargado</option>
+                    </select>
+
+                    <br>
+                    <br>
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="apellido1">Primer apellido:</label>
+                    <input type="text" id="apellido1" name="apellido1" required>
+
+                    <label for="apellido2">Segundo apellido:</label>
+                    <input type="text" id="apellido2" name="apellido2" required>
+
+                    <label for="telefono1">Teléfono 1:</label>
+                    <input type="text" id="telefono1" name="telefono1" required>
+
+                    <label for="telefono2">Teléfono 2:</label>
+                    <input type="text" id="telefono2" name="telefono2" required>
+
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula" required>
+
+                    <label for="fechContrat">Fecha de Contratación (YYYY-MM-DD):</label>
+                    <input type="date" id="fechContrat" name="fechContrat" required>
+
+                    <!--<label for="idUsuario">Correo del empleado:</label>
+                    <select id="idUsuario" name="idUsuario" required>
+                        <option value="">Selecciona un Correo</option>
+                    </select>-->
+
+                    <br>
+
+                    <label for="idPuesto">Puesto:</label>
+                    <select id="idPuesto" name="idPuesto" required>
+                        <option value="">Seleccione un puesto</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <button id="sendUser" type="button" onclick="">Guardar</button>
+                    <button type="button"
+                        onclick="document.getElementById('fondoNegroFormAdd').style.display='none'">Cancelar</button>
+
+                </form>
+            </div>
+        </div>
+
+        <div id="fondoNegroFormUpdate" class="fondoNegroForm">
+            <div  class="formAjuste">
+                <form class="form">
+
+                    <label for="updateNombre">Nombre:</label>
+                    <input type="text" id="updateNombre" name="updateNombre" required>
+
+                    <label for="updateApellido1">Primer apellido:</label>
+                    <input type="text" id="updateApellido1" name="updateApellido1" required>
+
+                    <label for="updateApellido2">Segundo apellido:</label>
+                    <input type="text" id="updateApellido2" name="updateApellido2" required>
+
+                    <label for="updateTelefono1">Teléfono 1:</label>
+                    <input type="text" id="updateTelefono1" name="updateTelefono1" required>
+
+                    <label for="updateTelefono2">Teléfono 2:</label>
+                    <input type="text" id="updateTelefono2" name="updateTelefono2" required>
+
+                    <label for="updateCedula">Cédula:</label>
+                    <input type="text" id="updateCedula" name="updateCedula" required>
+
+                    <label for="updateFechContrat">Fecha de Contratación:</label>
+                    <input type="date" id="updateFechContrat" name="updateFechContrat" required>
+
+                    <!--<label for="idUsuario">Correo del empleado:</label>
+                    <select id="idUsuario" name="idUsuario" required>
+                        <option value="">Selecciona un Correo</option>
+                    </select>-->
+
+                    <br>
+
+                    <label for="">Puesto:</label>
+                    <select id="" name="" required>
+                        <option value="">Seleccione un puesto</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <button id="" type="button" onclick="">Guardar</button>
+                    <button type="button"
+                        onclick="document.getElementById('fondoNegroFormUpdate').style.display='none'">Cancelar</button>
+
+                </form>
+            </div>
+        </div>
+
+        <div id="message" class="message" style="display: none;"></div>
+        <div class="tabla">
+            <table id="employee-table" border="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Primer apellido</th>
+                        <th>Segundo apellido</th>
+                        <th>Teléfonos</th>
+                        <th>Cédula</th>
+                        <th>Fecha Contratación</th>
+                        <th>Correo</th>
+                        <th>Puesto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableE">
+
+                </tbody>
+            </table>
+        </div>
+        <br>
+
+        <button id="eliminar"
+            style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Eliminar</button>
+        <button id="actualizarEmple"
+            style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Actualizar</button>
+    </div>
+    </div>
+
+    </div>
+
+
+
+    <br>
+    <br>
+
+    <script>
+        var actualizarConsulta = document.getElementById("atualizarE");
+        var eliminarButton = document.getElementById("eliminar");
+        var actualizarButton = document.getElementById("actualizarEmple");
+        var tabla = document.getElementById("employee-table");
+        
+        const selectPuestos = document.getElementById('idPuesto');
+        const consultaPuestos = document.getElementById('btnAbrirFormulario');
+
+        consultaPuestos.addEventListener('click', function () {
+
+            fetch('http://localhost:8000/api/puestos')
+                .then(response => response.json())
+                .then(result => {
+                    const data = result.data;
+
+
+                    selectPuestos.innerHTML = '';
+
+                    const opcionPredeterminada = document.createElement('option');
+                    opcionPredeterminada.value = '';
+                    opcionPredeterminada.textContent = 'Selecciona un puesto';
+                    selectPuestos.appendChild(opcionPredeterminada);
+
+                    data.forEach(puesto => {
+                        const opcion = document.createElement('option');
+                        opcion.value = puesto.idPuesto;
+                        opcion.textContent = puesto.puesto;
+                        selectPuestos.appendChild(opcion);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al obtener los puestos:', error);
+                });
+
+        });
+
+
+        tabla.addEventListener('change', function (event) {
+            let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (event.target.type === 'checkbox') {
+                if (seleccionados.length > 1) {
+                    event.target.checked = false;
+                
+                    alert('¡Solo puede seleccionar un empleado a la vez!')
+                } else {
+                    if (seleccionados.length > 0) {
+                        actualizarButton.style.display = 'inline-block';
+                        eliminarButton.style.display = 'inline-block';
+                    } else {
+                        actualizarButton.style.display = 'none';
+                        eliminarButton.style.display = 'none';
+                    }
+
+                }
+            }
+        });
+
+        function filtrarEmpleados() {
+            var inputBusqueda = document.getElementById('busquedaEmpleado');
+            var filtro = inputBusqueda.value.toUpperCase();
+
+            var filas = tabla.getElementsByTagName('tr');
+
+            for (var i = 0; i < filas.length; i++) {
+                if (filas[i].getElementsByTagName('th').length === 0) {
+                    var celdas = filas[i].getElementsByTagName('td');
+                    var mostrarFila = false;
+
+                    for (var j = 0; j < celdas.length; j++) {
+                        var textoCelda = celdas[j].textContent || celdas[j].innerText;
+                        if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
+                            mostrarFila = true;
+                            break;
+                        }
+                    }
+
+                    filas[i].style.display = mostrarFila ? '' : 'none';
+                }
+            }
+        }
+
+
+        eliminarButton.addEventListener('click', function () {
+            confirmarBorradoE();
+        });
+
+        actualizarButton.addEventListener('click', function () {
+            let idEmpleado;
+            fetch('http://localhost:8000/api/puestos')
+                .then(response => response.json())
+                .then(result => {
+                    const data = result.data;
+
+                    const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
+                    if (filaSeleccionada) {
+                        const idPuesto = filaSeleccionada.cells[9].textContent;
+
+                        idPuestoActualizar.innerHTML = '';
+                        const opcionPredeterminadaPuesto = document.createElement('option');
+                        opcionPredeterminadaPuesto.value = '';
+                        opcionPredeterminadaPuesto.textContent = 'Selecciona un puesto';
+                        idPuestoActualizar.appendChild(opcionPredeterminadaPuesto);
+
+                        data.forEach(puesto => {
+                            const opcion = document.createElement('option');
+                            opcion.value = puesto.idPuesto;
+                            opcion.textContent = puesto.puesto;
+                            idPuestoActualizar.appendChild(opcion);
+
+                            //if (puesto.id === idPuesto) {
+                            opcion.selected = true;
+                            //}
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener los puestos:', error);
+                });
+
+
+            const formularioEmergente = document.getElementById('empleadoFondo');
+
+            const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
+            if (filaSeleccionada) {
+                const id = filaSeleccionada.cells[0].textContent;
+                const nombre = filaSeleccionada.cells[1].textContent;
+                const apellido1 = filaSeleccionada.cells[2].textContent;
+                const apellido2 = filaSeleccionada.cells[3].textContent;
+                const telefono1 = filaSeleccionada.cells[4].textContent;
+                const telefono2 = filaSeleccionada.cells[5].textContent;
+                const cedula = filaSeleccionada.cells[6].textContent;
+                const fechContrat = filaSeleccionada.cells[7].textContent;
+                const idUsuario = filaSeleccionada.cells[8].textContent;
+                const idPuesto = filaSeleccionada.cells[9].textContent;
+
+                document.getElementById('nombreActualizar').value = nombre;
+                document.getElementById('apellido1Actualizar').value = apellido1;
+                document.getElementById('apellido2Actualizar').value = apellido2;
+                document.getElementById('telefono1Actualizar').value = telefono1;
+                document.getElementById('telefono2Actualizar').value = telefono2;
+                document.getElementById('cedulaActualizar').value = cedula;
+                document.getElementById('fechContratActualizar').value = fechContrat;
+
+                const inputId = document.createElement('input');
+                inputId.type = 'hidden';
+                inputId.name = 'id';
+                inputId.value = id;
+                idEmpleado = id
+                formularioEmergente.appendChild(inputId);
+                formularioEmergente.style.display = 'flex';
+            }
+
+            actualizarConsulta.addEventListener('click', function () {
+                updateEmpleado(idEmpleado);
+                window.location.href = 'http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html';
+            });
+        });
+
+
+
+        function confirmarBorradoE() {
+            const pantallaEmergenteE = document.createElement('div');
+            pantallaEmergenteE.style.position = 'fixed';
+            pantallaEmergenteE.style.top = 0;
+            pantallaEmergenteE.style.left = 0;
+            pantallaEmergenteE.style.width = '100%';
+            pantallaEmergenteE.style.height = '100%';
+            pantallaEmergenteE.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergenteE.style.display = 'flex';
+            pantallaEmergenteE.style.justifyContent = 'center';
+            pantallaEmergenteE.style.alignItems = 'center';
+
+            const mensajeE = document.createElement('div');
+            mensajeE.style.backgroundColor = 'white';
+            mensajeE.style.padding = '20px';
+            mensajeE.style.borderRadius = '10px';
+            mensajeE.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+            const textoE = document.createElement('p');
+            textoE.textContent = '¿Estás seguro de que quieres borrar esto?';
+
+            const botonAceptarE = document.createElement('button');
+            botonAceptarE.textContent = 'Aceptar';
+            botonAceptarE.style.backgroundColor = '#007bff';
+            botonAceptarE.style.color = 'white';
+            botonAceptarE.style.padding = '10px 20px';
+            botonAceptarE.style.borderRadius = '5px';
+            botonAceptarE.style.border = 'none';
+            botonAceptarE.style.cursor = 'pointer';
+            botonAceptarE.style.marginRight = '10px';
+
+            const botonCancelarE = document.createElement('button');
+            botonCancelarE.textContent = 'Cancelar';
+            botonCancelarE.style.backgroundColor = '#007bff';
+            botonCancelarE.style.color = 'white';
+            botonCancelarE.style.padding = '10px 20px';
+            botonCancelarE.style.borderRadius = '5px';
+            botonCancelarE.style.border = 'none';
+            botonCancelarE.style.cursor = 'pointer';
+
+            botonAceptarE.addEventListener('click', function () {
+                pantallaEmergenteE.remove();
+                const checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
+
+                checkboxes.forEach(function (checkboxs) {
+                    const fila = checkboxs.closest('tr');
+                    deleteE(fila);
+                    fila.remove();
+                });
+
+            });
+
+            botonCancelarE.addEventListener('click', function () {
+                pantallaEmergenteE.remove();
+            });
+
+            mensajeE.appendChild(textoE);
+            mensajeE.appendChild(botonAceptarE);
+            mensajeE.appendChild(botonCancelarE);
+
+            pantallaEmergenteE.appendChild(mensajeE);
+            document.body.appendChild(pantallaEmergenteE);
+
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnActualizar = document.getElementById('actualizarEmple');
+
+        });
+    </script>
+
+    <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>
+    <script src="/Coriport/src/app/components/UserComponent.js"></script>
+
+</body>
+<script>
+
+    /*fetch('http://localhost:8000/api/users')
+        .then(response => response.json())
+        .then(result => {
+            const data = result.data;
+
+            const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
+            if (filaSeleccionada) {
+                const idUsuario = filaSeleccionada.cells[8].textContent;
+
+                idUsuarioActualizar.innerHTML = '';
+                const opcionPredeterminadaUsuario = document.createElement('option');
+                opcionPredeterminadaUsuario.value = '';
+                opcionPredeterminadaUsuario.textContent = 'Selecciona un correo';
+                idUsuarioActualizar.appendChild(opcionPredeterminadaUsuario);
+
+                data.forEach(usuario => {
+                    const opcion = document.createElement('option');
+                    opcion.value = usuario.idUsuario;
+                    opcion.textContent = usuario.email;
+                    idUsuarioActualizar.appendChild(opcion);
+
+                    //if (usuario.id === idUsuario) {
+                        opcion.selected = true;
+                    //}
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener los correos:', error);
+        });*/
+
+    /* function mostrarBotones() {
+      var empleadosSeleccionados = obtenerEmpleadosSeleccionados();
+      if (empleadosSeleccionados) {
+          if (empleadosSeleccionados.length > 1) {
+
+              eliminarButton.style.display = 'none';
+              actualizarButton.style.display = 'none';
+              alert('¡Solo puedes seleccionar un empleado a la vez! desmarque la casilla')
+
+          } else {
+              eliminarButton.style.display = 'inline-block';
+              actualizarButton.style.display = 'inline-block';
+          }
+      } else {
+          eliminarButton.style.display = 'none';
+          actualizarButton.style.display = 'none';
+      }
+  }*/
+
+    /* function obtenerEmpleadosSeleccionados() {
+          var checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
+          var empleadosSeleccionados = [];
+
+          checkboxes.forEach(function (checkbox) {
+              const fila = checkbox.closest('tr');
+              const employeId = fila.dataset.employeId;
+              empleadosSeleccionados.push(fila);
+          });
+          console.log(empleadosSeleccionados)
+          return empleadosSeleccionados;
+      }*/
+</script>

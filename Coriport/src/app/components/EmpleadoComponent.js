@@ -28,13 +28,24 @@ function sendE(event) {
     });
 }
 
-function deleteE(id) {
-    console.log(id)
+function deleteE(empleado) {
+console.log(empleado.cells[0].textContent)
     $.ajax({
-        url: "http://localhost:8000/api/empleado/delete/" + id,
+        url: "http://localhost:8000/api/empleado/delete/" + empleado.cells[0].textContent,
         type: "DELETE",
+
     }).done(function (response) {
         console.log(response);
+
+        $.ajax({
+            url:"http://localhost:8000/api/user/delete/" + empleado.cells[7].textContent,
+            type:"DELETE",
+        }).done(function(response){
+            console.log(response);
+        }).fail(function(error){
+            console.log(error)
+        });
+
     }).fail(function (error) {
         console.log(error);
     });
@@ -92,13 +103,12 @@ $.ajax({
              <td>`+respObj[k].nombre+`</td>
              <td>`+respObj[k].apellido1+`</td>
              <td>`+respObj[k].apellido2+`</td>
-             <td>`+respObj[k].telefono1+`</td>
-             <td>`+respObj[k].telefono2+`</td>
+             <td>`+respObj[k].telefono1+`/`+respObj[k].telefono2+`</td>
              <td>`+respObj[k].cedula+`</td>
              <td>`+respObj[k].fechContrat+`</td>
              <td>`+respObj[k].usuario.email+`</td>
              <td>`+respObj[k].puesto.puesto+`</td>
-             <td><input id="box" type="checkbox" class="checkbox-accion" onchange="mostrarBotones()"></td>
+             <td><input id="box" type="checkbox" class="checkbox-accion" onchange=""></td>
              </tr>`
          );
 

@@ -1,61 +1,7 @@
-const consulta = document.getElementById('btnAbrirFormulario');
-const selectPuestos = document.getElementById('idPuesto');
-const selectUsuario = document.getElementById('idUsuario');
-
-consulta.addEventListener('click', function () {
-
-    fetch('http://localhost:8000/api/puestos')
-        .then(response => response.json())
-        .then(result => {
-            const data = result.data;
-
-
-            selectPuestos.innerHTML = '';
-
-            const opcionPredeterminada = document.createElement('option');
-            opcionPredeterminada.value = '';
-            opcionPredeterminada.textContent = 'Selecciona un puesto';
-            selectPuestos.appendChild(opcionPredeterminada);
-
-            data.forEach(puesto => {
-                const opcion = document.createElement('option');
-                opcion.value = puesto.idPuesto;
-                opcion.textContent = puesto.puesto;
-                selectPuestos.appendChild(opcion);
-            });
-        })
-        .catch(error => {
-            console.error('Error al obtener los puestos:', error);
-        });
-
-    fetch('http://localhost:8000/api/users')
-        .then(response => response.json())
-        .then(result => {
-            const data = result.data;
-
-
-            selectUsuario.innerHTML = '';
-
-            const opcionPredeterminada = document.createElement('option');
-            opcionPredeterminada.value = '';
-            opcionPredeterminada.textContent = 'Selecciona un correo';
-            selectUsuario.appendChild(opcionPredeterminada);
-
-
-            data.forEach(usuario => {
-                const opcion = document.createElement('option');
-                opcion.value = usuario.idUsuario;
-                opcion.textContent = usuario.email;
-                selectUsuario.appendChild(opcion);
-            });
-        })
-        .catch(error => {
-            console.error('Error al obtener los correos:', error);
-        });
-});
 
 
 
+filtrarEmpleados
 const botonAgregar = document.getElementById('agregar-usuario');
 botonAgregar.addEventListener('click', function () {
     const pantallaEmergente = document.createElement('div');
@@ -438,30 +384,7 @@ function filtrarUsuarios() {
     }
 }
 
-function filtrarEmpleados() {
-    var inputBusqueda = document.getElementById('busquedaEmpleado');
-    var filtro = inputBusqueda.value.toUpperCase();
 
-    var tabla = document.getElementById('employee-table');
-    var filas = tabla.getElementsByTagName('tr');
-
-    for (var i = 0; i < filas.length; i++) {
-        if (filas[i].getElementsByTagName('th').length === 0) {
-            var celdas = filas[i].getElementsByTagName('td');
-            var mostrarFila = false;
-
-            for (var j = 0; j < celdas.length; j++) {
-                var textoCelda = celdas[j].textContent || celdas[j].innerText;
-                if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
-                    mostrarFila = true;
-                    break;
-                }
-            }
-
-            filas[i].style.display = mostrarFila ? '' : 'none';
-        }
-    }
-}
 
 actualizarBotones
 
@@ -473,21 +396,6 @@ actualizarBotones
 
 ///////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-$(document).ready(function () {
-    loadEmployees();
-
-    $('#employee-table').on('click', 'tbody tr', function () {
-        $(this).addClass('selected-row').siblings().removeClass('selected-row');
-        fillFormWithSelectedEmployee();
-    });
-});
 
 
 function updateEmployee() {
@@ -620,35 +528,4 @@ function clearForm() {
 }
 
 
-function submitForm() {
-    
-    ocultarFormulario();
-}
 
-
-
-function mostrarFormulario() {
-    var fondoNegro = document.getElementById('fondoNegro');
-    fondoNegro.style.display = 'flex';
-}
-
-
-function mostrarFormularioF() {
-    var fondoNegro = document.getElementById('empleadoFondo');
-    fondoNegro.style.display = 'flex';
-}
-
-
-function ocultarFormulario() {
-    var fondoNegro = document.getElementById('fondoNegro');
-    fondoNegro.style.display = 'none';
-    var fondoNegro = document.getElementById('empleadoFondo');
-    fondoNegro.style.display = 'none';
-}
-
-function submitForm() {
-    ocultarFormulario();
-}
-function cancelarFormulario() {
-    ocultarFormulario();
-}
