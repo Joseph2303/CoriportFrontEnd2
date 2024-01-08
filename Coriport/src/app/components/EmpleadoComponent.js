@@ -108,7 +108,7 @@ $.ajax({
              <td>`+respObj[k].fechContrat+`</td>
              <td>`+respObj[k].usuario.email+`</td>
              <td>`+respObj[k].puesto.puesto+`</td>
-             <td><input id="box" type="checkbox" class="checkbox-accion" onchange=""></td>
+             <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
              </tr>`
          );
 

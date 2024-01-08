@@ -21,7 +21,7 @@
         </div>
 
         <div id="fondoNegroFormAdd" class="fondoNegroForm">
-            <div  class="formAjuste">
+            <div class="formAjuste">
                 <form class="form">
 
                     <label for="email">Correo electrónico</label>
@@ -86,7 +86,7 @@
         </div>
 
         <div id="fondoNegroFormUpdate" class="fondoNegroForm">
-            <div  class="formAjuste">
+            <div class="formAjuste">
                 <form class="form">
 
                     <label for="updateNombre">Nombre:</label>
@@ -117,8 +117,8 @@
 
                     <br>
 
-                    <label for="">Puesto:</label>
-                    <select id="" name="" required>
+                    <label for="updatePuesto">Puesto:</label>
+                    <select id="updatePuesto" name="updatePuesto" required>
                         <option value="">Seleccione un puesto</option>
                     </select>
 
@@ -126,7 +126,7 @@
                     <br>
                     <br>
 
-                    <button id="" type="button" onclick="">Guardar</button>
+                    <button id="updateE" type="button" onclick="">Guardar</button>
                     <button type="button"
                         onclick="document.getElementById('fondoNegroFormUpdate').style.display='none'">Cancelar</button>
 
@@ -157,10 +157,10 @@
             </table>
         </div>
         <br>
-
+        
         <button id="eliminar"
             style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Eliminar</button>
-        <button id="actualizarEmple"
+        <button id="actualizar"
             style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Actualizar</button>
     </div>
     </div>
@@ -173,11 +173,11 @@
     <br>
 
     <script>
-        var actualizarConsulta = document.getElementById("atualizarE");
+       // var actualizarConsulta = document.getElementById("atualizarE");
         var eliminarButton = document.getElementById("eliminar");
-        var actualizarButton = document.getElementById("actualizarEmple");
+        var actualizarButton = document.getElementById("actualizar");
         var tabla = document.getElementById("employee-table");
-        
+
         const selectPuestos = document.getElementById('idPuesto');
         const consultaPuestos = document.getElementById('btnAbrirFormulario');
 
@@ -215,7 +215,7 @@
             if (event.target.type === 'checkbox') {
                 if (seleccionados.length > 1) {
                     event.target.checked = false;
-                
+
                     alert('¡Solo puede seleccionar un empleado a la vez!')
                 } else {
                     if (seleccionados.length > 0) {
@@ -256,11 +256,160 @@
 
 
         eliminarButton.addEventListener('click', function () {
-            confirmarBorradoE();
+            confirmarBorrado();
         });
 
         actualizarButton.addEventListener('click', function () {
-            let idEmpleado;
+
+            const pantallaEmergente = document.createElement('div');
+            pantallaEmergente.style.position = 'fixed';
+            pantallaEmergente.style.top = 0;
+            pantallaEmergente.style.left = 0;
+            pantallaEmergente.style.width = '100%';
+            pantallaEmergente.style.height = '100%';
+            pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergente.style.display = 'flex';
+            pantallaEmergente.style.justifyContent = 'center';
+            pantallaEmergente.style.alignItems = 'center';
+
+            const mostrarItems = document.createElement('div');
+            mostrarItems.style.backgroundColor = 'white';
+            mostrarItems.style.padding = '20px';
+            mostrarItems.style.borderRadius = '10px';
+            mostrarItems.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+            const texto = document.createElement('p');
+            texto.textContent = 'Seleccione una opcion para actulizar los datos';
+
+            const botonUpdateUsuario = document.createElement('button');
+            botonUpdateUsuario.textContent = 'Usuario del empleado seleccionado';
+            botonUpdateUsuario.style.backgroundColor = '#007bff';
+            botonUpdateUsuario.style.color = 'white';
+            botonUpdateUsuario.style.padding = '10px 20px';
+            botonUpdateUsuario.style.borderRadius = '5px';
+            botonUpdateUsuario.style.border = 'none';
+            botonUpdateUsuario.style.cursor = 'pointer';
+            botonUpdateUsuario.style.marginRight = '10px';
+
+            const botonUpdateEmpleado = document.createElement('button');
+            botonUpdateEmpleado.textContent = 'Empleado seleccionado';
+            botonUpdateEmpleado.style.backgroundColor = '#007bff';
+            botonUpdateEmpleado.style.color = 'white';
+            botonUpdateEmpleado.style.padding = '10px 20px';
+            botonUpdateEmpleado.style.borderRadius = '5px';
+            botonUpdateEmpleado.style.border = 'none';
+            botonUpdateEmpleado.style.cursor = 'pointer';
+
+            mostrarItems.appendChild(texto);
+            mostrarItems.appendChild(botonUpdateUsuario);
+            mostrarItems.appendChild(botonUpdateEmpleado);
+
+            pantallaEmergente.appendChild(mostrarItems);
+            document.body.appendChild(pantallaEmergente);
+        
+            botonUpdateEmpleado.addEventListener('click', function(){
+                actualizarEmpleado()
+                pantallaEmergente.remove()
+            });
+
+            botonUpdateUsuario.addEventListener('click', function(){  
+                 actualizarUsuario()    
+                pantallaEmergente.remove()
+            });
+
+        });
+
+        function actualizarEmpleado(){
+
+        }
+
+        function actualizarUsuario(){
+
+        }
+
+        function confirmarBorrado() {
+            const pantallaEmergente = document.createElement('div');
+            pantallaEmergente.style.position = 'fixed';
+            pantallaEmergente.style.top = 0;
+            pantallaEmergente.style.left = 0;
+            pantallaEmergente.style.width = '100%';
+            pantallaEmergente.style.height = '100%';
+            pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergente.style.display = 'flex';
+            pantallaEmergente.style.justifyContent = 'center';
+            pantallaEmergente.style.alignItems = 'center';
+
+            const mostrarItems = document.createElement('div');
+            mostrarItems.style.backgroundColor = 'white';
+            mostrarItems.style.padding = '20px';
+            mostrarItems.style.borderRadius = '10px';
+            mostrarItems.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+            const texto = document.createElement('p');
+            texto.textContent = '¿Estás seguro de que quieres borrar esto?';
+
+            const botonAceptar = document.createElement('button');
+            botonAceptar.textContent = 'Aceptar';
+            botonAceptar.style.backgroundColor = '#007bff';
+            botonAceptar.style.color = 'white';
+            botonAceptar.style.padding = '10px 20px';
+            botonAceptar.style.borderRadius = '5px';
+            botonAceptar.style.border = 'none';
+            botonAceptar.style.cursor = 'pointer';
+            botonAceptar.style.marginRight = '10px';
+
+            const botonCancelar = document.createElement('button');
+            botonCancelar.textContent = 'Cancelar';
+            botonCancelar.style.backgroundColor = '#007bff';
+            botonCancelar.style.color = 'white';
+            botonCancelar.style.padding = '10px 20px';
+            botonCancelar.style.borderRadius = '5px';
+            botonCancelar.style.border = 'none';
+            botonCancelar.style.cursor = 'pointer';
+
+            botonAceptar.addEventListener('click', function () {
+                pantallaEmergente.remove();
+                const checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
+
+                checkboxes.forEach(function (checkboxs) {
+                    const fila = checkboxs.closest('tr');
+                    deleteE(fila);
+                    fila.remove();
+                });
+
+            });
+
+            botonCancelar.addEventListener('click', function () {
+                pantallaEmergente.remove();
+            });
+
+            mostrarItems.appendChild(texto);
+            mostrarItems.appendChild(botonAceptar);
+            mostrarItems.appendChild(botonCancelar);
+
+            pantallaEmergente.appendChild(mostrarItems);
+            document.body.appendChild(pantallaEmergente);
+
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnActualizar = document.getElementById('actualizar');
+
+        });
+        
+    </script>
+
+    <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>
+    <script src="/Coriport/src/app/components/UserComponent.js"></script>
+
+</body>
+<script>
+
+    /*
+    
+    
+    
+      let idEmpleado;
             fetch('http://localhost:8000/api/puestos')
                 .then(response => response.json())
                 .then(result => {
@@ -293,7 +442,7 @@
                 });
 
 
-            const formularioEmergente = document.getElementById('empleadoFondo');
+            const formularioEmergente = document.getElementById('fondoNegroFormUpdate');
 
             const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
             if (filaSeleccionada) {
@@ -308,13 +457,13 @@
                 const idUsuario = filaSeleccionada.cells[8].textContent;
                 const idPuesto = filaSeleccionada.cells[9].textContent;
 
-                document.getElementById('nombreActualizar').value = nombre;
-                document.getElementById('apellido1Actualizar').value = apellido1;
-                document.getElementById('apellido2Actualizar').value = apellido2;
-                document.getElementById('telefono1Actualizar').value = telefono1;
-                document.getElementById('telefono2Actualizar').value = telefono2;
-                document.getElementById('cedulaActualizar').value = cedula;
-                document.getElementById('fechContratActualizar').value = fechContrat;
+                document.getElementById('updateNombre').value = nombre;
+                document.getElementById('updateApellido1').value = apellido1;
+                document.getElementById('updateApellido2').value = apellido2;
+                document.getElementById('updateTelefono1').value = telefono1;
+                document.getElementById('updateTelefono2').value = telefono2;
+                document.getElementById('updateCedula').value = cedula;
+                document.getElementById('updateFechContrat').value = fechContrat;
 
                 const inputId = document.createElement('input');
                 inputId.type = 'hidden';
@@ -325,92 +474,23 @@
                 formularioEmergente.style.display = 'flex';
             }
 
-            actualizarConsulta.addEventListener('click', function () {
+            /*actualizarConsulta.addEventListener('click', function () {
                 updateEmpleado(idEmpleado);
                 window.location.href = 'http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html';
             });
-        });
-
-
-
-        function confirmarBorradoE() {
-            const pantallaEmergenteE = document.createElement('div');
-            pantallaEmergenteE.style.position = 'fixed';
-            pantallaEmergenteE.style.top = 0;
-            pantallaEmergenteE.style.left = 0;
-            pantallaEmergenteE.style.width = '100%';
-            pantallaEmergenteE.style.height = '100%';
-            pantallaEmergenteE.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-            pantallaEmergenteE.style.display = 'flex';
-            pantallaEmergenteE.style.justifyContent = 'center';
-            pantallaEmergenteE.style.alignItems = 'center';
-
-            const mensajeE = document.createElement('div');
-            mensajeE.style.backgroundColor = 'white';
-            mensajeE.style.padding = '20px';
-            mensajeE.style.borderRadius = '10px';
-            mensajeE.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-
-            const textoE = document.createElement('p');
-            textoE.textContent = '¿Estás seguro de que quieres borrar esto?';
-
-            const botonAceptarE = document.createElement('button');
-            botonAceptarE.textContent = 'Aceptar';
-            botonAceptarE.style.backgroundColor = '#007bff';
-            botonAceptarE.style.color = 'white';
-            botonAceptarE.style.padding = '10px 20px';
-            botonAceptarE.style.borderRadius = '5px';
-            botonAceptarE.style.border = 'none';
-            botonAceptarE.style.cursor = 'pointer';
-            botonAceptarE.style.marginRight = '10px';
-
-            const botonCancelarE = document.createElement('button');
-            botonCancelarE.textContent = 'Cancelar';
-            botonCancelarE.style.backgroundColor = '#007bff';
-            botonCancelarE.style.color = 'white';
-            botonCancelarE.style.padding = '10px 20px';
-            botonCancelarE.style.borderRadius = '5px';
-            botonCancelarE.style.border = 'none';
-            botonCancelarE.style.cursor = 'pointer';
-
-            botonAceptarE.addEventListener('click', function () {
-                pantallaEmergenteE.remove();
-                const checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
-
-                checkboxes.forEach(function (checkboxs) {
-                    const fila = checkboxs.closest('tr');
-                    deleteE(fila);
-                    fila.remove();
-                });
-
-            });
-
-            botonCancelarE.addEventListener('click', function () {
-                pantallaEmergenteE.remove();
-            });
-
-            mensajeE.appendChild(textoE);
-            mensajeE.appendChild(botonAceptarE);
-            mensajeE.appendChild(botonCancelarE);
-
-            pantallaEmergenteE.appendChild(mensajeE);
-            document.body.appendChild(pantallaEmergenteE);
-
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const btnActualizar = document.getElementById('actualizarEmple');
-
-        });
-    </script>
-
-    <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>
-    <script src="/Coriport/src/app/components/UserComponent.js"></script>
-
-</body>
-<script>
-
-    /*fetch('http://localhost:8000/api/users')
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ///////////////////////////////////
+    
+    fetch('http://localhost:8000/api/users')
         .then(response => response.json())
         .then(result => {
             const data = result.data;
