@@ -17,8 +17,10 @@ function sendUser(event){
         sendEmployee(obj.email);   
        // window.location.href = 'http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html';
     
-    }).fail(function(error){
-        console.log(error)
+    }).fail(function (xhr, status, error) {
+        console.log(xhr);
+        console.log(xhr.responseText);
+        mostrarMensajeDeError("ERROR!: " + xhr.responseText);
     });
 
 
@@ -52,8 +54,11 @@ function sendEmployee(email){
         }).done(function (response) {
             console.log(response);
           //  localStorage.setItem('Empleado', data);
-        }).fail(function (error) {
-            console.log(error);
+
+          document.getElementById('fondoNegroFormAdd').style.display='none';
+        }).fail(function (xhr, status, error) {
+            mostrarMensajeDeError("ERROR!: " + xhr.responseText);
+            destroy(email);
         });
 
     }).fail(function (error) {
@@ -126,3 +131,65 @@ $.ajax({
 $("#sendUser").click(sendUser);
 $("#destroy").click(destroy);
 $("#update").click(update);
+
+function mostrarMensajeDeError(mensaje) {
+    // Crear un contenedor específico para mensajes de error
+
+        const nuevoContenedor = document.createElement('div');
+        nuevoContenedor.id = 'contenedor-errores';
+        nuevoContenedor.style.position = 'fixed';
+        nuevoContenedor.style.top = '0';
+        nuevoContenedor.style.left = '0';
+        nuevoContenedor.style.width = '100%';
+        nuevoContenedor.style.backgroundColor = 'rgba(255, 0, 0, 0.8)';
+        nuevoContenedor.style.color = 'white';
+        nuevoContenedor.style.padding = '10px';
+        nuevoContenedor.style.zIndex = '9999';
+ 
+        document.body.appendChild(nuevoContenedor);
+    
+
+    // Crear un div para el mensaje de error
+    const divMensajeError = document.createElement('div');
+    divMensajeError.textContent = mensaje;
+
+    // Añadir el div del mensaje de error al contenedor
+    nuevoContenedor.appendChild(divMensajeError);
+
+    // Eliminar el mensaje de error después de cierto tiempo (por ejemplo, 5 segundos)
+    setTimeout(function () {
+        nuevoContenedor.remove();
+    }, 6000);
+    
+}
+
+function mostrarMensajeDeInfo(mensaje) {
+    // Crear un contenedor específico para mensajes de error
+
+        const nuevoContenedor = document.createElement('div');
+        nuevoContenedor.id = 'contenedor-errores';
+        nuevoContenedor.style.position = 'fixed';
+        nuevoContenedor.style.top = '0';
+        nuevoContenedor.style.left = '0';
+        nuevoContenedor.style.width = '100%';
+        nuevoContenedor.style.backgroundColor = 'rgba(255, 0, 0, 0.8)';
+        nuevoContenedor.style.color = 'white';
+        nuevoContenedor.style.padding = '10px';
+        nuevoContenedor.style.zIndex = '9999';
+ 
+        document.body.appendChild(nuevoContenedor);
+    
+
+    // Crear un div para el mensaje de error
+    const divMensajeError = document.createElement('div');
+    divMensajeError.textContent = mensaje;
+
+    // Añadir el div del mensaje de error al contenedor
+    nuevoContenedor.appendChild(divMensajeError);
+
+    // Eliminar el mensaje de error después de cierto tiempo (por ejemplo, 5 segundos)
+    setTimeout(function () {
+        nuevoContenedor.remove();
+    }, 6000);
+    
+}

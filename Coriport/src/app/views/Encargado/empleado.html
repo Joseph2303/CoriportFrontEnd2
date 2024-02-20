@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="../Encargado/styles/empleado.css">
 
 <body>
+
     <center>
         <h2 style="color: white;">Registros de los Empleado</h2>
     </center>
@@ -173,7 +174,6 @@
     <br>
 
     <script>
-       // var actualizarConsulta = document.getElementById("atualizarE");
         var eliminarButton = document.getElementById("eliminar");
         var actualizarButton = document.getElementById("actualizar");
         var tabla = document.getElementById("employee-table");
@@ -321,6 +321,7 @@
 
         function actualizarEmpleado(){
 
+            
         }
 
         function actualizarUsuario(){
@@ -366,6 +367,7 @@
             botonCancelar.style.borderRadius = '5px';
             botonCancelar.style.border = 'none';
             botonCancelar.style.cursor = 'pointer';
+            botonAceptar.style.marginRight = '100px';
 
             botonAceptar.addEventListener('click', function () {
                 pantallaEmergente.remove();
@@ -403,141 +405,3 @@
     <script src="/Coriport/src/app/components/UserComponent.js"></script>
 
 </body>
-<script>
-    /*
-      let idEmpleado;
-            fetch('http://localhost:8000/api/puestos')
-                .then(response => response.json())
-                .then(result => {
-                    const data = result.data;
-
-                    const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
-                    if (filaSeleccionada) {
-                        const idPuesto = filaSeleccionada.cells[9].textContent;
-
-                        idPuestoActualizar.innerHTML = '';
-                        const opcionPredeterminadaPuesto = document.createElement('option');
-                        opcionPredeterminadaPuesto.value = '';
-                        opcionPredeterminadaPuesto.textContent = 'Selecciona un puesto';
-                        idPuestoActualizar.appendChild(opcionPredeterminadaPuesto);
-
-                        data.forEach(puesto => {
-                            const opcion = document.createElement('option');
-                            opcion.value = puesto.idPuesto;
-                            opcion.textContent = puesto.puesto;
-                            idPuestoActualizar.appendChild(opcion);
-
-                            //if (puesto.id === idPuesto) {
-                            opcion.selected = true;
-                            //}
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al obtener los puestos:', error);
-                });
-
-
-            const formularioEmergente = document.getElementById('fondoNegroFormUpdate');
-
-            const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
-            if (filaSeleccionada) {
-                const id = filaSeleccionada.cells[0].textContent;
-                const nombre = filaSeleccionada.cells[1].textContent;
-                const apellido1 = filaSeleccionada.cells[2].textContent;
-                const apellido2 = filaSeleccionada.cells[3].textContent;
-                const telefono1 = filaSeleccionada.cells[4].textContent;
-                const telefono2 = filaSeleccionada.cells[5].textContent;
-                const cedula = filaSeleccionada.cells[6].textContent;
-                const fechContrat = filaSeleccionada.cells[7].textContent;
-                const idUsuario = filaSeleccionada.cells[8].textContent;
-                const idPuesto = filaSeleccionada.cells[9].textContent;
-
-                document.getElementById('updateNombre').value = nombre;
-                document.getElementById('updateApellido1').value = apellido1;
-                document.getElementById('updateApellido2').value = apellido2;
-                document.getElementById('updateTelefono1').value = telefono1;
-                document.getElementById('updateTelefono2').value = telefono2;
-                document.getElementById('updateCedula').value = cedula;
-                document.getElementById('updateFechContrat').value = fechContrat;
-
-                const inputId = document.createElement('input');
-                inputId.type = 'hidden';
-                inputId.name = 'id';
-                inputId.value = id;
-                idEmpleado = id
-                formularioEmergente.appendChild(inputId);
-                formularioEmergente.style.display = 'flex';
-            }
-
-            /*actualizarConsulta.addEventListener('click', function () {
-                updateEmpleado(idEmpleado);
-                window.location.href = 'http://127.0.0.1:5500//Coriport/src/app/views/Encargado/MenuEncargado.html';
-            });
-    
-
-    ///////////////////////////////////
-    
-    fetch('http://localhost:8000/api/users')
-        .then(response => response.json())
-        .then(result => {
-            const data = result.data;
-
-            const filaSeleccionada = document.querySelector('#employee-table tbody tr.selected-row');
-            if (filaSeleccionada) {
-                const idUsuario = filaSeleccionada.cells[8].textContent;
-
-                idUsuarioActualizar.innerHTML = '';
-                const opcionPredeterminadaUsuario = document.createElement('option');
-                opcionPredeterminadaUsuario.value = '';
-                opcionPredeterminadaUsuario.textContent = 'Selecciona un correo';
-                idUsuarioActualizar.appendChild(opcionPredeterminadaUsuario);
-
-                data.forEach(usuario => {
-                    const opcion = document.createElement('option');
-                    opcion.value = usuario.idUsuario;
-                    opcion.textContent = usuario.email;
-                    idUsuarioActualizar.appendChild(opcion);
-
-                    //if (usuario.id === idUsuario) {
-                        opcion.selected = true;
-                    //}
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Error al obtener los correos:', error);
-        });*/
-
-    /* function mostrarBotones() {
-      var empleadosSeleccionados = obtenerEmpleadosSeleccionados();
-      if (empleadosSeleccionados) {
-          if (empleadosSeleccionados.length > 1) {
-
-              eliminarButton.style.display = 'none';
-              actualizarButton.style.display = 'none';
-              alert('¡Solo puedes seleccionar un empleado a la vez! desmarque la casilla')
-
-          } else {
-              eliminarButton.style.display = 'inline-block';
-              actualizarButton.style.display = 'inline-block';
-          }
-      } else {
-          eliminarButton.style.display = 'none';
-          actualizarButton.style.display = 'none';
-      }
-  }*/
-
-    /* function obtenerEmpleadosSeleccionados() {
-          var checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
-          var empleadosSeleccionados = [];
-
-          checkboxes.forEach(function (checkbox) {
-              const fila = checkbox.closest('tr');
-              const employeId = fila.dataset.employeId;
-              empleadosSeleccionados.push(fila);
-          });
-          console.log(empleadosSeleccionados)
-          return empleadosSeleccionados;
-      }*/
-</script>
