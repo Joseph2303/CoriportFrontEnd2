@@ -1,5 +1,5 @@
 
-$("#diasFeriado").on('click',function(){routingi("DiasFeriados")});
+$("#diasFeriado").on('click',function(){routingi("feriado")});
 $("#empleados").on('click',function(){routingi("empleado")});
 
 function routingi(router){
