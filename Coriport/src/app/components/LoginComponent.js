@@ -46,6 +46,7 @@ function login(event) {
         },
         error: function (error) {
             console.log(error);
+            mostrarMensajeDeError(error.responseText)
         }
     });
 }
