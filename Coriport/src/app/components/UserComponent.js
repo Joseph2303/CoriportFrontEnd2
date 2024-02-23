@@ -56,7 +56,9 @@ function sendEmployee(email) {
             mostrarMensajeDeInfo("Se ha registrado exitosamente");
 
         }).fail(function (xhr, status, error) {
+            
             mostrarMensajeDeError("ERROR!: " + xhr.responseText);
+
             destroy(email);
         });
 

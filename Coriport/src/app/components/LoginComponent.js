@@ -36,19 +36,21 @@ function login(event) {
                             window.location.href ="http://127.0.0.1:5500/Coriport/src/app/views/Encargado/main.html";
                         }else{
                             console.log("ERROR DE VALIDACION")
+                            mostrarMensajeDeError("ERROR!! verifique los datos ingresados ")
                         }
                     },
-                    error: function (error) {
+                    error: function (xhr, status, error) {
                         console.log(error);
+                        mostrarMensajeDeError("ERROR!! : " + xhr.responseText)
                     }
                 });
             }
         },
-        error: function (error) {
+        error: function (xhr, status, error) {
             console.log(error);
-            mostrarMensajeDeError(error.responseText)
+            mostrarMensajeDeError("ERROR!! : " + xhr.responseText)
         }
     });
 }
 
-$("#login").click(login);
+$("#login").click(login);  
