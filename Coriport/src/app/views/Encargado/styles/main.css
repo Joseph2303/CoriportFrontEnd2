@@ -108,3 +108,17 @@ nav.open ~ .overlay {
   z-index: -1;
 }
 
+.preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  /* o cualquier otro color de fondo que prefieras */
+  z-index: 9999;
+  /* para que aparezca por encima de todo lo demás */
+}

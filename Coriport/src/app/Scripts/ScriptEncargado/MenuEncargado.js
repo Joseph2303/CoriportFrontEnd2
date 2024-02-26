@@ -9,3 +9,14 @@ const navBar = document.querySelector("nav"),
      overlay.addEventListener("click", () => {
        navBar.classList.remove("open");
      });
+
+
+     window.addEventListener('load', function() {
+      var preloader = document.querySelector('.preloader');
+
+      preloader.classList.add('hide');
+
+      setTimeout(function() {
+        preloader.style.display = 'none';
+      }, 600);
+    });
