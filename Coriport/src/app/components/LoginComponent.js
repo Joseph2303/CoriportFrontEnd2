@@ -27,12 +27,11 @@ function login(event) {
                        
                         console.log(identity)
 
-                        if (identity['tipoUsuario']=='empleado') {
-
-                            
+                        if (identity['tipoUsuario']=='Empleado') {
+                    
                             window.location.href ="http://127.0.0.1:5500/Coriport/src/app/views/Empleado/main.html";
 
-                        }else if(identity['tipoUsuario']=='admin'){
+                        }else if(identity['tipoUsuario']=='Encargado'){
                             window.location.href ="http://127.0.0.1:5500/Coriport/src/app/views/Encargado/main.html";
                         }else{
                             console.log("ERROR DE VALIDACION")
@@ -40,6 +39,7 @@ function login(event) {
                         }
                     },
                     error: function (xhr, status, error) {
+                       
                         console.log(error);
                         mostrarMensajeDeError("ERROR!! : " + xhr.responseText)
                     }
