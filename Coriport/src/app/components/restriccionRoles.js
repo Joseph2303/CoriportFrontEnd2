@@ -21,10 +21,10 @@ if (!tokenString && window.location.href.indexOf('Login/login.html') === -1) {
 
         if (esEmpleado && !estaEnPaginaEmpleado) {
             console.log("Empleado");
-            window.location.href = "http://127.0.0.1:5500/Coriport/src/app/views/Empleado/main.html";
+            window.location.href = "/Coriport/src/app/views/Empleado/main.html";
         } else if (esAdmin && !estaEnPaginaAdmin) {
             console.log("Encargado");
-            window.location.href = "http://127.0.0.1:5500/Coriport/src/app/views/Encargado/main.html";
+            window.location.href = "/Coriport/src/app/views/Encargado/main.html";
         } 
         
         if(!token) {     

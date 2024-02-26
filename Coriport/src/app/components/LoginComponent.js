@@ -29,10 +29,10 @@ function login(event) {
 
                         if (identity['tipoUsuario']=='Empleado') {
                     
-                            window.location.href ="http://127.0.0.1:5500/Coriport/src/app/views/Empleado/main.html";
+                            window.location.href ="/Coriport/src/app/views/Empleado/main.html";
 
                         }else if(identity['tipoUsuario']=='Encargado'){
-                            window.location.href ="http://127.0.0.1:5500/Coriport/src/app/views/Encargado/main.html";
+                            window.location.href ="/Coriport/src/app/views/Encargado/main.html";
                         }else{
                             console.log("ERROR DE VALIDACION")
                             mostrarMensajeDeError("ERROR!! verifique los datos ingresados ")

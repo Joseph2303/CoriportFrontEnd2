@@ -11,7 +11,7 @@ $("#marcas").on('click',function(){routingi("marcas")});
 $("#salir").on('click',function(){routingExit()});
 
 function routingExit(){
-    window.location.href = "http://127.0.0.1:5500/Coriport/src/app/views/Login/login.html";
+    window.location.href = "/Coriport/src/app/views/Login/login.html";
     localStorage.clear()
 }
 
