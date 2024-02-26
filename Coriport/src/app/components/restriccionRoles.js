@@ -13,8 +13,8 @@ if (!tokenString && window.location.href.indexOf('Login/login.html') === -1) {
         const token = JSON.parse(tokenString);
         console.log(token);
 
-        const esEmpleado = token.tipoUsuario === "empleado";
-        const esAdmin = token.tipoUsuario === "admin";
+        const esEmpleado = token.tipoUsuario === "Empleado";
+        const esAdmin = token.tipoUsuario === "Encargado";
 
         const estaEnPaginaEmpleado = window.location.href.indexOf('Empleado/main.html') !== -1;
         const estaEnPaginaAdmin = window.location.href.indexOf('Encargado/main.html') !== -1;
@@ -23,8 +23,13 @@ if (!tokenString && window.location.href.indexOf('Login/login.html') === -1) {
             console.log("Empleado");
             window.location.href = "http://127.0.0.1:5500/Coriport/src/app/views/Empleado/main.html";
         } else if (esAdmin && !estaEnPaginaAdmin) {
-            console.log("Admin");
+            console.log("Encargado");
             window.location.href = "http://127.0.0.1:5500/Coriport/src/app/views/Encargado/main.html";
+        } 
+        
+        if(!token) {     
+        if( window.location.href.indexOf('Login/login.html') === -1)
+          redirigirALogin();
         }
 
     } catch (error) {
@@ -32,4 +37,3 @@ if (!tokenString && window.location.href.indexOf('Login/login.html') === -1) {
     }
 }
 
-// Redirigir a la página de inicio de sesión después de 6 segundos si el token no está presente
