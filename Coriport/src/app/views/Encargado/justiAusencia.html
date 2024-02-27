@@ -3,13 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Justificacion Ausencia</title>
+    <link rel="stylesheet" type="text/css" href="../Encargado/styles/justificacionAusencia.css">
+
 </head>
 <body>
 
     <center>
         <h2 style="color: white;">Justificación de Ausencia</h2>
     </center>
+    <br>
+
     
+    <div class="cajon">
+        <div class="tabla">
+
+            <div>
+                <input type="text" id="buscarJustificacionAusen" placeholder="Buscar Ausencia..." oninput="ColocarMetodo">
+            </div>
+            <br>
+            <table id="justificacion-table" border="1">
+            
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha de Solicitud</th>
+                        <th>Fecha de Ausencia</th>
+                        <th>Archivos</th>
+                        <th>Justificación</th>
+                        <th>Estado</th>
+                        <th>Descripción</th>
+                        <th>Encargado</th>
+                        <th>ID Empleado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableJustificacionAusencia">
+       
+                </tbody>
+            </table>
+        </div>
+
+                
+    </div>
+    <br>
+    <br>
 </body>
 </html>
