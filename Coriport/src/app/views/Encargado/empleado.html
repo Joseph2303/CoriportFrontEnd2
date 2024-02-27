@@ -139,13 +139,15 @@
         <div id="fondoNegroFormUpdateU" class="fondoNegroForm">
             <div class="formAjuste">
                 <form class="form">
+                    <label for="idUpdate">Id del usuario seleccionado</label>
+                    <input type="text" id="idUpdate" name="idUpdate" readonly>
 
                     <label for="emailUpdate">Correo electrónico</label>
-                    <input type="text" id="email" name="emailUpdate" required>
+                    <input type="text" id="emailUpdate" name="emailUpdate" required>
 
                     <label for="tipoUsuarioUpdate">Tipo de usuario:</label>
                     <select id="tipoUsuarioUpdate" name="tipoUsuarioUpdate" required>
-                        <option value="">Seleccione el tipo de usuario</option>
+                        <option id="firtText" value="">Seleccione el tipo de usuario</option>
                         <option value="Empleado">Empleado</option>
                         <option value="Encargado">Encargado</option>
                     </select>
@@ -186,7 +188,7 @@
             </table>
         </div>
         <br>
-        
+
         <button id="eliminar"
             style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Eliminar</button>
         <button id="actualizar"
@@ -337,6 +339,24 @@
             botonCerrarForm.style.border = 'none';
             botonCerrarForm.style.cursor = 'pointer';
 
+            let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            if (seleccionados.length === 1) {
+                // Obtener la fila seleccionada
+                let filaSeleccionada = seleccionados[0].closest('tr');
+
+                // Obtener los datos de cada celda en la fila
+                let email = filaSeleccionada.cells[7].textContent;
+
+                let idUsuario = filaSeleccionada.getAttribute('data-user-id');
+                document.getElementById('idUpdate').value = idUsuario;
+
+                document.getElementById('emailUpdate').value = email;
+            }
+
+
+
+
             mostrarItems.appendChild(texto);
             mostrarItems.appendChild(botonUpdateUsuario);
             mostrarItems.appendChild(botonUpdateEmpleado);
@@ -344,30 +364,26 @@
 
             pantallaEmergente.appendChild(mostrarItems);
             document.body.appendChild(pantallaEmergente);
-        
-            botonUpdateEmpleado.addEventListener('click', function(){
-                actualizarEmpleado()
+
+            botonUpdateEmpleado.addEventListener('click', function () {
+                const pantallaEmergente = document.getElementById('fondoNegroFormUpdateE');
+                pantallaEmergente.style.display = 'flex';
+
+
             });
 
-            botonUpdateUsuario.addEventListener('click', function(){  
-                 actualizarUsuario()               
+            botonUpdateUsuario.addEventListener('click', function () {
+                const pantallaEmergente = document.getElementById('fondoNegroFormUpdateU');
+                pantallaEmergente.style.display = 'flex';
+
             });
 
-            botonCerrarForm.addEventListener('click', function(){              
+            botonCerrarForm.addEventListener('click', function () {
                 pantallaEmergente.remove()
             });
 
         });
 
-        function actualizarEmpleado(){
-            const pantallaEmergente = document.getElementById('fondoNegroFormUpdateE');
-            pantallaEmergente.style.display = 'flex';
-        }
-
-        function actualizarUsuario(){
-            const pantallaEmergente = document.getElementById('fondoNegroFormUpdateU');
-            pantallaEmergente.style.display = 'flex';
-        }
 
         function confirmarBorrado() {
             const pantallaEmergente = document.createElement('div');
@@ -439,7 +455,7 @@
             const btnActualizar = document.getElementById('actualizar');
 
         });
-        
+
     </script>
 
     <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>

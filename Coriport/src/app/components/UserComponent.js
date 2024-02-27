@@ -84,31 +84,32 @@ function find(event) {
 
 }
 
-function update(id) {
+function update() {
 
     let obj = {
-        "idUsuario": id,
-        "email": $("#correo").val(),
-        "tipoUsuario": $("#tipoUsuario").val(),
+        "idUsuario": $("#idUpdate").val(),
+        "email": $("#emailUpdate").val(),
+        "tipoUsuario": $("#tipoUsuarioUpdate").val(),
     }
 
     let data = 'data=' + JSON.stringify(obj);
-    console.log(id)
     console.log(data)
     $.ajax({
-        url: "http://localhost:8000/api/user/update/" + id,
+        url: "http://localhost:8000/api/user/update/" + obj.idUsuario,
         type: "PUT",
         data: data
     }).done(function (response) {
-        console.log(response);
+        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        document.getElementById('fondoNegroFormUpdateU').style.display = 'none';
 
-    }).fail(function (error) {
+    }).fail(function (xhr, status, error) {
         console.log(error);
-        console.log(data)
+        console.log(data);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseText)
     });
 }
 
-$.ajax({
+/*$.ajax({
     url: "http://localhost:8000/api/users",
     type: "GET"
 }).done(function (response) {
@@ -126,12 +127,12 @@ $.ajax({
     }
 }).fail(function () {
 
-});
+});*/
 
 
 $("#sendUser").click(sendUser);
 $("#destroy").click(destroy);
-$("#update").click(update);
+$("#updateU").click(update);
 
 
 

@@ -89,16 +89,15 @@ function updateEmpleado(id) {
         console.log(error);
     });
 }
-event.preventDefault(); 
+
 $.ajax({
     url:"http://localhost:8000/api/empleados",
     type:"GET"
  }).done(function(response){
-     console.log(response);
      var respObj=response.data;
      for(k in respObj){
          $("#dataTableE").append(
-             `<tr data-employe-id="${respObj[k].idEmpleado}">
+             `<tr data-user-id="${respObj[k].idUsuario}">
              <td >`+respObj[k].idEmpleado+`</td>
              <td>`+respObj[k].nombre+`</td>
              <td>`+respObj[k].apellido1+`</td>
