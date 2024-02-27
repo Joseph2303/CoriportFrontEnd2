@@ -14,7 +14,9 @@
   }
 
 
-
+  .title1{
+    color: white;
+  }
   *{
     padding: 0;
     margin: 0;
@@ -35,7 +37,7 @@ nav{
 }
 nav ul{
     float: right;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 nav ul li{
     display: inline-block;
@@ -44,15 +46,25 @@ nav ul li{
 }
 nav ul li a{
     color: #fff;
-    font-size: 18px;
+    font-size: 12px;
     padding: 7px 13px;
     border-radius: 3px;
     text-transform: uppercase;
 }
+.salir{
+    background-color: #0062ff;
+}
+
+.salir:hover{
+    background-color: #65a0ff;
+}
 li a.active, li a:hover{
-    border-radius: 15%;
-    background: #8cc28a5c;
+    border-radius: 10%;
+    caret-color: white;
+    background: #0078ef8f;
     transition: .5s;
+    color: #fff;
+    text-decoration: none;
 }
 .checkbtn{
     font-size: 30px;
@@ -67,7 +79,6 @@ li a.active, li a:hover{
     display: none;
 }
 section{
-    background: url(fondo.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
     height: calc(100vh - 80px);
@@ -82,17 +93,15 @@ section{
     }
 }
 
-@media (max-width: 858px){
+@media (max-width: 1300px){
     .checkbtn{
-        display: block;
-        
+        display:block; 
     }
     ul{
         position: fixed;
-        width: 100%;
+        width: 80%;
         height: 100vh;
-        background: rgba(211, 210, 210, 0.343);
-        top: 80px;
+        background: rgba(116, 115, 115, 0.726);
         left: -100%;
         text-align: center;
         transition: all .5s;
@@ -108,6 +117,7 @@ section{
     li a:hover, li a.active{
         background: none;
         color: #447cd6;
+        text-decoration: none;
     }
     #check:checked ~ ul{
         left:0;
