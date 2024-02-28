@@ -23,7 +23,7 @@
 
         <div id="fondoNegroFormAdd" class="fondoNegroForm">
             <div class="formAjuste">
-                <form id="empleadoUpdate" class="form">
+                <form class="form">
 
                     <label for="email">Correo electrónico</label>
                     <input type="text" id="email" name="email" required>
@@ -61,15 +61,10 @@
                     <label for="fechContrat">Fecha de Contratación (YYYY-MM-DD):</label>
                     <input type="date" id="fechContrat" name="fechContrat" required>
 
-                    <!--<label for="idUsuario">Correo del empleado:</label>
-                    <select id="idUsuario" name="idUsuario" required>
-                        <option value="">Selecciona un Correo</option>
-                    </select>-->
-
                     <br>
 
                     <label for="idPuesto">Puesto:</label>
-                    <select id="idPuesto" name="idPuesto" required>
+                    <select id="idPuesto" name="idPuesto" class="idPuesto" required>
                         <option value="">Seleccione un puesto</option>
                     </select>
 
@@ -88,6 +83,8 @@
         <div id="fondoNegroFormUpdateE" class="fondoNegroForm">
             <div class="formAjuste">
                 <form class="form">
+                    <label for="idEmpleado">ID del empleado seleccionado:</label>
+                    <input type="text" id="idEmpleado" name="idEmpleado" readonly>
 
                     <label for="updateNombre">Nombre:</label>
                     <input type="text" id="updateNombre" name="updateNombre" required>
@@ -110,15 +107,10 @@
                     <label for="updateFechContrat">Fecha de Contratación:</label>
                     <input type="date" id="updateFechContrat" name="updateFechContrat" required>
 
-                    <!--<label for="idUsuario">Correo del empleado:</label>
-                    <select id="idUsuario" name="idUsuario" required>
-                        <option value="">Selecciona un Correo</option>
-                    </select>-->
-
                     <br>
 
                     <label for="updatePuesto">Puesto:</label>
-                    <select id="updatePuesto" name="updatePuesto" required>
+                    <select id="updatePuesto" name="updatePuesto" class="idPuesto" required>
                         <option value="">Seleccione un puesto</option>
                     </select>
 
@@ -208,36 +200,34 @@
         var actualizarButton = document.getElementById("actualizar");
         var tabla = document.getElementById("employee-table");
 
-        const selectPuestos = document.getElementById('idPuesto');
-        const consultaPuestos = document.getElementById('btnAbrirFormulario');
+        const selectPuestos = document.getElementsByClassName('idPuesto');
 
-        consultaPuestos.addEventListener('click', function () {
+        fetch('http://localhost:8000/api/puestos')
+            .then(response => response.json())
+            .then(result => {
+                const data = result.data;
 
-            fetch('http://localhost:8000/api/puestos')
-                .then(response => response.json())
-                .then(result => {
-                    const data = result.data;
-
-
-                    selectPuestos.innerHTML = '';
+                for (let i = 0; i < selectPuestos.length; i++) {
+                    const currentSelect = selectPuestos[i];
+                    currentSelect.innerHTML = '';
 
                     const opcionPredeterminada = document.createElement('option');
                     opcionPredeterminada.value = '';
                     opcionPredeterminada.textContent = 'Selecciona un puesto';
-                    selectPuestos.appendChild(opcionPredeterminada);
+                    currentSelect.appendChild(opcionPredeterminada);
 
                     data.forEach(puesto => {
                         const opcion = document.createElement('option');
                         opcion.value = puesto.idPuesto;
                         opcion.textContent = puesto.puesto;
-                        selectPuestos.appendChild(opcion);
+                        currentSelect.appendChild(opcion);
                     });
-                })
-                .catch(error => {
-                    console.error('Error al obtener los puestos:', error);
-                });
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener los puestos:', error);
+            });
 
-        });
 
 
         tabla.addEventListener('change', function (event) {
@@ -346,15 +336,32 @@
                 let filaSeleccionada = seleccionados[0].closest('tr');
 
                 // Obtener los datos de cada celda en la fila
+                let idUsuario = filaSeleccionada.getAttribute('data-user-id');
                 let email = filaSeleccionada.cells[7].textContent;
 
-                let idUsuario = filaSeleccionada.getAttribute('data-user-id');
                 document.getElementById('idUpdate').value = idUsuario;
-
                 document.getElementById('emailUpdate').value = email;
+
+                let idEmpleado = filaSeleccionada.cells[0].textContent;
+                let nombre = filaSeleccionada.cells[1].textContent;
+                let apellido1 = filaSeleccionada.cells[2].textContent;
+                let apellido2 = filaSeleccionada.cells[3].textContent;
+                let telefono1 = filaSeleccionada.getAttribute('data-phone1-user');
+                let telefono2 = filaSeleccionada.getAttribute('data-phone2-user');
+                let cedula = filaSeleccionada.cells[5].textContent;
+                let fechContrat = filaSeleccionada.cells[6].textContent;
+                let puesto = filaSeleccionada.cells[8].textContent;
+
+                document.getElementById('idEmpleado').value = idEmpleado;
+                document.getElementById('updateNombre').value = nombre;
+                document.getElementById('updateApellido1').value = apellido1;
+                document.getElementById('updateApellido2').value = apellido2;
+                document.getElementById('updateTelefono1').value = telefono1;
+                document.getElementById('updateTelefono2').value = telefono2;
+                document.getElementById('updateCedula').value = cedula;
+                document.getElementById('updateFechContrat').value = fechContrat;
+
             }
-
-
 
 
             mostrarItems.appendChild(texto);
@@ -368,8 +375,6 @@
             botonUpdateEmpleado.addEventListener('click', function () {
                 const pantallaEmergente = document.getElementById('fondoNegroFormUpdateE');
                 pantallaEmergente.style.display = 'flex';
-
-
             });
 
             botonUpdateUsuario.addEventListener('click', function () {
@@ -450,12 +455,6 @@
             document.body.appendChild(pantallaEmergente);
 
         }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const btnActualizar = document.getElementById('actualizar');
-
-        });
-
     </script>
 
     <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>

@@ -22,14 +22,14 @@ function sendE(event) {
 
     }).done(function (response) {
         console.log(response);
-      //  localStorage.setItem('Empleado', data);
+        //  localStorage.setItem('Empleado', data);
     }).fail(function (error) {
         console.log(error);
     });
 }
 
 function deleteE(empleado) {
-console.log(empleado.cells[0].textContent)
+    console.log(empleado.cells[0].textContent)
     $.ajax({
         url: "http://localhost:8000/api/empleado/delete/" + empleado.cells[0].textContent,
         type: "DELETE",
@@ -38,11 +38,11 @@ console.log(empleado.cells[0].textContent)
         console.log(response);
 
         $.ajax({
-            url:"http://localhost:8000/api/user/delete/" + empleado.cells[7].textContent,
-            type:"DELETE",
-        }).done(function(response){
+            url: "http://localhost:8000/api/user/delete/" + empleado.cells[7].textContent,
+            type: "DELETE",
+        }).done(function (response) {
             console.log(response);
-        }).fail(function(error){
+        }).fail(function (error) {
             console.log(error)
         });
 
@@ -65,56 +65,58 @@ function findEmpleado(event) {
     });
 }
 
-function updateEmpleado(id) {
+function updateEmpleado() {
     let updatedEmployeeData = {
-        "nombre": $("#nombreActualizar").val(),
-        "apellido1": $("#apellido1Actualizar").val(),
-        "apellido2": $("#apellido2Actualizar").val(),
-        "telefono1": $("#telefono1Actualizar").val(),
-        "telefono2": $("#telefono2Actualizar").val(),
-        "cedula": $("#cedulaActualizar").val(),
-        "fechContrat": $("#fechContratActualizar").val(),
-        "idUsuario": $("#idUsuarioActualizar").val(),
-        "idPuesto": $("#idPuestoActualizar").val()
+        "idEmpleado": $("#idEmpleado").val(),
+        "nombre": $("#updateNombre").val(),
+        "apellido1": $("#updateApellido1").val(),
+        "apellido2": $("#updateApellido2").val(),
+        "telefono1": $("#updateTelefono1").val(),
+        "telefono2": $("#updateTelefono2").val(),
+        "cedula": $("#updateCedula").val(),
+        "fechContrat": $("#updateFechContrat").val(),
+        "idPuesto": $("#updatePuesto").val(),
     };
 
     let data = 'data=' + JSON.stringify(updatedEmployeeData);
+    console.log(data)
     $.ajax({
-        url: "http://localhost:8000/api/empleado/update/" + id,
+        url: "http://localhost:8000/api/empleado/update/" + updatedEmployeeData.idEmpleado,
         type: "PUT",
         data: data
     }).done(function (response) {
-        console.log(response);
-    }).fail(function (error) {
-        console.log(error);
+        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        document.getElementById('fondoNegroFormUpdateE').style.display = 'none';
+    }).fail(function (xhr, status, error) {
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
 }
 
 $.ajax({
-    url:"http://localhost:8000/api/empleados",
-    type:"GET"
- }).done(function(response){
-     var respObj=response.data;
-     for(k in respObj){
-         $("#dataTableE").append(
-             `<tr data-user-id="${respObj[k].idUsuario}">
-             <td >`+respObj[k].idEmpleado+`</td>
-             <td>`+respObj[k].nombre+`</td>
-             <td>`+respObj[k].apellido1+`</td>
-             <td>`+respObj[k].apellido2+`</td>
-             <td>`+respObj[k].telefono1+`/`+respObj[k].telefono2+`</td>
-             <td>`+respObj[k].cedula+`</td>
-             <td>`+respObj[k].fechContrat+`</td>
-             <td>`+respObj[k].usuario.email+`</td>
-             <td>`+respObj[k].puesto.puesto+`</td>
+    url: "http://localhost:8000/api/empleados",
+    type: "GET"
+}).done(function (response) {
+    var respObj = response.data;
+    for (k in respObj) {
+        $("#dataTableE").append(
+            `<tr data-user-id="${respObj[k].idUsuario}" data-phone1-user="${respObj[k].telefono1}" data-phone2-user="${respObj[k].telefono2}">
+             <td >`+ respObj[k].idEmpleado + `</td>
+             <td>`+ respObj[k].nombre + `</td>
+             <td>`+ respObj[k].apellido1 + `</td>
+             <td>`+ respObj[k].apellido2 + `</td>
+             <td>`+ respObj[k].telefono1 + `/` + respObj[k].telefono2 + `</td>
+             <td>`+ respObj[k].cedula + `</td>
+             <td>`+ respObj[k].fechContrat + `</td>
+             <td>`+ respObj[k].usuario.email + `</td>
+             <td>`+ respObj[k].puesto.puesto + `</td>
              <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
              </tr>`
-         );
+        );
 
-     }    
- }).fail(function(){
-     
- });
+    }
+}).fail(function () {
+
+});
 
 
 
