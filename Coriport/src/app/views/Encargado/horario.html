@@ -3,13 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Horarios</title>
+    <link rel="stylesheet" type="text/css" href="styles/horario.css">
 </head>
 <body>
-
     <center>
         <h2 style="color: white;">Horarios</h2>
     </center>
+    <br>
+    <br>
     
+    <div class="horario-container">
+        <div>
+            <button id="btnCrearHorario"
+                onclick="style.display='flex'"
+                style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer;">Registrar horario </button>
+        </div>
+        <br>
+        <table id="horario-table" border="1">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Hora de Inicio</th>
+                    <th>Hora de Fin</th>
+                    <th>Fecha</th>
+                    <th>ID Empleado</th>
+                </tr>
+            </thead>
+            <tbody id="dataTableHorario">
+           
+            </tbody>
+        </table>
+        <br>
+        <br>
+        
+        <button id="eliminar"
+            style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; ">Eliminar</button>
+        <button id="actualizar"
+            style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; ">Actualizar</button>
+  
+
+    </div>
+    <br>
+    <br>
 </body>
 </html>

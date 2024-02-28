@@ -1,0 +1,28 @@
+.btnCrearHorario{
+    color: #007bff;
+}
+
+.horario-container {
+    background-color: #cfe6ff;
+    padding: 20px;
+    border-radius: 7px;
+    margin: 20px;
+}
+
+#horario-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+
