@@ -1,14 +1,13 @@
-
 #fondoNegroFormAdd,
 #fondoNegroFormUpdateE,
 #fondoNegroFormUpdateU {
     display: none;
 }
 
-.cajon{
+.cajon {
     background-color: #cfe6ff;
-    padding: 6px 15px;
-    border-radius: 4px;
+    padding: 20px 20px 40px 20px;
+    border-radius: 7px;
 }
 
 .fondoNegroForm {
@@ -48,14 +47,16 @@ input {
 }
 
 .tabla {
-    max-width: 1500px; 
-    margin: auto; 
+    max-width: 1800px; 
+    margin: 20px auto 40px auto; 
     overflow-y: auto;
     overflow-x: auto; 
 }
 
 #justificacion-table {
-    width: 100%; 
+    width: 100%;
+    max-width: none; 
+    height: 30%;
     border-collapse: collapse; 
 }
 
@@ -77,4 +78,53 @@ th {
 
 td {
     text-align: center;
+}
+
+.acciones-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.aprobar-denegar-container {
+    display: flex;
+    margin-left: 10px;
+}
+
+#aprobar,
+#denegar {
+    background-color: #25ba03;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+.izquierda {
+    display: flex;
+    margin-right: auto;
+}
+
+#eliminar,
+#actualizar {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.acciones-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.aprobar-denegar-container {
+    display: flex;
 }
