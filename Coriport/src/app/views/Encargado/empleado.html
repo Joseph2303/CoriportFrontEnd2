@@ -338,9 +338,19 @@
                 // Obtener los datos de cada celda en la fila
                 let idUsuario = filaSeleccionada.getAttribute('data-user-id');
                 let email = filaSeleccionada.cells[7].textContent;
+                let tipoUsuario = filaSeleccionada.getAttribute('data-user-tipe');
 
                 document.getElementById('idUpdate').value = idUsuario;
-                document.getElementById('emailUpdate').value = email;
+                document.getElementById('emailUpdate').value = email;         
+                let dropdownU = document.getElementById('tipoUsuarioUpdate');
+
+                for (let i = 0; i < dropdownU.options.length; i++) {
+                    if (dropdownU.options[i].text === tipoUsuario) {
+                        dropdownU.selectedIndex = i;
+                        break;
+                    }
+                }
+
 
                 let idEmpleado = filaSeleccionada.cells[0].textContent;
                 let nombre = filaSeleccionada.cells[1].textContent;
@@ -360,7 +370,14 @@
                 document.getElementById('updateTelefono2').value = telefono2;
                 document.getElementById('updateCedula').value = cedula;
                 document.getElementById('updateFechContrat').value = fechContrat;
+                let dropdownE = document.getElementById('updatePuesto');
 
+                for (let i = 0; i < dropdownE.options.length; i++) {
+                    if (dropdownE.options[i].text === puesto) {
+                        dropdownE.selectedIndex = i;
+                        break;
+                    }
+                }
             }
 
 

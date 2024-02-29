@@ -78,12 +78,6 @@ function destroy(id) {
     });
 }
 
-function find(event) {
-    event.preventDefault();
-
-
-}
-
 function update() {
 
     let obj = {
@@ -108,27 +102,6 @@ function update() {
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText)
     });
 }
-
-/*$.ajax({
-    url: "http://localhost:8000/api/users",
-    type: "GET"
-}).done(function (response) {
-    console.log(response);
-    var respObj = response.data;
-    for (k in respObj) {
-        $("#dataTable").append(
-            `<tr data-user-id="${respObj[k].idUsuario}">
-             <td >`+ respObj[k].idUsuario + `</td>
-             <td>`+ respObj[k].email + `</td>
-             <td>`+ respObj[k].tipoUsuario + `</td>
-             <td><input type="checkbox"></td>
-             </tr>`
-        );
-    }
-}).fail(function () {
-
-});*/
-
 
 $("#sendUser").click(sendUser);
 $("#destroy").click(destroy);

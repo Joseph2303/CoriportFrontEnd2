@@ -99,7 +99,7 @@ $.ajax({
     var respObj = response.data;
     for (k in respObj) {
         $("#dataTableE").append(
-            `<tr data-user-id="${respObj[k].idUsuario}" data-phone1-user="${respObj[k].telefono1}" data-phone2-user="${respObj[k].telefono2}">
+            `<tr data-user-id="${respObj[k].idUsuario}" data-phone1-user="${respObj[k].telefono1}" data-phone2-user="${respObj[k].telefono2}" data-user-tipe="${respObj[k].usuario.tipoUsuario}">
              <td >`+ respObj[k].idEmpleado + `</td>
              <td>`+ respObj[k].nombre + `</td>
              <td>`+ respObj[k].apellido1 + `</td>
