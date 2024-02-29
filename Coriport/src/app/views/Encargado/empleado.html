@@ -200,7 +200,7 @@
         var actualizarButton = document.getElementById("actualizar");
         var tabla = document.getElementById("employee-table");
 
-        const selectPuestos = document.getElementsByClassName('idPuesto');
+        var selectPuestos = document.getElementsByClassName('idPuesto');
 
         fetch('http://localhost:8000/api/puestos')
             .then(response => response.json())
