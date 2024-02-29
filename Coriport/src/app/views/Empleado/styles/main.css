@@ -58,6 +58,13 @@ nav ul li a{
 .salir:hover{
     background-color: #65a0ff;
 }
+.perfil{
+    background-color: #02c015;
+}
+
+.perfil:hover{
+    background-color: #65ff6f9b;
+}
 li a.active, li a:hover{
     border-radius: 10%;
     caret-color: white;
@@ -78,12 +85,6 @@ li a.active, li a:hover{
 #check{
     display: none;
 }
-section{
-    background-size: cover;
-    background-position: center center;
-    height: calc(100vh - 80px);
-}
-
 @media (max-width: 952px){
     .enlace{
         padding-left: 20px;
