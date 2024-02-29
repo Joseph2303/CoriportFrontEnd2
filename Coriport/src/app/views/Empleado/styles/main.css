@@ -14,6 +14,20 @@
   }
 
 
+  body {
+    background-image: url(/Coriport/src/app/Assets/img/EmpleadoFondo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    font-family: 'century Gothic', sans-serif;
+    margin: 0; /* Asegúrate de que no haya márgenes en el cuerpo del documento */
+    height: 100vh; /* Establece la altura del cuerpo al 100% de la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    
+ }
+ 
+
   .title1{
     color: white;
   }
@@ -46,7 +60,7 @@ nav ul li{
 }
 nav ul li a{
     color: #fff;
-    font-size: 12px;
+    font-size: 11.1px;
     padding: 7px 13px;
     border-radius: 3px;
     text-transform: uppercase;
@@ -59,11 +73,11 @@ nav ul li a{
     background-color: #65a0ff;
 }
 .perfil{
-    background-color: #02c015;
+    background-color: #00900e;
 }
 
 .perfil:hover{
-    background-color: #65ff6f9b;
+    background-color: #65ff6f96;
 }
 li a.active, li a:hover{
     border-radius: 10%;
@@ -94,11 +108,22 @@ li a.active, li a:hover{
     }
 }
 
-@media (max-width: 1300px){
+@media (max-width: 1330px){
     .checkbtn{
         display:block; 
     }
     ul{
+
+
+        
+
+        overflow-y: auto;
+        max-height: 100vh;
+        margin: 0;
+        padding: 0;
+
+
+
         position: fixed;
         width: 80%;
         height: 100vh;
