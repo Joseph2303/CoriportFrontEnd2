@@ -1,6 +1,6 @@
-const tokenString = localStorage.getItem("identity");
+var tokenString = localStorage.getItem("identity");
 
-const redirigirALogin = () => {
+var redirigirALogin = () => {
     window.location.href = "/Coriport/src/app/views/Login/login.html";
 };
 
