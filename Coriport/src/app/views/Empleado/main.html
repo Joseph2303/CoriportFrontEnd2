@@ -22,8 +22,29 @@
         <img src="/Coriport/src/app/Assets/img/icons8-reloj-arena-abajo.gif">
     </div>
     
-<div>
-    <div>
+    <div class="pantalla-emergente" id="pantallaEmergente">
+        <div class="contenedor">
+            <form id="miFormulario">
+                <h2>Mi Perfil</h2>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required>
+            
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            
+                <label for="telefono">Telefono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            
+                <label for="cedula">Cedula:</label>
+                <input type="text" id="cedula" name="cedula" required>
+            </form>
+            <a href="#" class="cerrar" onclick="cerrarEmergente()">Cerrar</a>
+        </div>
+    </div>
+
         <nav>
             <input type="checkbox" id="check">
             <label for="check" class="checkbtn">
@@ -35,42 +56,35 @@
 
             <ul>
             <li>
-                <a class="title1" href="#"> Días Feriados</a>
+                <a id="diasFeriados" class="title1" href="#"> Días Feriados</a>
             </li>
             <li>
-                <a class="title1" href="#"> Registrar Asistencia</a>
+                <a id="RegistroAsistencia" class="title1" href="#"> Registrar Asistencia</a>
             </li>
             <li>
-                <a class="title1" href="#"> Justificación de Ausencias</a>
+                <a id="JustificacionAusencia" class="title1" href="#"> Justificación de Ausencias</a>
             </li>
             <li>
-                <a class="title1" href="#"> Justificación de Tardías</a>
+                <a id="JustificacionTardia" class="title1" href="#"> Justificación de Tardías</a>
             </li>
             <li>
-                <a class="title1" href="#"> Horas Extra</a>
+                <a id="HorasExtra" class="title1" href="#"> Horas Extra</a>
             </li>
             <li>
-                <a class="title1" href="#"> Solicitud de Vacaciones</a>
+                <a id="SoliVacaciones" class="title1" href="#"> Solicitud de Vacaciones</a>
             </li>
             <li>
-                <a class="perfil" href="#"> Mi perfil</a>
+                <a href="#" class="boton-abrir" onclick="mostrarEmergente()"> Mi perfil</a>
             </li>
             <li>
                 <a class="salir" href="#"> Cerrar Seción</a>
             </li>
             </ul>
             </nav>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-<div id="main-containerEmpleado" class="col-12">
-        </div>
-    </div>
+   
+    <div id="main-containerEmpleado">
 
+    </div>
 
     <footer>
         <div>
@@ -80,8 +94,6 @@
             </center>
         </div>
     </footer>
- </div>
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

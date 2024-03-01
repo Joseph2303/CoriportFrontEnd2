@@ -19,4 +19,18 @@ function routingi(router){
     $('#main-containerEncargado').load('/Coriport/src/app/views/Encargado/'+router+'.html');
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+$("#diasFeriados").on('click',function(){router("diasFeriados")});
+$("#RegistroAsistencia").on('click',function(){router("RegistroAsistencia")});
+$("#JustificacionAusencia").on('click',function(){router("JustificacionAusencia")});
+$("#JustificacionTardia").on('click',function(){router("JustificacionTardia")});
+$("#HorasExtra").on('click',function(){router("HorasExtra")});
+$("#SoliVacaciones").on('click',function(){router("SoliVacaciones")});
+
+
+
+function router(router){
+    $('#main-containerEmpleado').load('/Coriport/src/app/views/Empleado/'+router+'.html');
+}

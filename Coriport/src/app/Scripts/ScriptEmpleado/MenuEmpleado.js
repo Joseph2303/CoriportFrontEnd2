@@ -9,3 +9,10 @@ window.addEventListener('load', function() {
   });
 
 
+  function mostrarEmergente() {
+    document.getElementById('pantallaEmergente').style.display = 'flex';
+}
+
+function cerrarEmergente() {
+    document.getElementById('pantallaEmergente').style.display = 'none';
+}
