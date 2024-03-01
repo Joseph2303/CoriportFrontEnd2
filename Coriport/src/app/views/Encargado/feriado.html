@@ -3,13 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Días Feriados</title>
+    <link rel="stylesheet" type="text/css" href="../Encargado/styles/diaFeriasdo.css">
+
 </head>
 <body>
     
     <center>
         <h2 style="color: white;">Días Feriados</h2>
     </center>
+
+    <br>
+    <br>
+   
+
+
+    <div class="cajon">
+        <button id="btnAbrirFormulario" class="btnAddFeriado">Registrar Feriado</button>
+
+
+
+        <br>
+
+        <div class="tabla">
+
+            <div>
+                <input type="text" id="buscarFeriado" placeholder="Buscar Feriado..." oninput="ColocarMetodo">
+            </div>
+            <br>
+            <table id="feriado-table" border="1">
+            
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Descripción</th>
+                        <th>Tipo Feriado</th>
+                        <th>Acción </th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableFeriado">
+       
+                </tbody>
+            </table>
+        </div>
+        <br>
+        
+        <div class="acciones-container">
+            <div class="izquierda">
+                <button id="eliminar" style="background-color: #ff0000; color: white;">Eliminar</button>
+                <button id="actualizar" style="background-color: #007bff; color: white;">Actualizar</button>
+            </div>
+            
+        </div>
+  
+    </div>
+    <br>
+    <br>
+
     
+
+
+
 </body>
 </html>
