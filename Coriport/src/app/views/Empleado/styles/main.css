@@ -37,13 +37,12 @@
     margin: auto;
  }
 
-
- label {
+.H {
     display: block;
     margin-bottom: 8px;
 }
 
-input {
+.A {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
