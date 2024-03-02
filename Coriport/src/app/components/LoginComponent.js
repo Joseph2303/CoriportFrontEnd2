@@ -14,32 +14,48 @@ function login(event) {
             localStorage.setItem("token", respObj);
             let token = localStorage.getItem("token");
 
+
             if (token) {
+
                 $.ajax({
-                    type: "GET", 
+                    url: "http://localhost:8000/api/user/comparetokens",
+                    type: "GET",
+                    headers: {
+                        "beartoken": token
+                    },
+                }).done(function (response) {
+                    console.log(response);
+                    mostrarMensajeDeInfo("Cargando, espere unos segundos.....");
+                }).fail(function (xhr, status, error, response) {
+                    mostrarMensajeDeError("Error!! No puedes tener dos sesiones abiertas!");
+                });
+
+                $.ajax({
+                    type: "GET",
                     url: "http://localhost:8000/api/user/getidentity",
                     headers: {
                         "beartoken": token
                     },
                     success: function (identity) {
-                       
-                        localStorage.setItem("identity",JSON.stringify(identity));
-                       
+
+                        localStorage.setItem("identity", JSON.stringify(identity));
+
                         console.log(identity)
 
-                        if (identity['tipoUsuario']=='Empleado') {
-                    
-                            window.location.href ="/Coriport/src/app/views/Empleado/main.html";
+                        if (identity['tipoUsuario'] == 'Empleado') {
 
-                        }else if(identity['tipoUsuario']=='Encargado'){
-                            window.location.href ="/Coriport/src/app/views/Encargado/main.html";
-                        }else{
+                            window.location.href = "/Coriport/src/app/views/Empleado/main.html";
+
+                        } else if (identity['tipoUsuario'] == 'Encargado') {
+                            window.location.href = "/Coriport/src/app/views/Encargado/main.html";
+                        } else {
                             console.log("ERROR DE VALIDACION")
                             mostrarMensajeDeError("ERROR!! verifique los datos ingresados ")
                         }
+                        
                     },
                     error: function (xhr, status, error) {
-                       
+
                         console.log(error);
                         mostrarMensajeDeError("ERROR!! : " + xhr.responseText)
                     }
@@ -54,3 +70,4 @@ function login(event) {
 }
 
 $("#login").click(login);  
+
