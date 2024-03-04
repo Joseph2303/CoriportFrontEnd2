@@ -4,10 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Empleado/styles/JustiTardia.css">
 </head>
 <body>
     <center>
         <h2 style="color: white;">Justificación Tardia</h2>
     </center>
+
+    <div class="pantalla-emergenteA" id="pantallaEmergenteA">
+        <div class="contenedor">
+            <form id="miFormularioTardia">
+                    <label for="fechaSolicitud">Fecha de Solicitud:</label>
+                    <input type="date" id="fechaSolicitud" name="fechaSolicitud" required>
+            
+                    <label for="fechaInicio">Fecha de Inicio:</label>
+                    <input type="date" id="fechaInicio" name="fechaInicio" required>
+            
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="enProceso">En Proceso</option>
+                        <option value="completado">Completado</option>
+                    </select>
+            
+                    <label for="responsableAutorizacion">Responsable de Autorización:</label>
+                    <input type="text" id="responsableAutorizacion" name="responsableAutorizacion" required>
+            
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+            
+                    <button type="submit">Enviar</button>
+            </form>
+            <a href="#" class="cerrar" onclick="cerrarEmergente()">Cerrar</a>
+        </div>
+    </div>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/JustiTardia.js"></script>
 </body>
 </html>
