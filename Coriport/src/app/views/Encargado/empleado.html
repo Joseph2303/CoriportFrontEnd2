@@ -7,10 +7,7 @@
     </center>
     <br>
     <br>
-    <br>
-    <br>
-    <h2 style="color: white;">Registro de Empleados</h2>
-    <br>
+
     <div class="cajon">
         <div>
             <button id="btnAbrirFormulario"
@@ -320,13 +317,17 @@
             botonUpdateEmpleado.style.border = 'none';
             botonUpdateEmpleado.style.cursor = 'pointer';
 
-            const botonCerrarForm = document.createElement('button');
-            botonCerrarForm.textContent = 'cancelar';
-            botonCerrarForm.style.backgroundColor = '#007bff';
-            botonCerrarForm.style.color = 'white';
-            botonCerrarForm.style.padding = '10px 20px';
-            botonCerrarForm.style.borderRadius = '5px';
-            botonCerrarForm.style.border = 'none';
+            const botonCerrarForm = document.createElement('span');
+            botonCerrarForm.textContent = '✖';
+           // botonCerrarForm.style.backgroundColor = '#007bff';
+            botonCerrarForm.style.color = ' #333';
+            botonCerrarForm.style.position = '';
+            botonCerrarForm.style.top = ' 10px';
+            botonCerrarForm.style.right = ' 10px';
+
+            //botonCerrarForm.style.padding = '10px 20px';
+            //botonCerrarForm.style.borderRadius = '5px';
+           // botonCerrarForm.style.border = 'none';
             botonCerrarForm.style.cursor = 'pointer';
 
             let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
