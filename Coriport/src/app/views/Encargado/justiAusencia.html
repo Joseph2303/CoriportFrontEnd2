@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Justificacion Ausencia</title>
     <link rel="stylesheet" type="text/css" href="../Encargado/styles/justificacionAusencia.css">
-
 </head>
+
 <body>
     <br>
     <center>
@@ -14,16 +15,15 @@
     </center>
     <br>
     <br>
-   
+
     <div class="cajon">
         <div class="tabla">
 
             <div>
-                <input type="text" id="buscarJustificacionAusen" placeholder="Buscar Ausencia..." oninput="ColocarMetodo">
+                <input type="text" id="busquedaJustificacion" oninput="filtrarJustificaciones()" placeholder="Buscar Ausencias...">
             </div>
             <br>
             <table id="justificacion-table" border="1">
-            
                 <thead>
                     <tr>
                         <th>Fecha de Solicitud</th>
@@ -38,15 +38,15 @@
                     </tr>
                 </thead>
                 <tbody id="dataTableJustificacionAusencia">
-       
+
                 </tbody>
             </table>
         </div>
         <br>
-        
+
         <div class="acciones-container">
             <div class="izquierda">
-                <button id="eliminar" style="background-color: #ff0000; color: white;">Eliminar</button>
+                <button id="eliminar" style="background-color: #ff0000; color: white;" onclick="eliminarJustificaciones()">Eliminar</button>
                 <button id="actualizar" style="background-color: #007bff; color: white;">Actualizar</button>
             </div>
             <div class="aprobar-denegar-container">
@@ -54,9 +54,202 @@
                 <button id="denegar" style="background-color: #fc4604; color: white;">Denegar</button>
             </div>
         </div>
-  
+
     </div>
     <br>
     <br>
+
+    <!-- Modal de Actualización -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+
+            <h2>Actualizar Justificación</h2>
+            <form id="formulario-actualizacion">
+
+                <label for="updateFechaSolicitud">Fecha de Solicitud:</label>
+                <input type="date" id="updateFechaSolicitud" name="updateFechaSolicitud" required>
+
+                <label for="updateFechaAusencia">Fecha de Ausencia:</label>
+                <input type="date" id="updateFechaAusencia" name="updateFechaAusencia" required>
+
+                <label for="updateArchivos">Archivos:</label>
+                <input type="text" id="updateArchivos" name="updateArchivos">
+
+                <label for="updateJustificacion">Justificación:</label>
+                <textarea id="updateJustificacion" name="updateJustificacion" rows="4" cols="50"></textarea>
+
+                <label for="updateEstado">Estado:</label>
+                <input type="text" id="updateEstado" name="updateEstado">
+
+                <label for="updateDescripcion">Descripción:</label>
+                <textarea id="updateDescripcion" name="updateDescripcion" rows="4" cols="50"></textarea>
+
+                <label for="updateNombreEncargado">Nombre del Encargado:</label>
+                <input type="text" id="updateNombreEncargado" name="updateNombreEncargado">
+
+                <label for="updateIdEmpleado">ID Empleado:</label>
+                <input type="text" id="updateIdEmpleado" name="updateIdEmpleado" required>
+
+                <button type="button" onclick="guardarActualizacion()">Guardar</button>
+                <button type="button" onclick="cancelarActualizacion()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function guardarActualizacion() {
+            const fechaSolicitud = document.getElementById('updateFechaSolicitud').value;
+            const fechaAusencia = document.getElementById('updateFechaAusencia').value;
+            const archivos = document.getElementById('updateArchivos').value;
+            const justificacion = document.getElementById('updateJustificacion').value;
+            const estado = document.getElementById('updateEstado').value;
+            const descripcion = document.getElementById('updateDescripcion').value;
+            const nombreEncargado = document.getElementById('updateNombreEncargado').value;
+            const idEmpleado = document.getElementById('updateIdEmpleado').value;
+
+            // Enviar la información a tu servidor para la actualización
+            fetch('http://localhost:8000/api/justificacionAusencia/update/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                },
+                body: JSON.stringify({
+                    fechaSolicitud,
+                    fechaAusencia,
+                    archivos,
+                    justificacion,
+                    estado,
+                    descripcion,
+                    nombreEncargado,
+                    idEmpleado,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Puedes realizar más acciones aquí después de la actualización
+                });
+
+            cerrarModal();
+        }
+
+        function cancelarActualizacion() {
+            cerrarModal();
+        }
+
+        function cerrarModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        function mostrarFormularioActualizar() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'block';
+        }
+
+        document.getElementById('actualizar').addEventListener('click', mostrarFormularioActualizar);
+    </script>
+
+    <script>
+        function filtrarJustificaciones() {
+            var inputBusqueda = document.getElementById('busquedaJustificacion');
+            var filtro = inputBusqueda.value.toUpperCase();
+
+            var filas = document.getElementById('justificacion-table').getElementsByTagName('tr');
+
+            for (var i = 0; i < filas.length; i++) {
+                if (filas[i].getElementsByTagName('th').length === 0) {
+                    var celdas = filas[i].getElementsByTagName('td');
+                    var mostrarFila = false;
+
+                    for (var j = 0; j < celdas.length; j++) {
+                        var textoCelda = celdas[j].textContent || celdas[j].innerText;
+                        if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
+                            mostrarFila = true;
+                            break;
+                        }
+                    }
+
+                    filas[i].style.display = mostrarFila ? '' : 'none';
+                }
+            }
+        }
+
+        function eliminarJustificaciones() {
+            const pantallaEmergente = document.createElement('div');
+            pantallaEmergente.style.position = 'fixed';
+            pantallaEmergente.style.top = 0;
+            pantallaEmergente.style.left = 0;
+            pantallaEmergente.style.width = '100%';
+            pantallaEmergente.style.height = '100%';
+            pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergente.style.display = 'flex';
+            pantallaEmergente.style.justifyContent = 'center';
+            pantallaEmergente.style.alignItems = 'center';
+
+            const mostrarItems = document.createElement('div');
+            mostrarItems.style.backgroundColor = 'white';
+            mostrarItems.style.padding = '20px';
+            mostrarItems.style.borderRadius = '10px';
+            mostrarItems.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+            const texto = document.createElement('p');
+            texto.textContent = '¿Estás seguro de que quieres borrar estas justificaciones?';
+
+            const botonAceptar = document.createElement('button');
+            botonAceptar.textContent = 'Aceptar';
+            botonAceptar.style.backgroundColor = '#ff0000';
+            botonAceptar.style.color = 'white';
+            botonAceptar.style.padding = '10px 20px';
+            botonAceptar.style.borderRadius = '5px';
+            botonAceptar.style.border = 'none';
+            botonAceptar.style.cursor = 'pointer';
+            botonAceptar.style.marginRight = '10px';
+
+            const botonCancelar = document.createElement('button');
+            botonCancelar.textContent = 'Cancelar';
+            botonCancelar.style.backgroundColor = '#007bff';
+            botonCancelar.style.color = 'white';
+            botonCancelar.style.padding = '10px 20px';
+            botonCancelar.style.borderRadius = '5px';
+            botonCancelar.style.border = 'none';
+            botonCancelar.style.cursor = 'pointer';
+
+            botonAceptar.addEventListener('click', function () {
+                pantallaEmergente.remove();
+                const checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
+
+                checkboxes.forEach(function (checkbox) {
+                    const fila = checkbox.closest('tr');
+                    // Aquí puedes hacer la lógica para eliminar en el servidor
+                    deleteJustificacion(fila);
+                    fila.remove();
+                });
+            });
+
+            botonCancelar.addEventListener('click', function () {
+                pantallaEmergente.remove();
+            });
+
+            mostrarItems.appendChild(texto);
+            mostrarItems.appendChild(botonAceptar);
+            mostrarItems.appendChild(botonCancelar);
+
+            pantallaEmergente.appendChild(mostrarItems);
+            document.body.appendChild(pantallaEmergente);
+        }
+    </script>
+
+    <script>
+        // Aquí deberías tener la lógica para eliminar en el servidor
+        function deleteJustificacion(fila) {
+            // Lógica para eliminar la justificación en el servidor
+            console.log('Eliminando justificación en el servidor');
+        }
+    </script>
+
 </body>
+
 </html>
