@@ -9,7 +9,7 @@ window.addEventListener('load', function() {
   });
 
 
-  function mostrarEmergente() {
+function mostrarEmergente() {
     document.getElementById('pantallaEmergente').style.display = 'flex';
 }
 

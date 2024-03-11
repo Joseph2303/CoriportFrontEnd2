@@ -1,0 +1,119 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    color: #dddddd;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #3a3a3a;
+  }
+
+  .Cajon {
+    overflow-y: auto;
+    max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+    margin-right: 0; /* Quita el margen derecho */
+    margin-left: 0; /* Quita el margen izquierdo */
+    padding-right: 0; /* Quita el relleno derecho */
+    padding-left: 0; /* Quita el relleno izquierdo */
+}
+
+.Cajon::-webkit-scrollbar {
+    width: 12px; /* Ajusta el ancho de la barra según tu diseño */
+}
+
+.Cajon::-webkit-scrollbar-thumb {
+    background-color:#3a3a3a; /* Hace la barra de desplazamiento transparente */
+}
+
+
+.Soli{
+    background-color: #0029ce;
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 0;
+}
+.Soli:hover{
+    background-color: #193ed1;
+}
+
+
+
+
+
+
+
+
+
+#miFormularioA{
+    width: 300px;
+    background-color: #ffffffb9;
+    border-radius: 8px;
+    padding: 50px;
+    margin: auto;
+    text-align:left;
+ }
+
+
+.pantalla-emergenteA {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.pantalla-emergenteA .contenedorA {
+    width: 700px;
+    padding: 30px;
+    background-color: #ffffffb9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.pantalla-emergenteA .cerrarA {
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cerrarA{
+    background-color: #ff2a00;
+}
+
+.cerrarA:hover{
+    background-color: #ff2a0097;
+}
+
+.EnviarSoli{
+    background-color: #0062ff;
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 0;
+}
+
+.EnviarSoli:hover{
+    background-color: #65a0ff;
+}
