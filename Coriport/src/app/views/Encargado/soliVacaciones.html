@@ -30,26 +30,26 @@
 
                 <thead>
                     <tr>
-                        <th> Id de la solicitud</th>
-                        <th> Fecha de solicitud</th>
-                        <th> Fecha de inicio</th>
-                        <th> Fecha de finalización </th>
-                        <th> Descripcion </th>
-                        <th> Responsable autorizado </th>
-                        <th>  Estado </th>
-                        <th> Empleado </th>
-                        <th> seleciones para aceptar o rechazar </th>
+                        <th>Id de la solicitud</th>
+                        <th>Fecha de solicitud</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha de finalización</th>
+                        <th>Descripcion</th>
+                        <th>Responsable autorizado</th>
+                        <th>Estado</th>
+                        <th>Empleado</th>
+                        <th>seleccione para aceptar o rechazar</th>
                     </tr>
                 </thead>
                 <tbody id="dataTableSV">
-
+                  
                 </tbody>
             </table>
         </div>
         <div id="fondo-status" style="display: none;">
             <div id="box-statusVacaciones">
                 <span class="popup-close"
-                    onclick="document.getElementById('fondo-status').style.display='none'; document.getElementById('div-reject').style.display='none'">✖</span>
+                    onclick="document.getElementById('fondo-status').style.display='none'; document.getElementById('div-reject').style.display='none'; deseleccionarCheckboxes()">✖</span>
                 <p>Solicitud de vacaciones del empleado</p>
                 <button class="status-btn" id="status-acept">Aceptar</button>
                 <button class="status-btn" id="status-reject">Rechazar</button>
@@ -74,7 +74,7 @@
 
     <!-- Estructura para la pantalla emergente -->
     <div id="popup" class="popup">
-        <span class="popup-close" onclick="document.getElementById('popup').style.display='none'">✖</span>
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
         <div class="popup-content" id="popup-content">
             <!-- Aquí se mostrarán los detalles del empleado -->
         </div>

@@ -6,7 +6,7 @@ tabla.addEventListener('change', function (event) {
     if (event.target.type === 'checkbox') {
         if (seleccionados.length > 1) {
             event.target.checked = false;
-            alert('¡Solo puede seleccionar un empleado a la vez!')
+            alert('¡Solo puede seleccionar una solicitud a la vez!')
         } else {
             if (seleccionados.length > 0) {
                 boxStatus.style.display = "flex";
@@ -79,8 +79,6 @@ $(document).mouseup(function (e) {
     //     divStatus.hide();      
     //}
 });
-
-
 
 
 function filtrar() {
@@ -168,3 +166,9 @@ document.getElementById("status-reject").addEventListener('click', function () {
         });
     }
 });
+
+function deseleccionarCheckboxes() {
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
+        checkbox.checked = false;
+    });
+}

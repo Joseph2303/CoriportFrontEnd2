@@ -52,30 +52,6 @@ button[type="submit"] {
 }
 
 
-
-#tabla-usuarios {
-    margin-top: 20px;
-    border-collapse: collapse;
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-}
-
-#tabla-usuarios th {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-}
-
-#tabla-usuarios td button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
 .confirmacion-borrado {
     background-color: white;
     border-radius: 10px;
@@ -109,18 +85,6 @@ button[type="submit"] {
     padding: 10px 20px;
     border-radius: 7px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 label {
