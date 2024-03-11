@@ -29,7 +29,7 @@ function sendE(event) {
 }
 
 function deleteE(empleado) {
-    console.log(empleado.cells[0].textContent)
+
     $.ajax({
         url: "http://localhost:8000/api/empleado/delete/" + empleado.cells[0].textContent,
         type: "DELETE",
@@ -46,8 +46,9 @@ function deleteE(empleado) {
             console.log(error)
         });
 
-    }).fail(function (error) {
-        console.log(error);
+    }).fail(function (xhr,status,error) {
+        console.log(xhr);
+        mostrarMensajeDeError(xhr.responseText)
     });
 }
 

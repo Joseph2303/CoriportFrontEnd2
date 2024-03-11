@@ -1,35 +1,7 @@
-function sendJustiAusencia(event) {
+function findEmpleado(event) {
     event.preventDefault();
 
-    let justificacionData = {
-        "fechaSolicitud": $("#fechaSolicitud").val(),
-        "fechaAusencia": $("#fechaAusencia").val(),
-        "archivos": $("#archivos").val(),
-        "justificacion": $("#justificacion").val(),
-        "estado": $("#estado").val(),
-        "descripcion": $("#descripcion").val(),
-        "NombreEncargado": $("#NombreEncargado").val(),
-        "idEmpleado": $("#idEmpleado").val()
-    };
-
-    let data = 'data=' + JSON.stringify(justificacionData);
-
-    $.ajax({
-        url: "http://localhost:8000/api/justificacionAusencia/store",
-        type: "POST",
-        data: data
-    }).done(function (response) {
-        console.log(response);
-        
-    }).fail(function (error) {
-        console.log(error);
-    });
-}
-
-function findJustiAusen(event) {
-    event.preventDefault();
-
-    let id = $("#searchJustiAusenciaId").val();
+    let id = $("#searchEmpleadoId").val();
     $.ajax({
         url: "http://localhost:8000/api/justificacionAusencia/show/" + id,
         type: "GET",
@@ -40,47 +12,35 @@ function findJustiAusen(event) {
     });
 }
 
-function deleteJustiAusencia(justificacionAusencia) {
-    console.log(justificacionAusencia.cells[0].textContent)
-    $.ajax({
-        url: "http://localhost:8000/api/justificacionAusencia/delete/" + justificacionAusencia.cells[0].textContent,
-        type: "DELETE",
-
-    }).done(function (response) {
-        console.log(response);
-    }).fail(function (error) {
-        console.log(error);
-    });
-}
-
-function updateJustificacion() {
+function updateJustificacion(justificacionAusencias) {
     let updatedJustificacionData = {
-        "idJustificacion": $("#idJustificacion").val(),
-        "fechaSolicitud": $("#updateFechaSolicitud").val(),
-        "fechaAusencia": $("#updateFechaAusencia").val(),
-        "archivos": $("#updateArchivos").val(),
-        "justificacion": $("#updateJustificacion").val(),
-        "estado": $("#updateEstado").val(),
-        "descripcion": $("#updateDescripcion").val(),
-        "NombreEncargado": $("#updateNombreEncargado").val(),
-        "idEmpleado": $("#updateIdEmpleado").val()
+        "idJustificacion": justificacionAusencias.idJustificacion,
+        "fechaSolicitud": justificacionAusencias.fechaSolicitud,
+        "fechaAusencia": justificacionAusencias.fechaAusencia,
+        "archivos": justificacionAusencias.archivos,
+        "justificacion": justificacionAusencias.justificacion,
+        "estado": justificacionAusencias.estado,
+        "descripcion": justificacionAusencias.descripcion,
+        "NombreEncargado": justificacionAusencias.NombreEncargado,
+        "idEmpleado": justificacionAusencias.idEmpleado
     };
 
     let data = 'data=' + JSON.stringify(updatedJustificacionData);
-
+    console.log(data)
     $.ajax({
-        url: "http://localhost:8000/api/justificacionAusencia/update/" + updatedJustificacionData.idJustificacion,
+        url: "http://localhost:8000/api/justificacionAusencia/update/" + justificacionAusencias.idJustificacion,
         type: "PUT",
         data: data
     }).done(function (response) {
         console.log(response);
         mostrarMensajeDeInfo("Se ha actualizado exitosamente");
-        document.getElementById('fondoNegroFormUpdateJustificacion').style.display = 'none';
+        document.getElementById('fondo-status').style.display = 'none';
     }).fail(function (xhr, status, error) {
-        console.log(error);
+        console.log(xhr);
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
 }
+
 
 $.ajax({
     url: "http://localhost:8000/api/justificacionAusencias",
@@ -89,7 +49,7 @@ $.ajax({
     var respObj = response.data;
     for (k in respObj) {
         $("#dataTableJustificacion").append(
-            `<tr data-justificacion-id="${respObj[k].idJustificacion}" data-employee-id="${respObj[k].idEmpleado}">
+            `<tr data-justificacion-id="${respObj[k].idJustificacion}" data-employee-id="${encodeURIComponent(JSON.stringify(respObj[k].idEmpleado))}">
              <td >`+ respObj[k].idJustificacion + `</td>
              <td>`+ respObj[k].fechaSolicitud + `</td>
              <td>`+ respObj[k].fechaAusencia + `</td>
@@ -103,11 +63,7 @@ $.ajax({
              </tr>`
         );
     }
-}).fail(function () {
-
+}).fail(function (error) {
+    console.log(error)
 });
 
-
-$("#sendJustiAusencia").click(sendJustiAusencia);
-$("#deleteJustiAusencia").click(deleteJustiAusencia);
-$("#updateJustificacion").click(updateJustificacion);

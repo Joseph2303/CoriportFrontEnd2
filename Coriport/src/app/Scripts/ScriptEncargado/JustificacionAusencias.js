@@ -1,4 +1,4 @@
-var tabla = document.getElementById("solicitud-table");
+var tabla = document.getElementById("justificacion-table");
 var boxStatus = document.getElementById("fondo-status")
 
 tabla.addEventListener('change', function (event) {
@@ -16,7 +16,6 @@ tabla.addEventListener('change', function (event) {
         }
     }
 });
-
 
 $(document).on("click", "#empleado", function () {
     // Obtener la cadena JSON del atributo de datos
@@ -67,24 +66,12 @@ $(document).on("click", "#empleado", function () {
     $("#popup").show();
 });
 
-// Evento para cerrar la pantalla emergente al hacer clic fuera de ella
-$(document).mouseup(function (e) {
-    var container = $("#popup");
-    // var divStatus = $("#box-statusVacaciones");
-    //var box = $(".checkbox-accion");
-    if (!container.is(e.target) && container.has(e.target).length === 0) {
-        container.hide();
-    }
-    //  if (!divStatus.is(e.target) && container.has(e.target).length === 0) {
-    //     divStatus.hide();      
-    //}
-});
 
 
 
 
 function filtrar() {
-    var inputBusqueda = document.getElementById('buscarSolicitud');
+    var inputBusqueda = document.getElementById('busquedaJustificacion');
     var filtro = inputBusqueda.value.toUpperCase();
 
     var filas = tabla.getElementsByTagName('tr');
@@ -107,8 +94,55 @@ function filtrar() {
     }
 }
 
-document.getElementById("status-acept").addEventListener('click', function () {
+
+
+document.getElementById("aprobar").addEventListener('click', function () {
     let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (seleccionados.length === 1) {
+        let filaSeleccionada = seleccionados[0].closest('tr');
+
+        encargado = JSON.parse(localStorage.getItem('identity'));
+
+        let justificacionAusencias = {
+           
+                id: filaSeleccionada.cells[0].textContent,
+                fechaSolicitud: filaSeleccionada.cells[1].textContent,
+                fechaInicio: filaSeleccionada.cells[2].textContent,
+                fechaFin: filaSeleccionada.cells[3].textContent,
+                archivos: filaSeleccionada.cells[4].textContent, 
+                justificacion: filaSeleccionada.cells[5].textContent,
+                estado: 'Aceptado',
+                descripcion: "Su justificacion se encuentra aceptada",
+                NombreEncargado: encargado.empleado.nombre,
+                idEmpleado: filaSeleccionada.getAttribute('data-employee-id')
+           
+        };
+
+        // Actualizar directamente el texto de las celdas
+        filaSeleccionada.cells[6].textContent = justificacionAusencias.estado;
+        filaSeleccionada.cells[7].textContent = justificacionAusencias.descripcion;
+        filaSeleccionada.cells[8].textContent = justificacionAusencias.encargado;
+
+        // Opcional: puedes resaltar la fila actualizada para indicar visualmente el cambio
+        filaSeleccionada.classList.add('actualizada');
+
+        // Después de un tiempo, quita la clase de resaltado
+        setTimeout(function () {
+            filaSeleccionada.classList.remove('actualizada');
+        }, 1000);
+        // Actualizar datos en el servidor
+        updateSolicitud(justificacionAusencias);
+    }
+});
+
+
+// Esta no la hice 
+
+
+
+document.getElementById("denegar").addEventListener('click', function () {
+    let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    document.getElementById("div-reject").style.display = "flex";
     if (seleccionados.length === 1) {
         let filaSeleccionada = seleccionados[0].closest('tr');
 
@@ -119,8 +153,8 @@ document.getElementById("status-acept").addEventListener('click', function () {
             fechaSolicitud: filaSeleccionada.cells[1].textContent,
             fechInicio: filaSeleccionada.cells[2].textContent,
             fechFin: filaSeleccionada.cells[3].textContent,
-            estado: 'Aceptado',
-            descripcion: "Su solicitud se encuentra aceptada",
+            estado: 'Rechazado',
+            descripcion: $("#reject").val(),
             encargado: encargado.empleado.nombre,
             idEmpleado: filaSeleccionada.getAttribute('data-employee-id')
 
@@ -131,40 +165,14 @@ document.getElementById("status-acept").addEventListener('click', function () {
         filaSeleccionada.cells[5].textContent = solicitudVacaciones.encargado;
         filaSeleccionada.cells[6].textContent = solicitudVacaciones.estado;
 
-        updateSolicitud(solicitudVacaciones);
-    }
-});
+        // Opcional: puedes resaltar la fila actualizada para indicar visualmente el cambio
+        filaSeleccionada.classList.add('actualizada');
 
-
-document.getElementById("status-reject").addEventListener('click', function () {
-    const seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
-    if (seleccionados.length === 1) {
-        document.getElementById("div-reject").style.display = "flex";
-
-        document.getElementById("reject-acept-btn").addEventListener('click', function () {
-
-            let filaSeleccionada = seleccionados[0].closest('tr');
-
-            encargado = JSON.parse(localStorage.getItem('identity'));
-
-            let solicitudVacaciones = {
-                id: filaSeleccionada.cells[0].textContent,
-                fechaSolicitud: filaSeleccionada.cells[1].textContent,
-                fechInicio: filaSeleccionada.cells[2].textContent,
-                fechFin: filaSeleccionada.cells[3].textContent,
-                estado: 'Rechazado',
-                descripcion: $("#reject").val(),
-                encargado: encargado.empleado.nombre,
-                idEmpleado: filaSeleccionada.getAttribute('data-employee-id')
-
-            };
-            // Actualizar directamente el texto de las celdas
-            filaSeleccionada.cells[4].textContent = solicitudVacaciones.descripcion;
-            filaSeleccionada.cells[5].textContent = solicitudVacaciones.encargado;
-            filaSeleccionada.cells[6].textContent = solicitudVacaciones.estado;
-
-            updateSolicitud(solicitudVacaciones);
-
-        });
+        // Después de un tiempo, quita la clase de resaltado
+        setTimeout(function () {
+            filaSeleccionada.classList.remove('actualizada');
+        }, 1000);
+        // Actualizar datos en el servidor
+       // updateSolicitud(solicitudVacaciones);
     }
 });

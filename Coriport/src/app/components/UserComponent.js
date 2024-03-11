@@ -55,10 +55,8 @@ function sendEmployee(email) {
             document.getElementById('fondoNegroFormAdd').style.display = 'none';
             mostrarMensajeDeInfo("Se ha registrado exitosamente");
 
-        }).fail(function (xhr, status, error) {
-            
+        }).fail(function (xhr, status, error) {          
             mostrarMensajeDeError("ERROR!: " + xhr.responseText);
-
             destroy(email);
         });
 

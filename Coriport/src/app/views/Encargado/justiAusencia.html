@@ -20,7 +20,7 @@
         <div class="tabla">
 
             <div>
-                <input type="text" id="busquedaJustificacion" oninput="filtrarJustificaciones()" placeholder="Buscar Ausencias...">
+                <input type="text" id="busquedaJustificacion" oninput="filtrar()" placeholder="Buscar Ausencias...">
             </div>
             <br>
             <table id="justificacion-table" border="1">
@@ -43,18 +43,15 @@
             </table>
         </div>
         <br>
-
-        <div class="acciones-container">
-            <div class="izquierda">
-                <button id="eliminar" style="background-color: #ff0000; color: white;" onclick="eliminarJustificaciones()">Eliminar</button>
-                <button id="actualizar" style="background-color: #007bff; color: white;">Actualizar</button>
-            </div>
-            <div class="aprobar-denegar-container">
-                <button id="aprobar" style="background-color: #25ba03; color: white;">Aprobar</button>
-                <button id="denegar" style="background-color: #fc4604; color: white;">Denegar</button>
+        <div id="fondo-status" style="display: none;">
+            <div class="acciones-container">
+            
+                <div class="aprobar-denegar-container">
+                    <button id="aprobar" style="background-color: #25ba03; color: white;">Aprobar</button>
+                    <button id="denegar" style="background-color: #fc4604; color: white;">Denegar</button>
+                </div>
             </div>
         </div>
-
     </div>
     <br>
     <br>

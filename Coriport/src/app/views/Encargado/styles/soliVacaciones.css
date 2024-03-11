@@ -1,5 +1,9 @@
-#empleado{cursor: pointer;  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);}
-#empleado:hover{
+#empleado {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#empleado:hover {
     background-color: rgb(115, 182, 253);
 
 }
@@ -22,7 +26,6 @@
 }
 
 .popup-content {
-    /* Estilos para el contenido de la pantalla emergente */
     color: #333;
 }
 
@@ -31,4 +34,82 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+}
+
+#fondo-status{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#reject-acept-btn{
+    background-color: #0077ff;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.status-btn {
+    background-color: #0077ff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#box-statusVacaciones {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+
+table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+td{
+    text-align: center;
+   
+}
+
+
+th{
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: 0; 
+    text-align: center;
+}
+
+.cajon {
+    background-color: #cfe6ff;
+    padding: 20px 20px 40px 20px;
+    border-radius: 7px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
 }
