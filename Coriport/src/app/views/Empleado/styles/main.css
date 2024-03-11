@@ -164,7 +164,7 @@ nav ul li a{
     background-color: #65ff6f96;
 }
 li a.active, li a:hover{
-    border-radius: 10%;
+    border-radius: 8px;
     caret-color: white;
     background: #0078ef8f;
     transition: .5s;
@@ -211,6 +211,16 @@ li a.active, li a:hover{
         text-align: center;
         transition: all .5s;
     }
+
+
+    ul::-webkit-scrollbar {
+        width: 12px; /* Ajusta el ancho de la barra según tu diseño */
+    }
+    
+    ul::-webkit-scrollbar-thumb {
+        background-color:#3a3a3a; /* Hace la barra de desplazamiento transparente */
+    }
+
     nav ul li{
         display: block;
         margin: 50px 0;
