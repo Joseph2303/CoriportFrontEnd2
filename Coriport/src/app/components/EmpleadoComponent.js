@@ -22,7 +22,6 @@ function sendE(event) {
 
     }).done(function (response) {
         console.log(response);
-        //  localStorage.setItem('Empleado', data);
     }).fail(function (error) {
         console.log(error);
     });
@@ -42,6 +41,9 @@ function deleteE(empleado) {
             type: "DELETE",
         }).done(function (response) {
             console.log(response);
+
+
+            
         }).fail(function (error) {
             console.log(error)
         });
