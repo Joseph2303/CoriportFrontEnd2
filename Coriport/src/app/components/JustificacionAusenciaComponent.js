@@ -1,17 +1,3 @@
-function findEmpleado(event) {
-    event.preventDefault();
-
-    let id = $("#searchEmpleadoId").val();
-    $.ajax({
-        url: "http://localhost:8000/api/justificacionAusencia/show/" + id,
-        type: "GET",
-    }).done(function (response) {
-        console.log(response);
-    }).fail(function (error) {
-        console.log(error);
-    });
-}
-
 function updateJustificacion(justificacionAusencias) {
     let updatedJustificacionData = {
         "idJustificacion": justificacionAusencias.idJustificacion,
@@ -46,11 +32,12 @@ $.ajax({
     url: "http://localhost:8000/api/justificacionAusencias",
     type: "GET"
 }).done(function (response) {
+    console.log(response)
     var respObj = response.data;
     for (k in respObj) {
-        $("#dataTableJustificacion").append(
-            `<tr data-justificacion-id="${respObj[k].idJustificacion}" data-employee-id="${encodeURIComponent(JSON.stringify(respObj[k].idEmpleado))}">
-             <td >`+ respObj[k].idJustificacion + `</td>
+        $("#justificacion-table").append(
+            `<tr data-employee-id="${respObj[k].idEmpleado}" data-employee="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
+             <td >`+ respObj[k].idJustificacionAusencia + `</td>
              <td>`+ respObj[k].fechaSolicitud + `</td>
              <td>`+ respObj[k].fechaAusencia + `</td>
              <td>`+ respObj[k].archivos + `</td>
@@ -58,7 +45,7 @@ $.ajax({
              <td>`+ respObj[k].estado + `</td>
              <td>`+ respObj[k].descripcion + `</td>
              <td>`+ respObj[k].NombreEncargado + `</td>
-             <td>`+ respObj[k].idEmpleado + `</td>
+             <td id="empleado" >`+ respObj[k].empleado.nombre + `</td>
              <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
              </tr>`
         );

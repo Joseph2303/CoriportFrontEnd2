@@ -6,7 +6,7 @@ tabla.addEventListener('change', function (event) {
     if (event.target.type === 'checkbox') {
         if (seleccionados.length > 1) {
             event.target.checked = false;
-            alert('¡Solo puede seleccionar un empleado a la vez!')
+            alert('¡Solo puede seleccionar una justificacion a la vez!')
         } else {
             if (seleccionados.length > 0) {
                 boxStatus.style.display = "flex";
@@ -123,14 +123,6 @@ document.getElementById("aprobar").addEventListener('click', function () {
         filaSeleccionada.cells[7].textContent = justificacionAusencias.descripcion;
         filaSeleccionada.cells[8].textContent = justificacionAusencias.encargado;
 
-        // Opcional: puedes resaltar la fila actualizada para indicar visualmente el cambio
-        filaSeleccionada.classList.add('actualizada');
-
-        // Después de un tiempo, quita la clase de resaltado
-        setTimeout(function () {
-            filaSeleccionada.classList.remove('actualizada');
-        }, 1000);
-        // Actualizar datos en el servidor
         updateSolicitud(justificacionAusencias);
     }
 });
@@ -165,13 +157,6 @@ document.getElementById("denegar").addEventListener('click', function () {
         filaSeleccionada.cells[5].textContent = solicitudVacaciones.encargado;
         filaSeleccionada.cells[6].textContent = solicitudVacaciones.estado;
 
-        // Opcional: puedes resaltar la fila actualizada para indicar visualmente el cambio
-        filaSeleccionada.classList.add('actualizada');
-
-        // Después de un tiempo, quita la clase de resaltado
-        setTimeout(function () {
-            filaSeleccionada.classList.remove('actualizada');
-        }, 1000);
         // Actualizar datos en el servidor
        // updateSolicitud(solicitudVacaciones);
     }
