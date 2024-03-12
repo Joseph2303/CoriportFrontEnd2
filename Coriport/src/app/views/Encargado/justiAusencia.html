@@ -45,44 +45,36 @@
         </div>
         <br>
         <div id="fondo-status" style="display: none;">
-            <div class="acciones-container">
-
-                <div class="aprobar-denegar-container">
-                    <button id="aprobar" style="background-color: #25ba03; color: white;">Aprobar</button>
-                    <button id="denegar" style="background-color: #fc4604; color: white;">Denegar</button>
+            <div id="box-statusJustificacion">
+                <span class="popup-close"
+                    onclick="document.getElementById('fondo-status').style.display='none'; document.getElementById('div-reject').style.display='none'; deseleccionarCheckboxes()">✖</span>
+                <p>Justificacion de ausencia del empleado</p>
+                <button class="status-btn" id="status-acept">Aceptar</button>
+                <button class="status-btn" id="status-reject">Rechazar</button>
+                <br>
+                <br>
+                <div id="div-reject" style="display: none;">
+                    <div>
+                        <label for="reject">Digite el motivo del rechazo:</label>
+                        <input type="text" id="reject" name="reject" required>
+                        <button id="reject-acept-btn" >Aceptar</button>
+                    </div>            
                 </div>
+
             </div>
         </div>
     </div>
     <br>
     <br>
 
+    <!-- Estructura para la pantalla emergente -->
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+            <!-- Aquí se mostrarán los detalles del empleado -->
+        </div>
+    </div>
 
-    <script>
-        function filtrarJustificaciones() {
-            var inputBusqueda = document.getElementById('busquedaJustificacion');
-            var filtro = inputBusqueda.value.toUpperCase();
-
-            var filas = document.getElementById('justificacion-table').getElementsByTagName('tr');
-
-            for (var i = 0; i < filas.length; i++) {
-                if (filas[i].getElementsByTagName('th').length === 0) {
-                    var celdas = filas[i].getElementsByTagName('td');
-                    var mostrarFila = false;
-
-                    for (var j = 0; j < celdas.length; j++) {
-                        var textoCelda = celdas[j].textContent || celdas[j].innerText;
-                        if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
-                            mostrarFila = true;
-                            break;
-                        }
-                    }
-
-                    filas[i].style.display = mostrarFila ? '' : 'none';
-                }
-            }
-        }
-    </script>
     <script src="/Coriport/src/app/components/JustificacionAusenciaComponent.js"></script>
     <script src="/Coriport/src/app/Scripts/ScriptEncargado/JustificacionAusencias.js"></script>
 

@@ -135,7 +135,7 @@ document.getElementById("status-acept").addEventListener('click', function () {
 
 
 document.getElementById("status-reject").addEventListener('click', function () {
-    const seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
     if (seleccionados.length === 1) {
         document.getElementById("div-reject").style.display = "flex";
 

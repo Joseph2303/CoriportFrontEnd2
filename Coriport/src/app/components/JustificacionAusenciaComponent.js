@@ -1,6 +1,5 @@
 function updateJustificacion(justificacionAusencias) {
     let updatedJustificacionData = {
-        "idJustificacion": justificacionAusencias.idJustificacion,
         "fechaSolicitud": justificacionAusencias.fechaSolicitud,
         "fechaAusencia": justificacionAusencias.fechaAusencia,
         "archivos": justificacionAusencias.archivos,
@@ -12,17 +11,16 @@ function updateJustificacion(justificacionAusencias) {
     };
 
     let data = 'data=' + JSON.stringify(updatedJustificacionData);
-    console.log(data)
+   
     $.ajax({
-        url: "http://localhost:8000/api/justificacionAusencia/update/" + justificacionAusencias.idJustificacion,
+        url: "http://localhost:8000/api/justificacionAusencia/update/" + justificacionAusencias.id,
         type: "PUT",
         data: data
     }).done(function (response) {
-        console.log(response);
         mostrarMensajeDeInfo("Se ha actualizado exitosamente");
         document.getElementById('fondo-status').style.display = 'none';
+        deseleccionarCheckboxes();
     }).fail(function (xhr, status, error) {
-        console.log(xhr);
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
 }
@@ -32,11 +30,10 @@ $.ajax({
     url: "http://localhost:8000/api/justificacionAusencias",
     type: "GET"
 }).done(function (response) {
-    console.log(response)
     var respObj = response.data;
     for (k in respObj) {
         $("#justificacion-table").append(
-            `<tr data-employee-id="${respObj[k].idEmpleado}" data-employee="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
+            `<tr data-employee-id="${respObj[k].idEmpleado}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
              <td >`+ respObj[k].idJustificacionAusencia + `</td>
              <td>`+ respObj[k].fechaSolicitud + `</td>
              <td>`+ respObj[k].fechaAusencia + `</td>

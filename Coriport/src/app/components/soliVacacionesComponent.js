@@ -35,8 +35,8 @@ function updateSolicitud(solicitudVacaciones) {
     }).done(function (response) {
         mostrarMensajeDeInfo("Se ha actualizado exitosamente");
         document.getElementById('fondo-status').style.display = 'none';
+        deseleccionarCheckboxes();
     }).fail(function (xhr, status, error) {
-        console.log(xhr)
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
 }

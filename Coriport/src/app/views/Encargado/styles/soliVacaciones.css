@@ -96,6 +96,10 @@ td{
    
 }
 
+.tabla{
+    overflow-y: auto;
+    overflow-x: auto;
+}
 
 th{
     background-color: #007bff;
