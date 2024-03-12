@@ -166,9 +166,3 @@ document.getElementById("status-reject").addEventListener('click', function () {
         });
     }
 });
-
-function deseleccionarCheckboxes() {
-    document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
-        checkbox.checked = false;
-    });
-}
