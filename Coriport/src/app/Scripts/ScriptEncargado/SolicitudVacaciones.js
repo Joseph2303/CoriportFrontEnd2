@@ -70,14 +70,9 @@ $(document).on("click", "#empleado", function () {
 // Evento para cerrar la pantalla emergente al hacer clic fuera de ella
 $(document).mouseup(function (e) {
     var container = $("#popup");
-    // var divStatus = $("#box-statusVacaciones");
-    //var box = $(".checkbox-accion");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();
     }
-    //  if (!divStatus.is(e.target) && container.has(e.target).length === 0) {
-    //     divStatus.hide();      
-    //}
 });
 
 
@@ -124,11 +119,6 @@ document.getElementById("status-acept").addEventListener('click', function () {
 
         };
 
-        // Actualizar directamente el texto de las celdas
-        filaSeleccionada.cells[4].textContent = solicitudVacaciones.descripcion;
-        filaSeleccionada.cells[5].textContent = solicitudVacaciones.encargado;
-        filaSeleccionada.cells[6].textContent = solicitudVacaciones.estado;
-
         updateSolicitud(solicitudVacaciones);
     }
 });
@@ -156,13 +146,15 @@ document.getElementById("status-reject").addEventListener('click', function () {
                 idEmpleado: filaSeleccionada.getAttribute('data-employee-id')
 
             };
-            // Actualizar directamente el texto de las celdas
-            filaSeleccionada.cells[4].textContent = solicitudVacaciones.descripcion;
-            filaSeleccionada.cells[5].textContent = solicitudVacaciones.encargado;
-            filaSeleccionada.cells[6].textContent = solicitudVacaciones.estado;
 
             updateSolicitud(solicitudVacaciones);
 
         });
     }
 });
+
+function deseleccionarCheckboxes() {
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
+        checkbox.checked = false;
+    });
+}
