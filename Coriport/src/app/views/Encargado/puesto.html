@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puesto</title>
+    <link rel="stylesheet" type="text/css" href="../Encargado/styles/puesto.css">
+</head>
+
+<body>
+
+    <center>
+        <h2 style="color: white;">Puestos</h2>
+
+    </center>
+
+    <br>
+    <br>
+
+
+
+    <div class="cajon">
+        <br>
+        <div>
+            <input type="text" id="buscarPuesto" placeholder="Buscar Puesto... " oninput="filtrar()">
+        </div>
+        <div class="tabla">
+            <table id="puesto-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableSV">
+
+                </tbody>
+            </table>
+        </div>
+        <div id="fondo-status" style="display: none;">
+            <div id="box-statusPuesto">
+                <span>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+</body>
+</html>
