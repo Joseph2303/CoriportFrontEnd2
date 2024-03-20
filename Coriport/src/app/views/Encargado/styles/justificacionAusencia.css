@@ -1,5 +1,3 @@
-#fondoNegroFormAdd,
-#fondoNegroFormUpdateE,
 #fondoNegroFormUpdateU {
     display: none;
 }
@@ -62,7 +60,6 @@ table {
 }
 
 th {
-
     background-color: #007bff;
     color: white;
     padding: 10px;

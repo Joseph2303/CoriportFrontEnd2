@@ -164,11 +164,6 @@ document.getElementById("status-reject").addEventListener('click', function () {
 
             };
 
-            // Actualizar directamente el texto de las celdas
-            filaSeleccionada.cells[5].textContent = justificacionAusencias.estado;
-            filaSeleccionada.cells[6].textContent = justificacionAusencias.descripcion;
-            filaSeleccionada.cells[7].textContent = justificacionAusencias.NombreEncargado;
-
             updateJustificacion(justificacionAusencias);
         });
 
