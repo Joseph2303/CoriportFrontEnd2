@@ -1,0 +1,91 @@
+/* Estilos para la tabla de puestos */
+#puestos-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* Estilos para las celdas de datos de la tabla de puestos */
+#puestos-table td {
+    text-align: center;
+}
+
+/* Estilos para el contenedor de la tabla de puestos */
+#puestos-container {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+/* Estilos para las celdas de encabezado de la tabla de puestos */
+#puestos-table th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: 0;
+    text-align: center;
+}
+
+/* Estilos para el formulario de crear nuevo puesto */
+#crear-puesto-form {
+    background-color: #cfe6ff;
+    padding: 20px;
+    border-radius: 7px;
+}
+
+/* Estilos para los inputs en el formulario de crear nuevo puesto */
+#crear-puesto-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el botón de crear en el formulario de crear nuevo puesto */
+#crear-puesto-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Estilos para el formulario de editar puesto */
+#editar-puesto-form {
+    display: none;
+    background-color: #cfe6ff;
+    padding: 20px;
+    border-radius: 7px;
+}
+
+/* Estilos para los inputs en el formulario de editar puesto */
+#editar-puesto-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el botón de guardar cambios en el formulario de editar puesto */
+#editar-puesto-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Estilos para el botón de cancelar en el formulario de editar puesto */
+#editar-puesto-form button#cancelar-edicion {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
