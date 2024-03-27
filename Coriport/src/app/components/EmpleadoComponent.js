@@ -21,6 +21,7 @@ function sendE(event) {
         data: data
 
     }).done(function (response) {
+        cargarTabla()
         console.log(response);
     }).fail(function (error) {
         console.log(error);
@@ -43,12 +44,12 @@ function deleteE(empleado) {
             console.log(response);
 
 
-            
+
         }).fail(function (error) {
             console.log(error)
         });
 
-    }).fail(function (xhr,status,error) {
+    }).fail(function (xhr, status, error) {
         console.log(xhr);
         mostrarMensajeDeError(xhr.responseText)
     });
@@ -88,6 +89,7 @@ function updateEmpleado() {
         type: "PUT",
         data: data
     }).done(function (response) {
+        cargarTabla()
         mostrarMensajeDeInfo("Se ha actualizado exitosamente");
         document.getElementById('fondoNegroFormUpdateE').style.display = 'none';
     }).fail(function (xhr, status, error) {
@@ -95,14 +97,20 @@ function updateEmpleado() {
     });
 }
 
-$.ajax({
-    url: "http://localhost:8000/api/empleados",
-    type: "GET"
-}).done(function (response) {
-    var respObj = response.data;
-    for (k in respObj) {
-        $("#dataTableE").append(
-            `<tr data-user-id="${respObj[k].idUsuario}" data-phone1-user="${respObj[k].telefono1}" data-phone2-user="${respObj[k].telefono2}" data-user-tipe="${respObj[k].usuario.tipoUsuario}">
+$(document).ready(function () {
+    cargarTabla();
+});
+
+
+function cargarTabla() {
+    $.ajax({
+        url: "http://localhost:8000/api/empleados",
+        type: "GET"
+    }).done(function (response) {
+        var respObj = response.data;
+        for (k in respObj) {
+            $("#dataTableE").append(
+                `<tr data-user-id="${respObj[k].idUsuario}" data-phone1-user="${respObj[k].telefono1}" data-phone2-user="${respObj[k].telefono2}" data-user-tipe="${respObj[k].usuario.tipoUsuario}">
              <td >`+ respObj[k].idEmpleado + `</td>
              <td>`+ respObj[k].nombre + `</td>
              <td>`+ respObj[k].apellido1 + `</td>
@@ -114,14 +122,14 @@ $.ajax({
              <td>`+ respObj[k].puesto.puesto + `</td>
              <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
              </tr>`
-        );
+            );
 
-    }
-}).fail(function () {
+        }
+    }).fail(function () {
 
-});
+    });
 
-
+}
 
 $("#sendE").click(sendE);
 $("#deleteE").click(deleteE);

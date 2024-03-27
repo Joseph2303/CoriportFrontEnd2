@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro de tardias</title>
+    <link rel="stylesheet" type="text/css" href="../Encargado/styles/registroAusencia.css">
+
 </head>
+
 <body>
 
     <center>
-        <h2 style="color: white;">Registro de Tardia</h2>
+        <h2 style="color: white;">Registro de tardia</h2>
     </center>
-    
+
+    <br>
+    <br>
+
+
+    <div class="cajon">
+        <br>
+        <div>
+            <input type="text" id="buscarTardia" placeholder="Buscar tardia..." oninput="filtrar()">
+        </div>
+        <div class="tabla">
+            <table id="registro-table" border="1">
+
+                <thead>
+                    <tr>
+                        <th>Id del registro</th>
+                        <th>Fecha de la ausencia</th>
+                        <th>Hora de la tardia</th>
+                        <th>Empleado de la tardia</th>
+                        <th>Estado de la tardia</th>
+                        <th>Accion</th>
+
+                    </tr>
+                </thead>
+                <tbody id="dataTableRT">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- Estructura para la pantalla emergente -->
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+            <!-- Aquí se mostrarán los detalles del empleado -->
+        </div>
+    </div>
+
+    <script src="/Coriport/src/app/components/RegistroAusenciaComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/RegistroAusencia.js"></script>
+
 </body>
+
 </html>
