@@ -39,8 +39,9 @@ function cargarTabla() {
     }).done(function (response) {
         $("#dataTableJA").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
+        console.log(respObj)
         for (k in respObj) {
-            let filaHTML = `<tr data-employee-id="${respObj[k].idEmpleado}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
+            let filaHTML = `<tr data-employee-id="${respObj[k].registro_ausencia.empleado.idEmpleado}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].registro_ausencia.empleado))}">
                 <td >${respObj[k].idJustificacionAusencia}</td>
                 <td>${respObj[k].fechaSolicitud}</td>
                 <td>${respObj[k].fechaAusencia}</td>
@@ -49,7 +50,7 @@ function cargarTabla() {
                 <td>${respObj[k].estado}</td>
                 <td>${respObj[k].descripcion}</td>
                 <td>${respObj[k].NombreEncargado}</td>
-                <td id="empleado">${respObj[k].empleado.nombre}</td>
+                <td id="empleado">${respObj[k].registro_ausencia.empleado.nombre}</td>
                 <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
             </tr>`;
             let fila = $(filaHTML);
