@@ -70,14 +70,9 @@ $(document).on("click", "#empleado", function () {
 // Evento para cerrar la pantalla emergente al hacer clic fuera de ella
 $(document).mouseup(function (e) {
     var container = $("#popup");
-    // var divStatus = $("#box-statusVacaciones");
-    //var box = $(".checkbox-accion");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
         container.hide();
     }
-    //  if (!divStatus.is(e.target) && container.has(e.target).length === 0) {
-    //     divStatus.hide();      
-    //}
 });
 
 

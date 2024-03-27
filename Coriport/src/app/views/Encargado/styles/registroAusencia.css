@@ -216,6 +216,16 @@ td {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+#justificacion {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#justificacion:hover {
+    background-color: rgb(115, 182, 253);
+
+}
+
 #empleado:hover {
     background-color: rgb(115, 182, 253);
 

@@ -33,19 +33,27 @@
                         <th>Fecha de la ausencia</th>
                         <th>Hora de la ausencia</th>
                         <th>Empleado ausente</th>
-                        <th>Justificación de la ausencia</th>
+                        <th>Estado de la ausencia</th>
                         <th>Accion</th>
 
                     </tr>
                 </thead>
                 <tbody id="dataTableRA">
-                  
+
                 </tbody>
             </table>
         </div>
     </div>
     <br>
     <br>
+
+    <!-- Estructura para la pantalla emergente -->
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+            <!-- Aquí se mostrarán los detalles del empleado -->
+        </div>
+    </div>
 
     <script src="/Coriport/src/app/components/RegistroAusenciaComponent.js"></script>
     <script src="/Coriport/src/app/Scripts/ScriptEncargado/RegistroAusencia.js"></script>
