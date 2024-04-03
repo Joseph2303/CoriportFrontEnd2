@@ -2,11 +2,11 @@ function updateJustificacion(justificacionAusencias) {
     let updatedJustificacionData = {
         "fechaSolicitud": justificacionAusencias.fechaSolicitud,
         "fechaAusencia": justificacionAusencias.fechaAusencia,
-        "archivos": justificacionAusencias.archivos,
+        "archivo": justificacionAusencias.archivos,
         "justificacion": justificacionAusencias.justificacion,
         "estado": justificacionAusencias.estado,
         "descripcion": justificacionAusencias.descripcion,
-        "NombreEncargado": justificacionAusencias.NombreEncargado,
+        "encargado": justificacionAusencias.NombreEncargado,
         "idEmpleado": justificacionAusencias.idEmpleado
     };
 
@@ -45,11 +45,11 @@ function cargarTabla() {
                 <td >${respObj[k].idJustificacionAusencia}</td>
                 <td>${respObj[k].fechaSolicitud}</td>
                 <td>${respObj[k].fechaAusencia}</td>
-                <td>${respObj[k].archivos}</td>
+                <td>${respObj[k].archivo}</td>
                 <td>${respObj[k].justificacion}</td>
                 <td>${respObj[k].estado}</td>
                 <td>${respObj[k].descripcion}</td>
-                <td>${respObj[k].NombreEncargado}</td>
+                <td>${respObj[k].encargado}</td>
                 <td id="empleado">${respObj[k].registro_ausencia.empleado.nombre}</td>
                 <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
             </tr>`;

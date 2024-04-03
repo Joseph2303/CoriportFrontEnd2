@@ -17,7 +17,6 @@ function cargarTabla() {
             let filaHTML = `<tr data-employee-id="${respObj[k].empleado.idEmpleado}" data-justificacion="${encodeURIComponent(JSON.stringify(respObj[k].justificacion_ausencia))}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
                 <td >${respObj[k].idRegistroAusencia}</td>
                 <td>${respObj[k].fecha}</td>
-                <td>${respObj[k].hora}</td>
                 <td id="empleado">${respObj[k].empleado.nombre}</td>
                 <td id="justificacion">${justificacion}</td>
                 <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
