@@ -69,7 +69,7 @@ $(document).on("click", "#justificacion", function () {
             </tr>
             <tr>
                 <th>Archivo:</th>
-                <td>${justificacion.archivos}</td>
+                <td>${justificacion.archivo}</td>
             </tr>
             <tr>
                 <th>Justificacion de la ausencia:</th>
@@ -85,7 +85,7 @@ $(document).on("click", "#justificacion", function () {
             </tr>
             <tr>
                 <th>Nombre del encargado:</th>
-                <td>${justificacion.NombreEncargado}</td>
+                <td>${justificacion.encargado}</td>
             </tr>       
  
         </table>`;
