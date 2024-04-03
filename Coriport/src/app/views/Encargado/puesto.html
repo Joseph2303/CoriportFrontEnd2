@@ -1,50 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puesto</title>
-    <link rel="stylesheet" type="text/css" href="../Encargado/styles/puesto.css">
-</head>
+<link rel="stylesheet" type="text/css" href="../Encargado/styles/empleado.css">
 
 <body>
-
     <center>
-        <h2 style="color: white;">Puestos</h2>
-
+        <h2 style="color: white;">Registros de Puestos</h2>
     </center>
-
     <br>
     <br>
-
-
 
     <div class="cajon">
+        <div>
+            <button id="btnAgregarPuesto" onclick="mostrarFormularioAgregar()">Registrar Puesto</button>
+        </div>
         <br>
         <div>
-            <input type="text" id="buscarPuesto" placeholder="Buscar Puesto... " oninput="filtrar()">
+            <input type="text" id="busquedaPuesto" placeholder="Buscar puesto..." oninput="filtrarPuestos()">
         </div>
         <div class="tabla">
             <table id="puesto-table" border="1">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Puesto</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
-                <tbody id="dataTableSV">
+                <tbody id="dataTableP">
 
                 </tbody>
             </table>
         </div>
-      
+    </div>
+    <br>
+    <br>
 
+    <div id="fondoNegroFormAddPuesto" class="fondoNegroForm">
+        <div class="formAjuste">
+            <form class="form">
+                <label for="nombrePuesto">Nombre del puesto:</label>
+                <input type="text" id="nombrePuesto" name="nombrePuesto" required>
 
+                <button type="button" onclick="agregarPuesto()">Guardar</button>
+                <button type="button" onclick="cerrarFormularioAgregar()">Cancelar</button>
+            </form>
+        </div>
     </div>
 
-
-
-
-
-</body>
-</html>
+    <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>
+    <script src="/Coriport/src/app/components/UserComponent.js"></script>
+    <script src="/Coriport/src/app/components/restriccionRoles.js"></script>
