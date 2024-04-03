@@ -5,6 +5,7 @@ $("#registroTardia").on('click',function(){routingi("registroTardia")});
 $("#justiTardia").on('click',function(){routingi("justiTardia")});
 $("#registroAusencia").on('click',function(){routingi("registroAusencia")});
 $("#justiAusencia").on('click',function(){routingi("justiAusencia")});
+$("#puesto").on('click',function(){routingi("puesto")});
 $("#horario").on('click',function(){routingi("horario")});
 $("#marcas").on('click',function(){routingi("marcas")});
 $("#vacaciones").on('click',function(){routingi("soliVacaciones")});
