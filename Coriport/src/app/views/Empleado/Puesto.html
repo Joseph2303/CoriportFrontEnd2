@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Días Feriados</title>
+    <title>Puesto</title>
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Empleado/styles/Puesto.css">
+
 </head>
 <body>
     <center>
-        <h2 style="color: white;">Días Feriados</h2>
+        <h2 style="color: white">Puesto</h2>
     </center>
+
     <br>
     <br>
 
     <div>
-        <input type="text" id="busquedaFeriado" placeholder="Buscar día feriado..." oninput="filtrarFeriado()">
+        <input type="text" id="busquedaPuesto" placeholder="Buscar puesto..." oninput="filtrarPuestos()">
     </div>
-
-
+    
     <div class="tabla">
-        <table id="diasFeriados-table" border="1">
+        <table id="puesto-table" border="1">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Fecha</th>
-                    <th>Descripción</th>
-                    <th>Tipo Feriado</th>
+                    <th>Puesto</th>
                 </tr>
             </thead>
-            <tbody id="dataTableDias">
+            <tbody id="dataTableP">
+
             </tbody>
         </table>
     </div>
+
 
 
 
