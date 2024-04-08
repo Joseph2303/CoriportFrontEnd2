@@ -39,7 +39,7 @@ function changeView2(view) {
 
 		  setTimeout(function() {
 			  preloader.style.display = 'none';
-		  }, 5000); 
+		  }, 7000); 
 	  });
 
 
