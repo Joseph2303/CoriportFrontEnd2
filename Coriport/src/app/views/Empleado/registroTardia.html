@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Empleado/styles/registroAusencia.css">
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Empleado/styles/registroTardia.css">
     <title>Document</title>
 </head>
 
@@ -17,23 +17,27 @@
     </header>
     <br>
     <main>
-        <div class="Cajon1">
-
-            <div class="Cajon">
-
+        <div class="Cajon8">
+            <div class="Cajon0">
                 <table id="registro-table">
                     <thead>
-
+                        <tr>
+                        <th>Id del registro</th>
+                        <th>Fecha de la ausencia</th>
+                        <th>Hora de la tardia</th>
+                        <th>Empleado que llego tarde</th>
+                        <th>Estado de la tardia</th>
+                        <th>Accion</th>
+                        </tr>
                     </thead>
                     <tbody id="dataTableRT">
-
+                        
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
     <br>
-
     <!-- Estructura para la pantalla emergente -->
     <div id="popup" class="popup">
         <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
