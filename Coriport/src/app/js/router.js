@@ -28,7 +28,7 @@ function routingi(router){
 $("#diasFeriados").on('click',function(){router("diasFeriados")});
 $("#RegistroAsistencia").on('click',function(){router("RegistroAsistencia")});
 $("#JustificacionAusencia").on('click',function(){router("JustificacionAusencia")});
-$("#JustificacionTardia").on('click',function(){router("JustificacionTardia")});
+$("#registroTardia").on('click',function(){router("registroTardia")});
 $("#HorasExtra").on('click',function(){router("HorasExtra")});
 $("#SoliVacaciones").on('click',function(){router("SoliVacaciones")});
 
