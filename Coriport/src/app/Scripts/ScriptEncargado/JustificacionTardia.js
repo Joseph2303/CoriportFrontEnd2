@@ -119,7 +119,7 @@ document.getElementById("status-acept").addEventListener('click', function () {
             estado: 'Aceptado',
             descripcion: "Su solicitud se encuentra aceptada",
             NombreEncargado: encargado.empleado.nombre,            
-            idEmpleado: filaSeleccionada.getAttribute('data-employee-id')
+           
 
         };
 
