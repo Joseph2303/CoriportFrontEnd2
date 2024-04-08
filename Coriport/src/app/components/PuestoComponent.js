@@ -27,6 +27,7 @@ function destroy(id){
     }).done(function (response) {
         console.log(response);
         cargarTabla();
+        document.getElementById("pantallaConfirmacion").style.display = "none";
         mostrarMensajeDeInfo("Se ha eliminado correctamente");
 
     }).fail(function (xhr, status, error) {
@@ -37,23 +38,26 @@ function destroy(id){
 
 function update(puesto) {
     let puestoData = {
-        "idPuesto":  $("#idPuesto").val(),
-        "puesto":  $("#nombrePuestoUpdate").val(),
+        "idPuesto": puesto.id,
+        "puesto":  puesto.nombre
 
     };
 
     let data = 'data=' + JSON.stringify(puestoData);
+    console.log(data)
 
     $.ajax({
-        url: "http://localhost:8000/api/puesto/update/" + puesto.idPuesto,
+        url: "http://localhost:8000/api/puesto/update/" + puesto.id,
         type: "PUT",
         data: data
     }).done(function (response) {
-        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
-        document.getElementById("div-reject").style.display = "none";
-        document.getElementById('fondo-status').style.display = 'none';
-        deseleccionarCheckboxes();
+        console.log(response)
         cargarTabla()
+        deseleccionarCheckboxes();
+        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        document.getElementById("pantallaEmergenteUpdate").style.display = "none";
+
+
     }).fail(function (xhr, status, error) {
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
@@ -95,4 +99,3 @@ function cargarTabla() {
 }
 
 $("#sendPuesto").click(send);
-$("#update").click(update);

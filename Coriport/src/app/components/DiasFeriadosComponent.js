@@ -1,5 +1,46 @@
+function send(){
+    let puestoData = {
+        "fecha": $("#fecha").val(),
+        "descripcion": $("#descripcion").val(),
+        "tipoFeriado": $("#tipoFeriado").val(),
+    };
+
+    let data = 'data=' + JSON.stringify(puestoData);
+    console.log(puestoData)
+
+    $.ajax({
+        url: "http://localhost:8000/api/dias_feriados/store",
+        type: "POST",
+        data: data
+    }).done(function (response) {
+        console.log(response)
+        document.getElementById("pantallaEmergenteAdd").style.display = "none";
+        mostrarMensajeDeInfo("Se ha ingresado exitosamente");
+        cargarTabla()
+    }).fail(function (xhr, status, error) {
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+    });
+}
+
+function destroy(id){
+    $.ajax({
+        url: "http://localhost:8000/api/dias_feriados/delete/" + id,
+        type: "DELETE",
+    }).done(function (response) {
+        console.log(response);
+        cargarTabla();
+        document.getElementById("pantallaConfirmacion").style.display = "none";
+        mostrarMensajeDeInfo("Se ha eliminado correctamente");
+
+    }).fail(function (xhr, status, error) {
+        console.log(error)
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+    });
+}
+
 function updateFeriado(feriado) {
     let feriadoData = {
+        "id": feriado.id,
         "fecha": feriado.fecha,
         "descripcion":feriado.descripcion,
         "tipoFeriado":feriado.tipoFeriado,
@@ -13,11 +54,12 @@ function updateFeriado(feriado) {
         type: "PUT",
         data: data
     }).done(function (response) {
-        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
-        document.getElementById("div-reject").style.display = "none";
-        document.getElementById('fondo-status').style.display = 'none';
-        deseleccionarCheckboxes();
+        console.log(response)
         cargarTabla()
+        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        document.getElementById("pantallaEmergenteUpdate").style.display = "none";
+        deseleccionarCheckboxes();
+
     }).fail(function (xhr, status, error) {
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
@@ -33,15 +75,16 @@ function cargarTabla() {
         url: "http://localhost:8000/api/dias_feriados",
         type: "GET"
     }).done(function (response) {
-        $("#dataTableDias").empty(); // Vaciar la tabla antes de cargar los nuevos datos
+        $("#dataTableFeriado").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
-        console.log(respObj)
+     
         for (k in respObj) {
-            let filaHTML = `<tr 
+            let filaHTML = `<tr> 
                 <td>${respObj[k].id}</td>
                 <td>${respObj[k].fecha}</td>
                 <td>${respObj[k].descripcion}</td>
                 <td>${respObj[k].tipoFeriado}</td>
+                <td><input type="checkbox" class="checkbox-accion" onchange=""></td>  
 
             </tr>`;
             let fila = $(filaHTML);
@@ -53,10 +96,12 @@ function cargarTabla() {
             } 
             
             // Añadir la fila a la tabla
-            $("#dataTableDias").append(fila);
+            $("#dataTableFeriado").append(fila);
         }
     }).fail(function (error) {
         console.log(error)
     });
 }
+
+$("#sendFeriado").click(send);
 

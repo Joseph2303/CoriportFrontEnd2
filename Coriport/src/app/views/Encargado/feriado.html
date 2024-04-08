@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,20 +15,20 @@
     <br>
     <br>
    
-    <div>
-        <input type="text" id="busquedaFeriado" placeholder="Buscar día feriado..." oninput="filtrar()">
-    </div>
-
     <div class="cajon">
-        <button id="btnAbrirFormulario" class="btnAddFeriado">Registrar Feriado</button>
+        <button onclick="document.getElementById('pantallaEmergenteAdd').style.display='flex'" id="btnAbrirFormulario" class="btnAddFeriado">Registrar Feriado</button>
         <br>
-
+        <br>
+    
+        <div>
+            <input type="text" id="busquedaFeriado" placeholder="Buscar día feriado..." oninput="filtrar()">
+        </div>
         <div class="tabla">
-            <br>
             <table id="feriado-table" border="1">
             
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Fecha</th>
                         <th>Descripción</th>
                         <th>Tipo Feriado</th>
@@ -40,45 +40,78 @@
                 </tbody>
             </table>
         </div>
-        <br>
-        
-        <div class="acciones-container">
-            <div class="izquierda">
-                <button style="display: none;" id="eliminar" style="background-color: #ff0000; color: white;">Eliminar</button>
-                <button style="display: none;" id="actualizar" style="background-color: #007bff; color: white;">Actualizar</button>
-            </div>
-            
-        </div>
-       
+
+                <button onclick="" style="background-color: red; display: none;" id="eliminar"
+                    style="color: white;">Eliminar</button>
+                <button onclick="document.getElementById('pantallaEmergenteUpdate').style.display='flex'"
+                    style="background-color: blue; display: none;" id="actualizar"
+                    style=" color: white;">Actualizar</button>
+
     </div>
-    
-    <div id="pantallaEmergenteAdd" class="fondoNegroForm">
+
+    <div id="pantallaEmergenteAdd" class="fondoNegroForm" style="display: none;">
         <div class="formAjuste">
             <form class="form">
-                <label for="fecha" >Fecha de Feriado</label>
+
+                <label for="fecha">Fecha:</label>
                 <input type="date" id="fecha" name="fecha" required>
 
-                <label for="descripcion" >Descripción</label>
+                <label for="descripcion">Descripción:</label>
                 <input type="text" id="descripcion" name="descripcion" required>
-
-                <label for="tipoFeriado">Tipo de Feriado</label>
+                <br>
+                <label for="tipoFeriado">Tipo de Feriado: </label>
                 <select id="tipoFeriado" name="tipoFeriado" required>
-                    <option value="De Paga">De Paga</option>
-                    <option value="No Paga">No Paga</option>
+                    <option value="De Paga">De paga</option>
+                    <option value="No Paga">No paga</option>
                 </select>
-                
-                <button type="submit" id="sendFeriado">Guardar</button>
-                <button type="button" onclick="document.getElementById('pantallaEmergenteAdd').style.display='none'">Cancelar</button>
+                <br>
+                <br>
+                <button type="button" id="sendFeriado">Guardar</button>
+                <button type="button"
+                    onclick="document.getElementById('pantallaEmergenteAdd').style.display='none'">Cancelar</button>
             </form>
         </div>
     </div>
 
+    <div id="pantallaEmergenteUpdate" class="fondoNegroForm" style="display: none;">
+        <div class="formAjuste">
+            <form class="form">
+                <label for="idFeriadoUpdate">Actulizar ID:</label>
+                <input type="text" id="idFeriadoUpdate" name="idFeriadoUpdate" readonly>
 
+                <label for="fechaFeriadoUpdate">Actualizar Fecha :</label>
+                <input type="date" id="fechaFeriadoUpdate" name="fechaFeriadoUpdate" required>
+
+                <label for="descripcionFeriadoUpdate">Actulizar descripción:</label>
+                <input type="text" id="descripcionFeriadoUpdate" name="descripcionFeriadoUpdate" required>
+
+                <label for="tipoFeriadoUpdate">Tipo de Feriado: </label>
+                <select id="tipoFeriadoUpdate" name="tipoFeriadoUpdate" required>
+                    <option value="De Paga">De Paga</option>
+                    <option value="No Paga">No Paga</option>
+                </select>
+                <br>
+                <br>
+                <button type="button" id="update">Actualizar</button>
+                <button type="button"
+                    onclick="document.getElementById('pantallaEmergenteUpdate').style.display='none'">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="display: none; text-align: center; " id="pantallaConfirmacion" class="fondoNegroForm">
+            <div class="form">
+                <h3>¿Estás seguro de que deseas eliminar este puesto?</h3>
+                <button id="delete" style="margin-right: 10px;">Sí</button>
+                <button onclick="ocultarConfirmacion()">No</button>
+        </div>
+    </div>
+       
+    </div>
+    
     <script src="/Coriport/src/app/Scripts/ScriptEncargado/DiasFeriados.js"></script>
     <script src="/Coriport/src/app/components/DiasFeriadosComponent.js"></script>
     <script src="/Coriport/src/app/components/restriccionRoles.js"></script>
-
-
 </body>
 
 </html>

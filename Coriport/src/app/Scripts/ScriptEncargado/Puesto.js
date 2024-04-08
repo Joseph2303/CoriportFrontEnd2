@@ -2,6 +2,7 @@ var tabla = document.getElementById("puesto-table");
 var eliminarButton = document.getElementById("eliminar");
 var actualizarButton = document.getElementById("actualizar");
 var deleteButton = document.getElementById("delete");
+var updateBtn = document.getElementById("update");
 
 function filtrar() {
     var inputBusqueda = document.getElementById('busquedaPuesto');
@@ -73,3 +74,19 @@ deleteButton.addEventListener('click', function(){
     let id = filaSeleccionada.cells[0].textContent;
     destroy(id)
 });
+
+updateBtn.addEventListener('click', function(){
+    let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    let filaSeleccionada = seleccionados[0].closest('tr');
+    let puesto = {
+        id : filaSeleccionada.cells[0].textContent,
+        nombre : $("#nombrePuestoUpdate").val(),
+    }
+    update(puesto)
+});
+
+function deseleccionarCheckboxes() {
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
+        checkbox.checked = false;
+    });
+}
