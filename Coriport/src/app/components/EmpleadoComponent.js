@@ -107,6 +107,7 @@ function cargarTabla() {
         url: "http://localhost:8000/api/empleados",
         type: "GET"
     }).done(function (response) {
+        $("#dataTableE").empty(); 
         var respObj = response.data;
         for (k in respObj) {
             $("#dataTableE").append(

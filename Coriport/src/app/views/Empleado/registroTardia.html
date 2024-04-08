@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Empleado/styles/registroAusencia.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <center>
+            <h2 style="color: white;">Registro de tardias</h2>
+        </center>
+
+    </header>
+    <br>
+    <main>
+        <div class="Cajon1">
+
+            <div class="Cajon">
+
+                <table id="registro-table">
+                    <thead>
+
+                    </thead>
+                    <tbody id="dataTableRT">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <br>
+
+    <!-- Estructura para la pantalla emergente -->
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+            <!-- Aquí se mostrarán los detalles del empleado -->
+        </div>
+    </div>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/RegistroAusencia.js"></script>
+    <script src="/Coriport/src/app/components/empleado/RegistroTardiaComponent.js"></script>
+
+</body>
+
+</html>

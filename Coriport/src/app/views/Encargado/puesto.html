@@ -8,18 +8,19 @@
     <br>
 
     <div class="cajon">
+    
         <div>
-            <button id="btnAgregarPuesto" onclick="mostrarFormularioAgregar()">Registrar Puesto</button>
+            <button id="btnAgregarPuesto"  onclick="document.getElementById('pantallaEmergenteAdd').style.display='flex'">Registrar Puesto</button>
         </div>
         <br>
         <div>
-            <input type="text" id="busquedaPuesto" placeholder="Buscar puesto..." oninput="filtrarPuestos()">
+            <input type="text" id="busquedaPuesto" placeholder="Buscar puesto..." oninput="filtrar()">
         </div>
         <div class="tabla">
             <table id="puesto-table" border="1">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>ID Puesto</th>
                         <th>Puesto</th>
                         <th>Acción</th>
                     </tr>
@@ -29,22 +30,30 @@
                 </tbody>
             </table>
         </div>
+        <br>
+        <div class="acciones-container">
+            <div class="izquierda">
+                <button style="display: none;" id="eliminar" style="background-color: #ff0000; color: white;">Eliminar</button>
+                <button style="display: none;" id="actualizar" style="background-color: #007bff; color: white;">Actualizar</button>
+            </div>       
+        </div>
     </div>
     <br>
     <br>
-
-    <div id="fondoNegroFormAddPuesto" class="fondoNegroForm">
+    <div id="pantallaEmergenteAdd" class="fondoNegroForm">
         <div class="formAjuste">
             <form class="form">
-                <label for="nombrePuesto">Nombre del puesto:</label>
-                <input type="text" id="nombrePuesto" name="nombrePuesto" required>
+                <label for="puesto">Nombre del puesto:</label>
+                <input type="text" id="puesto" name="puesto" required>
 
-                <button type="button" onclick="agregarPuesto()">Guardar</button>
-                <button type="button" onclick="cerrarFormularioAgregar()">Cancelar</button>
+                <button type="button" id="send">Guardar</button>
+                <button type="button" onclick="document.getElementById('pantallaEmergenteAdd').style.display='none'">Cancelar</button>
             </form>
         </div>
     </div>
 
-    <script src="/Coriport/src/app/components/EmpleadoComponent.js"></script>
-    <script src="/Coriport/src/app/components/UserComponent.js"></script>
+    <script src="/Coriport/src/app/components/PuestoComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/Puesto.js"></script>
     <script src="/Coriport/src/app/components/restriccionRoles.js"></script>
+    
+</body>

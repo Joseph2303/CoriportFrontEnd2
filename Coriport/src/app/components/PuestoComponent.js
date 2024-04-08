@@ -1,4 +1,37 @@
-function updatePuesto(puesto) {
+function send(){
+    let puestoData = {
+        "puesto": $("#puesto").val(),
+    };
+
+    let data = 'data=' + JSON.stringify(puestoData);
+    console.log(puestoData)
+
+    $.ajax({
+        url: "http://localhost:8000/api/puesto/store/",
+        type: "POST",
+        data: data
+    }).done(function (response) {
+        console.log(response)
+        mostrarMensajeDeInfo("Se ha ingresado exitosamente");
+        cargarTabla()
+    }).fail(function (xhr, status, error) {
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+    });
+}
+
+function destroy(){
+    $.ajax({
+        url: "http://localhost:8000/api/puesto/delete/" + empleado.cells[7].textContent,
+        type: "DELETE",
+    }).done(function (response) {
+        console.log(response);
+
+    }).fail(function (error) {
+        console.log(error)
+    });
+}
+
+function update(puesto) {
     let puestoData = {
         "idPuesto": puesto.idPuesto,
         "puesto":puesto.puesto,
@@ -32,14 +65,14 @@ function cargarTabla() {
         url: "http://localhost:8000/api/puestos",
         type: "GET"
     }).done(function (response) {
-        $("#dataTablep").empty(); // Vaciar la tabla antes de cargar los nuevos datos
+        $("#dataTableP").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
         console.log(respObj)
         for (k in respObj) {
-            let filaHTML = `<tr 
+            let filaHTML = `<tr> 
                 <td>${respObj[k].idPuesto}</td>
-                <td>${respObj[k].puesto}</td>
-                
+                <td>${respObj[k].puesto}</td>         
+                <td><input type="checkbox" class="checkbox-accion" onchange=""></td>    
             </tr>`;
             let fila = $(filaHTML);
             
@@ -57,3 +90,6 @@ function cargarTabla() {
     });
 }
 
+$("#send").click(send);
+$("#delete").click(destroy);
+$("#update").click(update);

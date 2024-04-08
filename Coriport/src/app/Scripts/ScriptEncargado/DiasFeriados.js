@@ -1,7 +1,7 @@
-var tabla = document.getElementById("puesto-table");
+var tabla = document.getElementById("feriado-table");
 
 function filtrar() {
-    var inputBusqueda = document.getElementById('busquedaPuesto');
+    var inputBusqueda = document.getElementById('busquedaFeriado');
     var filtro = inputBusqueda.value.toUpperCase();
 
     var filas = tabla.getElementsByTagName('tr');
