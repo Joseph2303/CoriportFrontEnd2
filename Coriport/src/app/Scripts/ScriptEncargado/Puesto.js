@@ -82,6 +82,7 @@ updateBtn.addEventListener('click', function(){
         id : filaSeleccionada.cells[0].textContent,
         nombre : $("#nombrePuestoUpdate").val(),
     }
+    
     update(puesto)
 });
 
