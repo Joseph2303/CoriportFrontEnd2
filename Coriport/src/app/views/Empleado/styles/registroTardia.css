@@ -1,0 +1,46 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    color: #dddddd;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  
+  tr:nth-child(even) {
+    background-color: #738fb9;
+  }
+
+  .Cajon0 {
+    overflow-y: auto;
+    max-height: 900px; 
+    margin-right: 0; 
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.Cajon0::-webkit-scrollbar {
+    width: 10px; /* Ajusta el ancho de la barra según tu diseño */
+}
+
+.Cajon0::-webkit-scrollbar-thumb {
+    background-color:#3a3a3a; /* Hace la barra de desplazamiento transparente */
+}
+
+.Cajon8{
+    background-color: rgba(169, 244, 141, 0.135); 
+    margin-right: 200px; 
+    margin-left: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+    .Cajon8 {
+        margin-right: 10px; 
+        margin-left: 10px;
+    }
+}
