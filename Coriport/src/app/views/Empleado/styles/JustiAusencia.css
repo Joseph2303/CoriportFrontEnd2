@@ -15,7 +15,7 @@ table {
     background-color: #738fb9;
   }
 
-  .Cajon3 {
+  .Cajon4 {
     overflow-y: auto;
     max-height: 900px; 
     margin-right: 0; 
@@ -24,23 +24,26 @@ table {
     padding-left: 0;
 }
 
-.Cajon3::-webkit-scrollbar {
+.Cajon4::-webkit-scrollbar {
     width: 10px; /* Ajusta el ancho de la barra según tu diseño */
 }
 
-.Cajon3::-webkit-scrollbar-thumb {
+.Cajon4::-webkit-scrollbar-thumb {
     background-color:#3a3a3a; /* Hace la barra de desplazamiento transparente */
 }
 
-.Cajon2{
+.Cajon6{
     background-color: rgba(169, 244, 141, 0.135); 
     margin-right: 200px; 
     margin-left: 200px;
 }
 
 @media only screen and (max-width: 600px) {
-    .Cajon2 {
+    .Cajon6 {
         margin-right: 10px; 
         margin-left: 10px;
     }
 }
+
+
+
