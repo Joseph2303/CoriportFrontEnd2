@@ -1,6 +1,6 @@
 function send(){
     let puestoData = {
-        "puesto": $("#puesto").val(),
+        "puesto": $("#nombrePuesto").val(),
     };
 
     let data = 'data=' + JSON.stringify(puestoData);
@@ -12,6 +12,7 @@ function send(){
         data: data
     }).done(function (response) {
         console.log(response)
+        document.getElementById("pantallaEmergenteAdd").style.display = "none";
         mostrarMensajeDeInfo("Se ha ingresado exitosamente");
         cargarTabla()
     }).fail(function (xhr, status, error) {
@@ -19,22 +20,25 @@ function send(){
     });
 }
 
-function destroy(){
+function destroy(id){
     $.ajax({
-        url: "http://localhost:8000/api/puesto/delete/" + empleado.cells[7].textContent,
+        url: "http://localhost:8000/api/puesto/delete/" + id,
         type: "DELETE",
     }).done(function (response) {
         console.log(response);
+        cargarTabla();
+        mostrarMensajeDeInfo("Se ha eliminado correctamente");
 
-    }).fail(function (error) {
+    }).fail(function (xhr, status, error) {
         console.log(error)
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
 }
 
 function update(puesto) {
     let puestoData = {
-        "idPuesto": puesto.idPuesto,
-        "puesto":puesto.puesto,
+        "idPuesto":  $("#idPuesto").val(),
+        "puesto":  $("#nombrePuestoUpdate").val(),
 
     };
 
@@ -90,6 +94,5 @@ function cargarTabla() {
     });
 }
 
-$("#send").click(send);
-$("#delete").click(destroy);
+$("#sendPuesto").click(send);
 $("#update").click(update);

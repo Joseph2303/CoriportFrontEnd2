@@ -52,6 +52,28 @@
        
     </div>
     
+    <div id="pantallaEmergenteAdd" class="fondoNegroForm">
+        <div class="formAjuste">
+            <form class="form">
+                <label for="fecha" >Fecha de Feriado</label>
+                <input type="date" id="fecha" name="fecha" required>
+
+                <label for="descripcion" >Descripción</label>
+                <input type="text" id="descripcion" name="descripcion" required>
+
+                <label for="tipoFeriado">Tipo de Feriado</label>
+                <select id="tipoFeriado" name="tipoFeriado" required>
+                    <option value="De Paga">De Paga</option>
+                    <option value="No Paga">No Paga</option>
+                </select>
+                
+                <button type="submit" id="sendFeriado">Guardar</button>
+                <button type="button" onclick="document.getElementById('pantallaEmergenteAdd').style.display='none'">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+
     <script src="/Coriport/src/app/Scripts/ScriptEncargado/DiasFeriados.js"></script>
     <script src="/Coriport/src/app/components/DiasFeriadosComponent.js"></script>
     <script src="/Coriport/src/app/components/restriccionRoles.js"></script>
