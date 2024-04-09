@@ -45,6 +45,23 @@
             <!-- Aquí se mostrarán los detalles del empleado -->
         </div>
     </div>
+    
+    <div id="justificacionAdd" class="form-container" style="display: none;">
+        <div class="form-content">
+            <form class="form">
+                <label for="motivo">Motivo de la ausencia</label>
+                <input type="text" id="motivo" placeholder="Digite el motivo de la ausencia">
+    
+                <label for="archivo">Archivo (solo archivos .PDF)</label>
+                <input type="file" id="archivo">
+    
+                <div class="button-group">
+                    <button id="send">Aceptar</button>
+                    <button onclick="document.getElementById('justificacionAdd').style.display='none'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="/Coriport/src/app/Scripts/ScriptEmpleado/RegistroAusencia.js"></script>
     <script src="/Coriport/src/app/components/empleado/RegistroTardiaComponent.js"></script>

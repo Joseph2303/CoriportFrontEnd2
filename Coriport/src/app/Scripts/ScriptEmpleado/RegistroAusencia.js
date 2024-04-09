@@ -50,8 +50,8 @@ $(document).on("click", "#empleado", function () {
 
 $(document).on("click", "#justificacion", function () {
     var justificacionEstado = $(this).text().trim(); // Obtener el estado de la justificación
-    
-    if (justificacionEstado !== "Sin Justificar") { // Verificar si el estado es "Justificado"
+
+    if (justificacionEstado === "Justificado") { // Verificar si el estado es "Justificado"
         // Obtener la cadena JSON del atributo de datos
         var justificacionString = decodeURIComponent($(this).closest("tr").data("justificacion"));
         // Convertir la cadena JSON a un objeto JavaScript
@@ -92,6 +92,76 @@ $(document).on("click", "#justificacion", function () {
         // Mostrar la pantalla emergente con los detalles del justificacion
         $("#popup-content").html(detallesHTML);
         $("#popup").show();
+    } else if (justificacionEstado === "Pendiente") {
+        // Obtener la cadena JSON del atributo de datos
+        var justificacionString = decodeURIComponent($(this).closest("tr").data("justificacion"));
+        // Convertir la cadena JSON a un objeto JavaScript
+        var justificacion = JSON.parse(justificacionString);
+
+        function addUpdate() {
+            let justificacionUpdate = {
+                "id": justificacion.idJustificacionAusencia,
+                "fechaSolicitud": justificacion.fechaSolicitud,
+                "fechaAusencia": justificacion.fechaAusencia,
+                "archivo": justificacion.archivos,
+                "justificacion": $("#justificacionText").val(),
+                "estado": justificacion.estado,
+                "descripcion": justificacion.descripcion,
+                "encargado": justificacion.encargado,
+            }
+            updateJustificacion(justificacionUpdate)
+        }
+
+        var detallesHTML = `
+        <table>
+            <tr>
+                <th>Fecha de la solicitud:</th>
+                <td>${justificacion.fechaSolicitud}</td>
+            </tr>
+            <tr>
+                <th>Fecha de la ausencia:</th>
+                <td>${justificacion.fechaAusencia}</td>
+            </tr>
+            <tr>
+                <th>Archivo:</th>
+                <td>${justificacion.archivo}</td>
+            </tr>
+            <tr>
+                <th>Justificacion de la ausencia:</th>
+                <td><textarea id="justificacionText">${justificacion.justificacion}</textarea></td>
+            </tr>
+            <tr>
+                <th>Estado:</th>
+                <td>${justificacion.estado}</td>
+            </tr>
+            <tr>
+                <th>Descripcion:</th>
+                <td>${justificacion.descripcion}</td>
+            </tr>
+            <tr>
+                <th>Nombre del encargado:</th>
+                <td>${justificacion.encargado}</td>
+            </tr>       
+            <tr>
+                <td colspan="2"><button id="updateJustificacion">Guardar Cambios</button></td>
+            </tr>
+        </table>`;
+        // Mostrar la pantalla emergente con los detalles del justificacion
+        $("#popup-content").html(detallesHTML);
+        $("#popup").show();
+        $("#updateJustificacion").click(addUpdate);
+
+    } else {
+        document.getElementById('justificacionAdd').style.display = 'flex';
+
+        var filaSeleccionada = $(this).closest("tr");
+        let data = {
+            id: filaSeleccionada.attr('data-idRegistro'),
+            fechaRegistro: filaSeleccionada.find("td:first").text()
+        }
+
+        $("#idRegistro").val(data.id);
+        $("#fechaAusencia").val(data.fechaRegistro);
     }
 });
 

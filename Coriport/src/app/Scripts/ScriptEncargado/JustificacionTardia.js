@@ -113,12 +113,12 @@ document.getElementById("status-acept").addEventListener('click', function () {
 
             id: filaSeleccionada.cells[0].textContent,
             fechaSolicitud: filaSeleccionada.cells[1].textContent,
-            fechaAusencia: filaSeleccionada.cells[2].textContent,
+            fechaTardia: filaSeleccionada.cells[2].textContent,
             archivos: filaSeleccionada.cells[3].textContent,
             justificacion: filaSeleccionada.cells[4].textContent,
             estado: 'Aceptado',
             descripcion: "Su solicitud se encuentra aceptada",
-            NombreEncargado: encargado.empleado.nombre,            
+            encargado: encargado.empleado.nombre,            
            
 
         };
