@@ -11,21 +11,29 @@ function cargarTabla() {
         $("#dataTableRT").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
         for (k in respObj) { 
-
-            let justificacion = respObj[k].idJustificacionTardia ? "Justificado" : "Sin Justificar";
-            let filaHTML = `<tr data-employee-id="${respObj[k].empleado.idEmpleado}" data-justificacion="${encodeURIComponent(JSON.stringify(respObj[k].justificacion_tardia))}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
-                <td >${respObj[k].idRegistroTardia}</td>
+            let justificacion;
+            if (respObj[k].idJustificacionTardia) {
+                if (respObj[k].justificacion_tardia.estado === "Aceptado") {
+                    justificacion = "Justificado";
+                } else {
+                    justificacion = "Pendiente";
+                }
+            } else{
+                justificacion = "Sin Justificar";
+            }
+            
+            let filaHTML = `<tr data-idRegistro="${respObj[k].idRegistroTardia}" data-justificacion="${encodeURIComponent(JSON.stringify(respObj[k].justificacion_tardia))}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
                 <td>${respObj[k].fecha}</td>
                 <td>${respObj[k].cantMinutos}</td>
-                <td id="empleado">${respObj[k].empleado.nombre}</td>
                 <td id="justificacion">${justificacion}</td>
                 <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
             </tr>`;
 
             let fila = $(filaHTML);
+
             $("#dataTableRT").append(fila);
         }
-        console.log(respObj)
+        mostrarMensajeDeInfo("Las aunsecias que se encuentran pendiente puedes editarlas");
     }).fail(function (error) {
         console.log(error)
     });

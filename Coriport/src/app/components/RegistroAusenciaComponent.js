@@ -13,7 +13,17 @@ function cargarTabla() {
         var respObj = response.data;
         for (k in respObj) { 
 
-            let justificacion = respObj[k].idJustificacionAusencia ? "Justificado" : "Sin Justificar";
+            let justificacion;
+            if (respObj[k].idJustificacionAusencia) {
+                if (respObj[k].justificacion_ausencia.estado === "Aceptado") {
+                    justificacion = "Justificado";
+                } else {
+                    justificacion = "Pendiente";
+                }
+            } else{
+                justificacion = "Sin Justificar";
+            }
+            
             let filaHTML = `<tr data-employee-id="${respObj[k].empleado.idEmpleado}" data-justificacion="${encodeURIComponent(JSON.stringify(respObj[k].justificacion_ausencia))}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
                 <td >${respObj[k].idRegistroAusencia}</td>
                 <td>${respObj[k].fecha}</td>

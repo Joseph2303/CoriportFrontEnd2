@@ -11,8 +11,17 @@ function cargarTabla() {
         $("#dataTableRT").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
         for (k in respObj) { 
+            let justificacion
+            if (respObj[k].idJustificacionTardia) {
+                if (respObj[k].justificacion_tardia.estado === "Aceptado") {
+                    justificacion = "Justificado";
+                } else {
+                    justificacion = "Pendiente";
+                }
+            } else{
+                justificacion = "Sin Justificar";
+            }
 
-            let justificacion = respObj[k].idJustificacionTardia ? "Justificado" : "Sin Justificar";
             let filaHTML = `<tr data-employee-id="${respObj[k].empleado.idEmpleado}" data-justificacion="${encodeURIComponent(JSON.stringify(respObj[k].justificacion_tardia))}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
                 <td >${respObj[k].idRegistroTardia}</td>
                 <td>${respObj[k].fecha}</td>

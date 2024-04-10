@@ -1,7 +1,72 @@
+function send() {
+    let idRegistro = $("#idRegistro").val();
+
+    let justificacionData = {
+        "fechaTardia": $("#fechaTardia").val(),
+        "justificacion": $("#motivo").val(),
+        "archivo": $("#archivo").val(),
+        "estado": "Pendiente",
+        "descripcion": "Pendiente",
+        "encargado": "Pendiente",
+    };
+
+    let data = 'data=' + JSON.stringify(justificacionData);
+    console.log(justificacionData)
+
+    $.ajax({
+        url: "http://localhost:8000/api/justificacionTardia/store",
+        type: "POST",
+        data: data
+    }).done(function (response) {
+        console.log(response)
+        mostrarMensajeDeInfo("Registrando su justificacion...");
+
+        let registroData = {
+            "idJustificacionTardia": response.data.idJustificacionTardia,
+        }
+        let data = 'data=' + JSON.stringify(registroData);
+
+        $.ajax({
+            url: "http://localhost:8000/api/registroTardia/update/" + idRegistro,
+            type: "PUT",
+            data: data
+        }).done(function (response) {
+            console.log(response)
+
+            mostrarMensajeDeInfo("Se ha resgitrado exitosamente");
+            cargarTabla()
+            document.getElementById("justificacionAdd").style.display = "none";
+
+        }).fail(function (xhr, status, error) {
+            mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+
+            $.ajax({
+                url: "http://localhost:8000/api/justificacionTardia/delete/" + response.data.idJustificacionTardia,
+                type: "DELETE",
+            }).done(function (response) {
+                console.log(response)
+
+            }).fail(function (xhr, status, error) {
+                console.log(error)
+                mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+            });
+
+        });
+
+
+    }).fail(function (xhr, status, error) {
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+    });
+
+}
+
+
+
 function updateJustificacion(justificacionTardia) {
     let updatedJustificacionData = {
+        "fechaSolicitud": justificacionTardia.fechaSolicitud,
         "fechaTardia": justificacionTardia.fechaTardia,
-       // "archivo": justificacionTardia.archivo,
+        // "archivo": justificacionTardia.archivo,
         "justificacion": justificacionTardia.justificacion,
         "estado": justificacionTardia.estado,
         "encargado": justificacionTardia.encargado,
@@ -17,54 +82,14 @@ function updateJustificacion(justificacionTardia) {
         data: data
     }).done(function (response) {
         mostrarMensajeDeInfo("Se ha actualizado exitosamente");
-        document.getElementById("div-reject").style.display = "none";
-        document.getElementById('fondo-status').style.display = 'none';
-        deseleccionarCheckboxes();
         cargarTabla()
+        document.getElementById("popup").style.display = "none";
     }).fail(function (xhr, status, error) {
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
 }
 
-$(document).ready(function () {
-    cargarTabla();
-});
 
 
-function cargarTabla() {
-    $.ajax({
-        url: "http://localhost:8000/api/justificacionTardias",
-        type: "GET"
-    }).done(function (response) {
-        $("#dataTableJT").empty(); // Vaciar la tabla antes de cargar los nuevos datos
-        var respObj = response.data;
-        console.log(respObj)
-        for (k in respObj) {
-            let filaHTML = `<tr data-employee-id="${respObj[k].registro_tardia.empleado.idEmpleado}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].registro_tardia.empleado))}">
-                <td >${respObj[k].idJustificacionTardia}</td>
-                <td>${respObj[k].fechaSolicitud}</td>
-                <td>${respObj[k].fechaTardia}</td>
-                <td>${respObj[k].archivo}</td>
-                <td>${respObj[k].justificacion}</td>
-                <td>${respObj[k].estado}</td>
-                <td>${respObj[k].descripcion}</td>
-                <td>${respObj[k].encargado}</td>
-                <td id="empleado">${respObj[k].registro_tardia.empleado.nombre}</td>
-                <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
-            </tr>`;
-            let fila = $(filaHTML);
-            
-            // Verificar si el estado inicial es "Aceptado"
-            if (respObj[k].estado === "Aceptado") {
-                fila.find('input[type="checkbox"]').prop('disabled', true); // Deshabilitar el checkbox
-                fila.off('click'); // Quitar todos los eventos de clic en la fila
-            } 
-            
-            // Añadir la fila a la tabla
-            $("#dataTableJT").append(fila);
-        }
-    }).fail(function (error) {
-        console.log(error)
-    });
-}
+$("#sendJustificacion").click(send);
 

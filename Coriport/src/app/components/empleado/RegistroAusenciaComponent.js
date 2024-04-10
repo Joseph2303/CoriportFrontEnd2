@@ -12,6 +12,7 @@ function cargarTabla() {
         $("#dataTableRA").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
         for (k in respObj) {
+            
             let justificacion;
             if (respObj[k].idJustificacionAusencia) {
                 if (respObj[k].justificacion_ausencia.estado === "Aceptado") {

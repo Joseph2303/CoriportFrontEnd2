@@ -22,10 +22,8 @@
                 <table id="registro-table">
                     <thead>
                         <tr>
-                        <th>Id del registro</th>
-                        <th>Fecha de la ausencia</th>
-                        <th>Hora de la tardia</th>
-                        <th>Empleado que llego tarde</th>
+                        <th>Fecha de la tardia</th>
+                        <th>Minutos tarde</th>
                         <th>Estado de la tardia</th>
                         <th>Accion</th>
                         </tr>
@@ -49,22 +47,37 @@
     <div id="justificacionAdd" class="form-container" style="display: none;">
         <div class="form-content">
             <form class="form">
+                <center>
+                    <h6>Justificar la ausencia seleccionada</h6>
+                </center>
+
+                <div style="display: none;">
+                    <label for="idRegistro">Id registro</label>
+                    <input type="text" id="idRegistro" readonly>
+
+                    <label for="fechaTardia">Fecha de la tardia</label>
+                    <input type="date" id="fechaTardia" readonly>
+                </div>
+
+
+
+
                 <label for="motivo">Motivo de la ausencia</label>
                 <input type="text" id="motivo" placeholder="Digite el motivo de la ausencia">
-    
+
                 <label for="archivo">Archivo (solo archivos .PDF)</label>
                 <input type="file" id="archivo">
-    
+
                 <div class="button-group">
-                    <button id="send">Aceptar</button>
+                    <button id="sendJustificacion">Aceptar</button>
                     <button onclick="document.getElementById('justificacionAdd').style.display='none'">Cancelar</button>
                 </div>
             </form>
         </div>
     </div>
-
-    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/RegistroAusencia.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/RegistroTardia.js"></script>
     <script src="/Coriport/src/app/components/empleado/RegistroTardiaComponent.js"></script>
+    <script src="/Coriport/src/app/components/empleado/JustificacionTardiaComponent.js"></script>
 
 </body>
 
