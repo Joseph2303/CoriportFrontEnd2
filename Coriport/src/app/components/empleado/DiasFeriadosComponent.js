@@ -1,3 +1,6 @@
+$(document).ready(function () {
+    cargarTabla();
+});
 
 function cargarTabla() {
     $.ajax({
