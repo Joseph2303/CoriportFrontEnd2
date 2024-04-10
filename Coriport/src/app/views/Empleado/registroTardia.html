@@ -16,20 +16,26 @@
 
     </header>
     <br>
+    <center>
+        <div>
+            <input type="text" id="buscarRegistro" placeholder="Buscar ausencia..." oninput="filtrar()">
+        </div>
+    </center>
+
     <main>
         <div class="Cajon8">
             <div class="Cajon0">
                 <table id="registro-table">
                     <thead>
                         <tr>
-                        <th>Fecha de la tardia</th>
-                        <th>Minutos tarde</th>
-                        <th>Estado de la tardia</th>
-                        <th>Accion</th>
+                            <th>Fecha de la tardia</th>
+                            <th>Minutos tarde</th>
+                            <th>Estado de la tardia</th>
+                            <th>Accion</th>
                         </tr>
                     </thead>
                     <tbody id="dataTableRT">
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -43,7 +49,7 @@
             <!-- Aquí se mostrarán los detalles del empleado -->
         </div>
     </div>
-    
+
     <div id="justificacionAdd" class="form-container" style="display: none;">
         <div class="form-content">
             <form class="form">
