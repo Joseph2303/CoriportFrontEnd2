@@ -3,8 +3,9 @@ $(document).ready(function () {
 });
 
 function cargarTabla() {
+    let usuario = JSON.parse(localStorage.getItem('identity')) 
     $.ajax({
-        url: "http://localhost:8000/api/registroTardias",
+        url: "http://localhost:8000/api/registroTardias/" + usuario.empleado.idEmpleado,
         type: "GET"
     }).done(function (response) {
 
@@ -26,7 +27,6 @@ function cargarTabla() {
                 <td>${respObj[k].fecha}</td>
                 <td>${respObj[k].cantMinutos}</td>
                 <td id="justificacion">${justificacion}</td>
-                <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
             </tr>`;
 
             let fila = $(filaHTML);

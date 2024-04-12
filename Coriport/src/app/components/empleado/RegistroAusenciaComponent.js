@@ -4,8 +4,10 @@ $(document).ready(function () {
 
 
 function cargarTabla() {
+    let usuario = JSON.parse(localStorage.getItem('identity')) 
+
     $.ajax({
-        url: "http://localhost:8000/api/registroAusencias",
+        url: "http://localhost:8000/api/registroAusencias/" + usuario.empleado.idEmpleado,
         type: "GET"
     }).done(function (response) {
 
@@ -28,7 +30,6 @@ function cargarTabla() {
             let filaHTML = `<tr data-idRegistro="${respObj[k].idRegistroAusencia}" data-justificacion="${encodeURIComponent(JSON.stringify(respObj[k].justificacion_ausencia))}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
                 <td>${respObj[k].fecha}</td>
                 <td id="justificacion">${justificacion}</td>
-                <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
             </tr>`;
 
             let fila = $(filaHTML);

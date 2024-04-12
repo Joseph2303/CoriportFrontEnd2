@@ -28,7 +28,6 @@ function cargarTabla() {
                 <td>${respObj[k].cantMinutos}</td>
                 <td id="empleado">${respObj[k].empleado.nombre}</td>
                 <td id="justificacion">${justificacion}</td>
-                <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
             </tr>`;
 
             let fila = $(filaHTML);
