@@ -122,3 +122,40 @@ nav.open ~ .overlay {
   z-index: 9999;
   /* para que aparezca por encima de todo lo demás */
 }
+
+
+
+.sidebar-content {
+  overflow-y: auto;
+  max-height: 80vh; 
+  margin-right: 0; 
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.sidebar-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background-color:#09b93e; 
+}
+
+
+.main {
+  overflow-y: auto;
+  max-height: 70vh; 
+  margin-right: 0; 
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.main::-webkit-scrollbar {
+  width: 10px;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background-color:#09b93e; 
+}
