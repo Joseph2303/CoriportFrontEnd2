@@ -1,3 +1,7 @@
+function send(){
+
+}
+
 function updateSolicitud(solicitudVacaciones) {
     console.log(solicitudVacaciones)
     let updateData = {

@@ -1,15 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="../Encargado/styles/marca.css">
 
+<body>
     <center>
         <h2 style="color: white;">Marcas</h2>
     </center>
-    
+    <br>
+    <br>
+
+    <div class="cajon">
+        <div>
+            <input type="text" id="buscarMarca" placeholder="Buscar marca..." oninput="filtrar()">
+        </div>
+        <div class="tabla">
+            <table id="marca-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID Marca</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Tipo de marca</th>
+                        <th>Empleado</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableM">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Estructura para la pantalla emergente -->
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+            <!-- Aquí se mostrarán los detalles del empleado -->
+        </div>
+    </div>
+
+    <script src="/Coriport/src/app/components/encargado/MarcaComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/Marca.js"></script>
+    <script src="/Coriport/src/app/components/restriccionRoles.js"></script>
 </body>
-</html>

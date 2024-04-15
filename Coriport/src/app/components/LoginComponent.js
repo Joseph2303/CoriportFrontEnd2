@@ -24,7 +24,6 @@ function login(event) {
                     "beartoken":  localStorage.getItem("token")
                 },
                 success: function (identity) {
-
                     localStorage.setItem("identity", JSON.stringify(identity));
 
                     if (identity['tipoUsuario'] == 'Empleado') {
@@ -34,6 +33,7 @@ function login(event) {
                     } else if (identity['tipoUsuario'] == 'Encargado') {
                         window.location.href = "/Coriport/src/app/views/Encargado/main.html";
                     } else {
+                        localStorage.removeItem("token");
                         mostrarMensajeDeError("ERROR!! verifique los datos ingresados ")
                     }
 
@@ -51,23 +51,3 @@ function login(event) {
 }
 
 $("#login").click(login);
-
-/*              $.ajax({
-                url: "http://localhost:8000/api/user/comparetokens",
-                type: "GET",
-                headers: {
-                    "beartoken": localStorage.getItem("token")
-                },
-            }).done(function (response) {
-                if (response.status === 200) {
-
- 
-
-                } else {
-                    mostrarMensajeDeError("ERROR!! no puedes tener dos sesiones abiertas")
-                }
-
-
-            }).fail(function (xhr, status, error) {
-                mostrarMensajeDeError("Error!!: " + xhr.responseText);
-            });    */
