@@ -5,40 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../Empleado/styles/DiasFeriados.css">
-    <title>Document</title>
+    <title>Solicitud Vacaciones</title>
 </head>
 
 <body>
     <center>
         <h2 style="color: white;">Solicitud de Vacaciones</h2>
     </center>
-
-
-    <center>
-        <button class="Soli" href="#" class="boton-abrir" onclick="mostrarEmergenteA()"> Solicitar Vacaciones </button>
-    </center>
-
-
-    <div class="pantalla-emergenteA" id="pantallaEmergenteA">
-        <div class="contenedorA">
-            <center>
-                <h3 style="color: rgb(0, 0, 0);">Solicitar Vacaciones</h3>
-            </center>
-            <form id="miFormularioA">
-                <label class="H" for="fecha_solicitud">Fecha de Solicitud:</label>
-                <input class="H" type="date" id="fecha_solicitud" name="fecha_solicitud" required>
-
-                <label class="A" for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-
-                <br>
-
-                <button class="EnviarSoli" type="submit">Enviar Solicitud</button>
-            </form>
-            <br>
-            <a href="#" class="cerrarA" onclick="cerrarEmergenteA()">Cerrar</a>
-        </div>
-    </div>
 
     <br>
     <br>
@@ -50,7 +23,7 @@
 
     <div class="cajon">
         <div class="tabla">
-            <table id="SoliVacaciones" border="1">
+            <table id="soliVacaciones-table" border="1">
                 <thead>
                     <tr>
                         <th>Fecha de Solicitud</th>
