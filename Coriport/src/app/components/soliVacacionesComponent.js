@@ -1,5 +1,5 @@
 function updateSolicitud(solicitudVacaciones) {
-    console.log(solicitudVacaciones)
+    console.log(solicitudVacaciones.cantidadDias)
     let updateData = {
         "fechSolicitud" : solicitudVacaciones.fechaSolicitud,
         "fechInicio" : solicitudVacaciones.fechInicio,
@@ -11,12 +11,15 @@ function updateSolicitud(solicitudVacaciones) {
     };
 
     let data = 'data=' + JSON.stringify(updateData);
-    console.log(data)
     $.ajax({
         url: "http://localhost:8000/api/soliVacaciones/update/" +  solicitudVacaciones.id,
         type: "PUT",
         data: data
     }).done(function (response) {
+
+
+
+        
         mostrarMensajeDeInfo("Se ha actualizado exitosamente");
         document.getElementById("div-reject").style.display = "none";
         document.getElementById('fondo-status').style.display = 'none';

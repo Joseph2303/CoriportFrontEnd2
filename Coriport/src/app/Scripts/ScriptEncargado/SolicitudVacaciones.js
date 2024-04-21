@@ -104,6 +104,7 @@ document.getElementById("status-acept").addEventListener('click', function () {
     let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
     if (seleccionados.length === 1) {
         let filaSeleccionada = seleccionados[0].closest('tr');
+        var dias = calcularDiferenciaDias(filaSeleccionada.cells[2].textContent, filaSeleccionada.cells[3].textContent);
 
         encargado = JSON.parse(localStorage.getItem('identity'));
 
@@ -115,8 +116,8 @@ document.getElementById("status-acept").addEventListener('click', function () {
             estado: 'Aceptado',
             descripcion: "Su solicitud se encuentra aceptada",
             encargado: encargado.empleado.nombre,
-            idEmpleado: filaSeleccionada.getAttribute('data-employee-id')
-
+            idEmpleado: filaSeleccionada.getAttribute('data-employee-id'),
+            cantidadDias: dias
         };
 
         updateSolicitud(solicitudVacaciones);
@@ -157,4 +158,19 @@ function deseleccionarCheckboxes() {
     document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
         checkbox.checked = false;
     });
+}
+
+
+function calcularDiferenciaDias(fechaInicio, fechaFin) {
+    // Convertir las fechas a objetos Date
+    var inicio = new Date(fechaInicio);
+    var fin = new Date(fechaFin);
+
+    // Calcular la diferencia en milisegundos entre las fechas
+    var diferenciaMs = fin - inicio;
+
+    // Convertir la diferencia de milisegundos a días
+    var diferenciaDias = Math.ceil(diferenciaMs / (1000 * 60 * 60 * 24));
+
+    return diferenciaDias;
 }
