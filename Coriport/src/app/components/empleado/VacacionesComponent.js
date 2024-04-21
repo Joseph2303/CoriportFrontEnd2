@@ -12,7 +12,7 @@ function cargarTabla() {
         var respObj = response.data;
         for (k in respObj) {
             let filaHTML = `<tr> 
-                <td>${respObj[k].id}</td>
+                <td>${respObj[k].periodo}</td>
                 <td>${respObj[k].disponibles}</td>
                 <td>${respObj[k].diasAsig}</td>
                 <td>${respObj[k].idEmpleado}</td>
