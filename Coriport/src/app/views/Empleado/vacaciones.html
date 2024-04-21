@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacaciones</title>
+    <link rel="stylesheet" type="text/css" href="../Empleado/styles/DiasFeriados.css">
+
+</head>
+<body>
+    <center>
+        <h2 style="color: white;">Vacaciones</h2>
+    </center>
+    <br>
+    <br>
+    <center>
+    <div>
+        <input type="text" id="busquedaVacaciones" placeholder="Buscar Vacaciones..." oninput="filtrarVacaciones()">
+    </div>
+    </center>
+    <div class="cajon">
+        <div class="tabla">
+            <table id="vacaciones-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Disponibles</th>
+                        <th>Días Asignados</th>
+                        <th>ID Empleado</th>
+                        <th>Acciones</th>
+
+                    </tr>
+                </thead>
+                <tbody id="dataTableVacaciones">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/Vacaciones.js"></script>
+    <script src="/Coriport/src/app/components/empleado/VacacionesComponent.js"></script>
+    <script src="/Coriport/src/app/components/restriccionRoles.js"></script>
+
+
+</body>
+</html>

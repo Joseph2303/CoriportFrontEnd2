@@ -9,6 +9,10 @@ $("#puesto").on('click',function(){routingi("puesto")});
 $("#horario").on('click',function(){routingi("horario")});
 $("#marca").on('click',function(){routingi("marca")});
 $("#vacaciones").on('click',function(){routingi("soliVacaciones")});
+$("#vacacion").on('click',function(){routingi("vacaciones")});
+
+
+
 
 
 $("#salir").on('click',function(){routingExit()});
@@ -31,6 +35,8 @@ $("#JustificacionAusencia").on('click',function(){router("JustificacionAusencia"
 $("#registroTardia").on('click',function(){router("registroTardia")});
 $("#HorasExtra").on('click',function(){router("HorasExtra")});
 $("#SoliVacaciones").on('click',function(){router("SoliVacaciones")});
+$("#vacaciones").on('click',function(){routingi("vacaciones")});
+
 
 
 
