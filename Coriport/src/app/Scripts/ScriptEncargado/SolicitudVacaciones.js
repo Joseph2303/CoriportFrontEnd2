@@ -76,7 +76,7 @@ $(document).mouseup(function (e) {
 });
 
 
-function filtrar() {
+function filtrarSoli() {
     var inputBusqueda = document.getElementById('buscarSolicitud');
     var filtro = inputBusqueda.value.toUpperCase();
 
