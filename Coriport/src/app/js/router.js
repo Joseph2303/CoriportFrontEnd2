@@ -35,7 +35,7 @@ $("#JustificacionAusencia").on('click',function(){router("JustificacionAusencia"
 $("#registroTardia").on('click',function(){router("registroTardia")});
 $("#HorasExtra").on('click',function(){router("HorasExtra")});
 $("#SoliVacaciones").on('click',function(){router("SoliVacaciones")});
-$("#vacaciones").on('click',function(){routingi("vacaciones")});
+$("#vacaciones").on('click',function(){router("vacaciones")});
 
 
 
