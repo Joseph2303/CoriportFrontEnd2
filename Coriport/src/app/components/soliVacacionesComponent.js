@@ -1,37 +1,49 @@
 function updateSolicitud(solicitudVacaciones) {
     console.log(solicitudVacaciones.cantidadDias)
     let updateData = {
-        "fechSolicitud" : solicitudVacaciones.fechaSolicitud,
-        "fechInicio" : solicitudVacaciones.fechInicio,
-        "fechFin" : solicitudVacaciones.fechFin,
+        "fechSolicitud": solicitudVacaciones.fechaSolicitud,
+        "fechInicio": solicitudVacaciones.fechInicio,
+        "fechFin": solicitudVacaciones.fechFin,
         "estado": solicitudVacaciones.estado,
-        "responsableAut" : solicitudVacaciones.encargado,
+        "responsableAut": solicitudVacaciones.encargado,
         "descripcion": solicitudVacaciones.descripcion,
-        "idEmpleado" : solicitudVacaciones.idEmpleado
+        "idEmpleado": solicitudVacaciones.idEmpleado
     };
 
     let data = 'data=' + JSON.stringify(updateData);
     $.ajax({
-        url: "http://localhost:8000/api/soliVacaciones/update/" +  solicitudVacaciones.id,
+        url: "http://localhost:8000/api/soliVacaciones/update/" + solicitudVacaciones.id,
         type: "PUT",
         data: data
     }).done(function (response) {
 
+        if (solicitudVacaciones.cantidadDias) {
+            $.ajax({
+                url: "http://localhost:8000/api/vaciones/update/" + updateData.idEmpleado,
+                type: "PUT",
+                data: data
+            }).done(function (response) {
 
 
-        
+                cargarTabla();
+            }).fail(function (xhr, status, error) {
+                mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+            });
+        }
+
         mostrarMensajeDeInfo("Se ha actualizado exitosamente");
         document.getElementById("div-reject").style.display = "none";
         document.getElementById('fondo-status').style.display = 'none';
         deseleccionarCheckboxes();
         cargarTabla();
+
     }).fail(function (xhr, status, error) {
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
     });
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     cargarTabla();
 });
 
@@ -55,13 +67,13 @@ function cargarTabla() {
                 <td><input type="checkbox" class="checkbox-accion" onchange=""></td>
             </tr>`;
             let fila = $(filaHTML);
-            
+
             // Verificar si el estado inicial es "Aceptado"
             if (respObj[k].estado === "Aceptado") {
                 fila.find('input[type="checkbox"]').prop('disabled', true); // Deshabilitar el checkbox
                 fila.off('click'); // Quitar todos los eventos de clic en la fila
-            } 
-            
+            }
+
             // Añadir la fila a la tabla
             $("#dataTableSV").append(fila);
         }

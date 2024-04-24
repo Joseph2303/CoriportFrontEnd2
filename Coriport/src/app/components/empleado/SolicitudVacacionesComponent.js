@@ -1,3 +1,26 @@
+function send(){
+
+    let puestoData = {
+        "fecha": $("#").val(),
+        "descripcion": $("#descripcion").val(),
+        "tipoFeriado": $("#tipoFeriado").val(),
+    };
+
+    let data = 'data=' + JSON.stringify(puestoData);
+    console.log(puestoData)
+
+    $.ajax({
+        url: "http://localhost:8000/api/soliVacaciones/store",
+        type: "POST",
+        data: data
+    }).done(function (response) {
+        console.log(response)
+
+    }).fail(function (error) {
+        console.log(error)
+    });
+}
+
 $(document).ready(function () {
     cargarTabla();
 });
