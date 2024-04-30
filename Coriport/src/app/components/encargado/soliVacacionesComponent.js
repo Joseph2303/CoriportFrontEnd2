@@ -1,5 +1,6 @@
 function updateSolicitud(solicitudVacaciones) {
-    console.log(solicitudVacaciones.cantidadDias)
+    mostrarMensajeDeInfo("Cargando....");
+
     let updateData = {
         "fechSolicitud": solicitudVacaciones.fechaSolicitud,
         "fechInicio": solicitudVacaciones.fechInicio,
@@ -7,7 +8,8 @@ function updateSolicitud(solicitudVacaciones) {
         "estado": solicitudVacaciones.estado,
         "responsableAut": solicitudVacaciones.encargado,
         "descripcion": solicitudVacaciones.descripcion,
-        "idEmpleado": solicitudVacaciones.idEmpleado
+        "idEmpleado": solicitudVacaciones.idEmpleado,
+       
     };
 
     let data = 'data=' + JSON.stringify(updateData);
@@ -16,7 +18,11 @@ function updateSolicitud(solicitudVacaciones) {
         type: "PUT",
         data: data
     }).done(function (response) {
-
+        let dataUpdate = {
+            "cantidadDias": solicitudVacaciones.cantidadDias,
+            "idEmpleado": solicitudVacaciones.idEmpleado
+        };
+        let data = 'data=' + JSON.stringify(dataUpdate);
         if (solicitudVacaciones.cantidadDias) {
             $.ajax({
                 url: "http://localhost:8000/api/vaciones/update/" + updateData.idEmpleado,
@@ -24,18 +30,15 @@ function updateSolicitud(solicitudVacaciones) {
                 data: data
             }).done(function (response) {
 
-
+                mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+                document.getElementById("div-reject").style.display = "none";
+                document.getElementById('fondo-status').style.display = 'none';
+                deseleccionarCheckboxes();
                 cargarTabla();
             }).fail(function (xhr, status, error) {
                 mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
             });
         }
-
-        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
-        document.getElementById("div-reject").style.display = "none";
-        document.getElementById('fondo-status').style.display = 'none';
-        deseleccionarCheckboxes();
-        cargarTabla();
 
     }).fail(function (xhr, status, error) {
         mostrarMensajeDeError("ERROR!!: " + xhr.responseText);

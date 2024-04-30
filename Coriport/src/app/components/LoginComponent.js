@@ -6,12 +6,13 @@ function login(event) {
         contrasena: $("#contrasena").val()
     };
     let data = 'data=' + JSON.stringify(obj);
+    mostrarMensajeDeInfo("Verificando datos... ")
+
     $.ajax({
         type: "POST",
         url: "http://localhost:8000/api/user/login",
         data: data,
         success: function (respObj) {
-            mostrarMensajeDeInfo("Verificando datos... ")
             let token = localStorage.getItem("token");
             if (!token) {
                 localStorage.setItem("token", respObj);

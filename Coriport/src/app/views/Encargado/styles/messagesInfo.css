@@ -1,7 +1,6 @@
 .mensaje-container {
     position: fixed;
     top: 20px;
-    left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
@@ -12,6 +11,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 9999;
     background-color: #ffffff;
+
+    right: -350px; /* Agrega esta propiedad para que inicialmente esté fuera del viewport */
+    /* Agrega las siguientes propiedades para la animación */
+    transition: right 0.5s ease-in-out;
 }
 
 .mensaje-container .icon-container {
@@ -34,4 +37,30 @@
 
 .mensaje-error {
     border-left: 5px solid #FF3D00;
+}
+
+@keyframes slideIn {
+    0% {
+        right: -350px; /* Define la posición inicial fuera del viewport */
+    }
+    100% {
+        right: 20px; /* Define la posición final centrada */
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        right: 20px; /* Define la posición inicial centrada */
+    }
+    100% {
+        right: -430px; /* Define la posición final fuera del viewport */
+    }
+}
+
+.mensaje-container.slide-in {
+    animation: slideIn 0.5s forwards;
+}
+
+.mensaje-container.slide-out {
+    animation: slideOut 0.5s forwards;
 }

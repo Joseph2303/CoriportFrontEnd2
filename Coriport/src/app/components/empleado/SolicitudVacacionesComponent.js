@@ -1,13 +1,16 @@
 function send(){
-
-    let puestoData = {
-        "fecha": $("#").val(),
-        "descripcion": $("#descripcion").val(),
-        "tipoFeriado": $("#tipoFeriado").val(),
+    user = JSON.stringify(localStorage.getItem("identity"))
+    let soliData = {
+        "fechInicio": $("#fechInicio").val(),
+        "fechFin": $("#fechFin").val(),
+        "estado": "Pendiente",
+        "responsableAut": "Pendiente",
+        "descripcion": "Pendiente",
+        "idEmpleado": user.empleado.idEmpleado
     };
 
-    let data = 'data=' + JSON.stringify(puestoData);
-    console.log(puestoData)
+    let data = 'data=' + JSON.stringify(soliData);
+    console.log(soliData)
 
     $.ajax({
         url: "http://localhost:8000/api/soliVacaciones/store",
@@ -38,22 +41,18 @@ function cargarTabla() {
                 <td>${respObj[k].fechSolicitud}</td>
                 <td>${respObj[k].fechInicio}</td>
                 <td>${respObj[k].fechFin}</td>
-                <td>${respObj[k].estado}</td>
+                <td id="estado">${respObj[k].estado}</td>
                 <td>${respObj[k].responsableAut}</td>
                 <td>${respObj[k].descripcion}</td>
                 
             </tr>`;
             let fila = $(filaHTML);
-            
-            if (respObj[k].estado === "Aceptado") {
-                fila.find('input[type="checkbox"]').prop('disabled', true); // Deshabilitar el checkbox
-                fila.off('click'); // Quitar todos los eventos de clic en la fila
-            } 
-            
-           
+                  
             $("#dataTableSoliVacaciones").append(fila);
         }
     }).fail(function (error) {
         console.log(error)
     });
 }
+
+$("#sendSoli").click(send)
