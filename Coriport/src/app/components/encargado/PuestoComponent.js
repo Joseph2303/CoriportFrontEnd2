@@ -13,10 +13,10 @@ function send(){
     }).done(function (response) {
         console.log(response)
         document.getElementById("pantallaEmergenteAdd").style.display = "none";
-        mostrarMensajeDeInfo("Se ha ingresado exitosamente");
+        mostrarMensajeDeInfo("¡INFO!: " + response.message);
         cargarTabla()
     }).fail(function (xhr, status, error) {
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 
@@ -28,11 +28,11 @@ function destroy(id){
         console.log(response);
         cargarTabla();
         document.getElementById("pantallaConfirmacion").style.display = "none";
-        mostrarMensajeDeInfo("Se ha eliminado correctamente");
+        mostrarMensajeDeInfo("¡INFO!: " + response.message);
 
     }).fail(function (xhr, status, error) {
         console.log(error)
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

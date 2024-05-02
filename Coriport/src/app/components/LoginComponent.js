@@ -6,7 +6,7 @@ function login(event) {
         contrasena: $("#contrasena").val()
     };
     let data = 'data=' + JSON.stringify(obj);
-    mostrarMensajeDeInfo("Verificando datos... ")
+    mostrarMensajeDeInfo("Verificando datos, espere un momento... ")
 
     $.ajax({
         type: "POST",
@@ -40,13 +40,17 @@ function login(event) {
 
                 },
                 error: function (xhr, status, error) {
-                    mostrarMensajeDeError("ERROR!! : " + xhr.responseText)
+                    mostrarMensajeDeError("ERROR!! hola: " + xhr.responseJSON.message)
                 }
             });
 
         },
         error: function (xhr, status, error) {
-            mostrarMensajeDeError("ERROR!! : " + xhr.responseText)
+            if (xhr.status === 500) {
+                mostrarMensajeDeError("El servidor no responde. Por favor, inténtalo de nuevo más tarde.");
+            } else {
+                mostrarMensajeDeError("ERROR!! : " + xhr.responseJSON.message)
+            }
         }
     });
 }
