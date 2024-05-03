@@ -33,12 +33,12 @@ function send() {
         }).done(function (response) {
             console.log(response)
 
-            mostrarMensajeDeInfo("Se ha resgitrado exitosamente");
+            mostrarMensajeDeInfo("¡INFO!: " + response.message);
             cargarTabla()
             document.getElementById("justificacionAdd").style.display = "none";
 
         }).fail(function (xhr, status, error) {
-            mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+            mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
 
             $.ajax({
                 url: "http://localhost:8000/api/justificacionAusencia/delete/" + response.data.idJustificacionAusencia,
@@ -48,14 +48,14 @@ function send() {
         
             }).fail(function (xhr, status, error) {
                 console.log(error)
-                mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+                mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
             });
 
         });
 
 
     }).fail(function (xhr, status, error) {
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 
 }
@@ -79,11 +79,11 @@ function updateJustificacion(justificacionAusencias) {
         type: "PUT",
         data: data
     }).done(function (response) {
-        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        mostrarMensajeDeInfo("¡INFO!: " + response.message);
         cargarTabla()
         document.getElementById("popup").style.display = "none";
     }).fail(function (xhr, status, error) {
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

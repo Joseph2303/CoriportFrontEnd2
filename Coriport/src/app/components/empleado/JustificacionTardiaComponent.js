@@ -85,7 +85,7 @@ function updateJustificacion(justificacionTardia) {
         cargarTabla()
         document.getElementById("popup").style.display = "none";
     }).fail(function (xhr, status, error) {
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

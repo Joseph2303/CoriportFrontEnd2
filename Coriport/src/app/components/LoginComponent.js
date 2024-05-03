@@ -46,7 +46,7 @@ function login(event) {
 
         },
         error: function (xhr, status, error) {
-            if (xhr.status === 500) {
+            if (xhr.status === 500 || xhr.status === 0) {
                 mostrarMensajeDeError("El servidor no responde. Por favor, inténtalo de nuevo más tarde.");
             } else {
                 mostrarMensajeDeError("ERROR!! : " + xhr.responseJSON.message)

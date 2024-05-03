@@ -19,7 +19,7 @@ function sendUser(event) {
     }).fail(function (xhr, status, error) {
         console.log(xhr);
         console.log(xhr.responseText);
-        mostrarMensajeDeError("ERROR!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

@@ -18,9 +18,11 @@ function send(){
         data: data
     }).done(function (response) {
         console.log(response)
+        mostrarMensajeDeInfo("¡INFO!: " + response.message);
 
     }).fail(function (error) {
         console.log(error)
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

@@ -54,12 +54,12 @@ function update(puesto) {
         console.log(response)
         cargarTabla()
         deseleccionarCheckboxes();
-        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        mostrarMensajeDeInfo("¡INFO!: " + response.message);
         document.getElementById("pantallaEmergenteUpdate").style.display = "none";
 
 
     }).fail(function (xhr, status, error) {
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

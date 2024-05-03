@@ -17,13 +17,13 @@ function updateJustificacion(justificacionAusencias) {
         type: "PUT",
         data: data
     }).done(function (response) {
-        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        mostrarMensajeDeInfo("¡INFO!: " + response.message);
         document.getElementById("div-reject").style.display = "none";
         document.getElementById('fondo-status').style.display = 'none';
         deseleccionarCheckboxes();
         cargarTabla()
     }).fail(function (xhr, status, error) {
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

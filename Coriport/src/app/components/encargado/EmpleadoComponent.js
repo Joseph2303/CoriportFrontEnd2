@@ -51,7 +51,7 @@ function deleteE(empleado) {
 
     }).fail(function (xhr, status, error) {
         console.log(xhr);
-        mostrarMensajeDeError(xhr.responseText)
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 
@@ -90,10 +90,10 @@ function updateEmpleado() {
         data: data
     }).done(function (response) {
         cargarTabla()
-        mostrarMensajeDeInfo("Se ha actualizado exitosamente");
+        mostrarMensajeDeInfo("¡INFO!: " + response.message);
         document.getElementById('fondoNegroFormUpdateE').style.display = 'none';
     }).fail(function (xhr, status, error) {
-        mostrarMensajeDeError("ERROR!!: " + xhr.responseText);
+        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
 

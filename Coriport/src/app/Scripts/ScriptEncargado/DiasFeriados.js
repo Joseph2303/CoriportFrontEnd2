@@ -22,7 +22,7 @@ function filtrar() {
                     break;
                 }
             }
-
+            
             filas[i].style.display = mostrarFila ? '' : 'none';
         }
     }
