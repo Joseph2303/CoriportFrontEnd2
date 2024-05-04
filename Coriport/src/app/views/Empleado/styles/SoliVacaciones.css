@@ -1,13 +1,14 @@
-#div-form {
+.div-form-style {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: #f9f9f9;
-    position: absolute; 
-    transform: translate(40%, -80%);
-    left: 20%;
+    position: fixed; 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
 
 .close {
@@ -36,7 +37,7 @@ form input, textarea {
 }
 
 /* Estilos para el botón de enviar */
-#sendSoli {
+.btn-form {
     text-align: center;
     background-color: #4CAF50;
     color: white;
@@ -79,7 +80,7 @@ button:hover {
     background-color: #45a049; /* Cambio de color */
 }
 
-input {
+#busquedaSoliVacaciones {
     width: 800px;
     padding: 8px;
     margin-bottom: 16px;
@@ -129,11 +130,16 @@ tr:nth-child(even) {
     margin-left: 200px;
 }
 
-@media only screen and (max-width: 600px) {
+
+
+@media only screen and (max-width: 768px) {
+    /* Estilos adicionales para pantallas aún más pequeñas, como teléfonos móviles */
     .cajon {
         margin-right: 10px;
         margin-left: 10px;
     }
+
+    /* Agrgelga otras reas de estilo según sea necesario para dispositivos de pantalla muy pequeña */
 }
 
 
