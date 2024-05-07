@@ -1,6 +1,7 @@
 
 $("#diasFeriado").on('click',function(){routingi("feriado")});
 $("#empleados").on('click',function(){routingi("empleado")});
+$("#horasExtras").on('click',function(){routingi("horasExtras")});
 $("#registroTardia").on('click',function(){routingi("registroTardia")});
 $("#justiTardia").on('click',function(){routingi("justiTardia")});
 $("#registroAusencia").on('click',function(){routingi("registroAusencia")});
@@ -30,6 +31,7 @@ function routingi(router){
 
 
 $("#diasFeriados").on('click',function(){router("diasFeriados")});
+$("#horasExtras").on('click',function(){router("horasExtras")});
 $("#registroAusencia").on('click',function(){router("registroAusencia")});
 $("#JustificacionAusencia").on('click',function(){router("JustificacionAusencia")});
 $("#registroTardia").on('click',function(){router("registroTardia")});
