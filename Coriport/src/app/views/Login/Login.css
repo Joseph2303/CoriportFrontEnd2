@@ -144,18 +144,7 @@ form{
 	margin-bottom: 4px;
 }
 
-a{
-	display: block;
-	text-align: right;
-	text-decoration: none;
-	color: #999;
-	font-size: 0.9rem;
-	transition: .3s;
-}
 
-a:hover{
-	color: #17b331;
-}
 
 .btn{
 	display: block;
@@ -239,4 +228,57 @@ textarea {
     margin: 4px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+
+.pantalla-emergente {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.contenedor {
+    width: 700px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.pantalla-emergente .cerrar {
+    margin-top: 10px;
+    padding: 8px 16px; font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close {
+	margin-right: 14px;
+	font-size: 20px;
+	color: #000000;
+	text-align: right;
+  }
+
+
+
+  .H {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.A {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
 }
