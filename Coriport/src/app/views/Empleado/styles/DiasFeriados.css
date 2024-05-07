@@ -4,63 +4,80 @@ input {
   margin-bottom: 16px;
   box-sizing: border-box;
 }
-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  td, th {
-    color: #dddddd;
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  
-  tr:nth-child(even) {
-    background-color: #738fb9;
-  }
 
-  .cajon {
-    overflow-y: auto;
-    max-height: 900px; 
-    margin-right: 0; 
-    margin-left: 0;
-    padding-right: 0;
-    padding-left: 0;
+table {
+
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+td,
+th {
+ color: #dddddd;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+tr:nth-child(even) {
+  background-color: #738fb9;
+}
+
+.cajon {
+  overflow-y: auto;
+  max-height: 900px;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .cajon::-webkit-scrollbar {
-    width: 10px; /* Ajusta el ancho de la barra según tu diseño */
+  width: 10px;
+  /* Ajusta el ancho de la barra según tu diseño */
 }
 
 .cajon::-webkit-scrollbar-thumb {
-    background-color:#3a3a3a; /* Hace la barra de desplazamiento transparente */
+  background-color: #3a3a3a;
+  /* Hace la barra de desplazamiento transparente */
 }
 
-.cajon{
-    background-color: rgba(169, 244, 141, 0.135); 
-    margin-right: 200px; 
-    margin-left: 200px;
+.cajon {
+  background-color: rgba(169, 244, 141, 0.135);
+  margin-right: 200px;
+  margin-left: 200px;
 }
 
 @media only screen and (max-width: 600px) {
-    .cajon {
-        margin-right: 10px; 
-        margin-left: 10px;
-    }
+  .cajon {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 }
 
 
 
-.form input[type="text"],
-.form input[type="file"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+.descargar-pdf {
+  text-decoration: none;
+  background-color: #3498db; /* Color azul */
+  color: #ffffff; /* Texto en color blanco */
+  padding: 8px 16px; /* Padding reducido para un aspecto más compacto */
+  border-radius: 5px; /* Radio de borde */
+  font-size: 14px; /* Tamaño de fuente ligeramente reducido */
+  margin-top: 15px; /* Margen superior reducido */
+  display: inline-block;
+  transition: background-color 0.3s ease; /* Efecto de transición al cambiar el color de fondo */
 }
 
+.descargar-pdf i {
+  margin-right: 3px; /* Espacio reducido entre el icono y el texto */
+}
+
+.descargar-pdf:hover {
+  background-color: #258cd1; /* Color de fondo más oscuro al pasar el mouse */
+}
 
 

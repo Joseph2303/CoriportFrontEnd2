@@ -12,7 +12,6 @@ function cargarTabla() {
      
         for (k in respObj) {
             let filaHTML = `<tr> 
-                <td>${respObj[k].id}</td>
                 <td>${respObj[k].fecha}</td>
                 <td>${respObj[k].descripcion}</td>
                 <td>${respObj[k].tipoFeriado}</td>
@@ -32,3 +31,6 @@ function cargarTabla() {
         console.log(error)
     });
 }
+
+
+

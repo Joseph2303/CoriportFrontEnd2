@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Días Feriados</title>
     <link rel="stylesheet" type="text/css" href="../Empleado/styles/DiasFeriados.css">
-
 </head>
+
 <body>
     <center>
         <h2 style="color: white;">Días Feriados</h2>
@@ -14,18 +15,21 @@
     <br>
     <br>
     <center>
-    <div>
-        <input type="text" id="busquedaFeriado" placeholder="Buscar día feriado..." oninput="filtrarFeriado()">
-    </div>
+        <div>
+            <input type="text" id="busquedaFeriado" placeholder="Buscar día feriado..." oninput="filtrarFeriado()">
+            <a href="#" class="descargar-pdf" onclick="generarPDF()">
+                <i class="fa fa-download"></i> PDF
+            </a>
+        </div>
     </center>
     <div class="cajon">
+        <a></a>
         <div class="tabla">
             <table id="diasFeriados-table" border="1">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Fecha</th>
-                        <th>Descripción</th>
+                        <th>Feriado</th>
                         <th>Tipo Feriado</th>
                     </tr>
                 </thead>
@@ -33,13 +37,14 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 
     <script src="/Coriport/src/app/Scripts/ScriptEmpleado/DiasFeriados.js"></script>
     <script src="/Coriport/src/app/components/empleado/DiasFeriadosComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
     <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
 
-
 </body>
+
 </html>
