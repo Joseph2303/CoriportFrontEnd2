@@ -54,11 +54,37 @@
             </div>
           </div>
           <input type="submit" class="btn" value="Iniciar" id="login" value="Login">
-
+          <a href="#"class="boton-abrir" onclick="mostrarEmergente()">
+            <center>
+              <lord-icon src="https://cdn.lordicon.com/mebvgwrs.json" trigger="hover"
+                style="width:150px;height:150px; color: #ffffff;">Marca Face</lord-icon>
+            </center>
+          </a>
         </form>
       </div>
     </div>
   </div>
+<div class="pantalla-emergente" id="pantallaEmergente">
+  <div class="contenedor">
+    <div class="close">
+      <a class="bi bi-x-lg" href="#" onclick="cerrarEmergente()"></a>
+    </div>
+    <center>
+      <h1>Marca Face</h1>
+    </center>
+    <form action="">
+      <label class="H" for="nombre">Ingrese su Id de empleado:</label>
+      <input class="A" type="number" id="nombre" name="nombre" required>
+    </form>
+
+
+
+
+  </div>
+</div>
+
+
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <script src="/Coriport/src/app/components/LoginComponent.js"></script>
   <script type="text/javascript" src="/Coriport/src/app/Scripts/ScriptLogin/Login.js"></script>
   <script src="/Coriport/src/app/Scripts/MessagesInfo.js"></script>

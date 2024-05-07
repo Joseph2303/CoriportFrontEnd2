@@ -43,5 +43,11 @@ function changeView2(view) {
 	  });
 
 
-
-
+	function mostrarEmergente() {
+		document.getElementById('pantallaEmergente').style.display = 'flex';
+	}
+	
+	function cerrarEmergente() {
+		document.getElementById('pantallaEmergente').style.display = 'none';
+	}
+	
