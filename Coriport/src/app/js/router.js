@@ -38,6 +38,7 @@ $("#registroTardia").on('click',function(){router("registroTardia")});
 $("#HorasExtra").on('click',function(){router("HorasExtra")});
 $("#SoliVacaciones").on('click',function(){router("SoliVacaciones")});
 $("#vacaciones").on('click',function(){router("vacaciones")});
+$("#vacacio").on('click',function(){router("vacaciones")});
 
 
 

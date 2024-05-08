@@ -18,13 +18,7 @@ function cargarTabla() {
                 
             </tr>`;
             let fila = $(filaHTML);
-            
-            if (respObj[k].estado === "Aceptado") {
-                fila.find('input[type="checkbox"]').prop('disabled', true); // Deshabilitar el checkbox
-                fila.off('click'); // Quitar todos los eventos de clic en la fila
-            } 
-            
-           
+    
             $("#dataTableVacaciones").append(fila);
         }
     }).fail(function (error) {
