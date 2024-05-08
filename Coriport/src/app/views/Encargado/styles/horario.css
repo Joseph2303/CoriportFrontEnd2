@@ -1,5 +1,15 @@
-.btnCrearHorario{
-    color: #007bff;
+#btnCrearHorario{
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#btnCrearHorario:hover{
+background-color: #47a0ff;
 }
 
 .horario-container {
