@@ -8,9 +8,10 @@ function cargarTabla() {
         url: "http://localhost:8000/api/registroAusencias",
         type: "GET"
     }).done(function (response) {
-
         $("#dataTableRA").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
+        var contadorRegistros = respObj.length; // Contador de registros de ausencias
+        $("#recuento-registros").text(contadorRegistros); // Actualizar el contador en el HTML
         for (k in respObj) { 
 
             let justificacion;
@@ -37,7 +38,6 @@ function cargarTabla() {
     }).fail(function (error) {
         console.log(error)
     });
-
-
 }
+
 
