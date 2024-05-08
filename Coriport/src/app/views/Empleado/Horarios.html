@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../Empleado/styles/horarios.css">
+</head>
+<body>
+    <center>
+        <h2 style="color: white;">Horario</h2>
+    </center>
+    <center>
+        <div>
+            <input type="text" id="HorarioFeriado" placeholder="Buscar día feriado..." oninput="filtrarFeriado()">
+        </div>
+    </center>
+    <div class="cajon">
+        <a></a>
+        <div class="tabla">
+            <table id="Horarios-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Id Horarios</th>
+                        <th>Hora Inicion</th>
+                        <th>Hora Fin</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="dataHorarios">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

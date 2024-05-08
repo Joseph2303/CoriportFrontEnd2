@@ -39,7 +39,7 @@ $("#HorasExtra").on('click',function(){router("HorasExtra")});
 $("#SoliVacaciones").on('click',function(){router("SoliVacaciones")});
 $("#vacaciones").on('click',function(){router("vacaciones")});
 $("#vacacio").on('click',function(){router("vacaciones")});
-
+$("#Horarios").on('click',function(){router("Horarios")});
 
 
 
