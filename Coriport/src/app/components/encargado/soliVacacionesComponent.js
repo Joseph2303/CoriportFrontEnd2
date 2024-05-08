@@ -57,6 +57,8 @@ function cargarTabla() {
     }).done(function (response) {
         $("#dataTableSV").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
+        var contadorSolicitudes = respObj.length; // Contador de solicitudes de vacaciones
+        $("#recuento-solicitudes").text(contadorSolicitudes); // Actualizar el contador en el HTML
         for (k in respObj) {
             let filaHTML = `<tr data-employee-id="${respObj[k].idEmpleado}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
                 <td >${respObj[k].idSoliVacaciones}</td>
@@ -84,6 +86,7 @@ function cargarTabla() {
         console.log(error)
     });
 }
+
 
 
 

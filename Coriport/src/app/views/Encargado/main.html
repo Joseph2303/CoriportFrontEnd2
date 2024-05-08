@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>HCR Encargado</title>
@@ -15,24 +16,28 @@
     <link rel="icon" type="image/x-icon" href="/Coriport/src/app/Assets/img/letra-h.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
+
 <body class="main">
     <div class="preloader">
         <img src="/Coriport/src/app/Assets/img/icons8-reloj-arena-abajo.gif">
-      </div>
-      
-<div class="col-12">
-        <nav>
+    </div>
+
+        <nav class="navbar">
             <div class="logo">
                 <i class="bx bx-menu menu-icon"></i>
-                <a class="logo-name" href="/Coriport/src/app/views/Encargado/main.html">   <img src="/Coriport/src/app/Assets/img/siglas_coriport.png" style=" width: 170px; height: 81px;"></a>
-                <br> 
+                <a class="logo-name" href="/Coriport/src/app/views/Encargado/main.html"> <img
+                        src="/Coriport/src/app/Assets/img/siglas_coriport.png" style=" width: 170px; height: 81px;"></a>
+                <br>
             </div>
             <div class="sidebar">
                 <div class="logo">
                     <i class="bx bx-menu menu-icon"></i>
-                    <a class="logo-name" href="/Coriport/src/app/views/Encargado/main.html">   <img src="/Coriport/src/app/Assets/img/siglas_coriport.png" style=" width: 170px; height: 81px;"></a>
+                    <a class="logo-name" href="/Coriport/src/app/views/Encargado/main.html"> <img
+                            src="/Coriport/src/app/Assets/img/siglas_coriport.png"
+                            style=" width: 170px; height: 81px;"></a>
                 </div>
                 <div class="sidebar-content">
                     <ul class="lists">
@@ -111,7 +116,7 @@
                         </li>
                         <br>
                         <li class="list">
-                            <a  id="salir" href="#" class="nav-link">
+                            <a id="salir" href="#" class="nav-link">
                                 <i class="bx bx-log-out icon"></i>
                                 <span class="link">Cerrar Seción</span>
                             </a>
@@ -122,33 +127,71 @@
         </nav>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
         <div id="background-container"></div>
         <div id="main-containerEncargado" class="col-12">
 
+            <center>
+                <div class="card" style="width: 18rem; border-radius: 20px;">
+                    <img src="/Coriport/src/app/Assets/img/cv_resume_curriculum_vitae_qualifications_employment_history_icon_262945.png" class="card-img-top" style=" width: 100px; height: 100px; margin-left: 103px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Empleados:</h5>
+                        <h1><span id="recuento-empleados">0</span></h1>
+                        <a  href="#" style="border-radius: 10px;" class="btn btn-primary">Ver Empleados</a>
+                    </div>
+                </div>
+                <br>
+                <div class="card" style="width: 18rem; border-radius: 20px;">
+                    <img src="/Coriport/src/app/Assets/img/agreement_contract_deal_arrangement_understanding_icon_262930.png" class="card-img-top" style=" width: 100px; height: 100px; margin-left: 103px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Solicitudes de Vacaciones:</h5>
+                        <h1><span id="recuento-solicitudes">0</span></h1>
+                        <a href="#" style="border-radius: 10px;" class="btn btn-primary">Ver Solicitudes</a>
+                    </div>
+                </div>
+                <br>
+                <div class="card" style="width: 18rem; border-radius: 20px;">
+                    <img src="/Coriport/src/app/Assets/img/productivity_schedule_efficiency_organization_time_management_icon_263012.png" class="card-img-top" style=" width: 100px; height: 100px; margin-left: 103px;">
+                    <div class="card-body">
+                      <h5 class="card-title">Ausencias mensuales:</h5>
+                      <h1><span id="recuento-registros">0</span></h1>
+                      <a href="#" style="border-radius: 10px;" class="btn btn-primary">Ver Ausencias</a>
+                    </div>
+                  </div>
+                  <br>
+                  <br>
+            </center>
         </div>
     </div>
     <footer>
         <div>
             <center>
                 <p style="color: white;" class="logo-name">Encargado</p>
-            <p style="color: white;">Sistema creado para el control de Empleados de Coriport.</p>
+                <p style="color: white;">Sistema creado para el control de Empleados de Coriport.</p>
             </center>
         </div>
     </footer>
-</div>
+    </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js" integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/Coriport/src/app/Scripts/ScriptEncargado/MenuEncargado.js"></script>
-<script src="/Coriport/src/app/js/jquery.js"></script>
-<script src="/Coriport/src/app/js/router.js"></script>
-<script src="/Coriport/src/app/Scripts/MessagesInfo.js"></script>
-<script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
-<script src="/Coriport/src/app/Scripts/logoutTime.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"
+        integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+        integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/MenuEncargado.js"></script>
+    <script src="/Coriport/src/app/js/jquery.js"></script>
+    <script src="/Coriport/src/app/js/router.js"></script>
+    <script src="/Coriport/src/app/Scripts/MessagesInfo.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+    <script src="/Coriport/src/app/Scripts/logoutTime.js"></script>
+    
+    
+    <script src="/Coriport/src/app/components/encargado/card.js"></script>
+    <script src="/Coriport/src/app/components/encargado/RegistroAusenciaComponent.js"></script>
 
 </body>
 </html>
