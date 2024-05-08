@@ -72,14 +72,18 @@
     <center>
       <h1>Marca Face</h1>
     </center>
-    <form action="">
-      <label class="H" for="nombre">Ingrese su Id de empleado:</label>
-      <input class="A" type="number" id="nombre" name="nombre" required>
+
+    <form id="myForm">
+      <label class="J" for="name">Ingrese su Id de empleado:</label>
+      <input class="A" type="text" id="name" name="name" required>
+      <br>
+      <br>
+      <video id="video" autoplay></video>
+      <button class="H" id="captureButton" type="button">Tomar Foto</button>
+      <canvas id="canvas" style="display: none;"></canvas>
+
+      <button class="H" type="submit">Enviar</button>
     </form>
-
-
-
-
   </div>
 </div>
 
