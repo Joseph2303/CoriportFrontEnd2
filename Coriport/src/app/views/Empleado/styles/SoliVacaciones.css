@@ -54,56 +54,55 @@ form input, textarea {
 }
 
 .container {
-    text-align: center;
-    margin-top: 50px;
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
 }
 
-/* Estilos para el botón */
-.container button {
-    background-color: #4CAF50; /* Color de fondo */
-    border: none; /* Sin borde */
-    color: white; /* Color del texto */
-    padding: 15px 32px; /* Espaciado interno */
-    text-align: center; /* Alineación del texto */
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px; /* Tamaño de la fuente */
-    margin: 4px 2px; /* Margen exterior */
+.filter {
+    flex: 1; /* El tamaño del flexbox se ajusta automáticamente */
+    margin-right: 20px; /* Espacio entre la barra de filtrar y el botón */
+}
+
+#btn-crearSoli {
+    padding: 9px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Sombra */
-    transition: 0.3s; /* Transición suave */
+    transition: background-color 0.3s ease;
+    margin-bottom: 7px;
 }
 
-/* Estilos cuando se pasa el ratón por encima del botón */
-button:hover {
-    background-color: #45a049; /* Cambio de color */
+#btn-crearSoli:hover {
+    background-color: #0056b3; /* Cambia el color de fondo cuando el cursor está sobre el botón */
 }
+
 
 #busquedaSoliVacaciones {
     width: 300px;
-    padding: 8px;
-    margin-bottom: 16px;
+    padding: 6px;
+    margin-bottom: 8px;
     box-sizing: border-box;
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
-}
-
-td,
-th {
-    color: #dddddd;
-    border: 1px solid #dddddd;
+  }
+  
+  td,
+  th {
+    color: #000000; 
+    border: 2px solid #ddebe4;
     text-align: left;
-    padding: 8px;
-}
+    padding: 10px;
+    background-color: rgb(171, 170, 170);
+  }
+  
 
 
-tr:nth-child(even) {
-    background-color: #738fb9;
-}
 
 .cajon {
     overflow-y: auto;
@@ -125,7 +124,6 @@ tr:nth-child(even) {
 }
 
 .cajon {
-    background-color: rgba(169, 244, 141, 0.135);
     margin-right: 200px;
     margin-left: 200px;
 }

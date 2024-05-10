@@ -9,16 +9,12 @@ table {
     width: 100%;
   }
   
-  td, th {
-    color: #dddddd;
-    border: 1px solid #dddddd;
+  td,th{
+    color: #000000; 
+    border: 2px solid #ddebe4;
     text-align: left;
-    padding: 8px;
-  }
-  
-  
-  tr:nth-child(even) {
-    background-color: #738fb9;
+    padding: 10px;
+    background-color: rgb(171, 170, 170);
   }
 
   .Cajon4 {
@@ -39,7 +35,6 @@ table {
 }
 
 .Cajon6{
-    background-color: rgba(169, 244, 141, 0.135); 
     margin-right: 200px; 
     margin-left: 200px;
 }
