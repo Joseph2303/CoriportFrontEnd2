@@ -16,7 +16,7 @@
 
 
   body {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.5) 100%), url('/Coriport/src/app/Assets/img/EmpleadoFondo.png');
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.633) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%), url('/Coriport/src/app/Assets/img/EmpleadoFondo.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -56,7 +56,7 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(188, 60, 60, 0.1);
     text-align: center;
 }
 
@@ -243,7 +243,6 @@ li a.active, li a:hover{
 
 
 .menu-container {
-    background-color: rgb(4, 4, 4);
     padding: 2px; 
 }
 

@@ -85,6 +85,7 @@ form input, textarea {
     padding: 6px;
     margin-bottom: 8px;
     box-sizing: border-box;
+    border-radius: 8px;
 }
 
 table {

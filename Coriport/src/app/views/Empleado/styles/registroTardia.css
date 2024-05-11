@@ -4,6 +4,7 @@ input {
   margin-bottom: 16px;
   box-sizing: border-box;
   text-align: left;
+  border-radius: 8px;
 }
 #buscarRegistro {
   width: 300px;

@@ -3,6 +3,7 @@
   padding: 8px;
   margin-bottom: 16px;
   box-sizing: border-box;
+  border-radius: 8px;
 }
 table {
     border-collapse: collapse;
