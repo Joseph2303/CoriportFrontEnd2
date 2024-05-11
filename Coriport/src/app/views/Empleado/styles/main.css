@@ -58,7 +58,7 @@ body {
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(188, 60, 60, 0.1);
     text-align: center;
 }
 
@@ -353,3 +353,15 @@ li a:hover {
 .card .btn-closet a:hover {
     background: #0b6164;
 }
+    #check:checked ~ ul{
+        left:0;
+    }
+    
+}
+
+
+.menu-container {
+    padding: 2px; 
+}
+
+

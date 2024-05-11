@@ -9,24 +9,23 @@
 </head>
 
 <body>
+    <br>
     <center>
         <h2 style="color: white;">Solicitud de Vacaciones</h2>
     </center>
-    <div class="container">
-        <button id="btn-crearSoli" onclick="document.getElementById('div-form').style.display='flex'">Crear
-            Solicitud</button>
-    </div>
-
+    
     <br>
     <br>
-    <center>
-        <div >
-            <input type="text" id="busquedaSoliVacaciones" placeholder="Buscar Solicitud de vacaciones..."
-                oninput="filtrarSoliVacaciones()">
-        </div>
-    </center>
 
     <div class="cajon">
+        
+        <div class="container">
+            <div class="filter">
+                <input type="text" id="busquedaSoliVacaciones" placeholder="Buscar Solicitud de vacaciones..." oninput="filtrarSoliVacaciones()">
+            </div>
+            <button id="btn-crearSoli" onclick="document.getElementById('div-form').style.display='flex'">Crear
+                Solicitud</button>
+        </div>
         <div class="tabla">
             <table id="soliVacaciones-table" border="1">
                 <thead>

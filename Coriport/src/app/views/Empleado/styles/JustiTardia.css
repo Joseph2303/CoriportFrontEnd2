@@ -10,10 +10,6 @@ table {
     padding: 8px;
   }
   
-  
-  tr:nth-child(even) {
-    background-color: #738fb9;
-  }
 
   .Cajon3 {
     overflow-y: auto;

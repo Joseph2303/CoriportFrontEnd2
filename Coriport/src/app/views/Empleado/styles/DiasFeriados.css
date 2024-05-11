@@ -4,27 +4,40 @@ input {
   margin-bottom: 16px;
   box-sizing: border-box;
   text-align: left;
+  border-radius: 8px;
 }
 
 table {
-
-  border-collapse: collapse;
   width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #f3f3f3bb;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-
-td,
 th {
- color: #dddddd;
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+  background-color: #578af7b5;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  text-align: center;
 }
 
-
-tr:nth-child(even) {
-  background-color: #738fb9;
+td {
+  border: none;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #1c1c1c;
 }
+
+tr:nth-child(odd) {
+  background-color: #f3f3f3ac;
+}
+
 
 .cajon {
   overflow-y: auto;
@@ -37,16 +50,13 @@ tr:nth-child(even) {
 
 .cajon::-webkit-scrollbar {
   width: 10px;
-  /* Ajusta el ancho de la barra según tu diseño */
 }
 
 .cajon::-webkit-scrollbar-thumb {
-  background-color: #3a3a3a;
-  /* Hace la barra de desplazamiento transparente */
+  background-color: #9d5e5e;
 }
 
 .cajon {
-  background-color: rgba(169, 244, 141, 0.135);
   margin-right: 200px;
   margin-left: 200px;
 }
@@ -58,27 +68,21 @@ tr:nth-child(even) {
   }
 }
 
-
-
-
 .descargar-pdf {
   text-decoration: none;
-  background-color: #3498db; /* Color azul */
-  color: #ffffff; /* Texto en color blanco */
-  padding: 8px 16px; /* Padding reducido para un aspecto más compacto */
-  border-radius: 5px; /* Radio de borde */
-  font-size: 14px; /* Tamaño de fuente ligeramente reducido */
-  margin-top: 15px; /* Margen superior reducido */
+  background-color: #3498db;
+  color: #ffffff;
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 18px;
   display: inline-block;
-  transition: background-color 0.3s ease; /* Efecto de transición al cambiar el color de fondo */
+  transition: background-color 0.3s ease;
 }
 
 .descargar-pdf i {
-  margin-right: 3px; /* Espacio reducido entre el icono y el texto */
+  margin-right: 3px;
 }
-
 .descargar-pdf:hover {
-  background-color: #258cd1; /* Color de fondo más oscuro al pasar el mouse */
+  background-color: #258cd1;
 }
-
-
