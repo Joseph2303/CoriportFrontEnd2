@@ -363,3 +363,16 @@ li a:hover {
 }
 
 
+
+
+footer {
+    background-color: #2f3d3000;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  footer a {
+    color: #fff;
+    text-decoration: none;
+  }
