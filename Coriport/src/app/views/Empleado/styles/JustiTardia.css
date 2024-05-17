@@ -1,13 +1,32 @@
 table {
-    border-collapse: collapse;
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #f3f3f3bb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
   }
   
-  td, th {
-    color: #dddddd;
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+  th {
+    background-color: #578af7b5;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    text-align: center;
+  }
+  
+  td {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #1c1c1c;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #f3f3f3ac;
   }
   
 

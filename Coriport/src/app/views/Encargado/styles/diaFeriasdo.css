@@ -39,6 +39,8 @@ input {
     padding: 8px;
     margin-bottom: 16px;
     box-sizing: border-box;
+    border: none;
+    border-radius: 8px;
 }
 
 .form {

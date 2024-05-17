@@ -89,17 +89,34 @@ form input, textarea {
 }
 
 table {
-    border-collapse: collapse;
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #f3f3f3bb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
   }
   
-  td,
   th {
-    color: #000000; 
-    border: 2px solid #ddebe4;
-    text-align: left;
+    background-color: #578af7b5;
+    color: white;
+    font-weight: bold;
     padding: 10px;
-    background-color: rgb(171, 170, 170);
+    border: none;
+    text-align: center;
+  }
+  
+  td {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #1c1c1c;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #f3f3f3ac;
   }
   
 
