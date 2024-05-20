@@ -2,14 +2,14 @@
 const inputs = document.querySelectorAll(".input");
 
 
-function addcl(){
+function addcl() {
 	let parent = this.parentNode.parentNode;
 	parent.classList.add("focus");
 }
 
-function remcl(){
+function remcl() {
 	let parent = this.parentNode.parentNode;
-	if(this.value == ""){
+	if (this.value == "") {
 		parent.classList.remove("focus");
 	}
 }
@@ -24,63 +24,96 @@ function changeView2(view) {
 	var container = document.getElementById('view-container');
 	var url = 'viewsEncargados/' + view + '.php';
 	fetch(url)
-	  .then(response => response.text())
-	  .then(data => {
-		container.innerHTML = data;
-	  })
-	  .catch(error => {
-		console.log('Error:', error);
-	  });
-  }
-  window.addEventListener('load', function() {
-		  var preloader = document.querySelector('.preloader');
-		  
-		  preloader.classList.add('hide');
+		.then(response => response.text())
+		.then(data => {
+			container.innerHTML = data;
+		})
+		.catch(error => {
+			console.log('Error:', error);
+		});
+}
+window.addEventListener('load', function () {
+	var preloader = document.querySelector('.preloader');
 
-		  setTimeout(function() {
-			  preloader.style.display = 'none';
-		  }, 7000); 
-	  });
+	preloader.classList.add('hide');
+
+	setTimeout(function () {
+		preloader.style.display = 'none';
+	}, 7000);
+});
 
 
-	function mostrarEmergente() {
-		document.getElementById('pantallaEmergente').style.display = 'flex';
+function mostrarEmergente() {
+	document.getElementById('pantallaEmergente').style.display = 'flex';
+}
+
+function cerrarEmergente() {
+	document.getElementById('pantallaEmergente').style.display = 'none';
+}
+
+
+
+
+
+const videoElement = document.getElementById('video');
+const captureButton = document.getElementById('captureButton');
+const enviarButton = document.getElementById('enviarButton');
+let blob = null;
+// Step 1: Access the camera
+async function startCamera() {
+	try {
+		const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+		videoElement.srcObject = stream;
+
+		// Step 2: Record the video
+		const mediaRecorder = new MediaRecorder(stream);
+		let chunks = [];
+
+		mediaRecorder.ondataavailable = function (event) {
+			if (event.data.size > 0) {
+				chunks.push(event.data);
+			}
+		};
+
+
+		mediaRecorder.start();
+
+		setTimeout(() => {
+			mediaRecorder.stop();
+
+		}, 3000); // Stop recording after 3 seconds
+		mediaRecorder.onstop = function () {
+			blob = new Blob(chunks, { type: 'video/webm' });
+			chunks = [];
+
+			alert("Dele enviar hpta")
+		};
+	} catch (error) {
+		console.error('Error accessing the camera: ', error);
 	}
-	
-	function cerrarEmergente() {
-		document.getElementById('pantallaEmergente').style.display = 'none';
-	}
-	
+}
 
+function sendVideo() {
+	const formData = new FormData();
+	formData.append('file', blob, 'video.webm');
 
-	const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const captureButton = document.getElementById('captureButton');
+	fetch('http://localhost:8000/uploadfile/', {
+		method: 'POST',
+		body: formData
+	})
+		.then(response => response.json())
+		.then(data => {
+			console.log('Success:', data);
+			alert(data)
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+}
+captureButton.addEventListener('click', function () {
+	startCamera();
+});
 
-        // Acceder a la cámara del dispositivo
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function(stream) {
-                video.srcObject = stream;
-            })
-            .catch(function(error) {
-                console.error('Error al acceder a la cámara:', error);
-            });
-
-        // Función para capturar una imagen de la cámara
-        captureButton.addEventListener('click', function() {
-            const context = canvas.getContext('2d');
-            // Configurar el tamaño del canvas para que coincida con el tamaño del video
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            // Dibujar el video en el canvas
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            // Convertir el contenido del canvas a una URL de imagen
-            const imageDataURL = canvas.toDataURL('image/jpeg');
-            // Ahora puedes enviar imageDataURL como el valor de la imagen en el formulario, o realizar otras operaciones con él
-            console.log(imageDataURL);
-        });
-
-        document.getElementById('myForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Aquí puedes agregar la lógica para enviar el formulario
-        });
+enviarButton.addEventListener('click', (event)=>{
+	sendVideo(blob)
+});
