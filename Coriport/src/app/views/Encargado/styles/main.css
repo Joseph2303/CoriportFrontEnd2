@@ -167,3 +167,15 @@ nav.open ~ .overlay {
 .main::-webkit-scrollbar-thumb {
   background-color:#09b93e; 
 }
+
+
+footer {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}

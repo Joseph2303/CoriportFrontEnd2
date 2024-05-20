@@ -26,74 +26,70 @@
         <img src="/Coriport/src/app/Assets/img/icons8-reloj-arena-abajo.gif">
     </div>
 
-    <div class="pantalla-emergente" id="pantallaEmergente">
-        <div class="contenedor">
-            <form id="miFormulario">
-                <h2>Mi Perfil</h2>
-                <label class="H" for="nombre">Nombre:</label>
-                <input class="A" type="text" id="nombre" name="nombre" required>
+    <div class="pantalla-emergente" id="pantallaEmergente" style="display: none;">
+        <div class="card">
+            <div class="head">
+                <div class="circle"></div>
+                <div class="img">
+                    <img src="/Coriport/src/app/Assets/img/free-user-icon-3296-thumb.png" alt="">
+                </div>
+            </div>
+           <br>
+            <div class="descripcion">
+                <h4 id="nombre">Nombre</h4>
+                <h5 id="puesto">Puesto</h5>
+                <label>Email:</label>
+                <p id="email"></p>
+                <label>Cedula:</label>
+                <p id="cedula"></p>
+            </div>
+            <div class="btn-closet">
+                <a href="#" class="" onclick="cerrarEmergente()">Cerrar</a>
 
-                <label class="H" for="apellidos">Apellidos:</label>
-                <input class="A" type="text" id="apellidos" name="apellidos" required>
-
-                <label class="H" for="email">Email:</label>
-                <input class="A" type="email" id="email" name="email" required>
-
-                <label class="H" for="telefono">Telefono:</label>
-                <input class="A" type="tel" id="telefono" name="telefono" required>
-
-                <label class="H" for="cedula">Cedula:</label>
-                <input class="A" type="text" id="cedula" name="cedula" required>
-
-                <label class="H" for="Puesto">Puesto:</label>
-                <input class="A" type="text" id="Puesto" name="Puesto" required>
-            </form>
-            <a href="#" class="cerrar" onclick="cerrarEmergente()">Cerrar</a>
+            </div>
         </div>
     </div>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <a href="/Coriport/src/app/views/Empleado/main.html" class="enlace">
+            <img src="/Coriport/src/app/Assets/img/siglas_coriport.png" class="logo">
+        </a>
 
-    <div class="menu-container">
-        <div class="barraMenu"></div>
-        <nav>
-            <input type="checkbox" id="check">
-            <label for="check" class="checkbtn">
-                <i class="fas fa-bars"></i>
-            </label>
-            <a href="/Coriport/src/app/views/Empleado/main.html" class="enlace">
-                <img src="/Coriport/src/app/Assets/img/siglas_coriport.png" class="logo">
-            </a>
-        
-            <ul>
-                <li>
-                    <a id="diasFeriados" class="title1" href="#"> Días Feriados</a>
-                </li>
-                <li>
-                    <a id="horasExtras" class="title1" href="#"> Horas Extras</a>
-                </li>
-                <li>
-                    <a id="registroAusencia" class="title1" href="#"> Registro de Ausencias</a>
-                </li>
-                <li>
-                    <a id="registroTardia" class="title1" href="#"> Registro de Tardías</a>
-                </li>
-                <li>
-                    <a id="vacaciones" class="title1" href="#"> Vacaciones</a>
-                </li>
-                <li>
-                    <a id="Horarios" class="title1" href="#"> Horarios</a>
-                </li>
-                <li>
-                    <a id="SoliVacaciones" class="title1" href="#"> Solicitud de Vacaciones</a>
-                </li>
-                <li>
-                    <a href="#" class="boton-abrir" onclick="mostrarEmergente()"> Mi perfil</a>
-                </li>
-                <li>
-                    <a id="salir" href="#" class="salir"> Cerrar Seción </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+        <ul>
+            <li>
+                <a id="diasFeriados" class="title1" href="#"> Días Feriados</a>
+            </li>
+            <li>
+                <a id="horasExtras" class="title1" href="#"> Horas Extras</a>
+            </li>
+            <li>
+                <a id="registroAusencia" class="title1" href="#"> Registro de Ausencias</a>
+            </li>
+            <li>
+                <a id="registroTardia" class="title1" href="#"> Registro de Tardías</a>
+            </li>
+            <li>
+                <a id="vacaciones" class="title1" href="#"> Vacaciones</a>
+            </li>
+            <li>
+                <a id="Horarios" class="title1" href="#"> Horarios</a>
+            </li>
+            <li>
+                <a id="SoliVacaciones" class="title1" href="#"> Solicitud de Vacaciones</a>
+            </li>
+            <li>
+                <a href="#" class="boton-abrir" onclick="mostrarEmergente()"> Mi perfil</a>
+            </li>
+            <li>
+                <a id="salir" href="#" class="salir"> Cerrar Seción </a>
+            </li>
+        </ul>
+    </nav>
+
+   
 
     <div id="main-containerEmpleado">
 
@@ -102,8 +98,10 @@
     <footer>
         <div>
             <center>
-                <p style="color: white;" class="logo-name">Empleado</p>
-                <p style="color: white;">Sistema creado para el control de Empleados de Coriport.</p>
+                <p>Empleado</p>
+                <p>Derechos de autor &copy; 2024 - Sistema creado para el control de Empleados de Coriport.</p>
+                <p>Contáctanos: <a href="mailto:info@guanacasteairport.com">info@guanacasteairport.com</a></p>
+                <p>Tel: <a href="tel:+50626669600">(506)2666-9600</a></p>
             </center>
         </div>
     </footer>

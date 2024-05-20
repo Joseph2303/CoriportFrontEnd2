@@ -11,9 +11,9 @@ $("#horario").on('click',function(){routingi("horario")});
 $("#marca").on('click',function(){routingi("marca")});
 $("#vacaciones").on('click',function(){routingi("soliVacaciones")});
 $("#vacacion").on('click',function(){routingi("vacaciones")});
-
-
-
+$("#empleado").on('click',function(){routingi("empleado")});
+$("#Vacacione").on('click',function(){routingi("soliVacaciones")});
+$("#registroAusenci").on('click',function(){routingi("registroAusencia")});
 
 
 $("#salir").on('click',function(){routingExit()});
