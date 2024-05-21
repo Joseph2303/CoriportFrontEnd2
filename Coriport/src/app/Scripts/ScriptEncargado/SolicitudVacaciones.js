@@ -160,7 +160,7 @@ function deseleccionarCheckboxes() {
     });
 }
 
-
+/** 
 function calcularDiferenciaDias(fechaInicio, fechaFin) {
     // Convertir las fechas a objetos Date
     var inicio = new Date(fechaInicio);
@@ -174,3 +174,4 @@ function calcularDiferenciaDias(fechaInicio, fechaFin) {
 
     return diferenciaDias;
 }
+*/

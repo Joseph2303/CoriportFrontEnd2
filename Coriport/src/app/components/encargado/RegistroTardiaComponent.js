@@ -21,11 +21,12 @@ function cargarTabla() {
             } else{
                 justificacion = "Sin Justificar";
             }
+            let cantMinutos = formatMinutos(respObj[k].cantMinutos);
 
             let filaHTML = `<tr data-employee-id="${respObj[k].empleado.idEmpleado}" data-justificacion="${encodeURIComponent(JSON.stringify(respObj[k].justificacion_tardia))}" data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].empleado))}">
                 <td >${respObj[k].idRegistroTardia}</td>
                 <td>${respObj[k].fecha}</td>
-                <td>${respObj[k].cantMinutos}</td>
+                <td>${cantMinutos}</td>
                 <td id="empleado">${respObj[k].empleado.nombre}</td>
                 <td id="justificacion">${justificacion}</td>
             </tr>`;
@@ -39,3 +40,18 @@ function cargarTabla() {
     });
 }
 
+function formatMinutos(hora) {
+    // Asegurarse de que la hora sea una cadena
+    if (typeof hora !== 'string') return hora;
+    
+    // Dividir la cadena de la hora en partes
+    let partes = hora.split(':');
+    
+    // Si la longitud de partes es al menos 2 (HH y mm están presentes)
+    if (partes.length >= 2) {
+        return `${partes[0]}:${partes[1]}`;
+    }
+    
+    // En caso contrario, devolver la hora sin modificar
+    return hora;
+}
