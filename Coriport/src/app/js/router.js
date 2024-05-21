@@ -46,3 +46,13 @@ $("#Horarios").on('click',function(){router("Horarios")});
 function router(router){
     $('#main-containerEmpleado').load('/Coriport/src/app/views/Empleado/'+router+'.html');
 }
+
+
+
+
+$("#faceid").on('click',function(){routerar("faceid")});
+$("#marcaid").on('click',function(){routerar("marcaid")});
+
+function routerar(router){
+    $('#main-containerMarca').load('/Coriport/src/app/views/Login/'+router+'.html');
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .mensaje1 {
+            position: fixed;
+            top: 20px;
+            left: 85%;
+            transform: translateX(-50%);
+            background-color: #90c9ff;
+            color: rgb(8, 8, 8);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            
+        }
+    
+        .mostrar-mensaje1 {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div id="mensaje" class="mensaje1"></div>
+    <form id="registroForm">
+        <label for="cedula">Cédula del Empleado:</label>
+        <input type="text" id="cedula" name="cedula" required>
+        <br><br>
+        <button type="button" onclick="registrarEntrada()">Registrar Entrada</button>
+        <button type="button" onclick="registrarSalida()">Registrar Salida</button>
+    </form>
+
+
+
+    <script>
+        let registros = [];
+      
+        function registrarEntrada() {
+            const cedula = document.getElementById("cedula").value.trim(); // Eliminar espacios en blanco al inicio y al final
+            if (cedula === "") {
+                mostrarMensaje('cedulaVacia');
+                return;
+            }
+            const fechaActual = new Date().toLocaleDateString();
+            const horaEntrada = new Date().toLocaleTimeString();
+            const existeRegistro = registros.find(registro => registro.cedula === cedula && registro.fecha === fechaActual);
+            if (!existeRegistro) {
+                registros.push({ cedula, fecha: fechaActual, horaEntrada });
+                mostrarMensaje('entrada', cedula);
+                mostrarRegistrosEnConsola();
+            } else {
+                mostrarMensaje('yaRegistrado');
+            }
+        }
+      
+        function registrarSalida() {
+            const cedula = document.getElementById("cedula").value.trim(); // Eliminar espacios en blanco al inicio y al final
+            if (cedula === "") {
+                mostrarMensaje('cedulaVacia');
+                return;
+            }
+            const fechaActual = new Date().toLocaleDateString();
+            const horaSalida = new Date().toLocaleTimeString();
+            const registro = registros.find(registro => registro.cedula === cedula && registro.fecha === fechaActual);
+            if (registro) {
+                registro.horaSalida = horaSalida;
+                mostrarMensaje('salida', cedula);
+                mostrarRegistrosEnConsola();
+            } else {
+                mostrarMensaje('sinEntrada');
+            }
+        }
+      
+        function mostrarMensaje(tipo, cedula) {
+            const mensaje = document.getElementById("mensaje");
+            mensaje.classList.remove('mostrar-mensaje1');
+            if (tipo === 'entrada') {
+                mensaje.textContent = `Empleado con cédula ${cedula} ha ingresado.`;
+            } else if (tipo === 'salida') {
+                mensaje.textContent = `Empleado con cédula ${cedula} ha salido.`;
+            } else if (tipo === 'yaRegistrado') {
+                mensaje.textContent = "Esta cédula ya ha sido registrada hoy.";
+            } else if (tipo === 'sinEntrada') {
+                mensaje.textContent = "No hay registro de entrada para esta cédula hoy.";
+            } else if (tipo === 'cedulaVacia') {
+                mensaje.textContent = "Por favor, ingrese una cédula.";
+            }
+            mensaje.classList.add('mostrar-mensaje1');
+            setTimeout(() => mensaje.classList.remove('mostrar-mensaje1'), 5000); // Ocultar el mensaje después de 5 segundos
+        }
+      
+        function mostrarRegistrosEnConsola() {
+            console.clear(); // Limpiar la consola antes de mostrar los registros
+            registros.forEach(registro => {
+                console.log(registro);
+            });
+        }
+      </script>
+
+</body>
+</html>

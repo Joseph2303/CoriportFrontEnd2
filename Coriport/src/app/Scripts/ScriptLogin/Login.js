@@ -117,3 +117,5 @@ captureButton.addEventListener('click', function () {
 enviarButton.addEventListener('click', (event)=>{
 	sendVideo(blob)
 });
+
+
