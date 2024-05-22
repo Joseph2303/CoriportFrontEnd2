@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
         .mensaje1 {
             position: fixed;
             top: 20px;
-            left: 85%;
+            left: 65%;
             transform: translateX(-50%);
             background-color: #90c9ff;
             color: rgb(8, 8, 8);
@@ -18,31 +19,76 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
-            
+
         }
-    
+
         .mostrar-mensaje1 {
             opacity: 1;
+        }
+
+
+        .HA {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .HA:hover {
+            background-color: #0056b3;
+        }
+
+
+        .HO {
+            background-color: #a41b00;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .HO:hover {
+            background-color: #fe725f;
+        }
+
+        .O {
+            width: 300px;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            text-align: left;
+            border-radius: 8px;
         }
     </style>
 
 </head>
+
 <body>
-    
+
+    <center>
+        <h2>Marca con Cédula</h2>
+    </center>
+    <br><br>
     <div id="mensaje" class="mensaje1"></div>
     <form id="registroForm">
         <label for="cedula">Cédula del Empleado:</label>
-        <input type="text" id="cedula" name="cedula" required>
+        <input class="O" type="text" id="cedula" name="cedula" required placeholder="Ingrese su numero de cédula #">
         <br><br>
-        <button type="button" onclick="registrarEntrada()">Registrar Entrada</button>
-        <button type="button" onclick="registrarSalida()">Registrar Salida</button>
+        <br><br>
+        <button class="HA" type="button" onclick="registrarEntrada()">Registrar Entrada</button>
+        <button class="HO" type="button" onclick="registrarSalida()">Registrar Salida</button>
     </form>
 
 
 
     <script>
         let registros = [];
-      
+
         function registrarEntrada() {
             const cedula = document.getElementById("cedula").value.trim(); // Eliminar espacios en blanco al inicio y al final
             if (cedula === "") {
@@ -60,7 +106,7 @@
                 mostrarMensaje('yaRegistrado');
             }
         }
-      
+
         function registrarSalida() {
             const cedula = document.getElementById("cedula").value.trim(); // Eliminar espacios en blanco al inicio y al final
             if (cedula === "") {
@@ -78,7 +124,7 @@
                 mostrarMensaje('sinEntrada');
             }
         }
-      
+
         function mostrarMensaje(tipo, cedula) {
             const mensaje = document.getElementById("mensaje");
             mensaje.classList.remove('mostrar-mensaje1');
@@ -96,14 +142,15 @@
             mensaje.classList.add('mostrar-mensaje1');
             setTimeout(() => mensaje.classList.remove('mostrar-mensaje1'), 5000); // Ocultar el mensaje después de 5 segundos
         }
-      
+
         function mostrarRegistrosEnConsola() {
             console.clear(); // Limpiar la consola antes de mostrar los registros
             registros.forEach(registro => {
                 console.log(registro);
             });
         }
-      </script>
+    </script>
 
 </body>
+
 </html>

@@ -57,8 +57,8 @@
           <input type="submit" class="btn" value="Iniciar" id="login" value="Login">
           <a href="#" class="boton-abrir" onclick="mostrarEmergente()">
             <center>
-              <lord-icon src="https://cdn.lordicon.com/mebvgwrs.json" trigger="hover"
-                style="width:150px;height:150px; color: #ffffff;">Marca Face</lord-icon>
+              <lord-icon src="https://cdn.lordicon.com/stxfyhky.json" trigger="hover"
+                style="width:150px;height:150px; color: #ffffff;">Realizar Marca</lord-icon>
             </center>
           </a>
         </form>
@@ -78,48 +78,32 @@
 
       <div class="sidebar-content">
         <ul class="lists">
-            <li class="list">
-                <a id="faceid" href="#" class="nav-link" data-toggle="collapse" aria-expanded="false">
-                  <i class='bx bxs-face icon'></i>
-                    <span class="link">Face ID</span>
-                </a>
-            </li>
-            <li class="list">
-                <a id="marcaid" href="#" class="nav-link">
-                    <i class="bx bxs-hourglass icon"></i>
-                    <span class="link">Marca con cedula</span>
-                </a>
-            </li>
+          <li class="list">
+            <a id="marcaid" href="#" class="nav-link">
+              <i class="bx bxs-hourglass icon"></i>
+              <span class="link">Marca con cédula</span>
+            </a>
+          </li>
+          <li class="list">
+            <a id="faceid" href="#" class="nav-link" data-toggle="collapse" aria-expanded="false">
+              <i class='bx bxs-face icon'></i>
+              <span class="link">Face ID</span>
+            </a>
+          </li>
         </ul>
-    </div>
-
-      <div id="main-containerMarca">
-        
       </div>
+      <div id="main-containerMarca">
 
 
 
+      </div>
     </div>
   </div>
-  <script>
-    $(document).ready(function(){
-        $("#faceid").on('click', function(){
-            routerar("faceid");
-        });
-
-        $("#marcaid").on('click', function(){
-            routerar("marcaid");
-        });
-
-        function routerar(router){
-            $('#main-containerMarca').load('/Coriport/src/app/views/Login/' + router + '.html');
-        }
-    });
-</script>
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <script src="/Coriport/src/app/components/LoginComponent.js"></script>
   <script type="text/javascript" src="/Coriport/src/app/Scripts/ScriptLogin/Login.js"></script>
   <script src="/Coriport/src/app/js/jquery.js"></script>
+  <script src="/Coriport/src/app/js/router.js"></script>
   <script src="/Coriport/src/app/Scripts/MessagesInfo.js"></script>
   <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
 </body>
