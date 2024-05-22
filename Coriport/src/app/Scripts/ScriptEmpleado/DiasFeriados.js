@@ -113,3 +113,41 @@ function generarPDF() {
     img1.src = '/Coriport/src/app/Assets/img/coripo.png';
 }
 
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var table = document.getElementById("diasFeriados-table");
+    var tbody = table.getElementsByTagName("tbody")[0];
+    var rowsPerPage = 1; // Cambia esto según la cantidad de filas que desees mostrar por página
+    var rows = tbody.getElementsByTagName("tr");
+    var pageCount = Math.ceil(rows.length / rowsPerPage);
+
+    function showPage(page) {
+        var start = (page - 1) * rowsPerPage;
+        var end = start + rowsPerPage;
+        for (var i = 0; i < rows.length; i++) {
+            if (i >= start && i < end) {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+
+    function createPaginationControls() {
+        var paginationControls = document.getElementById("paginationControls");
+        for (var i = 1; i <= pageCount; i++) {
+            var button = document.createElement("button");
+            button.textContent = i;
+            button.addEventListener("click", function() {
+                var pageNumber = parseInt(this.textContent);
+                showPage(pageNumber);
+            });
+            paginationControls.appendChild(button);
+        }
+    }
+
+    showPage(1);
+    createPaginationControls();
+});

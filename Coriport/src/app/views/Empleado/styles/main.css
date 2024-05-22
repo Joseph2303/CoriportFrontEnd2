@@ -15,19 +15,18 @@
 
 
 body {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.852) 0%, rgba(75, 77, 75, 0.655) 50%, rgba(0, 0, 0, 0) 100%), url('/Coriport/src/app/Assets/img/EmpleadoFondo.png');
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.852) 0%, rgba(75, 77, 75, 0.655) 50%, rgba(0, 0, 0, 0.333) 100%), url('/Coriport/src/app/Assets/img/EmpleadoFondo.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    background-attachment: fixed; /* Esta línea fija la imagen de fondo */
     font-family: 'century Gothic', sans-serif;
     margin: 0;
-    /* Asegúrate de que no haya márgenes en el cuerpo del documento */
     height: 100vh;
-    /* Establece la altura del cuerpo al 100% de la altura de la ventana */
     display: flex;
     flex-direction: column;
-
 }
+
 
 
 
@@ -375,4 +374,24 @@ footer {
   footer a {
     color: #fff;
     text-decoration: none;
+  }
+
+
+  
+  .main {
+    overflow-y: auto;
+    max-height: 70vh; 
+    margin-right: 0; 
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+    background-color: #464646;
+  }
+  
+  .main::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .main::-webkit-scrollbar-thumb {
+    background-color:#0d1628; 
   }
