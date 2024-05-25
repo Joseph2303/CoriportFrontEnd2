@@ -86,7 +86,7 @@ async function startCamera() {
 			blob = new Blob(chunks, { type: 'video/webm' });
 			chunks = [];
 
-			alert("Dele enviar hpta")
+			alert("Procesa a enviar la marca")
 		};
 	} catch (error) {
 		console.error('Error accessing the camera: ', error);
@@ -97,7 +97,7 @@ function sendVideo() {
 	const formData = new FormData();
 	formData.append('file', blob, 'video.webm');
 
-	fetch('http://localhost:8000/uploadfile/', {
+	fetch('http://localhost:9000/uploadfile/', {
 		method: 'POST',
 		body: formData
 	})

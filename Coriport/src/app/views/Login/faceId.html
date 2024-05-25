@@ -1,24 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="../Login/Login.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/stylee.css">
+  <title>Marca</title>
 </head>
+
+
 <body>
+  <div style="text-align: center; margin-bottom: 10px;">
+    <button id="takeSnapshot" style="padding: 10px;">Sacar Foto</button>
+  </div>
+  <div style="text-align: center;">
+    <video id="videoElement" autoplay="true"></video>
+  </div>
+  <button class="H" id="enviarButton" type="button" onclick="sendVideo()">Enviar</button>
+  <script>
+    async function getCam() {
+      const video = document.getElementById("videoElement");
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream
+      const mediaRecorder = new MediaRecorder(stream);
+      let chunks = [];
+
+      mediaRecorder.ondataavailable = function (event) {
+        if (event.data.size > 0) {
+          chunks.push(event.data);
+        }
+      };
+
+
+      mediaRecorder.start();
+
+      setTimeout(() => {
+        mediaRecorder.stop();
+
+      }, 3000); // Stop recording after 3 seconds
+      mediaRecorder.onstop = function () {
+        blob = new Blob(chunks, { type: 'video/webm' });
+        chunks = [];
+
+        alert("Procesa a enviar la marca")
+      };
+    }
+
+    getCam();
+    function sendVideo() {
+      const formData = new FormData();
+      formData.append('file', blob, 'video.webm');
     
-  <center><h1>Marca con Face</h1></center>
-    <video id="video" autoplay></video>
-    <button class="H" id="captureButton" type="button">Tomar Foto</button>
-    <canvas id="canvas" style="display: none;"></canvas>
-    <button class="H" id="enviarButton" type="button">Enviar</button>
+      fetch('http://localhost:9000/uploadfile/', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          alert(data)
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
 
-
-  <script src="https://cdn.lordicon.com/lordicon.js"></script>
-  <script src="/Coriport/src/app/components/LoginComponent.js"></script>
-  <script type="text/javascript" src="/Coriport/src/app/Scripts/ScriptLogin/Login.js"></script>
-  <script src="/Coriport/src/app/Scripts/MessagesInfo.js"></script>
-  <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+  </script>
 </body>
+
 </html>
