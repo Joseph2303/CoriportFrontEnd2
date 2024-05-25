@@ -64,23 +64,22 @@ input {
     border-collapse: collapse; 
 }
 
-table {
+table{
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
     background-color: white;
     border-radius: 10px;
 }
-
-th {
+td{
+    text-align: center;
+}
+th{
     background-color: #007bff;
     color: white;
     padding: 10px;
-    border: 0;
-    text-align: center;
-}
-
-td {
+    height: 40%;
+    border: 0; 
     text-align: center;
 }
 

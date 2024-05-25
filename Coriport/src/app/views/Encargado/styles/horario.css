@@ -1,4 +1,5 @@
-#btnCrearHorario{
+/* Botón Crear Horario */
+#btnCrearHorario {
     background-color: #007bff;
     color: #fff;
     padding: 10px 15px;
@@ -8,18 +9,18 @@
     margin-right: 10px;
 }
 
-#btnCrearHorario:hover{
-background-color: #47a0ff;
+#btnCrearHorario:hover {
+    background-color: #47a0ff;
 }
 
+/* Estilo del campo de búsqueda */
 #busquedaHorario {
-    width: 500px;
     padding: 8px;
-    margin-bottom: 16px;
     box-sizing: border-box;
     border-radius: 8px;
-  }
+}
 
+/* Contenedor de la tabla */
 .horario-container {
     background-color: #cfe6ff;
     padding: 20px;
@@ -27,20 +28,56 @@ background-color: #47a0ff;
     margin: 20px;
 }
 
+/* Tabla de horarios */
 #horario-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-th, td {
-    padding: 10px;
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+td {
     text-align: center;
 }
 
 th {
     background-color: #007bff;
     color: white;
+    padding: 10px;
+    height: 40%;
+    border: 0;
+    text-align: center;
 }
 
+/* Contenedor principal */
+.cajon {
+    background-color: #cfe6ff;
+    padding: 10px 20px;
+    border-radius: 7px;
+}
+.cajon-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
 
+.cajon-responsive table {
+    width: 100%;
+    min-width: 600px; /* Ajusta esto según sea necesario */
+}
+
+#busquedaHorario-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#busquedaHorario-responsive table {
+    width: 100%;
+    min-width: 600px; /* Ajusta esto según sea necesario */
+}

@@ -1,37 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horarios</title>
     <link rel="stylesheet" type="text/css" href="styles/horario.css">
 </head>
+
 <body>
     <center>
         <h2 style="color: white;">Horarios</h2>
     </center>
     <br>
     <br>
-    
-    <div class="horario-container">
-        <div>
-            <input type="text" id="busquedaHorario" placeholder="Buscar horario..." oninput="filtrar()">
+    <div class="cajon">
+        <div class="horario-container">
+            <div>
+                <input type="text" id="busquedaHorario" placeholder="Buscar horario..." oninput="filtrar()">
+            </div>
+            <div class="table-responsive">
+                <table class="tabla" id="horario-table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Fecha</th>
+                            <th>Hora Inicio</th>
+                            <th>Hora Fin</th>
+                            <th>Empleado</th>
+                            <th>Id Horario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableHorario">
+                        <!-- Aquí se insertarán las filas de la tabla dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <table id="horario-table" border="1">
-            <thead>
-                <tr>
-                    <th>Día</th>
-                    <th>Fecha</th>
-                    <th>Hora Inicion</th>
-                    <th>Hora Fin</th>               
-                    <th>Id Horario</th>
-                </tr>
-            </thead>
-            <tbody id="dataTableHorario">
-           
-            </tbody>
-        </table>
     </div>
+    
     <br>
     <br>
     <script src="/Coriport/src/app/components/encargado/HorarioComponent.js"></script>
