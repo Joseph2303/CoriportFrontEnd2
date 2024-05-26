@@ -296,10 +296,17 @@ form {
 }
 
 video {
-	width: 100%;
-	height: auto;
+	width: 100px; /* Configura el ancho del contenedor */
+	height: 200px; /* Configura el alto del contenedor */
 	border-radius: 40px;
-	margin-bottom: 10px;
+	overflow: hidden;
+	margin-bottom: 2px;
+	max-width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgb(0, 0, 0);
+	position: relative; /* Necesario para que ::before se posicione relativo al video */
 }
 
 .H {
@@ -315,11 +322,6 @@ video {
 .H:hover {
 	background-color: #0056b3;
 }
-
-
-
-
-
 
 
 

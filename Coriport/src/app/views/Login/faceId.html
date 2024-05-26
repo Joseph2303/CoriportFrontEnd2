@@ -5,19 +5,77 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/stylee.css">
+
   <title>Marca</title>
+  <style>
+    #videoElement {
+      width: 100%;
+      max-width: 250px;
+    }
+
+    #enviarButton {
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    #takeSnapshot {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+
+    #takeSnapshot:hover {
+      background-color: #0056b3;
+    }
+
+    .Y {
+      background-color: #02c112;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .Y:hover {
+      background-color: #40ef3a;
+    }
+  </style>
 </head>
 
 
 <body>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <button id="takeSnapshot" style="padding: 10px;">Sacar Foto</button>
-  </div>
-  <div style="text-align: center;">
-    <video id="videoElement" autoplay="true"></video>
-  </div>
-  <button class="H" id="enviarButton" type="button" onclick="sendVideo()">Enviar</button>
+  <center>
+          <h2>Marca con Face</h2>
+    <div>
+      <video id="videoElement" autoplay="true"></video>
+      <source src="tu-video.mp4" type="video/mp4">
+    </div>
+    <button id="takeSnapshot">Sacar Marca</button>
+    <button class="Y" id="enviarButton" type="button" onclick="sendVideo()">Enviar</button>
+  </center>
+  <!--Esta para la vista esa respo-->
+  <script>
+    function sendVideo() {
+      console.log('Enviar video');
+    }
+    const videoElement = document.getElementById('videoElement');
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+        videoElement.srcObject = stream;
+        videoElement.play();
+      });
+    }
+  </script>
+
+  <!--Esta para la vista esta funcion-->
+
   <script>
     async function getCam() {
       const video = document.getElementById("videoElement");
@@ -38,7 +96,7 @@
       setTimeout(() => {
         mediaRecorder.stop();
 
-      }, 3000); // Stop recording after 3 seconds
+      }, 3000);
       mediaRecorder.onstop = function () {
         blob = new Blob(chunks, { type: 'video/webm' });
         chunks = [];
@@ -51,7 +109,7 @@
     function sendVideo() {
       const formData = new FormData();
       formData.append('file', blob, 'video.webm');
-    
+
       fetch('http://localhost:9000/uploadfile/', {
         method: 'POST',
         body: formData
