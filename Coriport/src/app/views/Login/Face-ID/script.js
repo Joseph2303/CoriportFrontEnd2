@@ -62,7 +62,13 @@ elVideo.addEventListener('play', async () => {
 
 saveButton.addEventListener('click', () => {
     const canvas = document.querySelector('canvas');
-    saveImage(canvas);
+    promptPassword().then((password) => {
+        if (password !== null && password === "coriport2010") {
+            saveImage(canvas);
+        } else {
+            alert("Contraseña incorrecta. No puedes guardar el rostro.");
+        }
+    });
 });
 
 compareButton.addEventListener('click', () => {
@@ -155,4 +161,11 @@ async function compareFace() {
             alert('No se detectó ningún rostro en la imagen actual.');
         }
     };
+}
+
+function promptPassword() {
+    return new Promise((resolve) => {
+        const password = prompt("Por favor, ingrese la contraseña para guardar el rostro:");
+        resolve(password);
+    });
 }
