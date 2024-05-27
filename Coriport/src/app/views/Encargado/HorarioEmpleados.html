@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario de Empleados</title>
+    <link rel="stylesheet" href="/Coriport/src/app/views/Encargado/styles/horarioEmpleado.css">
+</head>
+<body>
+    <center>
+        <h2 style="color: white;">Horario de Empleados</h2>
+    </center>
+    <div class="container">
+        <table id="horarioTabla">
+            <thead>
+                <tr>
+                    <th>Empleado</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Juan Pérez</td>
+                    <td>09:00 - 17:00</td>
+                    <td>09:00 - 17:00</td>
+                    <td>09:00 - 17:00</td>
+                    <td>09:00 - 17:00</td>
+                    <td>09:00 - 17:00</td>
+                    <td>Libre</td>
+                    <td>Libre</td>
+                </tr>
+                <tr>
+                    <td>María López</td>
+                    <td>13:00 - 21:00</td>
+                    <td>13:00 - 21:00</td>
+                    <td>Libre</td>
+                    <td>13:00 - 21:00</td>
+                    <td>13:00 - 21:00</td>
+                    <td>09:00 - 17:00</td>
+                    <td>Libre</td>
+                </tr>
+                <tr>
+                    <td>Carlos Gómez</td>
+                    <td>Libre</td>
+                    <td>09:00 - 17:00</td>
+                    <td>09:00 - 17:00</td>
+                    <td>09:00 - 17:00</td>
+                    <td>Libre</td>
+                    <td>13:00 - 21:00</td>
+                    <td>13:00 - 21:00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button id="btnAbrirModal">Agregar Nuevo Horario</button>
+
+        <div id="modalFormulario" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Agregar Nuevo Horario</h2>
+                <form id="formularioHorario">
+                    <label for="empleado">Id del Empleado:</label>
+                    <input type="text" id="empleado" name="empleado" required>
+
+                    <label for="horaEntrada">Hora de Entrada:</label>
+                    <input type="time" id="horaEntrada" name="horaEntrada" required>
+
+                    <label for="horaSalida">Hora de Salida:</label>
+                    <input type="time" id="horaSalida" name="horaSalida" required>
+
+                    <label for="diaLibre">Día Libre:</label>
+                    <select id="diaLibre" name="diaLibre" required>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
+
+                    <button type="submit">Agregar Horario</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/horarioEmpleado.js"></script>
+</body>
+</html>

@@ -14,6 +14,7 @@ $("#vacacion").on('click',function(){routingi("vacaciones")});
 $("#empleado").on('click',function(){routingi("empleado")});
 $("#Vacacione").on('click',function(){routingi("soliVacaciones")});
 $("#registroAusenci").on('click',function(){routingi("registroAusencia")});
+$("#HorarioEmpleados").on('click',function(){routingi("HorarioEmpleados")});
 
 
 $("#salir").on('click',function(){routingExit()});
@@ -22,6 +23,7 @@ function routingExit(){
     window.location.href = "/Coriport/src/app/views/Login/login.html";
     localStorage.clear()
 }
+
 
 function routingi(router){
     $('#main-containerEncargado').load('/Coriport/src/app/views/Encargado/'+router+'.html');
