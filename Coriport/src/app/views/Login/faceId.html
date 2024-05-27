@@ -3,128 +3,73 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Marca</title>
+  <title>Reconocimiento facial</title>
+  <script src="/Coriport/src/app/views/Login/Face-ID/face-api.min.js" defer></script>
+  <script src="/Coriport/src/app/views/Login/Face-ID/script.js" defer></script>
   <style>
-    #videoElement {
-      width: 100%;
-      max-width: 250px;
+    body {
+      font-family: 'century Gothic', sans-serif;
     }
 
-    #enviarButton {
+
+    video {
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input,
+    button {
+      display: block;
+      width: calc(100% - 40px);
+      margin: 10px auto;
       padding: 10px;
-      margin-top: 10px;
-    }
-
-    #takeSnapshot {
-      background-color: #007bff;
-      color: #fff;
-      padding: 10px 15px;
-      border: none;
+      font-size: 16px;
       border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
-      margin-bottom: 5px;
+      border: 1px solid #ccc;
     }
 
-    #takeSnapshot:hover {
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
       background-color: #0056b3;
     }
 
-    .Y {
-      background-color: #02c112;
-      color: #fff;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
+    a.P {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #02a425;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
     }
 
-    .Y:hover {
-      background-color: #40ef3a;
+    a.P:hover {
+      background-color: #003b0d;
     }
   </style>
 </head>
 
-
 <body>
-  <center>
-          <h2>Marca con Face</h2>
-    <div>
-      <video id="videoElement" autoplay="true"></video>
-      <source src="tu-video.mp4" type="video/mp4">
-    </div>
-    <button id="takeSnapshot">Sacar Marca</button>
-    <button class="Y" id="enviarButton" type="button" onclick="sendVideo()">Enviar</button>
-  </center>
-  <!--Esta para la vista esa respo-->
-  <script>
-    function sendVideo() {
-      console.log('Enviar video');
-    }
-    const videoElement = document.getElementById('videoElement');
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-        videoElement.srcObject = stream;
-        videoElement.play();
-      });
-    }
-  </script>
-
-  <!--Esta para la vista esta funcion-->
-
-  <script>
-    async function getCam() {
-      const video = document.getElementById("videoElement");
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      video.srcObject = stream
-      const mediaRecorder = new MediaRecorder(stream);
-      let chunks = [];
-
-      mediaRecorder.ondataavailable = function (event) {
-        if (event.data.size > 0) {
-          chunks.push(event.data);
-        }
-      };
 
 
-      mediaRecorder.start();
+  <a href="/Coriport/src/app/views/Login/login.html" class="P">Regresar al login</a>
 
-      setTimeout(() => {
-        mediaRecorder.stop();
 
-      }, 3000);
-      mediaRecorder.onstop = function () {
-        blob = new Blob(chunks, { type: 'video/webm' });
-        chunks = [];
-
-        alert("Procesa a enviar la marca")
-      };
-    }
-
-    getCam();
-    function sendVideo() {
-      const formData = new FormData();
-      formData.append('file', blob, 'video.webm');
-
-      fetch('http://localhost:9000/uploadfile/', {
-        method: 'POST',
-        body: formData
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-          alert(data)
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    }
-
-  </script>
+  <div class="container">
+    <video id="video" autoplay muted width="450" height="450"></video>
+    <input type="text" id="employee-id" placeholder="ID de empleado">
+    <button id="save-button">Guardar Imagen</button>
+    <button id="compare-button">Comparar Rostro</button>
+  </div>
 </body>
 
 </html>
