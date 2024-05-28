@@ -74,7 +74,7 @@ function update() {
             url: "http://localhost:8000/api/empleado/show/" + cedula,
             type: "GET",
         }).done(function (response) {
-           
+          
             if (response && response.data) {
                 let idEmpleado = response.data.idEmpleado;
                 let marcas = response.data.marcas;
