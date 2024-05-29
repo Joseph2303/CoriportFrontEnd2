@@ -63,7 +63,7 @@ elVideo.addEventListener('play', async () => {
 saveButton.addEventListener('click', () => {
     const canvas = document.querySelector('canvas');
     promptPassword().then((password) => {
-        if (password !== null && password === "coriport2010") {
+        if (password !== null && password === "1") {
             saveImage(canvas);
         } else {
             alert("Contraseña incorrecta. No puedes guardar el rostro.");
