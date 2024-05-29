@@ -172,22 +172,26 @@ function promptPassword() {
 }
 
 
-async function sendDataToBackend(data) {
+async function sendDataToBackend(dataFace) {
+    const url = 'http://localhost:8000/api/faceId/store';
     try {
-        const response = await fetch('http://localhost:8000/api/faceId/store', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        if (response.ok) {
-            console.log('Datos enviados correctamente al backend.');
-        } else {
-            console.error('Error al enviar datos al backend:', response.statusText);
-        }
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: dataFace }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error al enviar datos al backend: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log('Respuesta del servidor:', data);
     } catch (error) {
-        console.error('Error de red al enviar datos al backend:', error);
+      console.error('Error al enviar datos al backend:', error);
     }
 }
     
