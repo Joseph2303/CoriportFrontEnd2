@@ -113,7 +113,7 @@ function saveImage(canvas) {
                 // Guardar la imagen y el ID de empleado en el localStorage
                 const employeeData = {
                     idEmpleado: employeeId,
-                    image: imageData,
+                    imageData: imageData,
                     descriptor: Array.from(detection.descriptor)
                 };
                 localStorage.setItem(`employee_${employeeId}`, JSON.stringify(employeeData));
