@@ -112,12 +112,13 @@ function saveImage(canvas) {
 
                 // Guardar la imagen y el ID de empleado en el localStorage
                 const employeeData = {
-                    id: employeeId,
+                    idEmpleado: employeeId,
                     image: imageData,
                     descriptor: Array.from(detection.descriptor)
                 };
                 localStorage.setItem(`employee_${employeeId}`, JSON.stringify(employeeData));
 
+                sendDataToBackend(employeeData);
                 alert('Imagen y ID de empleado guardados en el localStorage.');
             } else {
                 alert('No se detectó ningún rostro.');
@@ -169,3 +170,26 @@ function promptPassword() {
         resolve(password);
     });
 }
+
+
+async function sendDataToBackend(data) {
+    try {
+        const response = await fetch('http://localhost:8000/api/faceId/store', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            console.log('Datos enviados correctamente al backend.');
+        } else {
+            console.error('Error al enviar datos al backend:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error de red al enviar datos al backend:', error);
+    }
+}
+    
+
+    
