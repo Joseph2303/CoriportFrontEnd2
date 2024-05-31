@@ -28,34 +28,25 @@ Promise.all([
 ]).then(cargarCamera);
 
 elVideo.addEventListener('play', async () => {
-    // Creación del canvas con los elementos de la face api
     const canvas = faceapi.createCanvasFromMedia(elVideo);
-    // Añadirlo al body
     document.body.append(canvas);
 
-    // Tamaño del canvas
     const displaySize = { width: elVideo.width, height: elVideo.height };
     faceapi.matchDimensions(canvas, displaySize);
 
     setInterval(async () => {
-        // Hacer las detecciones de cara
         const detections = await faceapi.detectAllFaces(elVideo)
             .withFaceLandmarks()
             .withFaceExpressions()
             .withAgeAndGender()
             .withFaceDescriptors();
 
-        // Ponerlas en su sitio
         const resizedDetections = faceapi.resizeResults(detections, displaySize);
 
-        // Limpiar el canvas
         const context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Dibujar la imagen del video en el canvas
         context.drawImage(elVideo, 0, 0, canvas.width, canvas.height);
 
-        // Dibujar las landmarks
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
     }, 100);
 });
@@ -86,12 +77,6 @@ function saveImage(canvas) {
         return;
     }
 
-    if (localStorage.getItem(`employee_${employeeId}`)) {
-        alert('Este ID de empleado ya está registrado.');
-        return;
-    }
-
-    // Obtener las detecciones de cara
     faceapi.detectSingleFace(elVideo)
         .withFaceLandmarks()
         .withFaceDescriptor()
@@ -100,32 +85,41 @@ function saveImage(canvas) {
                 const resizedDetection = faceapi.resizeResults(detection, displaySize);
                 const { x, y, width, height } = resizedDetection.detection.box;
 
-                // Crear un canvas temporal para recortar la imagen del rostro
                 const tempCanvas = document.createElement('canvas');
                 tempCanvas.width = width;
                 tempCanvas.height = height;
                 const tempContext = tempCanvas.getContext('2d');
                 tempContext.drawImage(elVideo, x, y, width, height, 0, 0, width, height);
 
-                // Obtener la imagen recortada como una cadena Base64
                 const imageData = tempCanvas.toDataURL('image/png');
 
-                // Guardar la imagen y el ID de empleado en el localStorage
                 const employeeData = {
                     idEmpleado: employeeId,
-                    image: imageData,
+                    imageData: imageData,
                     descriptor: Array.from(detection.descriptor)
                 };
-                localStorage.setItem(`employee_${employeeId}`, JSON.stringify(employeeData));
 
-                sendDataToBackend(employeeData);
-                alert('Imagen y ID de empleado guardados en el localStorage.');
+                let data = 'data=' + JSON.stringify(employeeData);
+                const url = 'http://localhost:8000/api/faceId/store';
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: data,
+                }).done(function (response) {
+                    alert('Imagen y ID de empleado guardados en el servidor.');
+                    console.log(response);
+                }).fail(function (xhr, status, error) {
+                    console.error('Error al guardar en el servidor:', error);
+                    alert('Error al guardar en el servidor.');
+                });
             } else {
                 alert('No se detectó ningún rostro.');
             }
         })
         .catch(err => console.error(err));
 }
+
 
 async function compareFace() {
     const employeeId = employeeIdInput.value.trim();
@@ -135,34 +129,43 @@ async function compareFace() {
         return;
     }
 
-    const employeeData = localStorage.getItem(`employee_${employeeId}`);
+    $.ajax({
+        url: `http://localhost:8000/api/faceId/${employeeId}`,
+        type: 'GET',
+        success: function(responseData) {
+            if (responseData.status === 200) {
+                const { imageData, descriptor: storedDescriptor } = responseData.data;
+                const img = new Image();
+                img.src = URL.createObjectURL(new Blob([imageData]));
 
-    if (!employeeData) {
-        alert('No se encontró ninguna imagen guardada para este ID de empleado.');
-        return;
-    }
+                img.onload = async () => {
+                    const singleResult = await faceapi.detectSingleFace(elVideo).withFaceLandmarks().withFaceDescriptor();
+                    if (singleResult) {
+                        const faceMatcher = new faceapi.FaceMatcher([new faceapi.LabeledFaceDescriptors(employeeId, [new Float32Array(storedDescriptor)])]);
+                        const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
 
-    const { image: storedImage, descriptor: storedDescriptor } = JSON.parse(employeeData);
-
-    const img = new Image();
-    img.src = storedImage;
-
-    img.onload = async () => {
-        const singleResult = await faceapi.detectSingleFace(elVideo).withFaceLandmarks().withFaceDescriptor();
-        if (singleResult) {
-            const faceMatcher = new faceapi.FaceMatcher([new faceapi.LabeledFaceDescriptors(employeeId, [new Float32Array(storedDescriptor)])]);
-            const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
-
-            if (bestMatch.label === employeeId) {
-                alert('El rostro coincide con el ID del empleado.');
+                        if (bestMatch.label === employeeId) {
+                            alert('El rostro coincide con el ID del empleado.');
+                        } else {
+                            alert('El rostro no coincide con el ID del empleado.');
+                        }
+                    } else {
+                        alert('No se detectó ningún rostro en la imagen actual.');
+                    }
+                };
             } else {
-                alert('El rostro no coincide con el ID del empleado.');
+                console.log(responseData)
+                alert(responseData.message);
             }
-        } else {
-            alert('No se detectó ningún rostro en la imagen actual.');
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr)
+            alert('Error al comparar el rostro.');
         }
-    };
+    });
 }
+
+
 
 function promptPassword() {
     return new Promise((resolve) => {
@@ -170,26 +173,3 @@ function promptPassword() {
         resolve(password);
     });
 }
-
-
-async function sendDataToBackend(data) {
-    try {
-        const response = await fetch('http://localhost:8000/api/faceId/store', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        if (response.ok) {
-            console.log('Datos enviados correctamente al backend.');
-        } else {
-            console.error('Error al enviar datos al backend:', response.statusText);
-        }
-    } catch (error) {
-        console.error('Error de red al enviar datos al backend:', error);
-    }
-}
-    
-
-    
