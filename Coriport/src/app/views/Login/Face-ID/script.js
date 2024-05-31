@@ -101,7 +101,7 @@ function saveImage(canvas) {
 
                 let data = 'data=' + JSON.stringify(employeeData);
                 const url = 'http://localhost:8000/api/faceId/store';
-
+                console.log(employeeData);
                 $.ajax({
                     url: url,
                     type: 'POST',
@@ -110,6 +110,7 @@ function saveImage(canvas) {
                     alert('Imagen y ID de empleado guardados en el servidor.');
                     console.log(response);
                 }).fail(function (xhr, status, error) {
+                    console.log(xhr);
                     console.error('Error al guardar en el servidor:', error);
                     alert('Error al guardar en el servidor.');
                 });
@@ -122,6 +123,7 @@ function saveImage(canvas) {
 
 
 async function compareFace() {
+    console.log('Entro a la funcion')
     const employeeId = employeeIdInput.value.trim();
 
     if (!employeeId) {
@@ -129,41 +131,72 @@ async function compareFace() {
         return;
     }
 
-    $.ajax({
-        url: `http://localhost:8000/api/faceId/${employeeId}`,
-        type: 'GET',
-        success: function(responseData) {
-            if (responseData.status === 200) {
-                const { imageData, descriptor: storedDescriptor } = responseData.data;
-                const img = new Image();
-                img.src = URL.createObjectURL(new Blob([imageData]));
+    try {
+        console.log('Entro al try')
 
-                img.onload = async () => {
-                    const singleResult = await faceapi.detectSingleFace(elVideo).withFaceLandmarks().withFaceDescriptor();
-                    if (singleResult) {
-                        const faceMatcher = new faceapi.FaceMatcher([new faceapi.LabeledFaceDescriptors(employeeId, [new Float32Array(storedDescriptor)])]);
-                        const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
+        // Realizar una solicitud GET para obtener los datos del rostro almacenado en el servidor
+        const responseData = await $.ajax({
+            url: `http://localhost:8000/api/faceId/${employeeId}`,
+            type: 'GET'
+        });
 
-                        if (bestMatch.label === employeeId) {
-                            alert('El rostro coincide con el ID del empleado.');
-                        } else {
-                            alert('El rostro no coincide con el ID del empleado.');
-                        }
+        // Verificar si la solicitud fue exitosa
+        if (responseData.status === 200) {
+            console.log('Entro al if')
+
+            const { imageData, descriptor: storedDescriptor } = responseData.data;
+
+            // Crear una nueva imagen y cargar los datos de la imagen almacenada en el servidor
+            const img = new Image();
+            img.src = URL.createObjectURL(new Blob([imageData])) + `?t=${Date.now()}`;
+ 
+
+
+            console.log(img.src);
+            // Esperar a que la imagen se cargue completamente
+            img.onload = async () => {
+                console.log('entro al onload')
+                console.log(elVideo);
+                // Detectar el rostro en el video actual
+                const singleResult = await faceapi.detectSingleFace(elVideo).withFaceLandmarks().withFaceDescriptor();
+                console.log(singleResult)
+
+                if (singleResult) {
+                    console.log('entro al singleResult')
+
+                    // Crear un FaceMatcher con el descriptor almacenado
+                    const faceMatcher = new faceapi.FaceMatcher([new faceapi.LabeledFaceDescriptors(employeeId, [new Float32Array(storedDescriptor)])]);
+
+                    // Encontrar la mejor coincidencia con el rostro detectado
+                    const bestMatch = faceMatcher.findBestMatch(singleResult.descriptor);
+
+                    // Mostrar un mensaje dependiendo de si hay una coincidencia con el ID del empleado
+                    if (bestMatch.label === employeeId) {
+                        alert('El rostro coincide con el ID del empleado.');
                     } else {
-                        alert('No se detectó ningún rostro en la imagen actual.');
+                        alert('El rostro no coincide con el ID del empleado.');
                     }
-                };
-            } else {
-                console.log(responseData)
-                alert(responseData.message);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr)
-            alert('Error al comparar el rostro.');
+                } else {
+                    alert('No se detectó ningún rostro en la imagen actual.');
+                }
+            };
+            console.log('no entro al onload')
+
+        } else {
+            console.log('Entro al else')
+
+            // Manejar la situación donde no se encuentran datos para el ID de empleado proporcionado
+            alert(responseData.message);
         }
-    });
+    } catch (error) {
+        console.log('Entro al catch')
+
+        // Manejar cualquier error que pueda ocurrir durante la solicitud
+        console.error(error);
+        alert('Error al comparar el rostro.');
+    }
 }
+
 
 
 
