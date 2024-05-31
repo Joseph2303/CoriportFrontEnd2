@@ -1,64 +1,102 @@
-// script.js
-
-// Obtener elementos del DOM
 const modal = document.getElementById('modalFormulario');
 const btnAbrirModal = document.getElementById('btnAbrirModal');
 const spanCerrar = document.getElementsByClassName('close')[0];
 const formulario = document.getElementById('formularioHorario');
 
-// Abrir el modal
-btnAbrirModal.onclick = function() {
-    modal.style.display = 'block';
-}
+var tabla = document.getElementById("horarioEmpleado-table");
+var actualizarButton = document.getElementById("actualizar");
+var eliminarButton = document.getElementById("eliminar"); // Agrega esta línea para seleccionar el botón de eliminar
+var updateBtn = document.getElementById("update");
 
-// Cerrar el modal
-spanCerrar.onclick = function() {
-    modal.style.display = 'none';
-}
+function filtrarHorarioEmpleado() {
+    var inputBusqueda = document.getElementById('busquedaHorarioEmpleado');
+    var filtro = inputBusqueda.value.toUpperCase();
 
-// Cerrar el modal cuando el usuario hace clic fuera de él
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = 'none';
+    var filas = tabla.getElementsByTagName('tr');
+
+    for (var i = 0; i < filas.length; i++) {
+        if (filas[i].getElementsByTagName('th').length === 0) {
+            var celdas = filas[i].getElementsByTagName('td');
+            var mostrarFila = false;
+
+            for (var j = 0; j < celdas.length; j++) {
+                var textoCelda = celdas[j].textContent || celdas[j].innerText;
+                if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
+                    mostrarFila = true;
+                    break;
+                }
+            }
+            
+            filas[i].style.display = mostrarFila ? '' : 'none';
+        }
     }
 }
 
-// Agregar nuevo horario al enviar el formulario
-formulario.addEventListener('submit', function(event) {
-    event.preventDefault();
+tabla.addEventListener('change', function (event) {
+    let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    if (event.target.type === 'checkbox') {
+        if (seleccionados.length > 1) {
+            event.target.checked = false;
 
-    // Obtener los valores del formulario
-    const empleado = document.getElementById('empleado').value;
-    const horaEntrada = document.getElementById('horaEntrada').value;
-    const horaSalida = document.getElementById('horaSalida').value;
-    const diaLibre = document.getElementById('diaLibre').value;
-
-    // Crear una nueva fila
-    const nuevaFila = document.createElement('tr');
-
-    // Crear la celda del nombre del empleado
-    const celdaEmpleado = document.createElement('td');
-    celdaEmpleado.textContent = empleado;
-    nuevaFila.appendChild(celdaEmpleado);
-
-    // Crear las celdas de los horarios
-    const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-    dias.forEach(dia => {
-        const celdaHorario = document.createElement('td');
-        if (dia === diaLibre) {
-            celdaHorario.textContent = 'Libre';
+            alert('¡Solo puede seleccionar un horario a la vez!')
         } else {
-            celdaHorario.textContent = `${horaEntrada} - ${horaSalida}`;
+            if (seleccionados.length > 0) {
+                actualizarButton.style.display = 'inline-block';
+                eliminarButton.style.display = 'inline-block'; // Muestra el botón de eliminar cuando se selecciona un horario
+            } else {
+                actualizarButton.style.display = 'none';
+                eliminarButton.style.display = 'none'; // Oculta el botón de eliminar cuando no hay horarios seleccionados
+            }
         }
-        nuevaFila.appendChild(celdaHorario);
-    });
-
-    // Agregar la nueva fila a la tabla
-    document.querySelector('#horarioTabla tbody').appendChild(nuevaFila);
-
-    // Limpiar el formulario
-    formulario.reset();
-
-    // Cerrar el modal
-    modal.style.display = 'none';
+    }
 });
+
+actualizarButton.addEventListener('click', function(){
+    let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    let filaSeleccionada = seleccionados[0].closest('tr');
+    let Empleado = filaSeleccionada.cells[1].textContent;
+    let HoraEntrada = filaSeleccionada.cells[2].textContent;
+    let HoraSalida = filaSeleccionada.cells[3].textContent;
+    let DiaLibre = filaSeleccionada.cells[4].textContent;
+
+    document.getElementById('empleadoHorarioUpdate').value = Empleado;
+    document.getElementById('entradaHorarioUpdate').value = HoraEntrada;
+    document.getElementById('salidaHorarioUpdate').value = HoraSalida;
+    document.getElementById('diaLibreHorarioUpdate').value = DiaLibre;
+
+});
+
+eliminarButton.addEventListener('click', function(){
+    document.getElementById('pantallaConfirmacion').style.display = 'flex';
+
+});
+
+function ocultarConfirmacion() {
+    document.getElementById('pantallaConfirmacion').style.display = 'none';
+}
+
+deleteButton.addEventListener('click', function(){
+    let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+    let filaSeleccionada = seleccionados[0].closest('tr');
+    let Id = filaSeleccionada.cells[0].textContent;
+    destroy(Id)
+});
+
+updateBtn.addEventListener('click', function(){
+    let horarioEmpleado = {
+       Empleado: $("#empleadoHorarioUpdate").val(),
+        HoraEntrada : $("#entradaHorarioUpdate").val(),
+        HoraSalida : $("#salidaHorarioUpdate").val(),
+        DiaLibre : $("#diaLibreHorarioUpdate").val()
+    }
+    
+    updateHorario(horarioEmpleado)
+});
+
+function deseleccionarCheckboxes() {
+    document.querySelectorAll('input[type="checkbox"]:checked').forEach(function (checkbox) {
+        checkbox.checked = false;
+    });
+}
+
+

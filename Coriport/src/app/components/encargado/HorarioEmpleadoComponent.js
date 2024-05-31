@@ -1,20 +1,21 @@
 function send(){
-    let puestoData = {
-        "fecha": $("#fecha").val(),
-        "descripcion": $("#descripcion").val(),
-        "tipoFeriado": $("#tipoFeriado").val(),
+    let HorarioData = {
+        "Empleado": $("#Empleado").val(),
+        "HoraEntrada": $("#HoraEntrada").val(),
+        "HoraSalida": $("#HoraSalida").val(),
+        "DiaLibre": $("#DiaLibre").val(),
     };
 
-    let data = 'data=' + JSON.stringify(puestoData);
-    console.log(puestoData)
+    let data = 'data=' + JSON.stringify(HorarioData);
+    console.log(HorarioData)
 
     $.ajax({
-        url: "http://localhost:8000/api/dias_feriados/store",
+        url: "http://localhost:8000/api/horarioEmpleado/store",
         type: "POST",
         data: data
     }).done(function (response) {
         console.log(response)
-        document.getElementById("pantallaEmergenteAdd").style.display = "none";
+        document.getElementById("modalFormulario").style.display = "none";
         mostrarMensajeDeInfo("¡INFO!: " + response.message);
         cargarTabla()
     }).fail(function (xhr, status, error) {
@@ -22,9 +23,9 @@ function send(){
     });
 }
 
-function destroy(id){
+function destroy(Id){
     $.ajax({
-        url: "http://localhost:8000/api/dias_feriados/delete/" + id,
+        url: "http://localhost:8000/api/horarioEmpleado/delete/" + Id,
         type: "DELETE",
     }).done(function (response) {
         console.log(response);
@@ -37,20 +38,19 @@ function destroy(id){
         mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
-  "fecha": feriado.fecha,
-       
-function updateFeriado(feriado) {
-    let feriadoData = {
-        "id": feriado.id,
-       "descripcion":feriado.descripcion,
-        "tipoFeriado":feriado.tipoFeriado,
 
+function updateHorarioEmpleado(horarioEmpleado) {
+    let horarioData = {
+        "Empleado": horarioEmpleado.id,
+       "HoraEntrada":horarioEmpleado.HoraEntrada,
+        "HoraSalida":horarioEmpleado.HoraSalida,
+        "DiaLibre":horarioEmpleado.DiaLibre,
     };
 
-    let data = 'data=' + JSON.stringify(feriadoData);
+    let data = 'data=' + JSON.stringify(horarioData);
 
     $.ajax({
-        url: "http://localhost:8000/api/dias_feriados/update/" + feriado.id,
+        url: "http://localhost:8000/api/horarioEmpleado/update/" + horarioEmpleado.Id,
         type: "PUT",
         data: data
     }).done(function (response) {
@@ -69,39 +69,32 @@ $(document).ready(function () {
     cargarTabla();
 });
 
-
 function cargarTabla() {
     $.ajax({
-        url: "http://localhost:8000/api/dias_feriados",
+        url: "http://localhost:8000/api/horarioEmpleado",
         type: "GET"
     }).done(function (response) {
-        $("#dataTableFeriado").empty(); // Vaciar la tabla antes de cargar los nuevos datos
+        $("#dataTableHorarioEmpleado").empty(); 
         var respObj = response.data;
      
         for (k in respObj) {
             let filaHTML = `<tr> 
-                <td>${respObj[k].id}</td>
-                <td>${respObj[k].fecha}</td>
-                <td>${respObj[k].descripcion}</td>
-                <td>${respObj[k].tipoFeriado}</td>
+                <td>${respObj[k].Id}</td>
+                <td>${respObj[k].Empleado}</td>
+                <td>${respObj[k].HoraEntrada}</td>
+                <td>${respObj[k].HoraSalida}</td>
+                <td>${respObj[k].DiaLibre}</td>
                 <td><input type="checkbox" class="checkbox-accion" onchange=""></td>  
 
             </tr>`;
             let fila = $(filaHTML);
             
-            // Verificar si el estado inicial es "Aceptado"
-            if (respObj[k].estado === "Aceptado") {
-                fila.find('input[type="checkbox"]').prop('disabled', true); // Deshabilitar el checkbox
-                fila.off('click'); // Quitar todos los eventos de clic en la fila
-            } 
-            
-            // Añadir la fila a la tabla
-            $("#dataTableFeriado").append(fila);
+   
+            $("#dataTableHorarioEmpleado").append(fila);
         }
     }).fail(function (error) {
         console.log(error)
     });
 }
 
-$("#sendFeriado").click(send);
-
+$("#sendHorarioEmpleado").click(send);

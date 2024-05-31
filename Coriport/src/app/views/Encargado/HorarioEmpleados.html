@@ -11,71 +11,54 @@
         <h2 style="color: white;">Horario de Empleados</h2>
     </center>
     <div class="container">
-        <table id="horarioTabla">
+        <div>
+            <input type="text" id="busquedaHorarioEmpleado" placeholder="Buscar Horario..." oninput="filtrarHorarioEmpleado()">
+        </div>
+        <br>
+        <table id="horarioEmpleado-table" border="1">
+            
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Empleado</th>
-                    <th>Lunes</th>
-                    <th>Martes</th>
-                    <th>Miércoles</th>
-                    <th>Jueves</th>
-                    <th>Viernes</th>
-                    <th>Sábado</th>
-                    <th>Domingo</th>
+                    <th>Hora de Entrada</th>
+                    <th>Hora de Salida</th>
+                    <th>Día Libre</th>
+                    <th>Acción </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Juan Pérez</td>
-                    <td>09:00 - 17:00</td>
-                    <td>09:00 - 17:00</td>
-                    <td>09:00 - 17:00</td>
-                    <td>09:00 - 17:00</td>
-                    <td>09:00 - 17:00</td>
-                    <td>Libre</td>
-                    <td>Libre</td>
-                </tr>
-                <tr>
-                    <td>María López</td>
-                    <td>13:00 - 21:00</td>
-                    <td>13:00 - 21:00</td>
-                    <td>Libre</td>
-                    <td>13:00 - 21:00</td>
-                    <td>13:00 - 21:00</td>
-                    <td>09:00 - 17:00</td>
-                    <td>Libre</td>
-                </tr>
-                <tr>
-                    <td>Carlos Gómez</td>
-                    <td>Libre</td>
-                    <td>09:00 - 17:00</td>
-                    <td>09:00 - 17:00</td>
-                    <td>09:00 - 17:00</td>
-                    <td>Libre</td>
-                    <td>13:00 - 21:00</td>
-                    <td>13:00 - 21:00</td>
-                </tr>
+            <tbody id="dataTableHorarioEmpleado">
+   
             </tbody>
         </table>
 
-        <button id="btnAbrirModal">Agregar Nuevo Horario</button>
+        <button onclick="" style="background-color: red; display: none;" id="eliminar"
+                    style="color: white;">Eliminar
+        </button>
+        <button onclick="document.getElementById('pantallaEmergenteUpdate').style.display='flex'"
+                    style="background-color: blue; display: none;" id="actualizar"
+                    style=" color: white;">Actualizar
+        </button>
 
-        <div id="modalFormulario" class="modal">
+
+        <button onclick="document.getElementById('modalFormulario').style.display='flex'" id="btnAbrirModal">Nuevo Horario</button>
+
+        <div id="modalFormulario" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Agregar Nuevo Horario</h2>
                 <form id="formularioHorario">
-                    <label for="empleado">Id del Empleado:</label>
-                    <input type="text" id="empleado" name="empleado" required>
+                    <label for="empleado">ID del Empleado:</label>
+                    <input type="text" id="Empleado" name="empleado" required>
 
                     <label for="horaEntrada">Hora de Entrada:</label>
-                    <input type="time" id="horaEntrada" name="horaEntrada" required>
+                    <input type="time" id="HoraEntrada" name="horaEntrada" required>
 
                     <label for="horaSalida">Hora de Salida:</label>
-                    <input type="time" id="horaSalida" name="horaSalida" required>
+                    <input type="time" id="HoraSalida" name="horaSalida" required>
 
                     <label for="diaLibre">Día Libre:</label>
-                    <select id="diaLibre" name="diaLibre" required>
+                    <select id="DiaLibre" name="diaLibre" required>
                         <option value="Lunes">Lunes</option>
                         <option value="Martes">Martes</option>
                         <option value="Miércoles">Miércoles</option>
@@ -84,12 +67,59 @@
                         <option value="Sábado">Sábado</option>
                         <option value="Domingo">Domingo</option>
                     </select>
-
-                    <button type="submit">Agregar Horario</button>
+                    <button type="button" id="sendHorarioEmpleado">Agregar</button>
+                    <button type="button"
+                    onclick="document.getElementById('modalFormulario').style.display='none'">Cancelar</button>
                 </form>
             </div>
         </div>
     </div>
+
+    
+    <div id="pantallaEmergenteUpdate" class="fondoNegroForm" style="display: none;">
+        <div class="formAjuste">
+            <form class="form">
+                <label for="empleado">ID del Empleado:</label>
+                <input type="text" id="empleadoHorarioUpdate" name="empleado" required>
+    
+                <label for="horaEntrada">Hora de Entrada:</label>
+                <input type="time" id="entradaHorarioUpdate" name="horaEntrada" required>
+    
+                <label for="horaSalida">Hora de Salida:</label>
+                <input type="time" id="salidaHorarioUpdate" name="horaSalida" required>
+    
+                <label for="diaLibre">Día Libre:</label>
+                <select id="diaLibreHorarioUpdate" name="diaLibre" required>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miércoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sábado">Sábado</option>
+                    <option value="Domingo">Domingo</option>
+                </select>
+    
+                <br>
+                <br>
+                <button type="button" id="update">Actualizar</button>
+                <button type="button"
+                    onclick="document.getElementById('pantallaEmergenteUpdate').style.display='none'">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="display: none; text-align: center; " id="pantallaConfirmacion" class="fondoNegroForm">
+        <div class="form">
+            <h3>¿Estás seguro de que deseas eliminar este puesto?</h3>
+            <button id="eliminar" style="margin-right: 10px;">Sí</button>
+            <button onclick="ocultarConfirmacion()">No</button>
+    </div>
+</div>
+    
+
+
+    <script src="/Coriport/src/app/components/encargado/HorarioEmpleadoComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
     <script src="/Coriport/src/app/Scripts/ScriptEncargado/horarioEmpleado.js"></script>
 </body>
 </html>
