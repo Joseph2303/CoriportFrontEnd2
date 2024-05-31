@@ -37,14 +37,15 @@ function destroy(id){
         mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
-  "fecha": feriado.fecha,
+  
        
 function updateFeriado(feriado) {
     let feriadoData = {
         "id": feriado.id,
+        "fecha": feriado.fecha,
        "descripcion":feriado.descripcion,
         "tipoFeriado":feriado.tipoFeriado,
-
+        
     };
 
     let data = 'data=' + JSON.stringify(feriadoData);

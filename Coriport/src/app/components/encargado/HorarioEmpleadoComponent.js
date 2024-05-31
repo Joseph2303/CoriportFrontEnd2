@@ -41,7 +41,8 @@ function destroy(Id){
 
 function updateHorarioEmpleado(horarioEmpleado) {
     let horarioData = {
-        "Empleado": horarioEmpleado.id,
+        "Id":horarioEmpleado.Id,
+        "Empleado": horarioEmpleado.Empleado,
        "HoraEntrada":horarioEmpleado.HoraEntrada,
         "HoraSalida":horarioEmpleado.HoraSalida,
         "DiaLibre":horarioEmpleado.DiaLibre,
@@ -57,7 +58,7 @@ function updateHorarioEmpleado(horarioEmpleado) {
         console.log(response)
         cargarTabla()
         mostrarMensajeDeInfo("¡INFO!: " + response.message);
-        document.getElementById("pantallaEmergenteUpdate").style.display = "none";
+        document.getElementById("actualizar").style.display = "none";
         deseleccionarCheckboxes();
 
     }).fail(function (xhr, status, error) {

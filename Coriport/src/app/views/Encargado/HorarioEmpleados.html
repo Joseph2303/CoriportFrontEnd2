@@ -79,8 +79,11 @@
     <div id="pantallaEmergenteUpdate" class="fondoNegroForm" style="display: none;">
         <div class="formAjuste">
             <form class="form">
+                <label for="id">ID del Horario:</label>
+                <input type="text" id="idHorarioUpdate" name="id" readonly>
+
                 <label for="empleado">ID del Empleado:</label>
-                <input type="text" id="empleadoHorarioUpdate" name="empleado" required>
+                <input type="text" id="empleadoHorarioUpdate" name="empleado" readonly>
     
                 <label for="horaEntrada">Hora de Entrada:</label>
                 <input type="time" id="entradaHorarioUpdate" name="horaEntrada" required>
@@ -103,18 +106,21 @@
                 <br>
                 <button type="button" id="update">Actualizar</button>
                 <button type="button"
-                    onclick="document.getElementById('pantallaEmergenteUpdate').style.display='none'">Cancelar</button>
+                    onclick="document.getElementById('actualizar').style.display='none'">Cancelar</button>
             </form>
         </div>
     </div>
 
-    <div style="display: none; text-align: center; " id="pantallaConfirmacion" class="fondoNegroForm">
+    <div id="pantallaConfirmacion" class="fondoNegroForm">
         <div class="form">
-            <h3>¿Estás seguro de que deseas eliminar este puesto?</h3>
-            <button id="eliminar" style="margin-right: 10px;">Sí</button>
-            <button onclick="ocultarConfirmacion()">No</button>
+            <h3>¿Estás seguro de que deseas eliminar este horario?</h3>
+            <div class="botones">
+                <button id="DeleteButton">Sí</button>
+                <button onclick="ocultarConfirmacion()">No</button>
+            </div>
+        </div>
     </div>
-</div>
+    
     
 
 

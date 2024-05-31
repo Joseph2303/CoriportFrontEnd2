@@ -2,10 +2,11 @@ const modal = document.getElementById('modalFormulario');
 const btnAbrirModal = document.getElementById('btnAbrirModal');
 const spanCerrar = document.getElementsByClassName('close')[0];
 const formulario = document.getElementById('formularioHorario');
+const DeleteButton = document.getElementById("DeleteButton");
 
 var tabla = document.getElementById("horarioEmpleado-table");
 var actualizarButton = document.getElementById("actualizar");
-var eliminarButton = document.getElementById("eliminar"); // Agrega esta línea para seleccionar el botón de eliminar
+var eliminarButton = document.getElementById("eliminar"); 
 var updateBtn = document.getElementById("update");
 
 function filtrarHorarioEmpleado() {
@@ -71,11 +72,12 @@ eliminarButton.addEventListener('click', function(){
 
 });
 
+
 function ocultarConfirmacion() {
     document.getElementById('pantallaConfirmacion').style.display = 'none';
 }
 
-deleteButton.addEventListener('click', function(){
+DeleteButton.addEventListener('click', function(){
     let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
     let filaSeleccionada = seleccionados[0].closest('tr');
     let Id = filaSeleccionada.cells[0].textContent;
@@ -84,13 +86,14 @@ deleteButton.addEventListener('click', function(){
 
 updateBtn.addEventListener('click', function(){
     let horarioEmpleado = {
-       Empleado: $("#empleadoHorarioUpdate").val(),
+        Id: $("#idHorarioUpdate"),
+        Empleado: $("#empleadoHorarioUpdate").val(),
         HoraEntrada : $("#entradaHorarioUpdate").val(),
         HoraSalida : $("#salidaHorarioUpdate").val(),
         DiaLibre : $("#diaLibreHorarioUpdate").val()
     }
     
-    updateHorario(horarioEmpleado)
+    updateHorarioEmpleado(horarioEmpleado)
 });
 
 function deseleccionarCheckboxes() {
