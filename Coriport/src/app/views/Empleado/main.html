@@ -89,12 +89,38 @@
         </ul>
     </nav>
 
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="cajon">
+        <div>
+            <input type="text" id="HorarioEmpleado" placeholder="Buscar horario..." oninput="filtrarHorarioEmpleado()">
+        </div>
+        <a></a>
+        <div class="tabla">
+            <table id="HorarioEmpleado-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Empleado</th>
+                        <th>Hora de Entrada</th>
+                        <th>Hora de Salida</th>
+                        <th>Día Libre</th>
+                    </tr>
+                </thead>
+                <tbody id="dataHorarioEmpleado">
+                </tbody>
+            </table>
+        </div>
+    </div>
    
 
     <div id="main-containerEmpleado">
 
     </div>
-    
+
     <footer>
         <div>
             <center>
@@ -121,6 +147,9 @@
     <script src="/Coriport/src/app/Scripts/MessagesInfo.js"></script>
     <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
     <script src="/Coriport/src/app/Scripts/logoutTime.js"></script>
+    <script src="/Coriport/src/app/components/empleado/HorarioEmpleadoComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/HorarioEmpleado.js"></script>
+
 
 </body>
 
