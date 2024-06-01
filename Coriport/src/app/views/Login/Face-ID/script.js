@@ -1,6 +1,7 @@
 const elVideo = document.getElementById('video');
 const saveButton = document.getElementById('save-button');
 const compareButton = document.getElementById('compare-button');
+const compareButton2 = document.getElementById('compare-button2');
 const employeeIdInput = document.getElementById('employee-id');
 
 navigator.getMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
@@ -67,6 +68,10 @@ compareButton.addEventListener('click', () => {
     compareFace(canvas); // Pasar el canvas como argumento a compareFace
 });
 
+compareButton2.addEventListener('click', () => {
+    const canvas = document.querySelector('canvas'); // Obtener el canvas desde el DOM
+    compareFace2(canvas); // Pasar el canvas como argumento a compareFace
+});
 
 function saveImage(canvas) {
     const context = canvas.getContext('2d');
@@ -170,6 +175,73 @@ function compareFace(canvas) {
                         const bestMatch = faceMatcher.findBestMatch(currentDescriptor);
                         if (bestMatch.label === employeeId) {
                             alert('Rostro coincide con el ID de empleado guardado.');
+                            send2(employeeId);
+                        } else {
+                            alert('Rostro no coincide con el ID de empleado guardado.');
+                        }
+                    } else {
+                        alert('No se encontraron datos guardados para este ID de empleado.');
+                    }
+                }).fail(function (xhr, status, error) {
+                    console.log(xhr);
+                    console.error('Error al obtener datos del servidor:', error);
+                    alert('Error al obtener datos del servidor.');
+                });
+            } else {
+                alert('No se detectó ningún rostro.');
+            }
+        })
+        .catch(err => console.error(err));
+}
+
+
+function compareFace2(canvas) {
+    const context = canvas.getContext('2d');
+    const elVideo = document.getElementById('video');
+    const displaySize = { width: elVideo.width, height: elVideo.height };
+    const employeeId = employeeIdInput.value.trim();
+
+    if (!employeeId) {
+        alert('Por favor, introduce un ID de empleado.');
+        return;
+    }
+
+    faceapi.detectSingleFace(elVideo)
+        .withFaceLandmarks()
+        .withFaceDescriptor()
+        .then(async (detection) => {
+            if (detection) {
+                const resizedDetection = faceapi.resizeResults(detection, displaySize);
+                const { x, y, width, height } = resizedDetection.detection.box;
+
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = width;
+                tempCanvas.height = height;
+                const tempContext = tempCanvas.getContext('2d');
+                tempContext.drawImage(elVideo, x, y, width, height, 0, 0, width, height);
+
+                const imageData = tempCanvas.toDataURL('image/png');
+                const currentDescriptor = detection.descriptor;
+
+                // Fetch the saved data for the employee
+                const url = `http://localhost:8000/api/faceId/${employeeId}`;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json'
+                }).done(function (response) {
+                    if (response && response.data) {
+                        const savedDescriptor = response.data.descriptor;
+                        const labeledFaceDescriptors = [
+                            new faceapi.LabeledFaceDescriptors(employeeId, [new Float32Array(savedDescriptor)])
+                        ];
+                        
+                        const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors);
+
+                        const bestMatch = faceMatcher.findBestMatch(currentDescriptor);
+                        if (bestMatch.label === employeeId) {
+                            alert('Rostro coincide con el ID de empleado guardado.');
+                            update2(employeeId);
                         } else {
                             alert('Rostro no coincide con el ID de empleado guardado.');
                         }
@@ -195,4 +267,8 @@ function promptPassword() {
         resolve(password);
     });
 }
+
+
+
+
 

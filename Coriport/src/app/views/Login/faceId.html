@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="/Coriport/src/app/Assets/img/letra-h.png">
   <title>Reconocimiento facial</title>
+  <script src="/Coriport/src/app/components/empleado/MarcaComponent.js"></script>
   <script src="/Coriport/src/app/views/Login/Face-ID/face-api.min.js" defer></script>
   <script src="/Coriport/src/app/views/Login/Face-ID/script.js" defer></script>
   <style>
@@ -103,18 +104,23 @@
   <a href="/Coriport/src/app/views/Login/login.html" class="P">Regresar al login</a>
   <br>
   <br>
+
   <center>
     <div class="container">
+      <center>
+        <h2 style="color: #ffffff;">Marca con FACE-ID</h2>
+    </center>
       <video id="video" autoplay muted width="450" height="450"></video>
       <input class="Id" type="text" id="employee-id" placeholder="ID de empleado">
       <button onclick="" class="Registrar" id="save-button">Guardar Rostro</button>
       <br>
       <button class="Entrada" id="compare-button">Registrar Entrada</button>
-      <button class="salida" id="">Registrar Salida</button>
+      <button class="salida" id="compare-button2">Registrar Salida</button>
       <br>
       <br>
     </div>
   </center>
+  <script src="/Coriport/src/app/Scripts/MessagesInfo.js " ></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </body>
