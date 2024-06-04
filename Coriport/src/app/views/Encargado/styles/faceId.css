@@ -310,3 +310,19 @@ form button:hover {
 #eliminar:hover {
     background-color: darkred;
 }
+
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 700px;
+    padding: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.189);
+    border-radius: 15px;
+    z-index: 1000;
+}
