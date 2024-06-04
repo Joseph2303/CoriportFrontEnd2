@@ -216,3 +216,26 @@ th{
 #box{
     cursor: pointer;
 }
+
+
+
+
+#eliminar {
+    background-color: red;
+    color: white;
+    display: none;
+}
+
+#eliminar:hover {
+    background-color: darkred;
+}
+
+#actualizar {
+    background-color: blue;
+    color: white;
+    display: none;
+}
+
+#actualizar:hover {
+    background-color: darkblue;
+}

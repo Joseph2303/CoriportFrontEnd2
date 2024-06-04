@@ -17,26 +17,6 @@ body {
     flex-direction: column;
 }
 
-.cajon {
-    overflow-y: auto;
-    max-height: 900px;
-    margin-right: 200px;
-    margin-left: 200px;
-    padding-right: 0;
-    padding-left: 0;
-}
-
-.cajon::-webkit-scrollbar {
-    width: 10px;
-    /* Ajusta el ancho de la barra según tu diseño */
-}
-
-@media only screen and (max-width: 600px) {
-    .cajon {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-}
 
 footer {
     background-color: #2f3d3000;
@@ -49,37 +29,6 @@ footer {
 footer a {
     color: #fff;
     text-decoration: none;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    background-color: #f3f3f3bb;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
-}
-
-th {
-    background-color: #578af7b5;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    border: none;
-    text-align: center;
-}
-
-td {
-    border: none;
-    padding: 10px;
-    text-align: center;
-    font-size: 16px;
-    color: #1c1c1c;
-}
-
-tr:nth-child(odd) {
-    background-color: #f3f3f3ac;
 }
 
 .preloader {
@@ -429,3 +378,69 @@ li a:hover {
 .boton .deseado:hover {
     color: #b80909;
 }
+
+
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #f3f3f3bb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  th {
+    background-color: #81a3ec87;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    text-align: center;
+  }
+  
+  td {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #1c1c1c;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #f3f3f3ac;
+  }
+  
+  
+  .cajon {
+    overflow-y: auto;
+    max-height: 900px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  
+  .cajon::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .cajon::-webkit-scrollbar-thumb {
+    background-color: #9d5e5e;
+  }
+  
+  .cajon {
+    margin-right: 200px;
+    margin-left: 200px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .cajon {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+

@@ -13,7 +13,7 @@ $("#vacaciones").on('click',function(){routingi("soliVacaciones")});
 $("#vacacion").on('click',function(){routingi("vacaciones")});
 $("#empleado").on('click',function(){routingi("empleado")});
 $("#Vacacione").on('click',function(){routingi("soliVacaciones")});
-$("#registroAusenci").on('click',function(){routingi("registroAusencia")});
+$("#RegistroFace").on('click',function(){routingi("RegistroFace")});
 $("#HorarioEmpleados").on('click',function(){routingi("HorarioEmpleados")});
 
 

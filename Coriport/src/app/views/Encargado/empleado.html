@@ -178,10 +178,8 @@
         </div>
         <br>
         
-        <button id="eliminar"
-            style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Eliminar</button>
-        <button id="actualizar"
-            style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; display: none;">Actualizar</button>
+        <button id="eliminar">Eliminar</button>
+        <button id="actualizar">Actualizar</button>
     </div>
     </div>
 
@@ -474,30 +472,6 @@
 
         }
 
-
-
-
-
-        function actualizarRecuentoEmpleados() {
-    const tabla = document.getElementById("employee-table");
-    const filas = tabla.getElementsByTagName("tr");
-    let totalEmpleados = 0;
-
-    // Comenzamos desde 1 para omitir la fila de encabezado
-    for (let i = 1; i < filas.length; i++) {
-        // Verificamos si la fila tiene datos de empleado
-        if (filas[i].getElementsByTagName("td").length > 0) {
-            totalEmpleados++;
-        }
-    }
-
-    // Actualizamos el elemento HTML donde se muestra el recuento
-    const recuentoElemento = document.getElementById("recuento-empleados");
-    recuentoElemento.textContent = totalEmpleados;
-}
-
-// Llamamos a la función al cargar la página para mostrar el recuento inicial
-actualizarRecuentoEmpleados();
 
     </script>
 

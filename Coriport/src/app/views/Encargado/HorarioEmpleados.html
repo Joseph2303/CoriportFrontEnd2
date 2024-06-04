@@ -32,20 +32,15 @@
             </tbody>
         </table>
 
-        <button onclick="" style="background-color: red; display: none;" id="eliminar"
-                    style="color: white;">Eliminar
-        </button>
-        <button onclick="document.getElementById('pantallaEmergenteUpdate').style.display='flex'"
-                    style="background-color: blue; display: none;" id="actualizar"
-                    style=" color: white;">Actualizar
-        </button>
+        <button onclick="" id="eliminar">Eliminar</button>
+        <button onclick="document.getElementById('pantallaEmergenteUpdate').style.display='flex'" id="actualizar">Actualizar</button>
 
 
         <button onclick="document.getElementById('modalFormulario').style.display='flex'" id="btnAbrirModal">Nuevo Horario</button>
 
         <div id="modalFormulario" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span class="close" onclick="document.getElementById('modalFormulario').style.display='none'">&times;</span>
                 <h2>Agregar Nuevo Horario</h2>
                 <form id="formularioHorario">
                     <label for="empleado">ID del Empleado:</label>
@@ -67,9 +62,8 @@
                         <option value="Sábado">Sábado</option>
                         <option value="Domingo">Domingo</option>
                     </select>
+                    <br>
                     <button type="button" id="sendHorarioEmpleado">Agregar</button>
-                    <button type="button"
-                    onclick="document.getElementById('modalFormulario').style.display='none'">Cancelar</button>
                 </form>
             </div>
         </div>

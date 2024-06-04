@@ -81,3 +81,23 @@ th {
     width: 100%;
     min-width: 600px; /* Ajusta esto según sea necesario */
 }
+
+#eliminar {
+    background-color: red;
+    color: white;
+    display: none;
+}
+
+#eliminar:hover {
+    background-color: darkred;
+}
+
+#actualizar {
+    background-color: blue;
+    color: white;
+    display: none;
+}
+
+#actualizar:hover {
+    background-color: darkblue;
+}

@@ -14,7 +14,7 @@ const cargarCamera = () => {
         },
         stream => elVideo.srcObject = stream,
         console.error
-    );
+    );  
 };
 
 // Cargar Modelos

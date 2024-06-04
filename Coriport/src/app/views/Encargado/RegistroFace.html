@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Encargado/styles/faceId.css">
+    <title>Registro FaceID</title>
 </head>
+
 <body>
-    
+    <center>
+        <h2 style="color: white;">Registros FaceID</h2>
+    </center>
+    <div class="container">
+        <br>
+        <table id="FaceID-table" border="1">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Empleado</th>
+                    <th>ID Empleado</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="dataTableFaceID">
+
+            </tbody>
+        </table>
+
+
+        <button onclick="" id="eliminar">Eliminar</button>
+
+        <div id="pantallaConfirmacion" class="fondoNegroForm" style="display: none;">
+            <div class="form">
+                <h3>¿Estás seguro de que deseas eliminar este FaceId?</h3>
+                <div class="botones">
+                    <button id="DeleteButton">Sí</button>
+                    <button onclick="ocultarConfirmacion()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+        </div>
+    </div>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/FaceId.js"></script>
+    <script src="/Coriport/src/app/components/encargado/FaceIdComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+
 </body>
+
 </html>
