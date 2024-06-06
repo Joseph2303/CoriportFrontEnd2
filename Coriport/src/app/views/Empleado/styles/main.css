@@ -453,3 +453,22 @@ table {
   a.P:hover {
     background-color: #003b0d;
   }
+
+
+  .main {
+    overflow-y: auto;
+    max-height: 70vh; 
+    margin-right: 0; 
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  
+  .main::-webkit-scrollbar {
+    background-color:#0b0b0bb5;
+    width: 10px;
+  }
+  
+  .main::-webkit-scrollbar-thumb {
+    background-color:#1e366d; 
+  }
