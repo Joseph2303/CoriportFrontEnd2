@@ -380,9 +380,6 @@ li a:hover {
 }
 
 
-
-
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -394,7 +391,7 @@ table {
   }
   
   th {
-    background-color: #81a3ec87;
+    background-color: #4a83ffd3;
     color: white;
     font-weight: bold;
     padding: 10px;
@@ -444,3 +441,15 @@ table {
     }
   }
 
+  a.P {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #02a425;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  a.P:hover {
+    background-color: #003b0d;
+  }

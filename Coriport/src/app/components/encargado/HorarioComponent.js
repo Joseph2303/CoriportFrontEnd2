@@ -24,11 +24,12 @@ function cargarTabla() {
             let horaInicio = formatHora(respObj[k].horaInicio);
             let horaFin = formatHora(respObj[k].horaFin);
 
-            let filaHTML = `<tr> 
+            let filaHTML = `<tr data-empleado="${encodeURIComponent(JSON.stringify(respObj[k].marcas[0].empleado))}"> 
                 <td>${nombreDia}</td>
                 <td>${respObj[k].fecha}</td>
                 <td>${horaInicio}</td>
                 <td>${horaFin}</td>
+                <td id="empleado">${respObj[k].marcas[0].empleado.nombre}</td>
                 <td>${respObj[k].idHorario}</td>
             </tr>`;
             let fila = $(filaHTML);
