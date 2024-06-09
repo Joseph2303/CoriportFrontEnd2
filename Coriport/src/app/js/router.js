@@ -5,6 +5,7 @@ $("#horasExtras").on('click',function(){routingi("horasExtras")});
 $("#registroTardia").on('click',function(){routingi("registroTardia")});
 $("#justiTardia").on('click',function(){routingi("justiTardia")});
 $("#registroAusencia").on('click',function(){routingi("registroAusencia")});
+$("#registroAusenci").on('click',function(){routingi("registroAusencia")});
 $("#justiAusencia").on('click',function(){routingi("justiAusencia")});
 $("#puesto").on('click',function(){routingi("puesto")});
 $("#horario").on('click',function(){routingi("horario")});
@@ -15,6 +16,7 @@ $("#empleado").on('click',function(){routingi("empleado")});
 $("#Vacacione").on('click',function(){routingi("soliVacaciones")});
 $("#RegistroFace").on('click',function(){routingi("RegistroFace")});
 $("#HorarioEmpleados").on('click',function(){routingi("HorarioEmpleados")});
+
 
 
 $("#salir").on('click',function(){routingExit()});
