@@ -4,10 +4,10 @@ $(document).ready(function () {
 
 function cargarTabla() {
     $.ajax({
-        url: "http://localhost:8000/api/horasExtra",
+        url: "http://localhost:8000/api/horasExtras/show",
         type: "GET"
     }).done(function (response) {
-        $("#dataTableHorasExtra").empty(); // Vaciar la tabla antes de cargar los nuevos datos
+        $("#dataTableHorasExtra").empty(); 
         var respObj = response.data;
         
         for (k in respObj) {

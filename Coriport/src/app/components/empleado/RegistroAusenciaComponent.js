@@ -6,12 +6,16 @@ $(document).ready(function () {
 function cargarTabla() {
     let usuario = JSON.parse(localStorage.getItem('identity')) 
 
+    // Hay que llamar dentro de esta funcion la API
+    // Esta es la URL para llegar al procedimiento almacenado 
+    // http://localhost:8000/api/registroAusenciasEmpleado/show
+
     $.ajax({
         url: "http://localhost:8000/api/registroAusencias/" + usuario.empleado.idEmpleado,
         type: "GET"
     }).done(function (response) {
 
-        $("#dataTableRA").empty(); // Vaciar la tabla antes de cargar los nuevos datos
+        $("#dataTableRA").empty(); 
         var respObj = response.data;
         for (k in respObj) {
             

@@ -3,6 +3,12 @@ $(document).ready(function () {
 });
 
 function cargarTabla() {
+
+    // Este es la API para acceder al procedimiento 
+    // http://localhost:8000/api/registroTardiasEmpleado/show
+    // esto es para que se pueda llamar al procedimiento 
+
+
     let usuario = JSON.parse(localStorage.getItem('identity')) 
     $.ajax({
         url: "http://localhost:8000/api/registroTardias/" + usuario.empleado.idEmpleado,

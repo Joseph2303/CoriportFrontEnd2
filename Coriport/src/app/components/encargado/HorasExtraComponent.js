@@ -8,7 +8,7 @@ function cargarTabla() {
         url: "http://localhost:8000/api/horasExtra",
         type: "GET"
     }).done(function (response) {
-        $("#dataTableHorasExtra").empty(); // Vaciar la tabla antes de cargar los nuevos datos
+        $("#dataTableHorasExtra").empty(); 
         var respObj = response.data;
      
         for (k in respObj) {
@@ -31,6 +31,8 @@ function cargarTabla() {
         console.log(error)
     });
 }
+
+
 
 function formatHora(hora) {
     // Asegurarse de que la hora sea una cadena
