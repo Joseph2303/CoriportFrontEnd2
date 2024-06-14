@@ -1,33 +1,31 @@
 .mensaje-container {
     position: fixed;
     top: 20px;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
-    width: 300px;
-    padding: 15px;
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 9999;
-    background-color: #ffffff;
-
-    right: -350px; /* Agrega esta propiedad para que inicialmente esté fuera del viewport */
-    /* Agrega las siguientes propiedades para la animación */
-    transition: right 0.5s ease-in-out;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    right: -400px;
+    transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
 }
 
 .mensaje-container .icon-container {
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .mensaje-container .icon-container i {
-    font-size: 24px;
+    font-size: 28px;
+    color: #4CAF50; /* Color por defecto para el ícono */
 }
 
 .mensaje-container .mensaje {
     flex: 1;
-    font-size: 16px;
+    font-size: 17px;
     color: #333333;
 }
 
@@ -39,21 +37,33 @@
     border-left: 5px solid #FF3D00;
 }
 
+.mensaje-info .icon-container i {
+    color: #4CAF50;
+}
+
+.mensaje-error .icon-container i {
+    color: #FF3D00;
+}
+
 @keyframes slideIn {
     0% {
-        right: -350px; /* Define la posición inicial fuera del viewport */
+        right: -400px;
+        opacity: 0;
     }
     100% {
-        right: 20px; /* Define la posición final centrada */
+        right: 10px; /* Ajusta esta posición según lo que necesites */
+        opacity: 1;
     }
 }
 
 @keyframes slideOut {
     0% {
-        right: 20px; /* Define la posición inicial centrada */
+        right: 10px; /* Ajusta esta posición según lo que necesites */
+        opacity: 1;
     }
     100% {
-        right: -430px; /* Define la posición final fuera del viewport */
+        right: -400px;
+        opacity: 0;
     }
 }
 
