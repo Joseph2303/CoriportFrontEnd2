@@ -85,7 +85,7 @@ function promptLoginAndCheckRole() {
             url: "http://localhost:8000/api/user/login",
             data: data,
             success: function (respObj) {
-                const token = localStorage.getItem("token");
+                const token = respObj;
     
                 console.log(respObj)
                 $.ajax({
