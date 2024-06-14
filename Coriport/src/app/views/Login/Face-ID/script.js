@@ -54,14 +54,79 @@ elVideo.addEventListener('play', async () => {
 
 saveButton.addEventListener('click', () => {
     const canvas = document.querySelector('canvas');
-    promptPassword().then((password) => {
-        if (password !== null && password === "1") {
+    promptLoginAndCheckRole().then((isAuthorized) => {
+        if (isAuthorized) {
             saveImage(canvas);
         } else {
-            alert("Contraseña incorrecta. No puedes guardar el rostro.");
+            mostrarMensajeDeError("No tienes permisos para guardar el rostro.");
         }
     });
 });
+
+function promptLoginAndCheckRole() {
+    return new Promise((resolve, reject) => {
+        let email = prompt("Introduce tu email:");
+        let contrasena = prompt("Introduce tu contraseña:");
+
+        if (!email || !contrasena) {
+            alert("Email y contraseña son requeridos.");
+            return resolve(false);
+        }
+
+        let obj = {
+            email: email,
+            contrasena: contrasena
+        };
+        let data = 'data=' + JSON.stringify(obj);
+        mostrarMensajeDeInfo("Verificando datos, espere un momento... ")
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/api/user/login",
+            data: data,
+            success: function (respObj) {
+                const token = localStorage.getItem("token");
+    
+                console.log(respObj)
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8000/api/user/getidentity",
+                    headers: {
+                        "beartoken": token
+                    },
+                    success: function (identity) {
+
+                        if (identity['tipoUsuario'] === 'Encargado') {
+                            resolve(true);
+                        } else {
+                            mostrarMensajeDeError("Error, solo el encargado tiene permiso de guardar.");
+                            resolve(false);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(xhr)
+
+                        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
+                        resolve(false);
+                    }
+                });
+
+            },
+            error: function (xhr, status, error) {
+                resolve(false);
+                mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
+
+                console.log(xhr)
+                if (xhr.status === 500 || xhr.status === 0) {
+                    mostrarMensajeDeError("El servidor no responde. Por favor, inténtalo de nuevo más tarde.");
+                } else {
+                    mostrarMensajeDeError("ERROR!! : " + xhr.responseJSON.message);
+                }
+            }
+        });
+    });
+}
+
 
 compareButton.addEventListener('click', () => {
     const canvas = document.querySelector('canvas'); // Obtener el canvas desde el DOM
@@ -114,7 +179,7 @@ function saveImage(canvas) {
                     type: 'POST',
                     data: data,
                 }).done(function (response) {
-                    alert('Imagen y ID de empleado guardados en el servidor.');
+                    mostrarMensajeDeInfo('Imagen y ID de empleado guardados en el servidor.');
                     console.log(response);
                 }).fail(function (xhr, status, error) {
                     console.log(xhr);
@@ -261,12 +326,7 @@ function compareFace2(canvas) {
 }
 
 
-function promptPassword() {
-    return new Promise((resolve) => {
-        const password = prompt("Por favor, ingrese la contraseña para guardar el rostro:");
-        resolve(password);
-    });
-}
+
 
 
 
