@@ -12,17 +12,17 @@
 <body>
 
     <center>
-        <h2 style="color: white;">Registro de tardia</h2>
+        <h2 style="color: white;">Registro de tardía</h2>
     </center>
 
     <br>
     <br>
 
-
     <div class="cajon">
         <br>
+        <button id="btnRegistrarTardia">Registrar Tardía</button> <!-- Botón para registrar tardía -->
         <div>
-            <input type="text" id="buscarTardia" placeholder="Buscar tardia..." oninput="filtrar()">
+            <input type="text" id="buscarTardia" placeholder="Buscar tardía..." oninput="filtrar()">
         </div>
         <div class="tabla">
             <table id="registro-table" border="1">
@@ -32,9 +32,8 @@
                         <th>Id del registro</th>
                         <th>Fecha de la ausencia</th>
                         <th>Minutos tarde</th>
-                        <th>Empleado que llego tarde</th>
-                        <th>Estado de la tardia</th>
-
+                        <th>Empleado que llegó tarde</th>
+                        <th>Estado de la tardía</th>
                     </tr>
                 </thead>
                 <tbody id="dataTableRT">
