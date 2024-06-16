@@ -65,67 +65,82 @@ saveButton.addEventListener('click', () => {
 
 function promptLoginAndCheckRole() {
     return new Promise((resolve, reject) => {
-        let email = prompt("Introduce tu email:");
-        let contrasena = prompt("Introduce tu contraseña:");
+        const modal = document.getElementById("loginModal");
+        const closeModal = document.getElementsByClassName("close")[0];
+        const loginButton = document.getElementById("loginButton");
 
-        if (!email || !contrasena) {
-            alert("Email y contraseña son requeridos.");
-            return resolve(false);
+        modal.style.display = "block";
+
+        closeModal.onclick = function () {
+            modal.style.display = "none";
+            resolve(false);
         }
 
-        let obj = {
-            email: email,
-            contrasena: contrasena
-        };
-        let data = 'data=' + JSON.stringify(obj);
-        mostrarMensajeDeInfo("Verificando datos, espere un momento... ")
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                resolve(false);
+            }
+        }
 
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8000/api/user/login",
-            data: data,
-            success: function (respObj) {
-                const token = respObj;
-    
-                console.log(respObj)
-                $.ajax({
-                    type: "GET",
-                    url: "http://localhost:8000/api/user/getidentity",
-                    headers: {
-                        "beartoken": token
-                    },
-                    success: function (identity) {
+        loginButton.onclick = function () {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
 
-                        if (identity['tipoUsuario'] === 'Encargado') {
-                            resolve(true);
-                        } else {
-                            mostrarMensajeDeError("Error, solo el encargado tiene permiso de guardar.");
+            if (!email || !password) {
+                alert("Email y contraseña son requeridos.");
+                return;
+            }
+
+            modal.style.display = "none";
+            mostrarMensajeDeInfo("Verificando datos, espere un momento...");
+
+            let obj = {
+                email: email,
+                contrasena: password
+            };
+            let data = 'data=' + JSON.stringify(obj);
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8000/api/user/login",
+                data: data,
+                success: function (respObj) {
+                    const token = respObj;
+
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8000/api/user/getidentity",
+                        headers: {
+                            "beartoken": token
+                        },
+                        success: function (identity) {
+                            if (identity['tipoUsuario'] === 'Encargado') {
+                                resolve(true);
+                            } else {
+                                mostrarMensajeDeError("Error, solo el encargado tiene permiso de guardar.");
+                                resolve(false);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
                             resolve(false);
                         }
-                    },
-                    error: function (xhr, status, error) {
-                        console.log(xhr)
+                    });
 
-                        mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
-                        resolve(false);
+                },
+                error: function (xhr, status, error) {
+                    mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
+                    if (xhr.status === 500 || xhr.status === 0) {
+                        mostrarMensajeDeError("El servidor no responde. Por favor, inténtalo de nuevo más tarde.");
                     }
-                });
-
-            },
-            error: function (xhr, status, error) {
-                resolve(false);
-                mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
-
-                console.log(xhr)
-                if (xhr.status === 500 || xhr.status === 0) {
-                    mostrarMensajeDeError("El servidor no responde. Por favor, inténtalo de nuevo más tarde.");
-                } else {
-                    mostrarMensajeDeError("ERROR!! : " + xhr.responseJSON.message);
+                    resolve(false);
                 }
-            }
-        });
+            });
+        }
     });
 }
+
 
 
 compareButton.addEventListener('click', () => {
@@ -180,11 +195,10 @@ function saveImage(canvas) {
                     data: data,
                 }).done(function (response) {
                     mostrarMensajeDeInfo('Imagen y ID de empleado guardados en el servidor.');
-                    console.log(response);
                 }).fail(function (xhr, status, error) {
-                    console.log(xhr);
                     console.error('Error al guardar en el servidor:', error);
-                    alert('Error al guardar en el servidor.');
+                    mostrarMensajeDeError("Error al guardar en el servidor.");
+
                 });
             } else {
                 alert('No se detectó ningún rostro.');
@@ -239,21 +253,21 @@ function compareFace(canvas) {
 
                         const bestMatch = faceMatcher.findBestMatch(currentDescriptor);
                         if (bestMatch.label === employeeId) {
-                            alert('Rostro coincide con el ID de empleado guardado.');
+                            mostrarMensajeDeInfo('Rostro coincide con el ID de empleado guardado.');
                             send2(employeeId);
                         } else {
-                            alert('Rostro no coincide con el ID de empleado guardado.');
+                            mostrarMensajeDeError('Rostro no coincide con el ID de empleado guardado.');
                         }
                     } else {
-                        alert('No se encontraron datos guardados para este ID de empleado.');
+                        mostrarMensajeDeError('No se encontraron datos guardados para este ID de empleado.');
                     }
                 }).fail(function (xhr, status, error) {
                     console.log(xhr);
                     console.error('Error al obtener datos del servidor:', error);
-                    alert('Error al obtener datos del servidor.');
+                    mostrarMensajeDeError('Error al obtener datos del servidor.');
                 });
             } else {
-                alert('No se detectó ningún rostro.');
+                mostrarMensajeDeError('No se detectó ningún rostro.');
             }
         })
         .catch(err => console.error(err));
@@ -267,7 +281,7 @@ function compareFace2(canvas) {
     const employeeId = employeeIdInput.value.trim();
 
     if (!employeeId) {
-        alert('Por favor, introduce un ID de empleado.');
+        mostrarMensajeDeError('Por favor, introduce un ID de empleado.');
         return;
     }
 
@@ -305,21 +319,21 @@ function compareFace2(canvas) {
 
                         const bestMatch = faceMatcher.findBestMatch(currentDescriptor);
                         if (bestMatch.label === employeeId) {
-                            alert('Rostro coincide con el ID de empleado guardado.');
+                            mostrarMensajeDeInfo('Rostro coincide con el ID de empleado guardado.');
                             update2(employeeId);
                         } else {
-                            alert('Rostro no coincide con el ID de empleado guardado.');
+                            mostrarMensajeDeError('Rostro no coincide con el ID de empleado guardado.');
                         }
                     } else {
-                        alert('No se encontraron datos guardados para este ID de empleado.');
+                        mostrarMensajeDeError('No se encontraron datos guardados para este ID de empleado.');
                     }
                 }).fail(function (xhr, status, error) {
                     console.log(xhr);
                     console.error('Error al obtener datos del servidor:', error);
-                    alert('Error al obtener datos del servidor.');
+                    mostrarMensajeDeError('Error al obtener datos del servidor.');
                 });
             } else {
-                alert('No se detectó ningún rostro.');
+                mostrarMensajeDeError('No se detectó ningún rostro.');
             }
         })
         .catch(err => console.error(err));
