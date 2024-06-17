@@ -12,8 +12,12 @@
     <center>
         <h2 style="color: white;">Registros FaceID</h2>
     </center>
-    <div class="container">
+
+    <div class="cajon">
         <br>
+        <div>
+            <input type="text" id="buscarFace" placeholder="Buscar faceId..." oninput="filtrar()">
+        </div>
         <table id="FaceID-table" border="1">
 
             <thead>
@@ -30,14 +34,12 @@
         </table>
 
 
-        <button onclick="" id="eliminar">Eliminar</button>
-
-        <div id="pantallaConfirmacion" class="fondoNegroForm" style="display: none;">
+    <div id="pantallaConfirmacion" class="fondoNegroForm" style="display: none;">
             <div class="form">
                 <h3>¿Estás seguro de que deseas eliminar este FaceId?</h3>
                 <div class="botones">
-                    <button id="DeleteButton">Sí</button>
-                    <button onclick="ocultarConfirmacion()">No</button>
+                    <button class="HO" id="DeleteButton" onclick="confirmarEliminar()">Sí</button>
+                    <button class="NN" onclick="ocultarConfirmacion()">No</button>
                 </div>
             </div>
         </div>

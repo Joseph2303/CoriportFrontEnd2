@@ -192,3 +192,12 @@ footer a {
   border-radius: 10px;
 
 }
+
+
+.img-container {
+  text-align: center;
+}
+.img-container img {
+  max-width: 50%;
+  height: auto;
+}
