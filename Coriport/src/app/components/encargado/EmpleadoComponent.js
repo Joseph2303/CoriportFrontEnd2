@@ -29,8 +29,7 @@ function sendE(event) {
 }
 
 function deleteE(empleado) {
-
-    $.ajax({
+   $.ajax({
         url: "http://localhost:8000/api/empleado/delete/" + empleado.cells[0].textContent,
         type: "DELETE",
 
@@ -52,7 +51,7 @@ function deleteE(empleado) {
     }).fail(function (xhr, status, error) {
         console.log(xhr);
         mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
-    });
+    }); 
 }
 
 function findEmpleado(event) {

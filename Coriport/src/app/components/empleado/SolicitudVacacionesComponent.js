@@ -57,8 +57,10 @@ $(document).ready(function () {
 });
 
 function cargarTabla() {
+    var user = JSON.parse(localStorage.getItem('identity'));
+
     $.ajax({
-        url: "http://localhost:8000/api/soliVacaciones",
+        url: "http://localhost:8000/api/soliVacaciones/showByEmpleado/" +  user.empleado.idEmpleado,
         type: "GET"
     }).done(function (response) {
         $("#dataTableSoliVacaciones").empty(); // Vaciar la tabla antes de cargar los nuevos datos

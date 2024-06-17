@@ -2,43 +2,41 @@ $(document).ready(function () {
     cargarTabla();
 });
 
-
 function cargarTabla() {
-    let usuario = JSON.parse(localStorage.getItem('identity')) 
+    user = JSON.parse(localStorage.getItem('identity')) 
     $.ajax({
-        url: "http://localhost:8000/api/horarios",
+        url: "http://localhost:8000/api/marca/showByEmpleado/" + user.empleado.idEmpleado,
         type: "GET"
     }).done(function (response) {
+        console.log(response);
+
         $("#dataHorarios").empty(); // Vaciar la tabla antes de cargar los nuevos datos
         var respObj = response.data;
-        var fecha;
-        var numeroDia;
         var diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-        var nombreDia;
 
-        for (k in respObj) {
-            fecha = new Date(respObj[k].fecha);
-            numeroDia = fecha.getDay();
-            nombreDia = diasSemana[numeroDia];
-            let horaInicio = formatHora(respObj[k].horaInicio);
-            let horaFin = formatHora(respObj[k].horaFin);
+        respObj.forEach(function(horario) {
+            var fecha = new Date(horario.fecha);
+            var numeroDia = fecha.getDay();
+            var nombreDia = diasSemana[numeroDia];
+            var horaInicio = formatHora(horario.horaInicio);
+            var horaFin = formatHora(horario.horaFin);
 
-            let filaHTML = `<tr> 
+            var filaHTML = `<tr> 
                 <td>${nombreDia}</td>
-                <td>${respObj[k].fecha}</td>
+                <td>${horario.fecha}</td>
                 <td>${horaInicio}</td>
                 <td>${horaFin}</td>
             </tr>`;
-            let fila = $(filaHTML);
-         
-            
+            var fila = $(filaHTML);
+
             // Añadir la fila a la tabla
             $("#dataHorarios").append(fila);
-        }
+        });
     }).fail(function (error) {
-        console.log(error)
+        console.log(error);
     });
 }
+
 
 function formatHora(hora) {
     // Asegurarse de que la hora sea una cadena

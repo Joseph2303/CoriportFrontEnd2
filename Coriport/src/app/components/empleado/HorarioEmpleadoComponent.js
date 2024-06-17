@@ -2,29 +2,49 @@ $(document).ready(function () {
     cargarTabla();
 });
 
-
 function cargarTabla() {
+    var user = JSON.parse(localStorage.getItem('identity'));
+
     $.ajax({
-        url: "http://localhost:8000/api/horarioEmpleado",
+        url: "http://localhost:8000/api/horarioEmpleado/showByEmpleado/" + user.empleado.idEmpleado,
         type: "GET"
     }).done(function (response) {
-        $("#dataHorarioEmpleado").empty();
-        var respObj = response.data;
-        
-        for (k in respObj) {
+        console.log(response);
+        $("#dataHorarioEmpleado").empty(); // Limpiar la tabla antes de agregar nuevos datos
 
-            let HoraEntrada = formatHora(respObj[k].HoraEntrada);
-            let HoraSalida = formatHora(respObj[k].HoraSalida);
+        // Verificar si response.data es un arreglo
+        if (Array.isArray(response.data)) {
+            // Iterar sobre cada objeto en el arreglo
+            response.data.forEach(function (horarioEmpleado) {
+                // Crear una fila HTML para cada objeto
+                let HoraEntrada = formatHora(horarioEmpleado.HoraEntrada);
+                let HoraSalida = formatHora(horarioEmpleado.HoraSalida);
+                
+                let filaHTML = `<tr> 
+                    <td>${HoraEntrada}</td>
+                    <td>${HoraSalida}</td>
+                    <td>${horarioEmpleado.DiaLibre}</td>
+                </tr>`;
+                
+                // Agregar la fila al cuerpo de la tabla
+                $("#dataHorarioEmpleado").append(filaHTML);
+            });
 
+        } else {
+            // Si no es un arreglo, asumir que es un solo objeto y crear una fila para él
+            let HoraEntrada = formatHora(response.data.HoraEntrada);
+            let HoraSalida = formatHora(response.data.HoraSalida);
+            
             let filaHTML = `<tr> 
                 <td>${HoraEntrada}</td>
                 <td>${HoraSalida}</td>
-                <td>${respObj[k].DiaLibre}</td>
+                <td>${response.data.DiaLibre}</td>
             </tr>`;
-            let fila = $(filaHTML);
-             
-            $("#dataHorarioEmpleado").append(fila);
+            
+            // Agregar la fila al cuerpo de la tabla
+            $("#dataHorarioEmpleado").append(filaHTML);
         }
+
     }).fail(function (error) {
         console.log(error);
     });

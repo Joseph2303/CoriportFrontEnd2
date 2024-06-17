@@ -18,7 +18,6 @@ function cargarTabla() {
                 <td>${respObj[k].id}</td>
                 <td>${maxHora}</td>
                 <td>${cantidadHora}</td>
-                <td>${respObj[k].idHorario}</td>
             </tr>`;
             let fila = $(filaHTML);
             

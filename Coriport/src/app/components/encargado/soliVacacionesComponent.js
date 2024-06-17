@@ -25,7 +25,7 @@ function updateSolicitud(solicitudVacaciones) {
         let data = 'data=' + JSON.stringify(dataUpdate);
         if (solicitudVacaciones.cantidadDias) {
             $.ajax({
-                url: "http://localhost:8000/api/vaciones/update/" + updateData.idEmpleado,
+                url: "http://localhost:8000/api/vacaciones/update/" + updateData.idEmpleado,
                 type: "PUT",
                 data: data
             }).done(function (response) {

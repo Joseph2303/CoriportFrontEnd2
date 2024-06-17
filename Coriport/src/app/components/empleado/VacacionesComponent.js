@@ -16,8 +16,6 @@ function cargarTabla() {
                 <td>${respObj[k].periodo}</td>
                 <td>${respObj[k].disponibles}</td>
                 <td>${respObj[k].diasAsig}</td>
-                <td>${respObj[k].idEmpleado}</td>
-                
             </tr>`;
             let fila = $(filaHTML);
     
