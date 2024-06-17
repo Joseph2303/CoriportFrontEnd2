@@ -5,7 +5,7 @@ const formulario = document.getElementById('formularioHorario');
 const DeleteButton = document.getElementById("DeleteButton");
 
 var tabla = document.getElementById("horarioEmpleado-table");
-var actualizarButton = document.getElementById("actualizar");
+//var actualizarButton = document.getElementById("actualizar");
 var eliminarButton = document.getElementById("eliminar"); 
 var updateBtn = document.getElementById("update");
 
@@ -42,16 +42,16 @@ tabla.addEventListener('change', function (event) {
             alert('¡Solo puede seleccionar un horario a la vez!')
         } else {
             if (seleccionados.length > 0) {
-                actualizarButton.style.display = 'inline-block';
+                //actualizarButton.style.display = 'inline-block';
                 eliminarButton.style.display = 'inline-block'; // Muestra el botón de eliminar cuando se selecciona un horario
             } else {
-                actualizarButton.style.display = 'none';
+                //actualizarButton.style.display = 'none';
                 eliminarButton.style.display = 'none'; // Oculta el botón de eliminar cuando no hay horarios seleccionados
             }
         }
     }
 });
-
+/** 
 actualizarButton.addEventListener('click', function(){
     let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
     let filaSeleccionada = seleccionados[0].closest('tr');
@@ -65,7 +65,7 @@ actualizarButton.addEventListener('click', function(){
     document.getElementById('salidaHorarioUpdate').value = HoraSalida;
     document.getElementById('diaLibreHorarioUpdate').value = DiaLibre;
 
-});
+});*/
 
 eliminarButton.addEventListener('click', function(){
     document.getElementById('pantallaConfirmacion').style.display = 'flex';

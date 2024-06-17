@@ -2,7 +2,7 @@ function updateJustificacion(justificacionAusencias) {
     let updatedJustificacionData = {
         "fechaSolicitud": justificacionAusencias.fechaSolicitud,
         "fechaAusencia": justificacionAusencias.fechaAusencia,
-        "archivo": justificacionAusencias.archivos,
+        //"archivo": justificacionAusencias.archivos,
         "justificacion": justificacionAusencias.justificacion,
         "estado": justificacionAusencias.estado,
         "descripcion": justificacionAusencias.descripcion,
@@ -23,6 +23,7 @@ function updateJustificacion(justificacionAusencias) {
         deseleccionarCheckboxes();
         cargarTabla()
     }).fail(function (xhr, status, error) {
+        console.log(xhr)
         mostrarMensajeDeError("ERROR!!: " + xhr.responseJSON.message);
     });
 }
@@ -55,11 +56,6 @@ function cargarTabla() {
             </tr>`;
             let fila = $(filaHTML);
             
-            // Verificar si el estado inicial es "Aceptado"
-            if (respObj[k].estado === "Aceptado") {
-                fila.find('input[type="checkbox"]').prop('disabled', true); // Deshabilitar el checkbox
-                fila.off('click'); // Quitar todos los eventos de clic en la fila
-            } 
             
             // Añadir la fila a la tabla
             $("#dataTableJA").append(fila);

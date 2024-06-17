@@ -55,10 +55,10 @@ function cargarTabla() {
             let fila = $(filaHTML);
             
             // Verificar si el estado inicial es "Aceptado"
-            if (respObj[k].estado === "Aceptado") {
+     /**    if (respObj[k].estado === "Aceptado") {
                 fila.find('input[type="checkbox"]').prop('disabled', true); // Deshabilitar el checkbox
                 fila.off('click'); // Quitar todos los eventos de clic en la fila
-            } 
+            } */
             
             // Añadir la fila a la tabla
             $("#dataTableJT").append(fila);
