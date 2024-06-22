@@ -1,0 +1,190 @@
+input {
+  width: 300px;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  text-align: left;
+  border-radius: 8px;
+}
+#buscarRegistro {
+  width: 300px;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #f3f3f3bb;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+th {
+  background-color: #4a83ffd3;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  text-align: center;
+}
+
+td {
+  border: none;
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #1c1c1c;
+}
+
+tr:nth-child(odd) {
+  background-color: #f3f3f3ac;
+}
+ 
+  .Cajon0 {
+    overflow-y: auto;
+    max-height: 900px; 
+    margin-right: 0; 
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.Cajon0::-webkit-scrollbar {
+    width: 10px; /* Ajusta el ancho de la barra según tu diseño */
+}
+
+.Cajon0::-webkit-scrollbar-thumb {
+    background-color:#3a3a3a; /* Hace la barra de desplazamiento transparente */
+}
+
+.Cajon8{
+    margin-right: 200px; 
+    margin-left: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+    .Cajon8 {
+        margin-right: 10px; 
+        margin-left: 10px;
+    }
+}
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: left;
+}
+
+.popup-content {
+  color: #333;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+
+
+#justificacion {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#justificacion:hover {
+  background-color: rgb(115, 182, 253);
+
+}
+
+.form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-content {
+  text-align: center;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form input[type="text"],
+.form input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.button-group button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: #0056b3;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 700px;
+  padding: 40px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.189);
+  border-radius: 15px;
+  z-index: 1000;
+}

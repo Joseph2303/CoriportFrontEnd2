@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios</title>
+    <link rel="stylesheet" type="text/css" href="styles/horario.css">
+</head>
+
+<body>
+    <center>
+        <h2 style="color: white;">Horarios de Marcas</h2>
+    </center>
+    <br>
+    <br>
+    <div class="cajon">
+        <div class="horario-container">
+            <div>
+                <input type="text" id="busquedaHorario" placeholder="Buscar horario..." oninput="filtrar()">
+            </div>
+            <div class="table-responsive">
+                <table class="tabla" id="horario-table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Fecha</th>
+                            <th>Hora Inicio</th>
+                            <th>Hora Fin</th>
+                            <th>Empleado</th>
+                            <th>Id Horario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableHorario">
+               
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+        </div>
+    </div>
+    
+    <br>
+    <br>
+    <script src="/Coriport/src/app/components/encargado/HorarioComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/Horario.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+    
+</body>
+
+</html>

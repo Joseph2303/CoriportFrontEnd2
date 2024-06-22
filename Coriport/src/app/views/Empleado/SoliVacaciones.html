@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Empleado/styles/SoliVacaciones.css">
+    <title>Solicitud Vacaciones</title>
+</head>
+
+<body>
+    <br>
+    <center>
+        <h2 style="color: white;">Solicitud de Vacaciones</h2>
+    </center>
+    
+    <br>
+    <br>
+
+    <div class="cajon">
+        
+        <div class="container">
+            <div class="filter">
+                <input type="text" id="busquedaSoliVacaciones" placeholder="Buscar Solicitud de vacaciones..." oninput="filtrarSoliVacaciones()">
+            </div>
+            <button id="btn-crearSoli" onclick="document.getElementById('div-form').style.display='flex'">Crear
+                Solicitud</button>
+        </div>
+        <div class="tabla">
+            <table id="soliVacaciones-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Fecha de Solicitud</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Final</th>
+                        <th>Estado</th>
+                        <th>Responsable</th>
+                        <th>Descripción</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableSoliVacaciones">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="div-form-style" id="div-form" style="display: none;">
+        <span class="close" onclick="document.getElementById('div-form').style.display='none'">&#10006;</span>
+
+        <form>
+            <h2>Crear Solicitud</h2>
+            <label for="fechInicio">Fecha de inicio:</label>
+            <input type="date" id="fechInicio" name="fechInicio" required>
+
+            <label for="fechFin">Fecha de finalizacion:</label>
+            <input type="date" id="fechFin" name="fechFin" required>
+
+
+            <input class="btn-form" id="sendSoli" value="Enviar">
+        </form>
+    </div>
+
+
+    <div class="div-form-style" id="div-form-update" style="display: none;">
+        <span class="close" onclick="document.getElementById('div-form-update').style.display='none'">&#10006;</span>
+
+        <form>
+            <h2>Actualizar Solicitud</h2>
+            <label for="fechInicio">Fecha de inicio:</label>
+            <input type="date" id="fechInicioUpdate" name="fechInicio" required>
+
+            <label for="fechFin">Fecha de finalizacion:</label>
+            <input type="date" id="fechFinUpdate" name="fechFin" required>
+
+
+            <input class="btn-form" id="update" value="Actualizar">
+        </form>
+    </div>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/SolicitudVacaciones.js"></script>
+    <script src="/Coriport/src/app/components/empleado/SolicitudVacacionesComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+</body>
+
+
+
+
+
+</html>

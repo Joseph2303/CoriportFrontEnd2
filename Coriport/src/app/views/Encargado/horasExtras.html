@@ -1,0 +1,50 @@
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horas Extras</title>
+    <link rel="stylesheet" type="text/css" href="../Encargado/styles/diaFeriasdo.css">
+
+</head>
+<body>
+    
+    <center>
+        <h2 style="color: white;">Horas Extras</h2>
+    </center>
+    <br>
+    <br>
+   
+    <div class="cajon">
+        <br>
+        <br>
+    
+        <div>
+            <input type="text" id="busquedaHorasExtra" placeholder="Buscar horas extras..." oninput="filtrarHorasExtra()">
+        </div>
+        <div class="tabla">
+            <table id="horasExtra-table" border="1">
+            
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca de Salida</th>
+                        <th>Horas/Minutos Extras</th>
+                        <th>ID Horario</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableHorasExtra">
+       
+                </tbody>
+            </table>
+        </div>
+
+             
+    </div>
+
+    <script src="/Coriport/src/app/components/encargado/HorasExtraComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/HorasExtra.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+</body>
+
+</html>

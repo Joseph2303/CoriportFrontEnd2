@@ -1,0 +1,170 @@
+#fondoNegroFormAdd,
+#fondoNegroFormUpdateE,
+#fondoNegroFormUpdateU {
+    display: none;
+}
+
+.cajon {
+    background-color: #cfe6ff;
+    padding: 20px 20px 40px 20px;
+    border-radius: 7px;
+}
+
+
+
+.fondoNegroForm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.formAjuste {
+    overflow-y: auto;
+    max-height: 80vh;
+    border-radius: 9px;
+    width: 500px;
+    height: 900px;
+    box-sizing: border-box;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 8px;
+}
+
+.form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tabla {
+    max-width: 1800px; 
+    margin: 20px auto 40px auto; 
+    overflow-y: auto;
+    overflow-x: auto; 
+}
+
+#feriado-table {
+    width: 100%;
+    max-width: none; 
+    height: 30%;
+    border-collapse: collapse; 
+}
+
+table{
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+td{
+    text-align: center;
+}
+th{
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    height: 40%;
+    border: 0; 
+    text-align: center;
+}
+
+.acciones-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.aprobar-denegar-container {
+    display: flex;
+    margin-left: 10px;
+}
+
+#aprobar,
+#denegar {
+    background-color: #25ba03;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+.izquierda {
+    display: flex;
+    margin-right: auto;
+}
+
+#eliminar,
+#actualizar {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+
+
+.aprobar-denegar-container {
+    display: flex;
+}
+
+
+.btnAddFeriado{
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#eliminar {
+    background-color: red;
+    color: white;
+    display: none;
+}
+
+#eliminar:hover {
+    background-color: darkred;
+}
+
+#actualizar {
+    background-color: blue;
+    color: white;
+    display: none;
+}
+
+#actualizar:hover {
+    background-color: darkblue;
+}

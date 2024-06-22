@@ -1,0 +1,175 @@
+.div-form-style {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    position: fixed; 
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.close {
+    position: absolute; /* Posición absoluta */
+    top: 10px; /* Espacio desde la parte superior */
+    right: 10px; /* Espacio desde la derecha */
+    font-size: 24px; /* Tamaño del símbolo "x" */
+    color: #999; /* Color del símbolo "x" */
+    cursor: pointer; /* Cambiar cursor al pasar por encima */
+    transition: color 0.3s; /* Transición suave del color */
+}
+
+.close:hover {
+    color: #666; /* Cambio de color al pasar el ratón */
+}
+
+/* Estilos para los campos de entrada */
+form input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/* Estilos para el botón de enviar */
+.btn-form {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .btn-form:hover {
+    background-color: #0056b3;
+  }
+
+.container {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+
+.filter {
+    flex: 1; /* El tamaño del flexbox se ajusta automáticamente */
+    margin-right: 20px; /* Espacio entre la barra de filtrar y el botón */
+}
+
+#btn-crearSoli {
+    padding: 9px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 7px;
+}
+
+#btn-crearSoli:hover {
+    background-color: #0056b3; /* Cambia el color de fondo cuando el cursor está sobre el botón */
+}
+
+
+#busquedaSoliVacaciones {
+    width: 300px;
+    padding: 6px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #f3f3f3bb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  th {
+    background-color: #4a83ffd3;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    text-align: center;
+  }
+  
+  td {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #1c1c1c;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #f3f3f3ac;
+  }
+  
+
+
+
+.cajon {
+    overflow-y: auto;
+    max-height: 900px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.cajon::-webkit-scrollbar {
+    width: 10px;
+    /* Ajusta el ancho de la barra según tu diseño */
+}
+
+.cajon::-webkit-scrollbar-thumb {
+    background-color: #3a3a3a;
+    /* Hace la barra de desplazamiento transparente */
+}
+
+.cajon {
+    margin-right: 200px;
+    margin-left: 200px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    /* Estilos adicionales para pantallas aún más pequeñas, como teléfonos móviles */
+    .cajon {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    /* Agrgelga otras reas de estilo según sea necesario para dispositivos de pantalla muy pequeña */
+}
+
+
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 700px;
+    padding: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.189);
+    border-radius: 15px;
+    z-index: 1000;
+}

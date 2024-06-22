@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horas Extra</title>
+    <link rel="stylesheet" type="text/css" href="../Empleado/styles/DiasFeriados.css">
+
+</head>
+<body>
+    <br>
+    <center>
+        <h2 style="color: white;">Horas Extra</h2>
+    </center>
+    <br>
+    <br>
+  
+    <div class="cajon">
+       <br>
+        <div>
+            <input type="text" id="busquedaHorasExtra" placeholder="Buscar Horas Extras..." oninput="filtrarHorasExtra()">
+        </div>
+        <div class="tabla">
+            <table id="horasExtra-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Horas Maximas</th>
+                        <th>Cantidad Horas</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableHorasExtra">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/HorasExtra.js"></script>
+    <script src="/Coriport/src/app/components/empleado/HorasExtraComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+    <br>
+    <br>
+
+</body>
+
+
+</html>

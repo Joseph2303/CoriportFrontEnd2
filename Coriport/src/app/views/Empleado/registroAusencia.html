@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Empleado/styles/registroAusencia.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <br>
+    <center>
+        <h2 style="color: white;">Registro de Ausencia</h2>
+    </center>
+
+    <br>
+    <br>
+    <br>
+    <div class="Cajon6">
+        <br>
+        <br>
+        <div>
+            <input type="text" id="buscarRegistro" placeholder="Buscar ausencia..." oninput="filtrar()">
+        </div>
+        <div class="Cajon4">
+            
+            <table id="registro-table">
+                <thead>
+                    <tr>
+                        <th>Fecha de Ausencia </th>
+                        <th>Estado de Ausencia</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableRA">
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <br>
+    <!-- Estructura para la pantalla emergente -->
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+            <!-- Aquí se mostrarán los detalles del empleado -->
+        </div>
+    </div>
+
+    <div id="justificacionAdd" class="form-container" style="display: none;">
+        <div class="form-content">
+            <form class="form">
+                <center>
+                    <h6>Justificar la ausencia seleccionada</h6>
+                </center>
+
+                <div style="display: none;">
+                    <label for="idRegistro">Id registro</label>
+                    <input type="text" id="idRegistro" readonly>
+
+                    <label for="fechaAusencia">Fecha de la ausencia</label>
+                    <input type="date" id="fechaAusencia" readonly>
+                </div>
+
+                <label for="motivo">Motivo de la ausencia</label>
+                <input type="text" id="motivo" placeholder="Digite el motivo de la ausencia">
+
+                <label for="archivo">Archivo (solo archivos .PDF)</label>
+                <input type="file" id="archivo">
+
+                <div class="button-group">
+                    <button id="sendJustificacion">Aceptar</button>
+                    <button onclick="document.getElementById('justificacionAdd').style.display='none'">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/Coriport/src/app/components/empleado/JustificacionAusenciaComponent.js"></script>
+    <script src="/Coriport/src/app/components/empleado/RegistroAusenciaComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEmpleado/RegistroAusencia.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+
+</body>
+
+</html>

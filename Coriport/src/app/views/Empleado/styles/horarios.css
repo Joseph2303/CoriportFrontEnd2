@@ -1,0 +1,68 @@
+input {
+    width: 300px;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    text-align: left;
+    border-radius: 8px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #f3f3f3bb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  th {
+    background-color: #4a83ffd3;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    text-align: center;
+  }
+  
+  td {
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #1c1c1c;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #f3f3f3ac;
+  }
+  
+
+.cajon {
+    overflow-y: auto;
+    max-height: 900px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  
+  .cajon::-webkit-scrollbar {
+    width: 10px;
+    /* Ajusta el ancho de la barra según tu diseño */
+  }
+  
+  
+  .cajon {
+    margin-right: 200px;
+    margin-left: 200px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .cajon {
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+  

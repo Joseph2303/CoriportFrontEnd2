@@ -1,0 +1,482 @@
+<link rel="stylesheet" type="text/css" href="../Encargado/styles/empleado.css">
+
+<body>
+
+    <center>
+        <h2 style="color: white;">Registros de los Empleado</h2>
+    </center>
+    <br>
+    <br>
+
+    <div class="cajon">
+        <div>
+            <button id="btnAbrirFormulario"
+                onclick="document.getElementById('fondoNegroFormAdd').style.display='flex'">Registrar empleado </button>
+        </div>
+        <br>
+        <div>
+            <input type="text" id="busquedaEmpleado" placeholder="Buscar empleado..." oninput="filtrarEmpleados()">
+        </div>
+
+        <div id="fondoNegroFormAdd" class="fondoNegroForm">
+            <div class="formAjuste">
+                <form class="form">
+
+                    <label for="email">Correo electrónico</label>
+                    <input type="text" id="email" name="email" required>
+
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+
+                    <label for="tipoUsuario">Tipo de usuario:</label>
+                    <select id="tipoUsuario" name="tipoUsuario" required>
+                        <option value="">Seleccione el tipo de usuario</option>
+                        <option value="Empleado">Empleado</option>
+                        <option value="Encargado">Encargado</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="apellido1">Primer apellido:</label>
+                    <input type="text" id="apellido1" name="apellido1" required>
+
+                    <label for="apellido2">Segundo apellido:</label>
+                    <input type="text" id="apellido2" name="apellido2" required>
+
+                    <label for="telefono1">Teléfono 1:</label>
+                    <input type="text" id="telefono1" name="telefono1" required>
+
+                    <label for="telefono2">Teléfono 2:</label>
+                    <input type="text" id="telefono2" name="telefono2" required>
+
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula" required>
+
+                    <label for="fechContrat">Fecha de Contratación (YYYY-MM-DD):</label>
+                    <input type="date" id="fechContrat" name="fechContrat" required>
+
+                    <br>
+
+                    <label for="idPuesto">Puesto:</label>
+                    <select id="idPuesto" name="idPuesto" class="idPuesto" required>
+                        <option value="">Seleccione un puesto</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <button id="sendUser" type="button">Guardar</button>
+                    <button type="button"
+                        onclick="document.getElementById('fondoNegroFormAdd').style.display='none'">Cancelar</button>
+
+                </form>
+            </div>
+        </div>
+
+        <div id="fondoNegroFormUpdateE" class="fondoNegroForm">
+            <div class="formAjuste">
+                <form class="form">
+                    <label for="idEmpleado">ID del empleado seleccionado:</label>
+                    <input type="text" id="idEmpleado" name="idEmpleado" readonly>
+
+                    <label for="updateNombre">Nombre:</label>
+                    <input type="text" id="updateNombre" name="updateNombre" required>
+
+                    <label for="updateApellido1">Primer apellido:</label>
+                    <input type="text" id="updateApellido1" name="updateApellido1" required>
+
+                    <label for="updateApellido2">Segundo apellido:</label>
+                    <input type="text" id="updateApellido2" name="updateApellido2" required>
+
+                    <label for="updateTelefono1">Teléfono 1:</label>
+                    <input type="text" id="updateTelefono1" name="updateTelefono1" required>
+
+                    <label for="updateTelefono2">Teléfono 2:</label>
+                    <input type="text" id="updateTelefono2" name="updateTelefono2" required>
+
+                    <label for="updateCedula">Cédula:</label>
+                    <input type="text" id="updateCedula" name="updateCedula" required>
+
+                    <label for="updateFechContrat">Fecha de Contratación:</label>
+                    <input type="date" id="updateFechContrat" name="updateFechContrat" required>
+
+                    <br>
+
+                    <label for="updatePuesto">Puesto:</label>
+                    <select id="updatePuesto" name="updatePuesto" class="idPuesto" required>
+                        <option value="">Seleccione un puesto</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <button id="updateE" type="button" onclick="">Guardar</button>
+                    <button type="button"
+                        onclick="document.getElementById('fondoNegroFormUpdateE').style.display='none'">Cancelar</button>
+
+                </form>
+            </div>
+        </div>
+
+
+
+        <div id="fondoNegroFormUpdateU" class="fondoNegroForm">
+            <div class="formAjuste">
+                <form class="form">
+                    <label for="idUpdate">Id del usuario seleccionado</label>
+                    <input type="text" id="idUpdate" name="idUpdate" readonly>
+
+                    <label for="emailUpdate">Correo electrónico</label>
+                    <input type="text" id="emailUpdate" name="emailUpdate" required>
+
+                    <label for="tipoUsuarioUpdate">Tipo de usuario:</label>
+                    <select id="tipoUsuarioUpdate" name="tipoUsuarioUpdate" required>
+                        <option id="firtText" value="">Seleccione el tipo de usuario</option>
+                        <option value="Empleado">Empleado</option>
+                        <option value="Encargado">Encargado</option>
+                    </select>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <button id="updateU" type="button" onclick="">Guardar</button>
+                    <button type="button"
+                        onclick="document.getElementById('fondoNegroFormUpdateU').style.display='none'">Cancelar</button>
+
+                </form>
+            </div>
+        </div>
+
+
+        <div id="message" class="message" style="display: none;"></div>
+        <div class="tabla">
+            <table id="employee-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Primer apellido</th>
+                        <th>Segundo apellido</th>
+                        <th>Teléfonos</th>
+                        <th>Cédula</th>
+                        <th>Fecha Contratación</th>
+                        <th>Correo</th>
+                        <th>Puesto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableE">
+
+                </tbody>
+            </table>
+        </div>
+        <br>
+        
+        <button id="eliminar">Eliminar</button>
+        <button id="actualizar">Actualizar</button>
+    </div>
+    </div>
+
+    </div>
+
+
+
+    <br>
+    <br>
+
+    <script>
+        var eliminarButton = document.getElementById("eliminar");
+        var actualizarButton = document.getElementById("actualizar");
+        var tabla = document.getElementById("employee-table");
+
+        var selectPuestos = document.getElementsByClassName('idPuesto');
+
+        fetch('http://localhost:8000/api/puestos')
+            .then(response => response.json())
+            .then(result => {
+                const data = result.data;
+
+                for (let i = 0; i < selectPuestos.length; i++) {
+                    const currentSelect = selectPuestos[i];
+                    currentSelect.innerHTML = '';
+
+                    const opcionPredeterminada = document.createElement('option');
+                    opcionPredeterminada.value = '';
+                    opcionPredeterminada.textContent = 'Selecciona un puesto';
+                    currentSelect.appendChild(opcionPredeterminada);
+
+                    data.forEach(puesto => {
+                        const opcion = document.createElement('option');
+                        opcion.value = puesto.idPuesto;
+                        opcion.textContent = puesto.puesto;
+                        currentSelect.appendChild(opcion);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener los puestos:', error);
+            });
+
+
+
+        tabla.addEventListener('change', function (event) {
+            let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (event.target.type === 'checkbox') {
+                if (seleccionados.length > 1) {
+                    event.target.checked = false;
+
+                    alert('¡Solo puede seleccionar un empleado a la vez!')
+                } else {
+                    if (seleccionados.length > 0) {
+                        actualizarButton.style.display = 'inline-block';
+                        eliminarButton.style.display = 'inline-block';
+                    } else {
+                        actualizarButton.style.display = 'none';
+                        eliminarButton.style.display = 'none';
+                    }
+
+                }
+            }
+        });
+
+        function filtrarEmpleados() {
+            var inputBusqueda = document.getElementById('busquedaEmpleado');
+            var filtro = inputBusqueda.value.toUpperCase();
+
+            var filas = tabla.getElementsByTagName('tr');
+
+            for (var i = 0; i < filas.length; i++) {
+                if (filas[i].getElementsByTagName('th').length === 0) {
+                    var celdas = filas[i].getElementsByTagName('td');
+                    var mostrarFila = false;
+
+                    for (var j = 0; j < celdas.length; j++) {
+                        var textoCelda = celdas[j].textContent || celdas[j].innerText;
+                        if (textoCelda.toUpperCase().indexOf(filtro) > -1) {
+                            mostrarFila = true;
+                            break;
+                        }
+                    }
+
+                    filas[i].style.display = mostrarFila ? '' : 'none';
+                }
+            }
+        }
+
+
+        eliminarButton.addEventListener('click', function () {
+            confirmarBorrado();
+        });
+
+        actualizarButton.addEventListener('click', function () {
+
+            const pantallaEmergente = document.createElement('div');
+            pantallaEmergente.style.position = 'fixed';
+            pantallaEmergente.style.top = 0;
+            pantallaEmergente.style.left = 0;
+            pantallaEmergente.style.width = '100%';
+            pantallaEmergente.style.height = '100%';
+            pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergente.style.display = 'flex';
+            pantallaEmergente.style.justifyContent = 'center';
+            pantallaEmergente.style.alignItems = 'center';
+
+            const mostrarItems = document.createElement('div');
+            mostrarItems.style.backgroundColor = 'white';
+            mostrarItems.style.padding = '20px';
+            mostrarItems.style.borderRadius = '10px';
+            mostrarItems.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+            const texto = document.createElement('p');
+            texto.textContent = 'Seleccione una opcion para actulizar los datos';
+
+            const botonUpdateUsuario = document.createElement('button');
+            botonUpdateUsuario.textContent = 'Usuario del empleado seleccionado';
+            botonUpdateUsuario.style.backgroundColor = '#007bff';
+            botonUpdateUsuario.style.color = 'white';
+            botonUpdateUsuario.style.padding = '10px 20px';
+            botonUpdateUsuario.style.borderRadius = '5px';
+            botonUpdateUsuario.style.border = 'none';
+            botonUpdateUsuario.style.cursor = 'pointer';
+            botonUpdateUsuario.style.marginRight = '10px';
+
+            const botonUpdateEmpleado = document.createElement('button');
+            botonUpdateEmpleado.textContent = 'Empleado seleccionado';
+            botonUpdateEmpleado.style.backgroundColor = '#007bff';
+            botonUpdateEmpleado.style.color = 'white';
+            botonUpdateEmpleado.style.padding = '10px 20px';
+            botonUpdateEmpleado.style.borderRadius = '5px';
+            botonUpdateEmpleado.style.border = 'none';
+            botonUpdateEmpleado.style.cursor = 'pointer';
+
+            const botonCerrarForm = document.createElement('span');
+            botonCerrarForm.textContent = '✖';
+           // botonCerrarForm.style.backgroundColor = '#007bff';
+            botonCerrarForm.style.color = ' #333';
+            botonCerrarForm.style.position = '';
+            botonCerrarForm.style.top = ' 10px';
+            botonCerrarForm.style.right = ' 10px';
+
+            //botonCerrarForm.style.padding = '10px 20px';
+            //botonCerrarForm.style.borderRadius = '5px';
+           // botonCerrarForm.style.border = 'none';
+            botonCerrarForm.style.cursor = 'pointer';
+
+            let seleccionados = document.querySelectorAll('input[type="checkbox"]:checked');
+
+            if (seleccionados.length === 1) {
+                // Obtener la fila seleccionada
+                let filaSeleccionada = seleccionados[0].closest('tr');
+
+                // Obtener los datos de cada celda en la fila
+                let idUsuario = filaSeleccionada.getAttribute('data-user-id');
+                let email = filaSeleccionada.cells[7].textContent;
+                let tipoUsuario = filaSeleccionada.getAttribute('data-user-tipe');
+
+                document.getElementById('idUpdate').value = idUsuario;
+                document.getElementById('emailUpdate').value = email;         
+                let dropdownU = document.getElementById('tipoUsuarioUpdate');
+
+                for (let i = 0; i < dropdownU.options.length; i++) {
+                    if (dropdownU.options[i].text === tipoUsuario) {
+                        dropdownU.selectedIndex = i;
+                        break;
+                    }
+                }
+
+
+                let idEmpleado = filaSeleccionada.cells[0].textContent;
+                let nombre = filaSeleccionada.cells[1].textContent;
+                let apellido1 = filaSeleccionada.cells[2].textContent;
+                let apellido2 = filaSeleccionada.cells[3].textContent;
+                let telefono1 = filaSeleccionada.getAttribute('data-phone1-user');
+                let telefono2 = filaSeleccionada.getAttribute('data-phone2-user');
+                let cedula = filaSeleccionada.cells[5].textContent;
+                let fechContrat = filaSeleccionada.cells[6].textContent;
+                let puesto = filaSeleccionada.cells[8].textContent;
+
+                document.getElementById('idEmpleado').value = idEmpleado;
+                document.getElementById('updateNombre').value = nombre;
+                document.getElementById('updateApellido1').value = apellido1;
+                document.getElementById('updateApellido2').value = apellido2;
+                document.getElementById('updateTelefono1').value = telefono1;
+                document.getElementById('updateTelefono2').value = telefono2;
+                document.getElementById('updateCedula').value = cedula;
+                document.getElementById('updateFechContrat').value = fechContrat;
+                let dropdownE = document.getElementById('updatePuesto');
+
+                for (let i = 0; i < dropdownE.options.length; i++) {
+                    if (dropdownE.options[i].text === puesto) {
+                        dropdownE.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+
+            mostrarItems.appendChild(texto);
+            mostrarItems.appendChild(botonUpdateUsuario);
+            mostrarItems.appendChild(botonUpdateEmpleado);
+            mostrarItems.appendChild(botonCerrarForm);
+
+            pantallaEmergente.appendChild(mostrarItems);
+            document.body.appendChild(pantallaEmergente);
+
+            botonUpdateEmpleado.addEventListener('click', function () {
+                const pantallaEmergente = document.getElementById('fondoNegroFormUpdateE');
+                pantallaEmergente.style.display = 'flex';
+            });
+
+            botonUpdateUsuario.addEventListener('click', function () {
+                const pantallaEmergente = document.getElementById('fondoNegroFormUpdateU');
+                pantallaEmergente.style.display = 'flex';
+
+            });
+
+            botonCerrarForm.addEventListener('click', function () {
+                pantallaEmergente.remove()
+            });
+
+        });
+
+
+        function confirmarBorrado() {
+            const pantallaEmergente = document.createElement('div');
+            pantallaEmergente.style.position = 'fixed';
+            pantallaEmergente.style.top = 0;
+            pantallaEmergente.style.left = 0;
+            pantallaEmergente.style.width = '100%';
+            pantallaEmergente.style.height = '100%';
+            pantallaEmergente.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            pantallaEmergente.style.display = 'flex';
+            pantallaEmergente.style.justifyContent = 'center';
+            pantallaEmergente.style.alignItems = 'center';
+
+            const mostrarItems = document.createElement('div');
+            mostrarItems.style.backgroundColor = 'white';
+            mostrarItems.style.padding = '20px';
+            mostrarItems.style.borderRadius = '10px';
+            mostrarItems.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
+            const texto = document.createElement('p');
+            texto.textContent = '¿Estás seguro de que quieres borrar esto?';
+
+            const botonAceptar = document.createElement('button');
+            botonAceptar.textContent = 'Aceptar';
+            botonAceptar.style.backgroundColor = '#007bff';
+            botonAceptar.style.color = 'white';
+            botonAceptar.style.padding = '10px 20px';
+            botonAceptar.style.borderRadius = '5px';
+            botonAceptar.style.border = 'none';
+            botonAceptar.style.cursor = 'pointer';
+            botonAceptar.style.marginRight = '10px';
+
+            const botonCancelar = document.createElement('button');
+            botonCancelar.textContent = 'Cancelar';
+            botonCancelar.style.backgroundColor = '#007bff';
+            botonCancelar.style.color = 'white';
+            botonCancelar.style.padding = '10px 20px';
+            botonCancelar.style.borderRadius = '5px';
+            botonCancelar.style.border = 'none';
+            botonCancelar.style.cursor = 'pointer';
+            botonAceptar.style.marginRight = '100px';
+
+            botonAceptar.addEventListener('click', function () {
+                pantallaEmergente.remove();
+                const checkboxes = document.querySelectorAll('input.checkbox-accion:checked');
+
+                checkboxes.forEach(function (checkboxs) {
+                    const fila = checkboxs.closest('tr');
+                    deleteE(fila);
+                    fila.remove();
+                });
+
+            });
+
+            botonCancelar.addEventListener('click', function () {
+                pantallaEmergente.remove();
+            });
+
+            mostrarItems.appendChild(texto);
+            mostrarItems.appendChild(botonAceptar);
+            mostrarItems.appendChild(botonCancelar);
+
+            pantallaEmergente.appendChild(mostrarItems);
+            document.body.appendChild(pantallaEmergente);
+
+        }
+
+
+    </script>
+
+<script src="/Coriport/src/app/components/encargado/EmpleadoComponent.js"></script>
+<script src="/Coriport/src/app/components/encargado/UserComponent.js"></script>
+<script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+
+</body> 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justificacion Ausencia</title>
+    <link rel="stylesheet" type="text/css" href="../Encargado/styles/justificacionTardia.css">
+</head>
+
+<body>
+    <br>
+    <center>
+        <h2 style="color: white;">Justificación de Tardia</h2>
+    </center>
+    <br>
+    <br>
+
+    <div class="cajon">
+        <br>
+        <div>
+            <input type="text" id="busquedaJustificacion" oninput="filtrar()" placeholder="Buscar tardia...">
+        </div>
+        <br>
+        <div class="tabla">
+            <table id="justificacion-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID de la Tardia</th>
+                        <th>Fecha de Solicitud</th>
+                        <th>Fecha de la tardia</th>
+                        <th>Archivo</th>
+                        <th>Justificación</th>
+                        <th>Estado</th>
+                        <th>Descripción</th>
+                        <th>Responsable autorizado</th>
+                        <th>Empleado</th>
+                        <th>seleccione para aceptar o rechazar</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableJT">
+
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div id="fondo-status" style="display: none;">
+            <div id="box-statusJustificacion">
+                <span class="popup-close"
+                    onclick="document.getElementById('fondo-status').style.display='none'; document.getElementById('div-reject').style.display='none'; deseleccionarCheckboxes()">✖</span>
+                <p>Justificacion de tardia del empleado</p>
+                <button class="status-btn" id="status-acept">Aceptar</button>
+                <button class="status-btn" id="status-reject">Rechazar</button>
+                <br>
+                <br>
+                <div id="div-reject" style="display: none;">
+                    <div>
+                        <label for="reject">Digite el motivo del rechazo:</label>
+                        <input type="text" id="reject" name="reject" required>
+                        <button id="reject-acept-btn" >Aceptar</button>
+                    </div>            
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- Estructura para la pantalla emergente -->
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="document.getElementById('popup').style.display='none';">✖</span>
+        <div class="popup-content" id="popup-content">
+            <!-- Aquí se mostrarán los detalles del empleado -->
+        </div>
+    </div>
+
+    <script src="/Coriport/src/app/components/encargado/JustificacionTardiaComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/JustificacionTardia.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+
+</body>
+
+</html>

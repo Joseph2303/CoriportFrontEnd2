@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Encargado/styles/messagesInfo.css">
+
+    <style>
+       
+        .HA {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .HA:hover {
+            background-color: #0056b3;
+        }
+
+
+        .HO {
+            background-color: #a41b00;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .HO:hover {
+            background-color: #fe725f;
+        }
+
+        .O {
+            width: 300px;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            text-align: left;
+            border-radius: 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <center>
+        <h2>Marca con Cédula</h2>
+    </center>
+    <br><br>
+    <div id="mensaje" class="mensaje1"></div>
+    <form id="registroForm">
+        <label for="cedula">Cédula del Empleado:</label>
+        <input class="O" type="text" id="cedula" name="cedula" required placeholder="Ingrese su numero de cédula #">
+        <br><br>
+        <br><br>
+        <button class="HA" type="button" onclick="send()">Registrar Entrada</button>
+        <button class="HO" type="button" onclick="update()">Registrar Salida</button>
+    </form>
+
+
+
+    <script>
+        let registros = [];
+
+        function registrarEntrada() {
+            const cedula = document.getElementById("cedula").value.trim(); // Eliminar espacios en blanco al inicio y al final
+            if (cedula === "") {
+                mostrarMensaje('cedulaVacia');
+                return;
+            }
+            const fechaActual = new Date().toLocaleDateString();
+            const horaEntrada = new Date().toLocaleTimeString();
+            const existeRegistro = registros.find(registro => registro.cedula === cedula && registro.fecha === fechaActual);
+            if (!existeRegistro) {
+                registros.push({ cedula, fecha: fechaActual, horaEntrada });
+                mostrarMensaje('entrada', cedula);
+                mostrarRegistrosEnConsola();
+            } else {
+                mostrarMensaje('yaRegistrado');
+            }
+        }
+
+        function registrarSalida() {
+            const cedula = document.getElementById("cedula").value.trim(); // Eliminar espacios en blanco al inicio y al final
+            if (cedula === "") {
+                mostrarMensaje('cedulaVacia');
+                return;
+            }
+            const fechaActual = new Date().toLocaleDateString();
+            const horaSalida = new Date().toLocaleTimeString();
+            const registro = registros.find(registro => registro.cedula === cedula && registro.fecha === fechaActual);
+            if (registro) {
+                registro.horaSalida = horaSalida;
+                mostrarMensaje('salida', cedula);
+                mostrarRegistrosEnConsola();
+            } else {
+                mostrarMensaje('sinEntrada');
+            }
+        }
+
+        function mostrarMensaje(tipo, cedula) {
+            const mensaje = document.getElementById("mensaje");
+            mensaje.classList.remove('mostrar-mensaje1');
+            if (tipo === 'entrada') {
+                mensaje.textContent = `Empleado con cédula ${cedula} ha ingresado.`;
+            } else if (tipo === 'salida') {
+                mensaje.textContent = `Empleado con cédula ${cedula} ha salido.`;
+            } else if (tipo === 'yaRegistrado') {
+                mensaje.textContent = "Esta cédula ya ha sido registrada hoy.";
+            } else if (tipo === 'sinEntrada') {
+                mensaje.textContent = "No hay registro de entrada para esta cédula hoy.";
+            } else if (tipo === 'cedulaVacia') {
+                mensaje.textContent = "Por favor, ingrese una cédula.";
+            }
+            mensaje.classList.add('mostrar-mensaje1');
+            setTimeout(() => mensaje.classList.remove('mostrar-mensaje1'), 5000); // Ocultar el mensaje después de 5 segundos
+        }
+
+        function mostrarRegistrosEnConsola() {
+            console.clear(); // Limpiar la consola antes de mostrar los registros
+            registros.forEach(registro => {
+                console.log(registro);
+            });
+        }
+    </script>
+  <script src="/Coriport/src/app/components/empleado/MarcaComponent.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+</body>
+
+</html>

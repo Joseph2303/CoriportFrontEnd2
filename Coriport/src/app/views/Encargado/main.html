@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HCR Encargado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- BOOTSTRAP 4 -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- CSS personalizado -->
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="/Coriport/src/app/views/Encargado/styles/messagesInfo.css">
+    <link rel="icon" type="image/x-icon" href="/Coriport/src/app/Assets/img/letra-h.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+
+<body class="main">
+    <div class="preloader">
+        <img src="/Coriport/src/app/Assets/img/icons8-reloj-arena-abajo.gif">
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="bx bx-menu menu-icon"></i>
+            <a class="logo-name" href="/Coriport/src/app/views/Encargado/main.html"> <img
+                    src="/Coriport/src/app/Assets/img/siglas_coriport.png" style=" width: 170px; height: 81px;"></a>
+            <h5>Perfil del Encargado</h5>
+            <br>
+        </div>
+        <div class="sidebar">
+            <div class="logo">
+                <i class="bx bx-menu menu-icon"></i>
+                <a class="logo-name" href="/Coriport/src/app/views/Encargado/main.html"> <img
+                        src="/Coriport/src/app/Assets/img/siglas_coriport.png" style=" width: 170px; height: 81px;"></a>
+            </div>
+            <div class="sidebar-content">
+                <ul class="lists">
+                    <h4 class="logo-name">Encargado</h4>
+                    <li class="list">
+                        <a id="diasFeriado" href="#" class="nav-link" data-toggle="collapse" aria-expanded="false">
+                            <i class="bi bi-backpack2 icon"></i>
+                            <span class="link">Dias Feriados</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="empleados" href="#" class="nav-link">
+                            <i class="bx bx-user icon"></i>
+                            <span class="link">Empleados</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="horasExtras" href="#" class="nav-link">
+                            <i class="bi bi-alarm-fill icon"></i>
+                            <span class="link">Horas Extras</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="registroTardia" href="#" class="nav-link">
+                            <i class="bi bi-columns-gap icon"></i>
+                            <span class="link">Registro de Tardia</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="justiTardia" href="#" class="nav-link">
+                            <i class="bi bi-clipboard-check-fill icon"></i>
+                            <span class="link">Justificacion de Tardia</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="registroAusencia" href="#" class="nav-link">
+                            <i class="bx bx-pie-chart-alt-2 icon"></i>
+                            <span class="link">Registro de Ausencia</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="justiAusencia" href="#" class="nav-link">
+                            <i class="bi bi-clipboard-check-fill icon"></i>
+                            <span class="link">Justificacion de Ausencia</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="vacacion" href="#" class="nav-link">
+                            <i class="bi bi-calendar2-range-fill icon"></i>
+                            <span class="link">Vacaciones</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="vacaciones" href="#" class="nav-link">
+                            <i class="bx bx-right-indent icon"></i>
+                            <span class="link">Solicitud de vacaciones</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="puesto" href="#" class="nav-link">
+                            <i class="fas fa-briefcase icon"></i>
+                            <span class="link">Puestos</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="horario" href="#" class="nav-link">
+                            <i class="bx bx-layout icon"></i>
+                            <span class="link">Horarios de Marcas</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="marca" href="#" class="nav-link">
+                            <i class="bx bx-fingerprint icon"></i>
+                            <span class="link">Marcas</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="HorarioEmpleados" href="#" class="nav-link">
+                            <i class="bi bi-calendar3 icon"></i>
+                            <span class="link">Horario de Empleados</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a id="RegistroFace" href="#" class="nav-link">
+                            <i class='bx bxs-face-mask icon'></i>
+                            <span class="link">Registro de Face</span>
+                        </a>
+                    </li>
+                    <br>
+                    <li class="list">
+                        <a id="salir" href="#" class="nav-link">
+                            <i class="bx bx-log-out icon"></i>
+                            <span class="link">Cerrar Seción</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div id="background-container"></div>
+    <div id="main-containerEncargado" class="col-12">
+        <div class="controler-MainEncargado">
+            <center>
+                <div class="img-container">
+                    <img src="/Coriport/src/app/Assets/img/coripo.png" alt="Coripo Image">
+                </div>
+            </center>
+        </div> 
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer>
+        <div>
+            <center>
+                <p>Derechos de autor &copy; 2024 - Sistema creado para el control de Empleados de Coriport.</p>
+                <p>Contáctanos: <a href="mailto:info@guanacasteairport.com">info@guanacasteairport.com</a></p>
+                <p>Tel: <a href="tel:+50626669600">(506)2666-9600</a></p>
+            </center>
+        </div>
+    </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"
+        integrity="sha512-7rusk8kGPFynZWu26OKbTeI+QPoYchtxsmPeBqkHIEXJxeun4yJ4ISYe7C6sz9wdxeE1Gk3VxsIWgCZTc+vX3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+        integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/MenuEncargado.js"></script>
+    <script src="/Coriport/src/app/js/jquery.js"></script>
+    <script src="/Coriport/src/app/js/router.js"></script>
+    <script src="/Coriport/src/app/Scripts/MessagesInfo.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+    <script src="/Coriport/src/app/Scripts/logoutTime.js"></script>
+</body>
+
+</html>

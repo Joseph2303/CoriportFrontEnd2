@@ -1,0 +1,88 @@
+<link rel="stylesheet" type="text/css" href="../Encargado/styles/empleado.css">
+
+<body>
+    <center>
+        <h2 style="color: white;">Registros de Puestos</h2>
+    </center>
+    <br>
+    <br>
+
+    <div class="cajon">
+
+        <div>
+            <button id="btnAgregarPuesto"
+                onclick="document.getElementById('pantallaEmergenteAdd').style.display='flex'">Registrar Puesto</button>
+        </div>
+        <br>
+        <div>
+            <input type="text" id="busquedaPuesto" placeholder="Buscar puesto..." oninput="filtrar()">
+        </div>
+        <div class="tabla">
+            <table id="puesto-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID Puesto</th>
+                        <th>Puesto</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableP">
+
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="acciones-container">
+            <div class="izquierda">
+                <button onclick=""  id="eliminar"
+                    ">Eliminar</button>
+                <button onclick="document.getElementById('pantallaEmergenteUpdate').style.display='flex'"
+                     id="actualizar"
+                    >Actualizar</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="pantallaEmergenteAdd" class="fondoNegroForm">
+        <div class="formAjuste">
+            <form class="form">
+                <label for="nombrePuesto">Nombre del puesto:</label>
+                <input type="text" id="nombrePuesto" name="nombrePuesto" required>
+
+                <button type="button" id="sendPuesto">Guardar</button>
+                <button type="button"
+                    onclick="document.getElementById('pantallaEmergenteAdd').style.display='none'">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="pantallaEmergenteUpdate" class="fondoNegroForm">
+        <div class="formAjuste">
+            <form class="form">
+                <label for="idPuestoUpdate">Actulizar puesto:</label>
+                <input type="text" id="idPuestoUpdate" name="idPuestoUpdate" readonly>
+
+                <label for="nombrePuestoUpdate">Actulizar puesto:</label>
+                <input type="text" id="nombrePuestoUpdate" name="nombrePuestoUpdate" required>
+
+                <button type="button" id="update">Actualizar</button>
+                <button type="button"
+                    onclick="document.getElementById('pantallaEmergenteUpdate').style.display='none'">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <div style="display: none; text-align: center; " id="pantallaConfirmacion" class="fondoNegroForm">
+            <div class="form">
+                <h3>¿Estás seguro de que deseas eliminar este puesto?</h3>
+                <button id="delete" style="margin-right: 10px;">Sí</button>
+                <button onclick="ocultarConfirmacion()">No</button>
+        </div>
+    </div>
+
+
+    <script src="/Coriport/src/app/components/encargado/PuestoComponent.js"></script>
+    <script src="/Coriport/src/app/Scripts/ScriptEncargado/Puesto.js"></script>
+    <script src="/Coriport/src/app/Scripts/restriccionRoles.js"></script>
+</body>
