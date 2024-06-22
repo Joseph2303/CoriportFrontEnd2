@@ -327,7 +327,7 @@ function update2(idEmpleado) {
         }
     }).fail(function (xhr) {
         console.log(xhr);
-        verificarEntradaYRegistrarSalida()
+        verificarEntradaYRegistrarSalida(idEmpleado)
         //mostrarMensajeDeError("Error al verificar las marcas: " + xhr.responseJSON.message);
     });
 }
