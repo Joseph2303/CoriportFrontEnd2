@@ -252,8 +252,9 @@ function send2(idEmpleado) {
             mostrarMensajeDeError("Error: " + response.message);
         }
     }).fail(function (xhr) {
+        registrarMarcaEntrada(idEmpleado);
         console.log(xhr);
-        mostrarMensajeDeError("Error al verificar el horario: " + xhr.responseJSON.message);
+        //mostrarMensajeDeError("Error al verificar el horario: " + xhr.responseJSON.message);
     });
 }
 
